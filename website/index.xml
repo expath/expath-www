@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="webpage.xsl"?>
+
+<webpage>
+   <title>EXPath - Standards for Portable XPath extensions</title>
+   <section>
+      <title>EXPath</title>
+      <image src="images/machine.jpg" alt="Machine"/>
+      <para>
+         XPath is great. Languages based on XPath, as XQuery and XSLT, are great. The
+         XPath recommendation provides a frame within which you can write expressions
+         that will evaluate the same way in a lot of processors, written using plenty of
+         different languages, in a lot of different environments, in an XML database, an
+         in-memory processor, on a server or a client.
+      </para>
+      <para>
+         This support for as many processor kinds as possible is great.  But this is has
+         been also a constraint to decide which feature could be included in the
+         recommendation and which couldn't.  In addition, experience harvested for many
+         years of using XPath 2.0 pointed out missing features.  This project is aimed to
+         provide specifications for such missing features in a collaborative and
+         implementation independent way, as well as delivering implementations of those
+         extensions for as most processors as possible, using the mechanisms for extensibility
+         provided by the XPath 2.0 recommendation.
+      </para>
+      <para>...</para>
+      <para>...</para>
+      <para>...</para>
+      <para>...</para>
+   </section>
+</webpage>
