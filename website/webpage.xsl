@@ -8,6 +8,15 @@
 
    <xsl:output method="html" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
 
+   <xsl:variable name="menu.items" as="element()+">
+      <a href="index.xml" title="EXPath Home">Home</a>
+      <a href="about.xml" title="About EXPath">About</a>
+      <a href="lists.xml" title="EXPath Mailing Lists">Mailing lists</a>
+      <a href="modules.xml" title="Modules">Modules</a>
+      <a href="resources.xml" title="Resources">Resources</a>
+      <a href="contact.xml" title="EXPath Contact">Contact</a>
+   </xsl:variable>
+
    <xsl:template match="webpage">
       <html xml:lang="en">
          <head>
@@ -44,7 +53,20 @@
                <div id="headerpic"></div>
                <div id="menu">
                   <ul>
-                     <li>
+                     <!--xsl:variable name="filename" select="tokenize(document-uri(/), '/')[last()]"/-->
+                     <xsl:variable name="filename" select="document-uri(/)"/>
+                     <xsl:for-each select="$menu.items">
+                        <li>
+                           <xsl:copy>
+                              <xsl:if test="@href eq $filename">
+                                 <xsl:attribute name="class" select="'active'"/>
+                              </xsl:if>
+                              <xsl:attribute name="debug" select="$filename"/>
+                              <xsl:copy-of select="@*|node()"/>
+                           </xsl:copy>
+                        </li>
+                     </xsl:for-each>
+                     <!--li>
                         <a href="index.xml" title="EXPath Home" class="active">Home</a>
                      </li>
                      <li>
@@ -61,7 +83,7 @@
                      </li>
                      <li>
                         <a href="contact.xml" title="EXPath Contact">Contact</a>
-                     </li>
+                     </li-->
                   </ul>
                </div>
                <div id="menubottom"></div>
@@ -76,9 +98,21 @@
    <xsl:template match="section">
       <div class="normalcontent">
          <xsl:apply-templates select="title"/>
-         <div class="details"></div>
          <div class="contentarea">
             <xsl:apply-templates select="* except title"/>
+         </div>
+      </div>
+   </xsl:template>
+
+   <xsl:template match="primary">
+      <div class="primarycontainer">
+         <div class="primarycontent">
+            <div class="post">
+               <xsl:apply-templates select="title"/>
+               <div class="contentarea">
+                  <xsl:apply-templates select="* except title"/>
+               </div>
+            </div>
          </div>
       </div>
    </xsl:template>
@@ -95,6 +129,12 @@
             <xsl:apply-templates/>
          </strong>
       </h3>
+   </xsl:template>
+
+   <xsl:template match="primary/title">
+      <h4>
+         <xsl:apply-templates/>
+      </h4>
    </xsl:template>
 
    <xsl:template match="image">
@@ -115,6 +155,16 @@
          <xsl:copy-of select="@*"/>
          <xsl:apply-templates/>
       </a>
+   </xsl:template>
+
+   <xsl:template match="divider">
+      <div class="divider1"/>
+   </xsl:template>
+
+   <xsl:template match="details">
+      <div class="details">
+         <xsl:apply-templates/>
+      </div>
    </xsl:template>
 
 </xsl:stylesheet>

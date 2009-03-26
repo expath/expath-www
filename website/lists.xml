@@ -6,10 +6,18 @@
    <section>
       <title>Mailing lists</title>
       <para>
-         TODO: ...
-      </para>
-      <para>
-         See the EXPath <link href="http://groups.google.com/group/expath">Google group</link>...
+         Communication is handled by <link href="http://groups.google.com/group/expath">Google
+         Groups</link> tools.  It offers a regular mailing list as well as archive management.
       </para>
    </section>
+   <divider/>
+   <primary>
+      <title>General list</title>
+      <para>
+         The only one list for now, for all discussions about EXPath.  You can visit the EXPath
+         <link href="http://groups.google.com/group/expath">Google Groups page</link> or send an
+         email to <link href="expath+subscribe@googlegroups.com">expath+subscribe@googlegroups.com</link>
+         to subscribe.  Post to <link href="expath@googlegroups.com">expath@googlegroups.com</link>.
+      </para>
+   </primary>
 </webpage>
