@@ -26,11 +26,11 @@
             <meta name="DC.creator" content="Florent Georges" />
             <meta name="Author" content="Florent Georges" />
             <meta name="DC.identifier" content="http://www.expath.org/" />
-            <meta name="DC.title" content="EXPath - Standards for Portable XPath extensions" />
+            <meta name="DC.title" content="EXPath - Standards for Portable XPath Extensions" />
             <meta name="DC.description"
-               content="EXPath - Collaboratively Defining Open Standards for Portable XPath extensions" />
+               content="EXPath - Collaboratively Defining Open Standards for Portable XPath Extensions" />
             <meta name="description"
-               content="EXPath - Collaboratively Defining Open Standards for Portable XPath extensions" />
+               content="EXPath - Collaboratively Defining Open Standards for Portable XPath Extensions" />
             <meta name="keywords"
                content="EXPath XPath XQuery XSLT functions standards open collaborative portable extensions XML development" />
             <link rel="stylesheet" type="text/css" href="default.css" />
@@ -41,7 +41,7 @@
                <div id="header">
                   <div id="headercontent">
                      <h1>EXPath</h1>
-                     <h2>(: <i>Collaboratively Defining Open Standards for Portable XPath extensions</i> :)</h2>
+                     <h2>(: <i>Collaboratively Defining Open Standards for Portable XPath Extensions</i> :)</h2>
                   </div>
                </div>
                <form method="get" action="search.xql">
