@@ -1,31 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="webpage.xsl"?>
 
-<webpage>
+<webpage uri="index.xml">
    <title>EXPath - Standards for Portable XPath Extensions</title>
    <section>
       <title>EXPath</title>
       <image src="images/machine.jpg" alt="Machine"/>
-      <para>
-         XPath is great. Languages based on XPath, as XQuery and XSLT, are great. The
-         XPath recommendation provides a frame within which you can write expressions
-         that will evaluate the same way in a lot of processors, written using plenty of
-         different languages, in a lot of different environments, in an XML database, an
-         in-memory processor, on a server or a client.
-      </para>
-      <para>
-         This support for as many processor kinds as possible is great.  But this is has
-         been also a constraint to decide which feature could be included in the
-         recommendation and which couldn't.  In addition, experience harvested for many
-         years of using XPath 2.0 pointed out missing features.  This project is aimed to
-         provide specifications for such missing features in a collaborative and
-         implementation independent way, as well as delivering implementations of those
-         extensions for as most processors as possible, using the mechanisms for extensibility
-         provided by the XPath 2.0 recommendation.
-      </para>
+      <para>XPath is great. Languages based on XPath, as XQuery and XSLT, are great. The XPath
+         recommendation provides a frame within which you can write expressions that will evaluate
+         the same way in a lot of processors, written using plenty of different languages, in a lot
+         of different environments, in an XML database, an in-memory processor, on a server or a
+         client.</para>
+      <para>This support for as many processor kinds as possible is great. But this is has been also
+         a constraint to decide which feature could be included in the recommendation and which
+         couldn't. In addition, experience harvested for many years of using XPath 2.0 pointed out
+         missing features. This project is aimed to provide specifications for such missing features
+         in a collaborative and implementation independent way, as well as delivering
+         implementations of those extensions for as most processors as possible, using the
+         mechanisms for extensibility provided by the XPath 2.0 recommendation.</para>
       <para>...</para>
-      <para>...</para>
-      <para>...</para>
+      <para> [[ relationship and collaboration with other projects: EXSLT and EXQuery ]] </para>
       <para>...</para>
    </section>
+   <divider/>
+   <primary>
+      <title>Standard function libraries</title>
+      <para>The easiest way to provide new features to XPath is to define extension functions. We
+         plan to provide several function libraries that each addresses a specific area. For
+         instance performing HTTP requests, using WebDAV, reading and writing ZIP files (like EPUB
+         eBook, Open XML and Open Document formats,) [[ ... include other ideas from EWiki ...
+         ]]</para>
+      <para>Have a look at the <link href="modules.xml">Modules</link> section for available and
+         work-in-progress function libraries.</para>
+   </primary>
+   <primary>
+      <title>Extensions to the language</title>
+      <para>Besides function libraries, we want to address more fundamental XPath issues as well,
+         right at the language level. One obvious example is nested sequences. XPath 2.0 does not
+         provide any way to nest sequences. One can build complex data structures by using XML
+         trees, but then he has to copy the data to that tree, he cannot have complex data structure
+         that preserves all properties of the initial items and nodes.</para>
+      <para>While this can be defined and implemented through extension functions, this is a typical
+         example of more fundamental changes that require more than a function API documentation to
+         be used.</para>
+      <para>Those extensions are a good place to experiment with new ideas to improve the current
+         version of XPath.</para>
+   </primary>
+   <primary>
+      <title>XPath usage contexts</title>
+      <para>XPath is a language used embedded in many other languages, as XSLT, XQuery, Java, C#,
+         Perl, Python... But it is also used in different contexts: in a standalone XSLT transform,
+         as part of an XQuery on an XML Database, in a server environment, in a system performing
+         XML streaming or an in-memory-tree-based system.</para>
+      <para>All those different environments have their own particularities. It would be interesting
+         for instance to define how one can access the HTTP request context info on a web server
+         (getting header values, setting response Content-Type, etc.)</para>
+      <para>Like the Java Servlet specification does not only define a set of classes and methods,
+         we should here define how the container must behave, what information it must provide and
+         how it must react to some XPath expression evaluation.</para>
+   </primary>
+   <secondary>
+      <title>The process</title>
+      <para>From experience with other similar projects, defining extensions is a domain where
+         people have a lot of very useful, interesting ideas. But having fun ideas, or even a
+         coarse-grained idea of what the function prototypes and the specification should look like
+         is just the top of the iceberg. The real work starts here...</para>
+      <para>We maintain a list of raw ideas, and we are highly interested in getting your own ideas,
+         use case, and how extensions, existing or not, can be used to help you solving your
+         problems.</para>
+      <para>But the whole point of this project is to be pragmatic and to provide concrete
+         extensions, ready to be used and well-defined. Sounds rational, isn't it? And the best way
+         to help us to help you is to take part in the process. Communicate, send use cases, send
+         prototype implementations, write a draft specification, report bugs...</para>
+      <para>We want constructive discussions and concrete materials; we don't want to theorize just
+         for fun.</para>
+   </secondary>
 </webpage>

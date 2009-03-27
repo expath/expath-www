@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="webpage.xsl"?>
 
-<webpage>
+<webpage uri="lists.xml">
    <title>EXPath - Mailing lists</title>
    <section>
       <title>Mailing lists</title>
-      <para>
-         Communication is handled by <link href="http://groups.google.com/group/expath">Google
-         Groups</link> tools.  It offers a regular mailing list as well as archive management.
+      <para> Communication is handled by <link href="http://groups.google.com/group/expath">Google
+            Groups</link> tools. It offers a regular mailing list as well as archive management.
       </para>
    </section>
    <divider/>
    <primary>
+      <title>Announces list</title>
+      <para>This list is very low traffic and only the team can post messages to this list. You can
+         visit the list <link href="http://groups.google.com/group/expath-announces">Google Groups
+            page</link> or send an email to <link href="expath-announces+subscribe@googlegroups.com"
+            >expath-announces+subscribe@googlegroups.com</link> to subscribe.</para>
+   </primary>
+   <primary>
       <title>General list</title>
-      <para>
-         The only one list for now, for all discussions about EXPath.  You can visit the EXPath
-         <link href="http://groups.google.com/group/expath">Google Groups page</link> or send an
-         email to <link href="expath+subscribe@googlegroups.com">expath+subscribe@googlegroups.com</link>
-         to subscribe.  Post to <link href="expath@googlegroups.com">expath@googlegroups.com</link>.
-      </para>
+      <para>The list for all discussions about EXPath. You can visit the list <link
+            href="http://groups.google.com/group/expath">Google Groups page</link> or send an email
+         to <link href="expath+subscribe@googlegroups.com">expath+subscribe@googlegroups.com</link>
+         to subscribe. Post to <link href="expath@googlegroups.com"
+         >expath@googlegroups.com</link>.</para>
    </primary>
 </webpage>

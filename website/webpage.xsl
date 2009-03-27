@@ -6,16 +6,10 @@
                 exclude-result-prefixes="xs"
                 version="2.0">
 
-   <xsl:output method="html" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
-
-   <xsl:variable name="menu.items" as="element()+">
-      <a href="index.xml" title="EXPath Home">Home</a>
-      <a href="about.xml" title="About EXPath">About</a>
-      <a href="lists.xml" title="EXPath Mailing Lists">Mailing lists</a>
-      <a href="modules.xml" title="Modules">Modules</a>
-      <a href="resources.xml" title="Resources">Resources</a>
-      <a href="contact.xml" title="EXPath Contact">Contact</a>
-   </xsl:variable>
+   <xsl:output
+       method="html"
+       encoding="UTF-8"
+       doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
 
    <xsl:template match="webpage">
       <html xml:lang="en">
@@ -36,7 +30,7 @@
             <link rel="stylesheet" type="text/css" href="default.css" />
          </head>
          <body>
-            <div id="upbg"></div>
+            <div id="upbg"/>
             <div id="outer">
                <div id="header">
                   <div id="headercontent">
@@ -50,49 +44,58 @@
                      <input type="submit" class="submit" value="Search" />
                   </div>
                </form>
-               <div id="headerpic"></div>
+               <div id="headerpic"/>
                <div id="menu">
-                  <ul>
-                     <!--xsl:variable name="filename" select="tokenize(document-uri(/), '/')[last()]"/-->
-                     <xsl:variable name="filename" select="document-uri(/)"/>
-                     <xsl:for-each select="$menu.items">
-                        <li>
-                           <xsl:copy>
-                              <xsl:if test="@href eq $filename">
-                                 <xsl:attribute name="class" select="'active'"/>
-                              </xsl:if>
-                              <xsl:attribute name="debug" select="$filename"/>
-                              <xsl:copy-of select="@*|node()"/>
-                           </xsl:copy>
-                        </li>
-                     </xsl:for-each>
-                     <!--li>
-                        <a href="index.xml" title="EXPath Home" class="active">Home</a>
-                     </li>
-                     <li>
-                        <a href="about.xml" title="About EXPath">About</a>
-                     </li>
-                     <li>
-                        <a href="lists.xml" title="EXPath Mailing Lists">Mailing lists</a>
-                     </li>
-                     <li>
-                        <a href="modules.xml" title="Modules">Modules</a>
-                     </li>
-                     <li>
-                        <a href="resources.xml" title="Resources">Resources</a>
-                     </li>
-                     <li>
-                        <a href="contact.xml" title="EXPath Contact">Contact</a>
-                     </li-->
-                  </ul>
+                  <xsl:call-template name="menu"/>
                </div>
-               <div id="menubottom"></div>
+               <div id="menubottom"/>
                <div id="content">
                   <xsl:apply-templates select="* except title"/>
+               </div>
+               <div id="footer">
+                  <div class="left">
+                     <a href="http://validator.w3.org/check?uri=referer">
+                        <img src="images/valid-xhtml11.gif" alt="Valid XHTML 1.1" height="31" width="88" style="border: 0;" />
+                     </a>
+                     <a href="http://jigsaw.w3.org/css-validator/validator?uri=http://www.expath.org/default.css">
+                        <img src="images/valid-css.gif" alt="Valid CSS!" style="border: 0;" />
+                     </a>
+                  </div>
+                  <div class="right">
+                     <div>Powered by: <a href="http://www.nginx.net">Nginx</a> + <a href="http://www.exist-db.org">eXist</a></div>
+                     <div>Design by <a href="http://www.nodethirtythree.com/">NodeThirtyThree Design</a></div>
+                  </div>
                </div>
             </div>
          </body>
       </html>
+   </xsl:template>
+
+   <xsl:template name="menu">
+      <xsl:param name="page" select="."/>
+      <!-- TODO: Due to a bug to eXist, I have to put @uri in the input... -->
+      <!--xsl:variable name="filename" select="tokenize(document-uri(/), '/')[last()]"/-->
+      <xsl:variable name="filename" select="$page/@uri"/>
+      <xsl:variable name="menu.items" as="element()+">
+         <a href="index.xml" title="EXPath Home">Home</a>
+         <a href="about.xml" title="About EXPath">About</a>
+         <a href="lists.xml" title="EXPath Mailing Lists">Mailing lists</a>
+         <a href="modules.xml" title="Modules">Modules</a>
+         <a href="resources.xml" title="Resources">Resources</a>
+         <a href="contact.xml" title="EXPath Contact">Contact</a>
+      </xsl:variable>
+      <ul>
+         <xsl:for-each select="$menu.items">
+            <li>
+               <xsl:copy>
+                  <xsl:if test="@href eq $filename">
+                     <xsl:attribute name="class" select="'active'"/>
+                  </xsl:if>
+                  <xsl:copy-of select="@*|node()"/>
+               </xsl:copy>
+            </li>
+         </xsl:for-each>
+      </ul>
    </xsl:template>
 
    <xsl:template match="section">
@@ -104,16 +107,36 @@
       </div>
    </xsl:template>
 
+   <xsl:template match="primary[exists(preceding-sibling::primary)]" priority="2"/>
+
    <xsl:template match="primary">
-      <div class="primarycontainer">
-         <div class="primarycontent">
-            <div class="post">
-               <xsl:apply-templates select="title"/>
-               <div class="contentarea">
-                  <xsl:apply-templates select="* except title"/>
+      <div id="primarycontainer">
+         <div id="primarycontent">
+            <xsl:for-each select="../primary">
+               <div class="post">
+                  <xsl:apply-templates select="title"/>
+                  <div class="contentarea">
+                     <xsl:apply-templates select="* except title"/>
+                     <div style="clear: both;"/>
+                  </div>
                </div>
-            </div>
+               <div class="divider2"/>
+            </xsl:for-each>
          </div>
+      </div>
+   </xsl:template>
+
+   <xsl:template match="secondary[exists(preceding-sibling::secondary)]" priority="2"/>
+
+   <xsl:template match="secondary">
+      <div id="secondarycontent">
+         <xsl:for-each select="../secondary">
+            <xsl:apply-templates select="title"/>
+            <div class="contentarea">
+               <xsl:apply-templates select="* except title"/>
+            </div>
+            <div class="divider2"/>
+         </xsl:for-each>
       </div>
    </xsl:template>
 
@@ -131,7 +154,7 @@
       </h3>
    </xsl:template>
 
-   <xsl:template match="primary/title">
+   <xsl:template match="primary/title|secondary/title">
       <h4>
          <xsl:apply-templates/>
       </h4>

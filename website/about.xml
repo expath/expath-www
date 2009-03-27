@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="webpage.xsl"?>
 
-<webpage>
+<webpage uri="about.xml">
    <title>EXPath - About</title>
    <section>
       <title>About</title>
