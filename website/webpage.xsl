@@ -108,8 +108,10 @@
       </div>
    </xsl:template>
 
+   <!-- TODO: Should be done for adjacent elements only! -->
    <xsl:template match="primary[exists(preceding-sibling::primary)]" priority="2"/>
 
+   <!-- TODO: Should be done for adjacent elements only! -->
    <xsl:template match="primary">
       <div id="primarycontainer">
          <div id="primarycontent">
@@ -127,16 +129,30 @@
       </div>
    </xsl:template>
 
+   <!-- TODO: Should be done for adjacent elements only! -->
    <xsl:template match="secondary[exists(preceding-sibling::secondary)]" priority="2"/>
 
+   <!-- TODO: Should be done for adjacent elements only! -->
    <xsl:template match="secondary">
       <div id="secondarycontent">
          <xsl:for-each select="../secondary">
-            <xsl:apply-templates select="title"/>
-            <div class="contentarea">
-               <xsl:apply-templates select="* except title"/>
-            </div>
-            <div class="divider2"/>
+            <xsl:variable name="content" as="element()+">
+               <xsl:apply-templates select="title"/>
+               <div class="contentarea">
+                  <xsl:apply-templates select="* except title"/>
+               </div>
+            </xsl:variable>
+            <xsl:choose>
+               <xsl:when test="@box/xs:boolean(.)">
+                  <div class="box">
+                     <xsl:copy-of select="$content"/>
+                  </div>
+               </xsl:when>
+               <xsl:otherwise>
+                  <xsl:copy-of select="$content"/>
+                  <div class="divider2"/>
+               </xsl:otherwise>
+            </xsl:choose>
          </xsl:for-each>
       </div>
    </xsl:template>
