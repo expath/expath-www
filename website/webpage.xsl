@@ -79,6 +79,7 @@
       <xsl:variable name="menu.items" as="element()+">
          <a href="index.xml" title="EXPath Home">Home</a>
          <a href="about.xml" title="About EXPath">About</a>
+         <a href="news.xml" title="EXPath News">News</a>
          <a href="lists.xml" title="EXPath Mailing Lists">Mailing lists</a>
          <a href="modules.xml" title="Modules">Modules</a>
          <a href="resources.xml" title="Resources">Resources</a>

@@ -14,6 +14,7 @@
             <file name="website/index.xml"/>
             <file name="website/lists.xml"/>
             <file name="website/modules.xml"/>
+            <file name="website/news.xml"/>
             <file name="website/resources.xml"/>
             <file name="website/webpage.xsl"/>
         </folder>
