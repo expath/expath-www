@@ -6,11 +6,11 @@
    <section>
       <title>EXPath</title>
       <image src="images/machine.jpg" alt="Machine"/>
-      <para>XPath is great. Languages based on XPath, as XQuery and XSLT, are great. The XPath
-         recommendation provides a frame within which you can write expressions that will evaluate
-         the same way in a lot of processors, written using plenty of different languages, in a lot
-         of different environments, in an XML database, an in-memory processor, on a server or a
-         client.</para>
+      <para>XPath is great. Languages based on XPath, such as XQuery, XSLT and XProc, are great. The
+         XPath recommendation provides a frame within which you can write expressions that will
+         evaluate the same way in a lot of processors, written using plenty of different languages,
+         in a lot of different environments, in an XML database, an in-memory processor, on a server
+         or a client.</para>
       <para>This support for as many processor kinds as possible is great. But this is has been also
          a constraint to decide which feature could be included in the recommendation and which
          couldn't. In addition, experience harvested for many years of using XPath 2.0 pointed out
@@ -27,9 +27,13 @@
       <title>Standard function libraries</title>
       <para>The easiest way to provide new features to XPath is to define extension functions. We
          plan to provide several function libraries that each addresses a specific area. For
-         instance performing HTTP requests, using WebDAV, reading and writing ZIP files (like EPUB
-         eBook, Open XML and Open Document formats,) [[ ... include other ideas from EWiki ...
-         ]]</para>
+         instance performing HTTP requests, using <link href="http://en.wikipedia.org/wiki/WebDAV"
+            >WebDAV</link>, reading and writing ZIP files (like <link
+            href="http://www.openebook.org/">EPUB</link> eBook, <link
+            href="http://en.wikipedia.org/wiki/Office_Open_XML">Open XML</link> and <link
+            href="http://en.wikipedia.org/wiki/OpenDocument">OpenDocument</link> files,) parsing and
+         serializing XML and HTML documents, executing XSLT transforms and XQuery queries,
+         etcetera.</para>
       <para>Have a look at the <link href="modules.xml">Modules</link> section for available and
          work-in-progress function libraries.</para>
    </primary>
@@ -59,6 +63,12 @@
          we should here define how the container must behave, what information it must provide and
          how it must react to some XPath expression evaluation.</para>
    </primary>
+   <secondary box="true">
+      <title>I want to be part of this!</title>
+      <para>This is simple. Read through this website, and <link href="lists.xml">join the
+            list</link>. You can help by providing use cases, writing specifications, implement
+         them, or simply by using existing extensions.</para>
+   </secondary>
    <secondary>
       <title>The process</title>
       <para>From experience with other similar projects, defining extensions is a domain where
@@ -72,7 +82,8 @@
          extensions, ready to be used and well-defined. Sounds rational, isn't it? And the best way
          to help us to help you is to take part in the process. Communicate, send use cases, send
          prototype implementations, write a draft specification, report bugs...</para>
-      <para>We want constructive discussions and concrete materials; we don't want to theorize just
-         for fun.</para>
+      <para>The central point of the process is to communicate through the mailing list. So <link
+            href="lists.xml">join the list</link>, follow the discussions and see how you could
+         help.</para>
    </secondary>
 </webpage>
