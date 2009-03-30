@@ -62,8 +62,9 @@
                      </a>
                   </div>
                   <div class="right">
-                     <div>Powered by: <a href="http://www.nginx.net">Nginx</a> + <a href="http://www.exist-db.org">eXist</a></div>
-                     <div>Design by <a href="http://www.nodethirtythree.com/">NodeThirtyThree Design</a></div>
+                     <div>Powered by: <a href="http://www.exist-db.org/">eXist</a></div>
+                     <div>Design by: <a href="http://www.nodethirtythree.com/">NodeThirtyThree Design</a></div>
+                     <div><a href="credits.xml">Credits</a></div>
                   </div>
                </div>
             </div>
@@ -78,12 +79,14 @@
       <xsl:variable name="filename" select="$page/@uri"/>
       <xsl:variable name="menu.items" as="element()+">
          <a href="index.xml" title="EXPath Home">Home</a>
-         <a href="about.xml" title="About EXPath">About</a>
+         <!-- TODO: "About" page temporarily disabled. -->
+         <!--a href="about.xml" title="About EXPath">About</a-->
          <a href="news.xml" title="EXPath News">News</a>
          <a href="lists.xml" title="EXPath Mailing Lists">Mailing lists</a>
          <a href="modules.xml" title="Modules">Modules</a>
          <a href="resources.xml" title="Resources">Resources</a>
-         <a href="contact.xml" title="EXPath Contact">Contact</a>
+         <!-- TODO: "Contact" page temporarily disabled. -->
+         <!--a href="contact.xml" title="EXPath Contact">Contact</a-->
       </xsl:variable>
       <ul>
          <xsl:for-each select="$menu.items">
@@ -188,6 +191,18 @@
       <p>
          <xsl:apply-templates/>
       </p>
+   </xsl:template>
+
+   <xsl:template match="list">
+      <ul>
+         <xsl:apply-templates/>
+      </ul>
+   </xsl:template>
+
+   <xsl:template match="item">
+      <li>
+         <xsl:apply-templates/>
+      </li>
    </xsl:template>
 
    <xsl:template match="link">

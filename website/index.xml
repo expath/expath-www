@@ -13,14 +13,20 @@
          or a client.</para>
       <para>This support for as many processor kinds as possible is great. But this is has been also
          a constraint to decide which feature could be included in the recommendation and which
-         couldn't. In addition, experience harvested for many years of using XPath 2.0 pointed out
-         missing features. This project is aimed to provide specifications for such missing features
-         in a collaborative and implementation independent way, as well as delivering
+         couldn't. In addition, experience harvested for several years of using XPath 2.0 pointed
+         out missing features. This project is aimed to provide specifications for such missing
+         features in a collaborative and implementation independent way, as well as delivering
          implementations of those extensions for as most processors as possible, using the
-         mechanisms for extensibility provided by the XPath 2.0 recommendation.</para>
-      <para>...</para>
-      <para> [[ relationship and collaboration with other projects: EXSLT and EXQuery ]] </para>
-      <para>...</para>
+         mechanisms for extensibility provided by the XPath 2.0 recommendation itself.</para>
+      <para>Other projects exist to define extensions for languages tightly bound to XPath, as the
+         famous <link href="http://www.exslt.org/">EXSLT</link>, and the more recent <link
+            href="http://www.exquery.org/">EXQuery</link> and <link href="http://www.exproc.org/"
+            >EXProc</link> projects. We think that those projects are really useful and fill a gap
+         in the XML core technologies landscape. But we think also they should not reinvent their
+         own wheels, when working at the XPath level (when that makes sense) would permit to share
+         common work. This is just following the brilliant idea of XSLT and XQuery working groups at
+         the W3C which joined their efforts in defining together XPath 2.0: far from competing with
+         those projects, the idea is to promote collaboration between them.</para>
    </section>
    <divider/>
    <primary>
@@ -64,7 +70,7 @@
          how it must react to some XPath expression evaluation.</para>
    </primary>
    <secondary box="true">
-      <title>I want to be part of this!</title>
+      <title>Let me be part of this</title>
       <para>This is simple. Read through this website, and <link href="lists.xml">join the
             list</link>. You can help by providing use cases, writing specifications, implement
          them, or simply by using existing extensions.</para>
@@ -80,8 +86,9 @@
          problems.</para>
       <para>But the whole point of this project is to be pragmatic and to provide concrete
          extensions, ready to be used and well-defined. Sounds rational, isn't it? And the best way
-         to help us to help you is to take part in the process. Communicate, send use cases, send
-         prototype implementations, write a draft specification, report bugs...</para>
+         to help us to help you is to take part in the process. Communicate, send your own use
+         cases, send prototype implementations, write a draft for a specification, report
+         bugs...</para>
       <para>The central point of the process is to communicate through the mailing list. So <link
             href="lists.xml">join the list</link>, follow the discussions and see how you could
          help.</para>

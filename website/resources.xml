@@ -5,8 +5,14 @@
    <title>EXPath - Resources</title>
    <section>
       <title>Resources</title>
-      <para>
-         TODO: ...
-      </para>
+      <list>
+         <item><link href="http://www.exslt.org/">EXSLT</link> project</item>
+         <item><link href="http://www.exquery.org/">EXQuery</link> project</item>
+         <item><link href="http://www.exproc.org/">EXProc</link> project</item>
+         <item><link href="http://www.exist-db.org/">eXist</link> XML database</item>
+         <item><link href="http://www.marklogic.com/">MarkLogic</link> XML database</item>
+         <item><link href="http://www.saxonica.com/">Saxon</link> XSLT &amp; XQuery processor</item>
+         <item><link href="http://www.zorba-xquery.com/">Zorba</link> XQuery processor</item>
+      </list>
    </section>
 </webpage>

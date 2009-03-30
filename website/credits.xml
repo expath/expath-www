@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="webpage.xsl"?>
 
 <webpage uri="credits.xml">
    <title>EXPath - Credits</title>
    <section>
       <title>Credits</title>
-      <para>http://www.flickr.com/photos/ginable/209423068/</para>
+      <para>The <link href="http://www.flickr.com/photos/ginable/209423068/">old machine</link> on
+         the home page appears with the courtesy of <link
+            href="http://www.flickr.com/people/ginable/">Gina</link>.</para>
    </section>
 </webpage>

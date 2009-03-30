@@ -5,8 +5,10 @@
    <title>EXPath - News</title>
    <section>
       <title>News</title>
-      <para>
-         TODO: ...
-      </para>
    </section>
+   <primary>
+      <title>A new birth</title>
+      <details>March 29, 2009</details>
+      <para>The website has just been released.  Hello, world!</para>
+   </primary>
 </webpage>

@@ -5,8 +5,17 @@
    <title>EXPath - Modules</title>
    <section>
       <title>Modules</title>
-      <para>
-         TODO: ...
-      </para>
+      <para> Most of the extensions will be of the form of function libraries. Each module is an
+         independent, consistent piece of the whole project, addressing a particular issue or
+         feature area. </para>
    </section>
+   <divider/>
+   <primary>
+      <title>HTTP Client</title>
+      <details>Sending HTTP requests</details>
+      <para>This is the first module defined so far. It has not been adapted to the work-in-progress
+         EXPath formalism yet, but is available on its <link href="http://www.fgeorges.org/exslt2/"
+            >legacy page</link> for now. Any thought about how it should be released as part of
+         EXPath would be much appreciated on the <link href="lists.xml">mailing list</link>.</para>
+   </primary>
 </webpage>
