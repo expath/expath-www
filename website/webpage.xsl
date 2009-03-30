@@ -11,6 +11,9 @@
        encoding="UTF-8"
        doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
 
+   <xsl:variable name="root" as="xs:string?" select="
+       if ( /webpage/@root ) then concat(/webpage/@root, '/') else ()"/>
+
    <xsl:template match="webpage">
       <html xml:lang="en">
          <head>
@@ -27,7 +30,7 @@
                content="EXPath - Collaboratively Defining Open Standards for Portable XPath Extensions" />
             <meta name="keywords"
                content="EXPath XPath XQuery XSLT functions standards open collaborative portable extensions XML development" />
-            <link rel="stylesheet" type="text/css" href="default.css" />
+            <link rel="stylesheet" type="text/css" href="{ $root }default.css"/>
          </head>
          <body>
             <div id="upbg"/>
@@ -64,7 +67,7 @@
                   <div class="right">
                      <div>Powered by: <a href="http://www.exist-db.org/">eXist</a></div>
                      <div>Design by: <a href="http://www.nodethirtythree.com/">NodeThirtyThree Design</a></div>
-                     <div><a href="credits.xml">Credits</a></div>
+                     <div><a href="{ $root }credits.xml">Credits</a></div>
                   </div>
                </div>
             </div>
@@ -78,15 +81,15 @@
       <!--xsl:variable name="filename" select="tokenize(document-uri(/), '/')[last()]"/-->
       <xsl:variable name="filename" select="$page/@uri"/>
       <xsl:variable name="menu.items" as="element()+">
-         <a href="index.xml" title="EXPath Home">Home</a>
+         <a href="{ $root }index.xml" title="EXPath Home">Home</a>
          <!-- TODO: "About" page temporarily disabled. -->
-         <!--a href="about.xml" title="About EXPath">About</a-->
-         <a href="news.xml" title="EXPath News">News</a>
-         <a href="lists.xml" title="EXPath Mailing Lists">Mailing lists</a>
-         <a href="modules.xml" title="Modules">Modules</a>
-         <a href="resources.xml" title="Resources">Resources</a>
+         <!--a href="{ $root }about.xml" title="About EXPath">About</a-->
+         <a href="{ $root }news.xml" title="EXPath News">News</a>
+         <a href="{ $root }lists.xml" title="EXPath Mailing Lists">Mailing lists</a>
+         <a href="{ $root }modules.xml" title="Modules">Modules</a>
+         <a href="{ $root }resources.xml" title="Resources">Resources</a>
          <!-- TODO: "Contact" page temporarily disabled. -->
-         <!--a href="contact.xml" title="EXPath Contact">Contact</a-->
+         <!--a href="{ $root }contact.xml" title="EXPath Contact">Contact</a-->
       </xsl:variable>
       <ul>
          <xsl:for-each select="$menu.items">
@@ -210,6 +213,12 @@
          <xsl:copy-of select="@*"/>
          <xsl:apply-templates/>
       </a>
+   </xsl:template>
+
+   <xsl:template match="code">
+      <code>
+         <xsl:apply-templates/>
+      </code>
    </xsl:template>
 
    <xsl:template match="divider">
