@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../webpage.xsl"?>
+
+<webpage uri="modules.xml" root="..">
+   <title>EXPath - HTTP Client</title>
+   <section>
+      <title>HTTP Client</title>
+      <para>This module defines a set of functions to send HTTP requests and handle responses. This
+         is a quite low-level functionality, allowing one to deal with most aspects of the HTTP
+         protocol (redirections, headers, body contents...), while integrating smoothly within the
+            <link href="http://www.w3.org/TR/xpath-datamodel/">XPath Data Model</link>.</para>
+      <para>This module was written initially for EXSLT 2.0, but it is really an XPath extension,
+         that makes sense to be used in XQuery as well, for instance. It is being moved to EXPath,
+         but the <link href="http://www.fgeorges.org/exslt2/">legacy page</link> is still
+         available.</para>
+   </section>
+   <divider/>
+   <primary>
+      <title>Specification</title>
+      <para>The specification for this module can be found <link href="http-client/http-client.xml"
+            >here</link>.</para>
+   </primary>
+   <primary>
+      <title>Introduction</title>
+      <para>Besides the <link href="http-client/http-client.xml">specification</link>, here is a
+         formal introduction to the module. It defines a single function,
+            <code>http:send-request()</code> (with several arities for the sake of ease of use.) It
+         takes a description of the request in parameter, and returns a representation of the
+         response</para>
+   </primary>
+</webpage>
