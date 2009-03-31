@@ -3,6 +3,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://www.w3.org/1999/xhtml"
                 exclude-result-prefixes="xs"
                 version="2.0">
 
@@ -13,6 +14,14 @@
 
    <xsl:variable name="root" as="xs:string?" select="
        if ( /webpage/@root ) then concat(/webpage/@root, '/') else ()"/>
+
+   <!-- By default, copy XHTML elements. Simple way to escape the XML format. -->
+   <xsl:template match="h:*">
+      <xsl:copy>
+         <xsl:copy-of select="@*"/>
+         <xsl:apply-templates/>
+      </xsl:copy>
+   </xsl:template>
 
    <xsl:template match="webpage">
       <html xml:lang="en">
@@ -31,6 +40,7 @@
             <meta name="keywords"
                content="EXPath XPath XQuery XSLT functions standards open collaborative portable extensions XML development" />
             <link rel="stylesheet" type="text/css" href="{ $root }default.css"/>
+            <link rel="stylesheet" type="text/css" href="{ $root }serial-oxygen.css"/>
          </head>
          <body>
             <div id="upbg"/>

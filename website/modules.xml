@@ -18,9 +18,5 @@
          protocol, while integrating smoothly within the <link
             href="http://www.w3.org/TR/xpath-datamodel/">XPath Data Model</link>. See the <link
             href="modules/http-client.xml">module page</link> for details.</para>
-      <!--para>This is the first module defined so far. It has not been adapted to the work-in-progress
-         EXPath formalism yet, but is available on its <link href="http://www.fgeorges.org/exslt2/"
-            >legacy page</link> for now. Any thought about how it should be released as part of
-         EXPath would be much appreciated on the <link href="lists.xml">mailing list</link>.</para-->
    </primary>
 </webpage>

@@ -22,10 +22,18 @@
    </primary>
    <primary>
       <title>Introduction</title>
-      <para>Besides the <link href="http-client/http-client.xml">specification</link>, here is a
-         formal introduction to the module. It defines a single function,
+      <para>Besides the <link href="http-client/http-client.xml">specification</link>, here is an
+         informal introduction to the module. It defines a single function,
             <code>http:send-request()</code> (with several arities for the sake of ease of use.) It
          takes a description of the request in parameter, and returns a representation of the
          response</para>
+      <pre xmlns="http://www.w3.org/1999/xhtml">
+<span class="xml-serial-keyword">let</span> <span class="xml-serial-variable-name">$me</span> := <span class="xml-serial-function-name">show-this</span>(<span class="xml-serial-string">"..."</span>)
+  <span class="xml-serial-keyword">return</span>
+    <span class="xml-serial-tag-delimiter">&lt;</span><span class="xml-serial-element-prefix">yo</span><span class="xml-serial-element-local-name">u</span><span class="xml-serial-tag-delimiter">&gt;</span> {
+      <span class="xml-serial-variable-name">$me</span><span class="xml-serial-constant">/you</span>
+    }
+    <span class="xml-serial-tag-delimiter">&lt;</span><span class="xml-serial-tag-slash">/</span><span class="xml-serial-element-prefix">yo</span><span class="xml-serial-element-local-name">u</span><span class="xml-serial-tag-delimiter">&gt;</span>
+      </pre>
    </primary>
 </webpage>
