@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- FIXME: Use a catalog file. -->
-<?oxygen RNGSchema="file:/Users/fgeorges/.emacs.d/nxml-schemas/xproc/xproc-with-xslt.rnc"
-   type="compact"?>
-
 <p:declare-step xmlns:p="http://www.w3.org/ns/xproc" xmlns:c="http://www.w3.org/ns/xproc-step">
 
    <p:output port="result"/>
@@ -41,6 +37,6 @@
       </p:input>
    </p:set-attributes>
 
-   <p:http-request/>
+   <!--p:http-request/-->
 
 </p:declare-step>
