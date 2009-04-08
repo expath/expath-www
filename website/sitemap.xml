@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sitemap>
+
+   <!-- allow a kind of glob (like *.xml -> *.xml) -->
+   <page src="about.xml" href="about.xml"/>
+   <page src="contact.xml" href="contact.xml"/>
+   <page src="credits.xml" href="credits.xml"/>
+   <page src="index.xml" href="index.xml"/>
+   <page src="lists.xml" href="lists.xml"/>
+   <page src="modules.xml" href="modules.xml"/>
+   <page src="news.xml" href="news.xml"/>
+   <page src="resources.xml" href="resources.xml"/>
+   
+   <page src="webpage.xsl" href="webpage.xsl"/>
+   <page src="default.css" href="default.css"/>
+   <page src="../../xsl-libs/serial/src/serial-oxygen.css" href="serial-oxygen.css"/>
+
+   <!-- TODO: Commented out as it does not change often. -->
+   <!--dir src="images" href="images"/-->
+
+   <dir base="modules/" href="modules/">
+      <page src="http-client.xml" href="http-client.xml"/>
+   </dir>
+
+</sitemap>
