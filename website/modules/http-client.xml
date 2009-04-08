@@ -40,20 +40,7 @@
             <code>Content-Type</code> returned by the server. Here is a simple example of call in
          XQuery, which sends a text content by POST:</para>
       <para>TODO: Write examples, etc.</para>
-      <pre xmlns="http://www.w3.org/1999/xhtml">
-http:send-request(
-   &lt;http:request href="..." method="post">
-      &lt;http:body>Hello, world!&lt;/http:body>
-   &lt;/http:request>
-)
-</pre>
-      <pre xmlns="http://www.w3.org/1999/xhtml">
-<span class="xml-serial-keyword">let</span> <span class="xml-serial-variable-name">$me</span> := <span class="xml-serial-function-name">show-this</span>(<span class="xml-serial-string">"..."</span>)
-  <span class="xml-serial-keyword">return</span>
-    <span class="xml-serial-tag-delimiter">&lt;</span><span class="xml-serial-element-prefix">yo</span><span class="xml-serial-element-local-name">u</span><span class="xml-serial-tag-delimiter">&gt;</span> {
-      <span class="xml-serial-variable-name">$me</span><span class="xml-serial-constant">/you</span>
-    }
-    <span class="xml-serial-tag-delimiter">&lt;</span><span class="xml-serial-tag-slash">/</span><span class="xml-serial-element-prefix">yo</span><span class="xml-serial-element-local-name">u</span><span class="xml-serial-tag-delimiter">&gt;</span>
-      </pre>
+      <sample href="http-client-sample-1.html"/>
+      <sample href="http-client-sample-2.html"/>
    </primary>
 </webpage>

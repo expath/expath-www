@@ -37,6 +37,6 @@
       </p:input>
    </p:set-attributes>
 
-   <!--p:http-request/-->
+   <p:http-request/>
 
 </p:declare-step>
