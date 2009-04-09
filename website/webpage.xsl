@@ -241,4 +241,8 @@
       </div>
    </xsl:template>
 
+   <xsl:template match="sample">
+      <xsl:copy-of select="document(@href)"/>
+   </xsl:template>
+
 </xsl:stylesheet>

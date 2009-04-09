@@ -39,8 +39,14 @@
          multipart response) as a string, a document node or a binary item, depending on the
             <code>Content-Type</code> returned by the server. Here is a simple example of call in
          XQuery, which sends a text content by POST:</para>
-      <para>TODO: Write examples, etc.</para>
-      <sample href="http-client-sample-1.html"/>
-      <sample href="http-client-sample-2.html"/>
+      <para>
+         <sample href="http-client-sample-1.html"/>
+      </para>
+      <para>
+         The response can look like the following:
+      </para>
+      <para>
+         <sample href="http-client-sample-2.html"/>
+      </para>
    </primary>
 </webpage>

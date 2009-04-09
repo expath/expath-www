@@ -32,10 +32,11 @@
    </xsl:template>
 
    <xsl:variable name="my:content-types-alist" as="element()+">
-      <ct ext="css" type="text/css"/>
+      <ct ext="css"  type="text/css"/>
       <!-- TODO: I guess there's a more appropriated type for XSLT. -->
-      <ct ext="xsl" type="application/xml"/>
-      <ct ext="xml" type="application/xml"/>
+      <ct ext="xsl"  type="application/xml"/>
+      <ct ext="xml"  type="application/xml"/>
+      <ct ext="html" type="text/html"/>
    </xsl:variable>
 
    <xsl:template match="page">
@@ -74,10 +75,13 @@
             <xsl:copy-of select="$body"/>
          </http:request>
       </xsl:variable>
+<xsl:message>
+   REQ: <xsl:copy-of select="$req"/>
+</xsl:message>
       <xsl:variable name="res" select="http-java:send-request($req, $href, $content)"/>
-      <xsl:message>
-         RES: <xsl:copy-of select="$res"/>
-      </xsl:message>
+<xsl:message>
+   RES: <xsl:copy-of select="$res"/>
+</xsl:message>
       <xsl:if test="$res/xs:integer(@status) ne 201">
          <xsl:sequence select="error((), 'TODO: Error in sending HTTP!', $res)"/>
       </xsl:if>

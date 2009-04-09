@@ -14,13 +14,14 @@
    
    <page src="webpage.xsl" href="webpage.xsl"/>
    <page src="default.css" href="default.css"/>
-   <page src="../../xsl-libs/serial/src/serial-oxygen.css" href="serial-oxygen.css"/>
+   <page src="serial-oxygen.css" href="serial-oxygen.css"/>
 
    <!-- TODO: Commented out as it does not change often. -->
    <!--dir src="images" href="images"/-->
 
    <dir base="modules/" href="modules/">
-      <page src="http-client.xml" href="http-client.xml"/>
+      <page src="http-client.xml"  href="http-client.xml"/>
+      <page src="http-client.html" href="http-client.html"/>
    </dir>
 
 </sitemap>
