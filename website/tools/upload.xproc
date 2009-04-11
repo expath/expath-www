@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?oxygen RNGSchema="http://www.fgeorges.org/purl/20090407/xproc-with-xslt.rnc" type="compact"?>
+
 <p:declare-step xmlns:p="http://www.w3.org/ns/xproc" xmlns:c="http://www.w3.org/ns/xproc-step">
 
    <p:output port="result"/>
