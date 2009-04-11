@@ -35,11 +35,11 @@
             <code>Content-Type</code> returned by the server. Here is a simple example of call in
          XQuery, which sends a text content by POST:</para>
       <para>
-         <sample href="http-client-sample-1.html"/>
+         <sample href="index-sample-1.html"/>
       </para>
       <para>The response element can look like the following:</para>
       <para>
-         <sample href="http-client-sample-2.html"/>
+         <sample href="index-sample-2.html"/>
       </para>
       <para>It is important to understand that the result of the function, in the example of the
          above call, is a sequence of 2 items: the <code>http:response</code> element, and a
@@ -47,12 +47,12 @@
          that fact; it checks the status of the response within the <code>http:response</code>
          element, then use the title element in the HTML document:</para>
       <para>
-         <sample href="http-client-sample-3.html"/>
+         <sample href="index-sample-3.html"/>
       </para>
    </primary>
    <secondary>
       <title>Specification</title>
-      <para>The specification for this module can be found <link href="http-client/http-client.xml"
+      <para>The specification for this module can be found <link href="http-client.html"
             >here</link>.</para>
    </secondary>
 </webpage>
