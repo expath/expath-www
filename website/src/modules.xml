@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="webpage.xsl"?>
 
-<webpage uri="modules.xml">
+<webpage menu="modules">
    <title>EXPath - Modules</title>
    <section>
       <title>Modules</title>
@@ -17,6 +17,6 @@
          is a quite low-level functionality, allowing one to deal with most aspects of the HTTP
          protocol, while integrating smoothly within the <link
             href="http://www.w3.org/TR/xpath-datamodel/">XPath Data Model</link>. See the <link
-            href="modules/http-client.xml">module page</link> for details.</para>
+            href="modules/http-client/index.html">module page</link> for details.</para>
    </primary>
 </webpage>

@@ -9,21 +9,28 @@
                 exclude-result-prefixes="#all"
                 version="2.0">
 
-   <xsl:param name="href-base" select="'http://localhost:8181/exist/rest/db/xxx/'"/>
+   <xsl:import href="webpage.xsl"/>
+
+   <xsl:param name="href-base" select="'../build/'"/>
+   <!--xsl:param name="href-base" select="'http://localhost:8181/exist/rest/db/xxx/'"/-->
    <xsl:param name="username"  select="'admin'"/>
    <xsl:param name="password"  select="'adminadmin'"/>
 
-   <xsl:template match="sitemap">
-      <xsl:apply-templates select="*">
+   <xsl:template match="/">
+      <xsl:apply-templates select="*" mode="map"/>
+   </xsl:template>
+
+   <xsl:template match="sitemap" mode="map">
+      <xsl:apply-templates select="*" mode="map">
          <xsl:with-param name="base" select="base-uri(.)"/>
-         <xsl:with-param name="href" select="xs:anyURI($href-base)"/>
+         <xsl:with-param name="href" select="resolve-uri($href-base, base-uri(.))"/>
       </xsl:apply-templates>
    </xsl:template>
 
-   <xsl:template match="dir">
+   <xsl:template match="dir" mode="map">
       <xsl:param name="base" as="xs:anyURI"/>
       <xsl:param name="href" as="xs:anyURI"/>
-      <xsl:apply-templates select="*">
+      <xsl:apply-templates select="*" mode="map">
          <xsl:with-param name="base" select="
              if ( @base ) then resolve-uri(@base, $base) else $base"/>
          <xsl:with-param name="href" select="
@@ -39,7 +46,36 @@
       <ct ext="html" type="text/html"/>
    </xsl:variable>
 
-   <xsl:template match="page">
+   <xsl:template match="page" mode="map">
+      <xsl:param name="base" as="xs:anyURI"/>
+      <xsl:param name="href" as="xs:anyURI"/>
+      <xsl:variable name="s" select="resolve-uri(@src, $base)"  as="xs:anyURI"/>
+      <xsl:variable name="h" select="resolve-uri(@href, $href)" as="xs:anyURI"/>
+      <!--xsl:variable name="ext" select="replace(@src, '^.*\.', '')" as="xs:string"/-->
+      <!--xsl:variable name="type" select="$my:content-types-alist[@ext eq $ext]/@type"/-->
+      <xsl:result-document href="{ $h }" method="html">
+         <xsl:apply-templates select="doc($s)/*"/>
+      </xsl:result-document>
+      <!--xsl:choose>
+         <xsl:when test="$ext eq 'xml'">
+            <xsl:variable name="body" as="element()">
+               <http:body content-type="{ $type }"/>
+            </xsl:variable>
+            <xsl:variable name="content">
+               <xsl:apply-templates select="doc($s)" mode="format"/>
+            </xsl:variable>
+            <xsl:sequence select="my:put-in-exist($h, $body, $content)"/>
+         </xsl:when>
+         <xsl:otherwise>
+            <xsl:variable name="body" as="element()">
+               <http:body href="{ $s }" content-type="{ $type }"/>
+            </xsl:variable>
+            <xsl:sequence select="my:put-in-exist($h, $body, ())"/>
+         </xsl:otherwise>
+      </xsl:choose-->
+   </xsl:template>
+
+   <!--xsl:template match="page" mode="map">
       <xsl:param name="base" as="xs:anyURI"/>
       <xsl:param name="href" as="xs:anyURI"/>
       <xsl:variable name="s" select="resolve-uri(@src, $base)"  as="xs:anyURI"/>
@@ -65,7 +101,7 @@
       </xsl:choose>
    </xsl:template>
 
-   <xsl:function name="my:put-in-exist">
+   <xsl:function name="my:put-in-exist" mode="map">
       <xsl:param name="href"    as="xs:anyURI"/>
       <xsl:param name="body"    as="element(http:body)"/>
       <xsl:param name="content" as="document-node()?"/>
@@ -96,6 +132,6 @@
 
    <xsl:template match="sample" mode="format">
       <xsl:copy-of select="document(@href)"/>
-   </xsl:template>
+   </xsl:template-->
 
 </xsl:stylesheet>

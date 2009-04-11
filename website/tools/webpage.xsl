@@ -12,8 +12,8 @@
        encoding="UTF-8"
        doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
 
-   <xsl:variable name="root" as="xs:string?" select="
-       if ( /webpage/@root ) then concat(/webpage/@root, '/') else ()"/>
+   <!--xsl:variable name="root" as="xs:string?" select="
+       if ( /webpage/@root ) then concat(/webpage/@root, '/') else ()"/-->
 
    <!-- By default, copy XHTML elements. Simple way to escape the XML format. -->
    <xsl:template match="h:*">
@@ -24,6 +24,7 @@
    </xsl:template>
 
    <xsl:template match="webpage">
+      <xsl:variable name="root" select="if ( exists(@root) ) then concat(@root, '/') else ()"/>
       <html xml:lang="en">
          <head>
             <xsl:apply-templates select="title"/>
@@ -39,8 +40,8 @@
                content="EXPath - Collaboratively Defining Open Standards for Portable XPath Extensions" />
             <meta name="keywords"
                content="EXPath XPath XQuery XSLT functions standards open collaborative portable extensions XML development" />
-            <link rel="stylesheet" type="text/css" href="{ $root }default.css"/>
-            <link rel="stylesheet" type="text/css" href="{ $root }serial-oxygen.css"/>
+            <link rel="stylesheet" type="text/css" href="{ $root }style/default.css"/>
+            <link rel="stylesheet" type="text/css" href="{ $root }style/serial-oxygen.css"/>
          </head>
          <body>
             <div id="upbg"/>
@@ -59,7 +60,9 @@
                </form>
                <div id="headerpic"/>
                <div id="menu">
-                  <xsl:call-template name="menu"/>
+                  <xsl:call-template name="menu">
+                     <xsl:with-param name="root" select="$root"/>
+                  </xsl:call-template>
                </div>
                <div id="menubottom"/>
                <div id="content">
@@ -70,14 +73,14 @@
                      <a href="http://validator.w3.org/check?uri=referer">
                         <img src="{ $root }images/valid-xhtml11.gif" alt="Valid XHTML 1.1" height="31" width="88" style="border: 0;" />
                      </a>
-                     <a href="http://jigsaw.w3.org/css-validator/validator?uri=http://www.expath.org/default.css">
+                     <a href="http://jigsaw.w3.org/css-validator/validator?uri=http://www.expath.org/style/default.css">
                         <img src="{ $root }images/valid-css.gif" alt="Valid CSS!" style="border: 0;" />
                      </a>
                   </div>
                   <div class="right">
                      <div>Powered by: <a href="http://www.exist-db.org/">eXist</a></div>
                      <div>Design by: <a href="http://www.nodethirtythree.com/">NodeThirtyThree Design</a></div>
-                     <div><a href="{ $root }credits.xml">Credits</a></div>
+                     <div><a href="{ $root }credits.html">Credits</a></div>
                   </div>
                </div>
             </div>
@@ -87,29 +90,23 @@
 
    <xsl:template name="menu">
       <xsl:param name="page" select="."/>
-      <!-- TODO: Due to a bug to eXist, I have to put @uri in the input... -->
-      <!--xsl:variable name="filename" select="tokenize(document-uri(/), '/')[last()]"/-->
-      <xsl:variable name="filename" select="$page/@uri"/>
+      <xsl:param name="root" as="xs:string?"/>
       <xsl:variable name="menu.items" as="element()+">
-         <a href="{ $root }index.xml" title="EXPath Home">Home</a>
-         <!-- TODO: "About" page temporarily disabled. -->
-         <!--a href="{ $root }about.xml" title="About EXPath">About</a-->
-         <a href="{ $root }news.xml" title="EXPath News">News</a>
-         <a href="{ $root }lists.xml" title="EXPath Mailing Lists">Mailing lists</a>
-         <a href="{ $root }modules.xml" title="Modules">Modules</a>
-         <a href="{ $root }resources.xml" title="Resources">Resources</a>
-         <!-- TODO: "Contact" page temporarily disabled. -->
-         <!--a href="{ $root }contact.xml" title="EXPath Contact">Contact</a-->
+         <item name="index" title="EXPath Home">Home</item>
+         <item name="news" title="EXPath News">News</item>
+         <item name="lists" title="EXPath Mailing Lists">Mailing lists</item>
+         <item name="modules" title="Modules">Modules</item>
+         <item name="resources" title="Resources">Resources</item>
       </xsl:variable>
       <ul>
          <xsl:for-each select="$menu.items">
             <li>
-               <xsl:copy>
-                  <xsl:if test="@href eq $filename">
+               <a href="{ $root }{ @name }.html" title="{ @title }">
+                  <xsl:if test="@name eq $page/@menu">
                      <xsl:attribute name="class" select="'active'"/>
                   </xsl:if>
-                  <xsl:copy-of select="@*|node()"/>
-               </xsl:copy>
+                  <xsl:copy-of select="node()"/>
+               </a>
             </li>
          </xsl:for-each>
       </ul>

@@ -13,8 +13,8 @@
    <page src="resources.xml" href="resources.html"/>
    
    <!--page src="webpage.xsl" href="webpage.xsl"/-->
-   <page src="../style/default.css" href="style/default.css"/>
-   <page src="../style/serial-oxygen.css" href="style/serial-oxygen.css"/>
+   <!--page src="../style/default.css" href="style/default.css"/>
+   <page src="../style/serial-oxygen.css" href="style/serial-oxygen.css"/-->
 
    <!-- TODO: Commented out as it does not change often. -->
    <!--dir src="images" href="images"/-->

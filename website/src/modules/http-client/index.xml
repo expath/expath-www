@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="../webpage.xsl"?>
 
-<webpage uri="modules.xml" root="..">
+<webpage menu="modules" root="../..">
    <title>EXPath - HTTP Client</title>
    <section>
       <title>HTTP Client</title>
@@ -14,14 +14,14 @@
          that makes sense to be used in XQuery as well, for instance. It is being moved to EXPath,
          but the <link href="http://www.fgeorges.org/exslt2/">legacy page</link> is still available.
          As this is the first EXPath module so far, any thought about how it should be released and
-         about packaging would be much appreciated on the <link href="../lists.xml">mailing
+         about packaging would be much appreciated on the <link href="../../lists.html">mailing
             list</link>.</para>
    </section>
    <divider/>
    <primary>
       <title>Introduction</title>
-      <para>Besides the <link href="http-client/http-client.xml">specification</link>, here is an
-         informal introduction to this module. See also the <link href="http-client/samples.xml"
+      <para>Besides the <link href="http-client.html">specification</link>, here is an
+         informal introduction to this module. See also the <link href="samples.html"
             >samples page</link> for more elaborate samples. This module defines a single function,
             <code>http:send-request()</code> (with several arities for the sake of ease of use.) The
          function takes a description of the request in parameter, and returns a representation of
