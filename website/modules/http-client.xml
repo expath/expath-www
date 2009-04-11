@@ -19,11 +19,6 @@
    </section>
    <divider/>
    <primary>
-      <title>Specification</title>
-      <para>The specification for this module can be found <link href="http-client/http-client.xml"
-            >here</link>.</para>
-   </primary>
-   <primary>
       <title>Introduction</title>
       <para>Besides the <link href="http-client/http-client.xml">specification</link>, here is an
          informal introduction to this module. See also the <link href="http-client/samples.xml"
@@ -42,11 +37,22 @@
       <para>
          <sample href="http-client-sample-1.html"/>
       </para>
-      <para>
-         The response can look like the following:
-      </para>
+      <para>The response element can look like the following:</para>
       <para>
          <sample href="http-client-sample-2.html"/>
       </para>
+      <para>It is important to understand that the result of the function, in the example of the
+         above call, is a sequence of 2 items: the <code>http:response</code> element, and a
+         document node representing the HTML document. Here is an example of query that illustrate
+         that fact; it checks the status of the response within the <code>http:response</code>
+         element, then use the title element in the HTML document:</para>
+      <para>
+         <sample href="http-client-sample-3.html"/>
+      </para>
    </primary>
+   <secondary>
+      <title>Specification</title>
+      <para>The specification for this module can be found <link href="http-client/http-client.xml"
+            >here</link>.</para>
+   </secondary>
 </webpage>
