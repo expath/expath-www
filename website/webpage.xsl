@@ -68,10 +68,10 @@
                <div id="footer">
                   <div class="left">
                      <a href="http://validator.w3.org/check?uri=referer">
-                        <img src="images/valid-xhtml11.gif" alt="Valid XHTML 1.1" height="31" width="88" style="border: 0;" />
+                        <img src="{ $root }images/valid-xhtml11.gif" alt="Valid XHTML 1.1" height="31" width="88" style="border: 0;" />
                      </a>
                      <a href="http://jigsaw.w3.org/css-validator/validator?uri=http://www.expath.org/default.css">
-                        <img src="images/valid-css.gif" alt="Valid CSS!" style="border: 0;" />
+                        <img src="{ $root }images/valid-css.gif" alt="Valid CSS!" style="border: 0;" />
                      </a>
                   </div>
                   <div class="right">
