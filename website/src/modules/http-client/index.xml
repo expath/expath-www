@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="../webpage.xsl"?>
 
-<webpage menu="modules" root="../..">
+<webpage menu="index" root="../..">
    <title>EXPath - HTTP Client</title>
    <section>
       <title>HTTP Client</title>
+      <image src="../../images/web1.jpg" alt="Machine"/>
       <para>This module defines a set of functions to send HTTP requests and handle responses. This
          is a quite low-level functionality, allowing one to deal with most aspects of the HTTP
          protocol (redirections, headers, body contents, multipart...), while integrating smoothly
@@ -20,9 +21,9 @@
    <divider/>
    <primary>
       <title>Introduction</title>
-      <para>Besides the <link href="http-client.html">specification</link>, here is an
-         informal introduction to this module. See also the <link href="samples.html"
-            >samples page</link> for more elaborate samples. This module defines a single function,
+      <para>Besides the <link href="http-client.html">specification</link>, here is an informal
+         introduction to this module. See also the <link href="samples.html">samples page</link> for
+         more elaborate samples. This module defines a single function,
             <code>http:send-request()</code> (with several arities for the sake of ease of use.) The
          function takes a description of the request in parameter, and returns a representation of
          the response.</para>
@@ -49,10 +50,15 @@
       <para>
          <sample href="index-sample-3.html"/>
       </para>
+      <para>You can find other examples on the <link href="samples.html">samples page</link>.</para>
    </primary>
    <secondary>
-      <title>Specification</title>
+      <title>Links</title>
       <para>The specification for this module can be found <link href="http-client.html"
-            >here</link>.</para>
+         >here</link>.</para>
+      <para>Implementations of this module for various XSLT and XQuery processors can be found <link
+            href="implems.html">here</link>.</para>
+      <para>Samples of use of this module in both XSLT and XQuery can be found <link
+            href="samples.html">here</link>.</para>
    </secondary>
 </webpage>

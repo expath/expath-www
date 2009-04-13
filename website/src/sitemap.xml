@@ -3,14 +3,14 @@
 <sitemap>
 
    <!-- allow a kind of glob (like *.xml -> *.html) -->
-   <page src="about.xml"     href="about.html"/>
-   <page src="contact.xml"   href="contact.html"/>
-   <page src="credits.xml"   href="credits.html"/>
-   <page src="index.xml"     href="index.html"/>
-   <page src="lists.xml"     href="lists.html"/>
-   <page src="modules.xml"   href="modules.html"/>
-   <page src="news.xml"      href="news.html"/>
-   <page src="resources.xml" href="resources.html"/>
+   <page src="about.xml"     href="about.html"     menu="main"/>
+   <page src="contact.xml"   href="contact.html"   menu="main"/>
+   <page src="credits.xml"   href="credits.html"   menu="main"/>
+   <page src="index.xml"     href="index.html"     menu="main"/>
+   <page src="lists.xml"     href="lists.html"     menu="main"/>
+   <page src="modules.xml"   href="modules.html"   menu="main"/>
+   <page src="news.xml"      href="news.html"      menu="main"/>
+   <page src="resources.xml" href="resources.html" menu="main"/>
    
    <!--page src="webpage.xsl" href="webpage.xsl"/-->
    <!--page src="../style/default.css" href="style/default.css"/>
@@ -21,8 +21,26 @@
 
    <dir base="modules/" href="modules/">
       <dir base="http-client/" href="http-client/">
-         <page src="index.xml"  href="index.html"/>
+         <page src="index.xml"    href="index.html"   menu="hc"/>
+         <page src="implems.xml"  href="implems.html" menu="hc"/>
+         <page src="samples.xml"  href="samples.html" menu="hc"/>
       </dir>
    </dir>
+
+   <menu name="main">
+      <item name="index" href="index.html" title="EXPath Home">Home</item>
+      <item name="news" href="news.html" title="EXPath News">News</item>
+      <item name="lists" href="lists.html" title="EXPath Mailing Lists">Mailing lists</item>
+      <item name="modules" href="modules.html" title="Modules">Modules</item>
+      <item name="resources" href="resources.html" title="Resources">Resources</item>
+   </menu>
+
+   <menu name="hc">
+      <item name="parent" href="../../modules.html" title="Modules">[ ../Modules ]</item>
+      <item name="index" href="index.html" title="EXPath HTTP Client Home">HTTP Client</item>
+      <item name="implems" href="implems.html" title="EXPath HTTP Client Implems">Implementations</item>
+      <item name="samples" href="samples.html" title="EXPath HTTP Client Samples">Samples</item>
+      <item name="spec" href="../http-client.html" title="EXPath HTTP Client Spec">Specification</item>
+   </menu>
 
 </sitemap>

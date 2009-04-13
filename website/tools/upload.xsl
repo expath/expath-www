@@ -27,6 +27,8 @@
       </xsl:apply-templates>
    </xsl:template>
 
+   <xsl:template match="menu" mode="map"/>
+
    <xsl:template match="dir" mode="map">
       <xsl:param name="base" as="xs:anyURI"/>
       <xsl:param name="href" as="xs:anyURI"/>
@@ -54,7 +56,9 @@
       <!--xsl:variable name="ext" select="replace(@src, '^.*\.', '')" as="xs:string"/-->
       <!--xsl:variable name="type" select="$my:content-types-alist[@ext eq $ext]/@type"/-->
       <xsl:result-document href="{ $h }" method="html">
-         <xsl:apply-templates select="doc($s)/*"/>
+         <xsl:apply-templates select="doc($s)/*">
+            <xsl:with-param name="menu" select="/sitemap/menu[@name eq current()/@menu]"/>
+         </xsl:apply-templates>
       </xsl:result-document>
       <!--xsl:choose>
          <xsl:when test="$ext eq 'xml'">

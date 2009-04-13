@@ -24,6 +24,7 @@
    </xsl:template>
 
    <xsl:template match="webpage">
+      <xsl:param name="menu" as="element(menu)"/>
       <xsl:variable name="root" select="if ( exists(@root) ) then concat(@root, '/') else ()"/>
       <html xml:lang="en">
          <head>
@@ -62,6 +63,7 @@
                <div id="menu">
                   <xsl:call-template name="menu">
                      <xsl:with-param name="root" select="$root"/>
+                     <xsl:with-param name="menu" select="$menu"/>
                   </xsl:call-template>
                </div>
                <div id="menubottom"/>
@@ -90,8 +92,9 @@
 
    <xsl:template name="menu">
       <xsl:param name="page" select="."/>
+      <xsl:param name="menu" as="element(menu)"/>
       <xsl:param name="root" as="xs:string?"/>
-      <xsl:variable name="menu.items" as="element()+">
+      <!--xsl:variable name="menu.items" as="element()+">
          <item name="index" title="EXPath Home">Home</item>
          <item name="news" title="EXPath News">News</item>
          <item name="lists" title="EXPath Mailing Lists">Mailing lists</item>
@@ -102,6 +105,18 @@
          <xsl:for-each select="$menu.items">
             <li>
                <a href="{ $root }{ @name }.html" title="{ @title }">
+                  <xsl:if test="@name eq $page/@menu">
+                     <xsl:attribute name="class" select="'active'"/>
+                  </xsl:if>
+                  <xsl:copy-of select="node()"/>
+               </a>
+            </li>
+         </xsl:for-each>
+      </ul-->
+      <ul>
+         <xsl:for-each select="$menu/*">
+            <li>
+               <a href="{ @href }" title="{ @title }">
                   <xsl:if test="@name eq $page/@menu">
                      <xsl:attribute name="class" select="'active'"/>
                   </xsl:if>
