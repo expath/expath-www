@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../webpage.xsl"?>
+
+<webpage menu="samples" root="../..">
+   <title>EXPath - HTTP Client Samples</title>
+   <section>
+      <title>HTTP Client Samples</title>
+      <image src="../../images/web3.jpg" alt="Machine"/>
+      <para>Here are several examples of use of the <link href="index.html">HTTP Client</link>
+         extension. They are either in XSLT or XQuery. XQuery samples have been written for and
+         tested with <link href="http://www.exist-db.org/">eXist</link>, <link
+            href="http://www.marklogic.com/">MarkLogic Server</link> and <link
+            href="http://www.saxonica.com/">Saxon</link> 9. XSLT samples have been written for and
+         tested with <link href="http://www.saxonica.com/">Saxon</link> 9. Details on how to use the
+         extension with either product can be found on the <link href="implems.html">implementations
+            page</link> (especially details on namespace URIs and how to import and/or install
+         modules may vary.)</para>
+      <para>You can also have a look at <link
+            href="http://www.xmlprague.cz/2009/sessions.html#exslt">the presentation</link> I gave
+         at XML Prague 2009 about this extension among other things (there are also the <link
+            href="http://www.xmlprague.cz/2009/presentations/Florent-Georges-A-practical-introduction-to-EXSLT-2_0.pdf"
+            >slides</link>, the <link href="http://river-valley.tv/conferences/xmlprague2009/"
+            >video</link> and other <link href="http://www.fgeorges.org/exslt2/">related info</link>
+         on my website.) The presentation was about EXSLT 2.0, but the extension presented there is
+         the same.</para>
+      <para>Besides the samples here, there are a WSDL compiler (compiling <link
+            href="http://en.wikipedia.org/wiki/Web_Services_Description_Language">WSDL</link> files
+         to XSLT and XQuery modules providing functions for each operation, using this HTTP Client)
+         and a library of XSLT and XQuery modules to support the <link
+            href="http://code.google.com/apis/gdata/">Google GData</link> protocol, based on REST,
+         and providing convenient functions for several Google services (based on GDAta or not.)
+         Unfortunately, those have not been released yet. Links will follow shortly.</para>
+      <para>TODO: Make an archive with all samples...</para>
+   </section>
+   <divider/>
+   <primary>
+      <title>Accessing the eXist REST API</title>
+      <para>TODO: ...</para>
+   </primary>
+   <primary>
+      <title>Google GData API</title>
+      <para>TODO: ...</para>
+      <para>Point to GData libraries (see below)...</para>
+   </primary>
+   <primary>
+      <title>SOAP request to a Web service</title>
+      <para>TODO: ...</para>
+   </primary>
+   <secondary>
+      <title>How to run with eXist</title>
+      <para>TODO: ...</para>
+   </secondary>
+   <secondary>
+      <title>How to run with MarkLogic</title>
+      <para>TODO: ...</para>
+   </secondary>
+   <secondary>
+      <title>How to run with Saxon</title>
+      <para>TODO: ...</para>
+   </secondary>
+</webpage>

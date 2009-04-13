@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../webpage.xsl"?>
+
+<webpage menu="implems" root="../..">
+   <title>EXPath - HTTP Client Implementations</title>
+   <section>
+      <title>HTTP Client Implementations</title>
+      <image src="../../images/web2.jpg" alt="Machine"/>
+      <para>...<link href="">..</link>...</para>
+      <para>TODO: ...</para>
+   </section>
+</webpage>
