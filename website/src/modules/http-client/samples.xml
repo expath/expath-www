@@ -35,7 +35,35 @@
    <divider/>
    <primary>
       <title>Accessing the eXist REST API</title>
-      <para>TODO: ...</para>
+      <para>The <link href="http://www.exist-db.org/">eXist</link> XML Database provides a <link
+            href="http://www.exist-db.org/devguide_rest.html">REST API</link>, accessible through a
+         URI of the form: <code>http://localhost:8080/exist/rest/db/coll/doc.xml</code>. Among other
+         things, one can retrieve a document by sending a GET request, or upload a document with a
+         PUT request. The stylesheet hereafter retrieves the following document from eXist (document
+            <code>/db/tmp/in.xml</code>):</para>
+      <para>
+         <sample href="samples-sample-2.html"/>
+      </para>
+      <para>then transform it to the following document:</para>
+      <para>
+         <sample href="samples-sample-3.html"/>
+      </para>
+      <para>and eventually put it in eXist as the document <code>/db/tmp/out.xml</code>. The
+         complete stylesheet is:</para>
+      <para>
+         <sample href="samples-sample-1.html"/>
+      </para>
+      <para>The main result of the stylesheet is a side effect (the output document has been
+         uploaded to eXist) but technically the result of the stylesheet itself (its main result
+         tree, i.e. what you get on the screen when you run it from the command line) is the result
+         of the PUT (not really useful, but I left it there for educational purpose):</para>
+      <para>
+         <sample href="samples-sample-4.html"/>
+      </para>
+      <para>Please note the <code>java:...</code> namespace URI to bind to the Java class that
+         implements this module for Saxon. This is because of the way Saxon binds namespace URIs to
+         extension implementations. See the <link href="implems.html">implementations page</link>
+         for more information.</para>
    </primary>
    <primary>
       <title>Google GData API</title>

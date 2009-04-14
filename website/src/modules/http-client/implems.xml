@@ -6,7 +6,42 @@
    <section>
       <title>HTTP Client Implementations</title>
       <image src="../../images/web2.jpg" alt="Machine"/>
-      <para>...<link href="">..</link>...</para>
-      <para>TODO: ...</para>
+      <para>For now, there are three implementations: for <link href="http://www.saxonica.com/"
+            >Saxon</link> (XSLT 2.0 and XQuery,) for <link href="http://www.exist-db.org/"
+            >eXist</link>, and for <link href="http://www.marklogic.com/">MarkLogic Server</link>.
+         The later two are partial implementations though, as they rely on the similar,
+         product-dependent extension of these products, which do not permit to provide the whole
+         functionality. Anyone is welcome to contribute of course, see the <link
+            href="../../lists.html">mailing list</link>. I plan to provide a better support on these
+         platform later.</para>
+      <para>For Saxon, you have to download the following tarball: <link
+            href="expath-http-client-saxon-0.3.tar.gz">expath-http-client-saxon-0.3.tar.gz</link> or
+         the same in ZIP format: <link href="expath-http-client-saxon-0.3.zip"
+            >expath-http-client-saxon-0.3.zip</link>. There is a README file that explains how to
+         run the simple example in the archive. The batch file (for Windows) and the shell script
+         (for Linux, Mac OS X and other Unix-like systems) can be used as an example: you have to
+         add the various JARs to your classpath (depending on how you launch Saxon.)</para>
+      <para>Saxon has a drawback: it is not possible (without interfering with the way you invoke
+         Saxon) to bind any namespace to an extension function in Java. One has to use a URI of the
+         form <code>java:package.ClassName</code>. So in your stylesheet, you have to use two
+         namespaces: the module's namespace URI as defined in the <link href="../http-client.html"
+            >specification</link> and the URI to bind the Java class:
+            <code>java:org.expath.saxon.HttpClient</code>. See the <link href="samples.html"
+            >samples</link> for an XSLT example.</para>
+      <para>For eXist, you can download the following tarball: <link
+            href="expath-http-client-exist-0.3.tar.gz">expath-http-client-exist-0.3.tar.gz</link> or
+         the equivalent ZIP file: <link href="expath-http-client-exist-0.3.zip"
+            >expath-http-client-exist-0.3.zip</link>. See instructions within there about how to
+         install the library module on your eXist instance, and how to import it in your
+         query.</para>
+      <para>For MarkLogic Server, you can download the following tarball: <link
+            href="expath-http-client-ml-0.3.tar.gz">expath-http-client-ml-0.3.tar.gz</link> or the
+         equivalent ZIP file: <link href="expath-http-client-ml-0.3.zip"
+            >expath-http-client-ml-0.3.zip</link>. See instructions within there about how to
+         install the library module on your MarkLogic instance, and how to import it in your
+         query.</para>
+      <para>Request for help: this is the very first module for EXPath. If you have any idea,
+         comment or advice on how modules should delivered, installed, deployed, used..., please
+         comment on the <link href="../../lists.html">mailing list</link>.</para>
    </section>
 </webpage>

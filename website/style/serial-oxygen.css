@@ -82,24 +82,24 @@
 .xml-serial-comment-delimiter, .nxml-comment-delimiter {
   color: #006400;
 }
-.xml-serial-xmlns-colon, .nxml-xmlns-colon {
+.xml-serial-xmlns-colon, .nxml-namespace-attribute-colon {
   color: #F5844C;
 }
-.xml-serial-xmlns-prefix, .nxml-xmlns-prefix {
+.xml-serial-xmlns-prefix, .nxml-namespace-attribute-prefix {
   color: #F5844C;
 }
-.xml-serial-xmlns-value, .nxml-xmlns-value {
+.xml-serial-xmlns-value, .nxml-namespace-attribute-value {
   color: #993300;
 }
-.xml-serial-xmlns-value-delimiter, .nxml-xmlns-value-delimiter {
+.xml-serial-xmlns-value-delimiter, .nxml-namespace-attribute-value-delimiter {
+  color: #993300;
+}
+.xml-serial-xmlns-xmlns, .nxml-namespace-attribute-xmlns {
   color: #F5844C;
 }
-.xml-serial-xmlns-xmlns, .nxml-xmlns-xmlns {
-  color: #F5844C;
-}
-.xml-serial-pi-delimiter, .nxml-pi-delimiter {
+.xml-serial-pi-delimiter, .nxml-processing-instruction-delimiter {
   color: #8B26C9;
 }
-.xml-serial-pi-target, .nxml-pi-target {
+.xml-serial-pi-target, .nxml-processing-instruction-target {
   color: #8B26C9;
 }
