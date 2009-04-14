@@ -19,4 +19,15 @@
             href="http://www.w3.org/TR/xpath-datamodel/">XPath Data Model</link>. See the <link
             href="modules/http-client/index.html">module page</link> for details.</para>
    </primary>
+   <primary>
+      <title>ZIP</title>
+      <details>Reading and writing ZIP files</details>
+      <para>This module has not been released yet, but will provide a set of functions to read the
+         structure of a ZIP file, read entries out of a ZIP file, update entries in an existing ZIP
+         file or create brand-new files. So it will provide the ability to deal with Microsoft's
+            <link href="http://en.wikipedia.org/wiki/Office_Open_XML">Open XML</link>, OASIS's <link
+            href="http://en.wikipedia.org/wiki/OpenDocument">OpenDocument</link>, and other
+         ZIP-and-XML-based document formats. Stay tuned on the <link href="lists.html">mailing
+            list</link>.</para>
+   </primary>
 </webpage>
