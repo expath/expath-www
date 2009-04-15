@@ -29,19 +29,20 @@
             <code>java:org.expath.saxon.HttpClient</code>. See the <link href="samples.html"
             >samples</link> for an XSLT example.</para>
       <para>For eXist, you can download the following tarball: <link
-            href="expath-http-client-exist-0.3.tar.gz">expath-http-client-exist-0.3.tar.gz</link> or
-         the equivalent ZIP file: <link href="expath-http-client-exist-0.3.zip"
-            >expath-http-client-exist-0.3.zip</link>. See instructions within there about how to
+            href="expath-http-client-exist-0.1.tar.gz">expath-http-client-exist-0.1.tar.gz</link> or
+         the equivalent ZIP file: <link href="expath-http-client-exist-0.1.zip"
+            >expath-http-client-exist-0.1.zip</link>. See instructions within there about how to
          install the library module on your eXist instance, and how to import it in your
          query.</para>
       <para>For MarkLogic Server, you can download the following tarball: <link
-            href="expath-http-client-ml-0.3.tar.gz">expath-http-client-ml-0.3.tar.gz</link> or the
-         equivalent ZIP file: <link href="expath-http-client-ml-0.3.zip"
-            >expath-http-client-ml-0.3.zip</link>. See instructions within there about how to
+            href="expath-http-client-ml-0.1.tar.gz">expath-http-client-ml-0.1.tar.gz</link> or the
+         equivalent ZIP file: <link href="expath-http-client-ml-0.1.zip"
+            >expath-http-client-ml-0.1.zip</link>. See instructions within there about how to
          install the library module on your MarkLogic instance, and how to import it in your
          query.</para>
-      <para>Request for help: this is the very first module for EXPath. If you have any idea,
-         comment or advice on how modules should delivered, installed, deployed, used..., please
-         comment on the <link href="../../lists.html">mailing list</link>.</para>
+      <para>Request for help: this is the very first module for EXPath. If you have any thought,
+         idea, comment or advice on how modules should be delivered, installed, deployed, used,
+         packaged..., please comment on the <link href="../../lists.html">mailing
+         list</link>.</para>
    </section>
 </webpage>
