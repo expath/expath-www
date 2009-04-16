@@ -129,11 +129,16 @@
 
    <xsl:template match="section">
       <div class="normalcontent">
-         <xsl:apply-templates select="title"/>
+         <xsl:apply-templates select="title">
+            <xsl:with-param name="id" select="@id"/>
+         </xsl:apply-templates>
          <div class="contentarea">
             <xsl:apply-templates select="* except title"/>
          </div>
       </div>
+      <xsl:if test="exists(following-sibling::*)">
+         <div class="divider1"/>
+      </xsl:if>
    </xsl:template>
 
    <!-- TODO: Should be done for adjacent elements only! -->
@@ -145,13 +150,17 @@
          <div id="primarycontent">
             <xsl:for-each select="../primary">
                <div class="post">
-                  <xsl:apply-templates select="title"/>
+                  <xsl:apply-templates select="title">
+                     <xsl:with-param name="id" select="@id"/>
+                  </xsl:apply-templates>
                   <div class="contentarea">
                      <xsl:apply-templates select="* except title"/>
                      <div style="clear: both;"/>
                   </div>
                </div>
-               <div class="divider2"/>
+               <xsl:if test="exists(following-sibling::*[1][self::primary])">
+                  <div class="divider2"/>
+               </xsl:if>
             </xsl:for-each>
          </div>
       </div>
@@ -165,7 +174,9 @@
       <div id="secondarycontent">
          <xsl:for-each select="../secondary">
             <xsl:variable name="content" as="element()+">
-               <xsl:apply-templates select="title"/>
+               <xsl:apply-templates select="title">
+                  <xsl:with-param name="id" select="@id"/>
+               </xsl:apply-templates>
                <div class="contentarea">
                   <xsl:apply-templates select="* except title"/>
                </div>
@@ -178,7 +189,9 @@
                </xsl:when>
                <xsl:otherwise>
                   <xsl:copy-of select="$content"/>
-                  <div class="divider2"/>
+                  <xsl:if test="exists(following-sibling::*[1])">
+                     <div class="divider2"/>
+                  </xsl:if>
                </xsl:otherwise>
             </xsl:choose>
          </xsl:for-each>
@@ -186,13 +199,23 @@
    </xsl:template>
 
    <xsl:template match="webpage/title">
+      <xsl:param name="id" as="xs:string?"/>
       <title>
+         <xsl:copy-of select="@*"/>
+         <xsl:if test="exists($id)">
+            <xsl:attribute name="id" select="$id"/>
+         </xsl:if>
          <xsl:apply-templates/>
       </title>
    </xsl:template>
 
    <xsl:template match="section/title">
+      <xsl:param name="id" as="xs:string?"/>
       <h3>
+         <xsl:copy-of select="@*"/>
+         <xsl:if test="exists($id)">
+            <xsl:attribute name="id" select="$id"/>
+         </xsl:if>
          <strong>
             <xsl:apply-templates/>
          </strong>
@@ -200,7 +223,12 @@
    </xsl:template>
 
    <xsl:template match="primary/title|secondary/title">
+      <xsl:param name="id" as="xs:string?"/>
       <h4>
+         <xsl:copy-of select="@*"/>
+         <xsl:if test="exists($id)">
+            <xsl:attribute name="id" select="$id"/>
+         </xsl:if>
          <xsl:apply-templates/>
       </h4>
    </xsl:template>
@@ -214,18 +242,21 @@
 
    <xsl:template match="para">
       <p>
+         <xsl:copy-of select="@*"/>
          <xsl:apply-templates/>
       </p>
    </xsl:template>
 
    <xsl:template match="list">
       <ul>
+         <xsl:copy-of select="@*"/>
          <xsl:apply-templates/>
       </ul>
    </xsl:template>
 
    <xsl:template match="item">
       <li>
+         <xsl:copy-of select="@*"/>
          <xsl:apply-templates/>
       </li>
    </xsl:template>
@@ -239,16 +270,19 @@
 
    <xsl:template match="code">
       <code>
+         <xsl:copy-of select="@*"/>
          <xsl:apply-templates/>
       </code>
    </xsl:template>
 
-   <xsl:template match="divider">
+   <!--xsl:template match="divider">
       <div class="divider1"/>
-   </xsl:template>
+   </xsl:template-->
+   <xsl:template match="divider"/>
 
    <xsl:template match="details">
       <div class="details">
+         <xsl:copy-of select="@*"/>
          <xsl:apply-templates/>
       </div>
    </xsl:template>

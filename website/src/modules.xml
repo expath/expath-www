@@ -17,7 +17,7 @@
          is a quite low-level functionality, allowing one to deal with most aspects of the HTTP
          protocol, while integrating smoothly within the <link
             href="http://www.w3.org/TR/xpath-datamodel/">XPath Data Model</link>. See the <link
-            href="modules/http-client/index.html">module page</link> for details.</para>
+            href="modules/http-client/">module page</link> for details.</para>
    </primary>
    <primary>
       <title>ZIP</title>

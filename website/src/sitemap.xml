@@ -28,7 +28,7 @@
    </dir>
 
    <menu name="main">
-      <item name="index" href="index.html" title="EXPath Home">Home</item>
+      <item name="index" href="." title="EXPath Home">Home</item>
       <item name="news" href="news.html" title="EXPath News">News</item>
       <item name="lists" href="lists.html" title="EXPath Mailing Lists">Mailing lists</item>
       <item name="modules" href="modules.html" title="Modules">Modules</item>
@@ -37,7 +37,7 @@
 
    <menu name="hc">
       <item name="parent" href="../../modules.html" title="Modules">[ ../Modules ]</item>
-      <item name="index" href="index.html" title="EXPath HTTP Client Home">HTTP Client</item>
+      <item name="index" href="." title="EXPath HTTP Client Home">HTTP Client</item>
       <item name="implems" href="implems.html" title="EXPath HTTP Client Implems">Implementations</item>
       <item name="samples" href="samples.html" title="EXPath HTTP Client Samples">Samples</item>
       <item name="spec" href="../http-client.html" title="EXPath HTTP Client Spec">Specification</item>

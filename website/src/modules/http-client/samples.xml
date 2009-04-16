@@ -6,9 +6,9 @@
    <section>
       <title>HTTP Client Samples</title>
       <image src="../../images/web3.jpg" alt="Machine"/>
-      <para>Here are several examples of use of the <link href="index.html">HTTP Client</link>
-         extension. They are either in XSLT or XQuery. XQuery samples have been written for and
-         tested with <link href="http://www.exist-db.org/">eXist</link>, <link
+      <para>Here are several examples of use of the <link href=".">HTTP Client</link> extension.
+         They are either in XSLT or XQuery. XQuery samples have been written for and tested with
+            <link href="http://www.exist-db.org/">eXist</link>, <link
             href="http://www.marklogic.com/">MarkLogic Server</link> and <link
             href="http://www.saxonica.com/">Saxon</link> 9. XSLT samples have been written for and
          tested with <link href="http://www.saxonica.com/">Saxon</link> 9. Details on how to use the
@@ -30,10 +30,21 @@
             href="http://code.google.com/apis/gdata/">Google GData</link> protocol, based on REST,
          and providing convenient functions for several Google services (based on GDAta or not.)
          Unfortunately, those have not been released yet. Links will follow shortly.</para>
-      <para>TODO: Make an archive with all samples...</para>
+      <para>This page presents the following examples:</para>
+      <list>
+         <item>
+            <link href="#exist">Accessing the eXist REST API</link>
+         </item>
+         <item>
+            <link href="#contacts">Google Contacts API</link>
+         </item>
+         <item>
+            <link href="#soap">SOAP request to a Web service</link>
+         </item>
+      </list>
    </section>
    <divider/>
-   <primary>
+   <section id="exist">
       <title>Accessing the eXist REST API</title>
       <para>The <link href="http://www.exist-db.org/">eXist</link> XML Database provides a <link
             href="http://www.exist-db.org/devguide_rest.html">REST API</link>, accessible through a
@@ -64,26 +75,48 @@
          implements this module for Saxon. This is because of the way Saxon binds namespace URIs to
          extension implementations. See the <link href="implems.html">implementations page</link>
          for more information.</para>
-   </primary>
-   <primary>
-      <title>Google GData API</title>
-      <para>TODO: ...</para>
-      <para>Point to GData libraries (see below)...</para>
-   </primary>
-   <primary>
+   </section>
+   <section id="contacts">
+      <title>Google Contacts API</title>
+      <para> This sample uses the Google APIs to access your contact information, aka your address
+         book, on your GMail or Google Apps account.</para>
+      <para>The Google APIs provide a simple REST API: you just need to send an HTTP POST request
+         with parameters encoded in application/x-www-form-urlencoded (that means the request body
+         looks like: param1=value1&amp;param2=value2, with a bit of escaping). You first need to
+         use the Authentication API to get an authentication token, that you'll pass to every call
+         of other APIs. Then you can use the Contact API to get the data of all your contacts, then
+         a second call to get the data of all the groups your contacts belong to.</para>
+      <para>Before showing the whole stylesheet, here are what the three request should look like
+         (more exactly what the elements representing the three HTTP request should look like). Here
+         is the authentication call (indented for readability, but there shouldn't be any carriage
+         return):</para>
+      <para>
+         <sample href="samples-sample-5.html"/>
+      </para>
+      <para>The get feed call (for either contacts or groups, but the endpoint URI is different in
+         both cases):</para>
+      <para>
+         <sample href="samples-sample-6.html"/>
+      </para>
+      <para>Finally, this is the whole stylesheet. Run it by applying it to any XML document or with
+         the initial template <code>main</code>, and setting both parameters account and pwd.</para>
+      <para>
+         <sample href="samples-sample-7.html"/>
+      </para>
+   </section>
+   <section id="soap">
       <title>SOAP request to a Web service</title>
-      <para>TODO: ...</para>
-   </primary>
-   <secondary>
-      <title>How to run with eXist</title>
-      <para>TODO: ...</para>
-   </secondary>
-   <secondary>
-      <title>How to run with MarkLogic</title>
-      <para>TODO: ...</para>
-   </secondary>
-   <secondary>
-      <title>How to run with Saxon</title>
-      <para>TODO: ...</para>
-   </secondary>
+      <para>Here is a complete stylesheet showing a sample of use of this extension that call a Web
+         service by sending it a SOAP message:</para>
+      <para>
+         <sample href="samples-sample-8.html"/>
+      </para>
+      <para>When you run the above stylesheet, you should get the following result:</para>
+      <para>
+         <sample href="samples-sample-9.html"/>
+      </para>
+      <para> This is a real, complete example that formats the result besides preparing the request,
+         but the interesting parts are really the global variable <code>$request</code> and the call
+         to <code>http:send-request()</code>.</para>
+   </section>
 </webpage>

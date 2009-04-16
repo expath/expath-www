@@ -7,8 +7,15 @@
       <title>News</title>
    </section>
    <primary>
+      <title>Hey!</title>
+      <details>April 15, 2009</details>
+      <para>The website has just been announced on various mailing lists. I hope people will
+         subscribe to the <link href="lists.html">mailing list</link> and will provide valuable
+         input and feedback.</para>
+   </primary>
+   <primary>
       <title>A new birth</title>
       <details>March 29, 2009</details>
-      <para>The website has just been released.  Hello, world!</para>
+      <para>The website has just been launched. Hello, world!</para>
    </primary>
 </webpage>

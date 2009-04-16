@@ -6,11 +6,11 @@
    <section>
       <title>HTTP Client</title>
       <image src="../../images/web1.jpg" alt="Machine"/>
-      <para>This module defines a set of functions to send HTTP requests and handle responses. This
-         is a quite low-level functionality, allowing one to deal with most aspects of the HTTP
-         protocol (redirections, headers, body contents, multipart...), while integrating smoothly
-         within the <link href="http://www.w3.org/TR/xpath-datamodel/">XPath Data
-         Model</link>.</para>
+      <para>This module defines a set of functions to send HTTP &amp; HTTPS requests and handle
+         responses. This is a quite low-level functionality, allowing one to deal with most aspects
+         of the HTTP protocol (redirections, headers, body contents, multipart...), while
+         integrating smoothly within the <link href="http://www.w3.org/TR/xpath-datamodel/">XPath
+            Data Model</link>.</para>
       <para>This module was written initially for EXSLT 2.0, but it is really an XPath extension,
          that makes sense to be used in XQuery as well, for instance. It is being moved to EXPath,
          but the <link href="http://www.fgeorges.org/exslt2/">legacy page</link> is still available.

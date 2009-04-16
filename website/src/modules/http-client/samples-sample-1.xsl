@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xsl:stylesheet
-   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-   xmlns:http="http://www.expath.org/mod/http-client"
-   xmlns:http-java="java:org.expath.saxon.HttpClient"
-   xmlns:impl="urn:X-EXPath:httpclient:samples:exist:impl"
-   exclude-result-prefixes="#all"
-   version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:http="http://www.expath.org/mod/http-client"
+                xmlns:http-java="java:org.expath.saxon.HttpClient"
+                xmlns:impl="urn:X-EXPath:httpclient:samples:exist:impl"
+                exclude-result-prefixes="#all"
+                version="2.0">
 
    <xsl:output indent="yes"/>
 
@@ -20,8 +19,7 @@
    <xsl:param name="out" select="'/db/tmp/out.xml'"/>
 
    <!-- URI of the REST interface of eXist instance -->
-   <xsl:param name="rest" select="
-      'http://localhost:8080/exist/rest'"/>
+   <xsl:param name="rest" select="'http://localhost:8080/exist/rest'"/>
 
    <!-- main template: retrieve a doc, transform it and
         upload the result -->
@@ -67,8 +65,7 @@
          </http:request>
       </xsl:variable>
       <!-- error checking is left as an exercise -->
-      <xsl:sequence select="
-         http-java:send-request($req, (), $doc)"/>
+      <xsl:sequence select="http-java:send-request($req, (), $doc)"/>
    </xsl:function>
 
 </xsl:stylesheet>
