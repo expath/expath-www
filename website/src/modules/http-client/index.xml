@@ -21,7 +21,7 @@
    <divider/>
    <primary>
       <title>Introduction</title>
-      <para>Besides the <link href="http-client.html">specification</link>, here is an informal
+      <para>Besides the <link href="../http-client.html">specification</link>, here is an informal
          introduction to this module. See also the <link href="samples.html">samples page</link> for
          more elaborate samples. This module defines a single function,
             <code>http:send-request()</code> (with several arities for the sake of ease of use.) The
@@ -54,7 +54,7 @@
    </primary>
    <secondary>
       <title>Links</title>
-      <para>The specification for this module can be found <link href="http-client.html"
+      <para>The specification for this module can be found <link href="../http-client.html"
          >here</link>.</para>
       <para>Implementations of this module for various XSLT and XQuery processors can be found <link
             href="implems.html">here</link>.</para>
