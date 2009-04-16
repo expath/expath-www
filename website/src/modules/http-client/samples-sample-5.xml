@@ -1,0 +1,4 @@
+<http-request method="post" mime-type="application/x-www-form-urlencoded">
+   <body>Email=your.email%40gmail.com&amp;Passwd=xxx&amp;service=cp
+       &amp;source=fgeorges.org-contacts-1&amp;accountType=GOOGLE</body>
+</http-request>

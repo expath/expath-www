@@ -1,0 +1,3 @@
+<http-request method="get">
+   <header name="Authorization">GoogleLogin auth=xxx</header>
+</http-request>
