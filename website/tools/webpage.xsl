@@ -12,6 +12,8 @@
        encoding="UTF-8"
        doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
 
+   <xsl:param name="analytics-id" as="xs:string?" select="'UA-5463082-2'"/>
+
    <!--xsl:variable name="root" as="xs:string?" select="
        if ( /webpage/@root ) then concat(/webpage/@root, '/') else ()"/-->
 
@@ -86,6 +88,18 @@
                   </div>
                </div>
             </div>
+            <xsl:if test="exists($analytics-id)">
+               <script type="text/javascript">
+                  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+                  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+               </script>
+               <script type="text/javascript">
+                  try {
+                     var pageTracker = _gat._getTracker("<xsl:value-of select="$analytics-id"/>");
+                     pageTracker._trackPageview();
+                  } catch(err) {}
+               </script>
+            </xsl:if>
          </body>
       </html>
    </xsl:template>
