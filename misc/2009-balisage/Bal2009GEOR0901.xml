@@ -10,7 +10,12 @@
          <confdates>11 - 14 August 2009</confdates>
       </confgroup>
       <abstract>
-         <para>EXPath is bla bla bla... TODO: ...</para>
+         <para>For some months ago, extensions are more and more demanded, needed among the XML Core
+            technologies, especially XSLT and XQuery. Looking at EXSLT and EXQuery projects, one
+            will see their goals are useful, but also that they overlap, as does their common core:
+            XPath. It is thus reasonable to share the job and to work at the common, XPath level. In
+            addition, any XPath-based language or processor could then benefit from those
+            extensions.</para>
       </abstract>
       <author>
          <personname>
@@ -18,7 +23,7 @@
             <surname>Georges</surname>
          </personname>
          <personblurb>
-            <para>Florent is bla bla bla...  TODO: ...</para>
+            <para>Florent is bla bla bla... TODO: ...</para>
          </personblurb>
          <affiliation>
             <jobtitle>XML Architect</jobtitle>
@@ -38,11 +43,123 @@
       </keywordset>
    </info>
    <section>
-      <title>Introduction</title>
-      <para>Bla bla bla...</para>
+      <title>Note to reviewers</title>
+      <para>The EXPath project has just been launched three days ago (as I start this document.) So
+         this paper is a first draft and presents initial thoughts about the project and its
+         potential evolution, and it is going to change over the following months, to reflect more
+         accurate and up-to-date information (while the main idea will remain the same, of course.)
+         The first part presents the context, the project and the definition process, and thus has
+         more risks to change. But the second one introduces real, cool examples dealing with REST
+         and SOAP services using an HTTP extension, as well as with Open Document files through a
+         ZIP extension, and is not really going to change.</para>
    </section>
    <section>
       <title>Introduction</title>
-      <para>Bla bla bla...</para>
+      <!--para>In the beginning of 2009, XPath 2.0, XQuery and XSLT 2.0 recommendations were going to
+         be 2 years old. While that's still young, the community around them had a lot of feedback
+         yet, accumulated for several years of use, even before they reached the status of
+         recommendation at W3C. There began to be more and more activity around various extension
+         projects to fulfil needs not covered by those recommendations, as EXQuery, or a new version
+         of the well-known EXSLT project.</para>
+      <para>Those projects try to provide new features to XQuery and XSLT, respectively. Those
+         features are usually the same on both sides, and the result is usually to define and
+         implement for several processor new XPath extension functions. </para>
+      <para>TODO: FUCK! THAT DOES NOT WORK!!! ... REWORK THE INTRO!</para>
+   </section>
+   <section>
+      <title>The project</title-->
+      <para>XPath is a textual language to query XML content. Besides a very convenient way to
+         navigate within an XML document through a path system, it provides the ability to make
+         various kind of computation, like string manipulations or dates and times handling. Most of
+         those features are provided as functions, defined in a separate recommendation defining the
+         standard library. It is also possible to use other functions, in an implementation-defined
+         way. For instance, XSLT and XQuery use that fact and allow one to define new functions
+         directly in the stylesheet or in the query module. An XPath processor usually provides
+         libraries of additional functions, as well as a way to augment the set of available
+         functions by writing new functions in Java, or Python or whatever language it has been
+         written with.</para>
+      <para>That leads to the concept of extension function. This is not defined by XPath, but
+         inspired by XSLT this is defined as any function available in an expression while not
+         defined in any recommendation. There are two major kinds of extension functions: those
+         provided by the processor itself, and those written by the user. A processor can provide
+         extensions to deal with database management for instance, and the user can implement any
+         processing he could not write in XPath directly. For instance using a complex mathematical
+         library available in Java. Possible useful extensions can provide support for performing
+         HTTP requests, using WebDAV, reading and writing ZIP files (like EPUB eBook, Open XML and
+         OpenDocument files,) parsing and serializing XML and HTML documents, executing XSLT
+         transforms and XQuery queries, etcetera.</para>
+      <para>Extension functions are a very powerful way to extend XPath features. And a lot of
+         extensions have been written over the years, by many people. But it is hard, to not say
+         impossible, to share an extension function among several processors, and to maintain them
+         over time. And the extension functions provided by processors themselves are not
+         compatible, so an expression that uses them is not portable. That situation lead to the
+         creation of a project that would define libraries of extension functions from the outside
+         of any single processor, allowing existing processors to choose to implement them natively,
+         or a user to install the existing implementation as an external package in his processor.
+         That way, it becomes possible to use extension functions already defined and implemented,
+         and at least as important, to write expressions that become portable across every
+         processors that support the extension or that an implementation was provided to.</para>
+      <para>This is exactly what EXPath is.</para>
+   </section>
+   <section>
+      <title>The project</title>
+      <para>The project has been launched four months ago, in April 2009. It is divided in several
+         modules, rather independent from each other. The module is the delivery unit of EXPath. It
+         is a consistent set of functions providing support for a particular domain, and can be view
+         as a specific library of functions. Besides the specification of the functions itself,
+         implementations are provided for various processors. The first module that has been defined
+         is the HTTP Client. It provides support for sending HTTP request and handling their
+         responses. This module defines a single one function, how it represents HTTP requests and
+         responses as XML elements, and how it can be used to perform requests. It has also been
+         implemented for various processors (as the standalone XSLT and XQuery processor Saxon, the
+         XML database eXist, or MarkLogic Server) and implementations are provided on the website as
+         open source packages.</para>
+      <para>If someone needs new extension functions to address missing features, he can propose to
+         add a new module, with the help of other people interested in supporting the same features.
+         First he has to identify precise use cases for this feature, and describe examples of use.
+         That defines the scope of the module. Of course the scope can evolve over time, as well as
+         the use case examples, but that gives a formal basis for further discussions and marks the
+         trail to the specification.</para>
+      <para>Once the use cases have been identified, he has to propose a definition of the module,
+         and of all its functions. That proposal is discussed among the community through the
+         mailing list, and people interested in this module help to solve issues and to improve the
+         design. Extensions addressing the same problem can already exist, either built-in in some
+         processors, or developed as independent, individual projects; of course, they are valuable
+         materials to learn from during this stage. In parallel with this definition, it is
+         encouraged to develop at least one implementation to validate the feasibility of what is
+         specified (sometimes, there is something else quite as practical as a good theory.) Before
+         being officially endorsed as a module, at least two implementations should have been
+         provided, to ensure the specification is not too closely tight to a particular
+         processor.</para>
+      <para>Each module has its own maintainer, who is responsible to edit the specification, lead
+         the discussions and make design choices in accordance to those discussions. Similarly,
+         every implementation of a module for a particular processor has its own maintainer. If
+         someone needs the module to be implemented to another processor, he can volunteer for that
+         work, and propose an implementation. Test suite for the module should be carefully designed
+         to be sure every implementation reach the proper quality level. Of course, a processor
+         might also propose natively an implementation for some modules, in which case its
+         implementers takes the responsibility for the code they provide.</para>
+      <para>An interesting point about implementing a module is when a processor already provides a
+         similar feature through processor-specific extension functions. It could then be possible,
+         in some case, to reuse those existing extensions through a tiny wrapper exposing the EXPath
+         interface to the user. For instance, the HTTP Client has been implemented for MarkLogic
+         Server with an XQuery module using MarkLogic's own HTTP Client set of extension functions.
+         This example shows also the limitations of this approach: the implementation is only
+         partial, because the MarkLogic's extensions do not provide exactly all the possibilities
+         required by the EXPath HTTP Client module.</para>
+      <para>As you can see, there is a lot of work, and everyone is welcome to help, at any level:
+         write specifications, review and comment on them, write actual implementation code, test
+         the implementations, write documentation and tutorials, or simply use the extensions, and
+         report feedback.</para>
+      <para>But let's call it a day for the theory, and let's see some real examples using two
+         modules: the HTTP Client and the ZIP modules.</para>
+   </section>
+   <section>
+      <title>Two example modules</title>
+      <para>Before going to the actual examples, here is a simple introduction to those modules. The
+         HTTP Client module, without any surprise, provides the ability to send HTTP requests and
+         handle their response. And the ZIP module provides ZIP files support, either to read them,
+         create new files, or update entries in existing ZIP files.</para>
+      <para>The HTTP Client provides one single function: <code>d</code> </para>
    </section>
 </article>
