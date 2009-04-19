@@ -17,7 +17,18 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">file:/H:/xsl/expath/misc/2009-balisage/Bal2009GEOR0901.xml</String>
+                                    <String xml:space="preserve">misc/2009-balisage/Bal2009GEOR0901.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">Sitemap - build</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">website/src/sitemap.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -28,7 +39,7 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">misc/2009-balisage/Bal2009GEOR0901.xml</String>
+                                    <String xml:space="preserve">../../../../../H:/xsl/expath/misc/2009-balisage/Bal2009GEOR0901.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -50,7 +61,7 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">file:/../../H:/xsl/expath/website/src/sitemap.xml</String>
+                                    <String xml:space="preserve">../../../../../../../H:/xsl/expath/website/src/sitemap.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -106,17 +117,6 @@
                                 </field>
                                 <field name="url">
                                     <String xml:space="preserve">website/src/modules/http-client/samples.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">Sitemap - build</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">website/src/sitemap.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -197,9 +197,6 @@
                                     <Boolean xml:space="preserve">false</Boolean>
                                 </field>
                                 <field name="showInSVGPane">
-                                    <Boolean xml:space="preserve">false</Boolean>
-                                </field>
-                                <field name="showInResultSetPane">
                                     <Boolean xml:space="preserve">false</Boolean>
                                 </field>
                                 <field name="useXSLTInput">
@@ -311,9 +308,6 @@
                                     <Boolean xml:space="preserve">true</Boolean>
                                 </field>
                                 <field name="showInSVGPane">
-                                    <Boolean xml:space="preserve">false</Boolean>
-                                </field>
-                                <field name="showInResultSetPane">
                                     <Boolean xml:space="preserve">false</Boolean>
                                 </field>
                                 <field name="useXSLTInput">
@@ -451,9 +445,6 @@
                                 <field name="showInSVGPane">
                                     <Boolean xml:space="preserve">false</Boolean>
                                 </field>
-                                <field name="showInResultSetPane">
-                                    <Boolean xml:space="preserve">false</Boolean>
-                                </field>
                                 <field name="useXSLTInput">
                                     <Boolean xml:space="preserve">true</Boolean>
                                 </field>
@@ -589,9 +580,6 @@
                                 <field name="showInSVGPane">
                                     <Boolean xml:space="preserve">false</Boolean>
                                 </field>
-                                <field name="showInResultSetPane">
-                                    <Boolean xml:space="preserve">false</Boolean>
-                                </field>
                                 <field name="useXSLTInput">
                                     <Boolean xml:space="preserve">true</Boolean>
                                 </field>
@@ -708,9 +696,6 @@
                                     <Boolean xml:space="preserve">true</Boolean>
                                 </field>
                                 <field name="showInSVGPane">
-                                    <Boolean xml:space="preserve">false</Boolean>
-                                </field>
-                                <field name="showInResultSetPane">
                                     <Boolean xml:space="preserve">false</Boolean>
                                 </field>
                                 <field name="useXSLTInput">
@@ -831,9 +816,6 @@
                                 <field name="showInSVGPane">
                                     <Boolean xml:space="preserve">false</Boolean>
                                 </field>
-                                <field name="showInResultSetPane">
-                                    <Boolean xml:space="preserve">false</Boolean>
-                                </field>
                                 <field name="useXSLTInput">
                                     <Boolean xml:space="preserve">true</Boolean>
                                 </field>
@@ -945,9 +927,6 @@
                                 <field name="showInSVGPane">
                                     <Boolean xml:space="preserve">false</Boolean>
                                 </field>
-                                <field name="showInResultSetPane">
-                                    <Boolean xml:space="preserve">false</Boolean>
-                                </field>
                                 <field name="useXSLTInput">
                                     <Boolean xml:space="preserve">false</Boolean>
                                 </field>
@@ -1035,9 +1014,6 @@
                                 <field name="showInSVGPane">
                                     <Boolean xml:space="preserve">false</Boolean>
                                 </field>
-                                <field name="showInResultSetPane">
-                                    <Boolean xml:space="preserve">false</Boolean>
-                                </field>
                                 <field name="useXSLTInput">
                                     <Boolean xml:space="preserve">true</Boolean>
                                 </field>
@@ -1095,7 +1071,7 @@
                                     <Boolean xml:space="preserve">true</Boolean>
                                 </field>
                                 <field name="openInBrowser">
-                                    <Boolean xml:space="preserve">true</Boolean>
+                                    <Boolean xml:space="preserve">false</Boolean>
                                 </field>
                                 <field name="outputFile">
                                     <File xml:space="preserve">${cfn}.html</File>
@@ -1116,9 +1092,6 @@
                                     <Boolean xml:space="preserve">true</Boolean>
                                 </field>
                                 <field name="showInSVGPane">
-                                    <Boolean xml:space="preserve">false</Boolean>
-                                </field>
-                                <field name="showInResultSetPane">
                                     <Boolean xml:space="preserve">false</Boolean>
                                 </field>
                                 <field name="useXSLTInput">
@@ -1232,9 +1205,6 @@
                                 <field name="showInSVGPane">
                                     <Boolean xml:space="preserve">false</Boolean>
                                 </field>
-                                <field name="showInResultSetPane">
-                                    <Boolean xml:space="preserve">false</Boolean>
-                                </field>
                                 <field name="useXSLTInput">
                                     <Boolean xml:space="preserve">true</Boolean>
                                 </field>
@@ -1320,9 +1290,6 @@
                                     <Boolean xml:space="preserve">true</Boolean>
                                 </field>
                                 <field name="showInSVGPane">
-                                    <Boolean xml:space="preserve">false</Boolean>
-                                </field>
-                                <field name="showInResultSetPane">
                                     <Boolean xml:space="preserve">false</Boolean>
                                 </field>
                                 <field name="useXSLTInput">
@@ -1412,9 +1379,6 @@
                                 <field name="showInSVGPane">
                                     <Boolean xml:space="preserve">false</Boolean>
                                 </field>
-                                <field name="showInResultSetPane">
-                                    <Boolean xml:space="preserve">false</Boolean>
-                                </field>
                                 <field name="useXSLTInput">
                                     <Boolean xml:space="preserve">true</Boolean>
                                 </field>
@@ -1495,9 +1459,6 @@
                                 <field name="showInSVGPane">
                                     <Boolean xml:space="preserve">false</Boolean>
                                 </field>
-                                <field name="showInResultSetPane">
-                                    <Boolean xml:space="preserve">false</Boolean>
-                                </field>
                                 <field name="useXSLTInput">
                                     <Boolean xml:space="preserve">true</Boolean>
                                 </field>
@@ -1576,9 +1537,6 @@
                                     <Boolean xml:space="preserve">true</Boolean>
                                 </field>
                                 <field name="showInSVGPane">
-                                    <Boolean xml:space="preserve">false</Boolean>
-                                </field>
-                                <field name="showInResultSetPane">
                                     <Boolean xml:space="preserve">false</Boolean>
                                 </field>
                                 <field name="useXSLTInput">
