@@ -160,6 +160,47 @@
          HTTP Client module, without any surprise, provides the ability to send HTTP requests and
          handle their response. And the ZIP module provides ZIP files support, either to read them,
          create new files, or update entries in existing ZIP files.</para>
-      <para>The HTTP Client provides one single function: <code>d</code> </para>
+      <para>The HTTP Client provides one single function: <code>http:send-request</code> (actually
+         it defines four different arities for this function, but this is mainly a convenient way to
+         pass some values as separate parameters.) This function has been inspired from the
+         corresponding XProc step, <code>p:http-request</code>. This function makes it possible to
+         query REST services, Google services, Web services through SOAP, or simply to retrieve
+         resources on the Web.</para>
+      <para>TODO: Signature, sample of request, sample of response... (take the same as for Prague,
+         in slides)</para>
+      <programlisting>
+http:send-request($request as element(http:request)) as item()+</programlisting>
+      <para>Bla bla bla...</para>
+      <programlisting>
+&lt;http:request href="http://www.example.com/..." method="post">
+   &lt;http:header name="X-Header" value="some value"/>
+   &lt;http:body content-type="application/xml">
+      &lt;hello>World!&lt;/hello>
+   &lt;/http:body>
+&lt;/http:request></programlisting>
+      <para>Bla bla bla...</para>
+      <programlisting>
+&lt;http:response status="200" message="Ok">
+   &lt;http:header name="..." value="..."/>
+   ...
+   &lt;http:body content-type="application/xml"/>
+&lt;/http:request></programlisting>
+      <para>Bla bla bla...</para>
+      <programlisting>
+http:send-request(
+   &lt;http:request href="http://www.xmlprague.cz/" method="get"/>)</programlisting>
+      <para>Bla bla bla...</para>
+      <programlisting>
+&lt;http:response status="200" message="OK">
+   &lt;http:header name="Server" value="Apache/1.3.37 (Unix)"/>
+   ...
+   &lt;http:body content-type="text/html"/>
+&lt;/http:response>
+
+&lt;html xmlns="http://www.w3.org/1999/xhtml">
+   &lt;head>
+      &lt;title>XML Prague 2009&lt;/title>
+      ...</programlisting>
+      <para>Bla bla bla...</para>
    </section>
 </article>
