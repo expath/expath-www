@@ -158,19 +158,19 @@
       <title>Two example modules</title>
       <para>Before going to the actual examples, here is a simple introduction to those modules. The
          HTTP Client module, without any surprise, provides the ability to send HTTP requests and
-         handle their response. And the ZIP module provides ZIP files support, either to read them,
+         handle their response. The ZIP module provides ZIP files support, either to read them,
          create new files, or update entries in existing ZIP files.</para>
       <para>The HTTP Client provides one single function: <code>http:send-request</code> (actually
          it defines four different arities for this function, but this is mainly a convenient way to
          pass some values as separate parameters.) This function has been inspired from the
          corresponding XProc step, <code>p:http-request</code>. This function makes it possible to
          query REST services, Google services, Web services through SOAP, or simply to retrieve
-         resources on the Web.</para>
-      <para>TODO: Signature, sample of request, sample of response... (take the same as for Prague,
-         in slides)</para>
+         resources on the Web. The signature of this function (of its one-parameter version)
+         is:</para>
       <programlisting>
 http:send-request($request as element(http:request)) as item()+</programlisting>
-      <para>Bla bla bla...</para>
+      <para>Its parameter is an element representing the request. Its structure is like the
+         following sample:</para>
       <programlisting>
 &lt;http:request href="http://www.example.com/..." method="post">
    &lt;http:header name="X-Header" value="some value"/>
@@ -178,29 +178,103 @@ http:send-request($request as element(http:request)) as item()+</programlisting>
       &lt;hello>World!&lt;/hello>
    &lt;/http:body>
 &lt;/http:request></programlisting>
-      <para>Bla bla bla...</para>
+      <para>The previous request will result in a HTTP POST, with Content-Type
+            <code>application/xml</code>, sent to the specified URI and with a header explicitly set
+         by the user (<code>X-Header: some value</code>.) The result is described with another
+         element, <code>http:response</code>, that describes the response returned by the
+         server:</para>
       <programlisting>
-&lt;http:response status="200" message="Ok">
+&lt;http:response status="200" message="OK">
    &lt;http:header name="..." value="..."/>
    ...
    &lt;http:body content-type="application/xml"/>
 &lt;/http:request></programlisting>
-      <para>Bla bla bla...</para>
+      <para>The structure of this element is very similar to the request element. Instead of the URI
+         to send the request to and the HTTP method to use, it contains the status code and the
+         message returned by the HTTP server. One significant difference is in the way the response
+         body is returned. Opposed to the request, the response's body element (if any) is only a
+         description of the body. The body content itself is returned as a subsequent item in the
+         result sequence (or several items in case of a multipart response.) Let's analyse a sample
+         of use, in XQuery:</para>
       <programlisting>
 http:send-request(
-   &lt;http:request href="http://www.xmlprague.cz/" method="get"/>)</programlisting>
-      <para>Bla bla bla...</para>
+   &lt;http:request href="http://www.balisage.net/" method="get"/>)</programlisting>
+      <para>This simply send a GET request to the web server of Balisage. The result of this
+         function call is a sequence of two items: the <code>http:result</code> element and the body
+         content as a document node (holding an XHTML document):</para>
       <programlisting>
 &lt;http:response status="200" message="OK">
-   &lt;http:header name="Server" value="Apache/1.3.37 (Unix)"/>
+   &lt;http:header name="Server" value="Apache/1.3.41 (Unix)"/>
    ...
    &lt;http:body content-type="text/html"/>
 &lt;/http:response>
 
-&lt;html xmlns="http://www.w3.org/1999/xhtml">
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
    &lt;head>
-      &lt;title>XML Prague 2009&lt;/title>
+      &lt;title>Balisage: The Markup Conference&lt;/title>
       ...</programlisting>
-      <para>Bla bla bla...</para>
+      <para>This can sound strange to have a sequence as the result of the function, but this is the
+         only to provide the response description along to the payload expressed as a full document
+         node. That's a design choice as it prevent to mix different layers in the same document.
+         Depending on the content-type returned by the server, the body content is analyzed
+         differently. If the content type is an XML type, it is parsed and returned as a document
+         node; if it is an HTML type, it is tidied up, parsed and returned as a document node; if it
+         is a textual type, it is returned as a string; in any other case, it is returned as a
+            <code>xs:base64Binary</code> item. A multipart response will apply this rule for each
+         part, and return each part as a subsequent item after the <code>http:response</code>
+         element.</para>
+      <para>The ZIP module defines the following function to read the structure of a ZIP file, to
+         create a completely new ZIP file from scratch, and to create a new ZIP file, based on an
+         existing file by changing only some entries:</para>
+      <programlisting>
+zip:entries($href) as element(zip:file)
+zip:zip-file($zip as element(zip:file)) as empty-sequence()
+zip:update-entries($zip, $output) as empty-sequence()</programlisting>
+      <para>The first function takes a ZIP file's URI as parameter, and returns a description of its
+         structure (its entries) as a <code>zip:file</code> element. This element looks like the
+         following:</para>
+      <programlisting>
+&lt;zip:file href="some.zip">
+   &lt;zip:entry name="file.xml"/>
+   &lt;zip:entry name="index.html"/>
+   &lt;zip:dir name="dir">
+      &lt;zip:entry name="file.txt"/>
+   &lt;/zip:dir>
+&lt;/zip:file></programlisting>
+      <para>Only the structure is returned, not the whole content of each file entry. The function
+            <code>zip:zip-file()</code> takes a similar element as parameter, and create a new ZIP
+         file based on that content. The element is similar, but in addition it contains the content
+         of each file entry, so the function has all the needed information. For each
+            <code>zip:entry</code>, the content of the element can be an XML document, a string, or
+         binary encoded as a base 64 string (an attribute tells if the content has to be serialized
+         as XML, HTML, text or binary.) An existing file can also be copied verbatim to the entry,
+         by giving its URI instead of the actual content. An example of a <code>zip:file</code>
+         element to pass to this function is:</para>
+      <programlisting>
+&lt;zip:file href="some.zip">
+   &lt;zip:entry name="file.xml" output="xml">
+      &lt;hello>World!&lt;/hello>
+   &lt;/zip:entry>
+   &lt;zip:entry name="index.html" href="/some/file.html"/>
+   &lt;zip:dir name="dir">
+      &lt;zip:entry name="file.txt" output="text">
+         Hello, world!
+      &lt;/zip:entry>
+   &lt;/zip:dir>
+&lt;/zip:file></programlisting>
+      <para>The third function, <code>zip:update-entries()</code>, is looks a lot like
+            <code>zip:zip-file()</code>, but it uses an existing ZIP file to create a new one,
+         replacing the entries in the <code>zip:file</code> element in parameter. This is then
+         possible to use a pattern file, replacing only a few entries, using content computed in
+         this expression. To be complete, the module provides also 4 functions to read one specific
+         entry from an existing ZIP file, for instance depending on the result of
+            <code>zip:entries()</code>. They return either a document node, a string or a
+            <code>xs:base64Binary</code> item, following the same rules than
+            <code>http:send-request()</code>:</para>
+      <programlisting>
+zip:xml-entry($href, $entry) as document-node()
+zip:html-entry($href, $entry) as document-node()
+zip:text-entry($href, $entry) as xs:string
+zip:binary-entry($href, $entry) as xs:base64Binary</programlisting>
    </section>
 </article>
