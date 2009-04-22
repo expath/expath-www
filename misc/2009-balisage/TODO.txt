@@ -1,0 +1,2 @@
+* SOAP example: find a public SOAP Web service to replace the weather
+  service, that seems out of service
