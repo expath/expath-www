@@ -52,6 +52,9 @@
          more risks to change. But the second one introduces real, cool examples dealing with REST
          and SOAP services using an HTTP extension, as well as with Open Document files through a
          ZIP extension, and is not really going to change.</para>
+      <para>About the examples, I didn't feel comfortable with explaining every single line of code.
+         Of course, some examples can be quite heavy, but live explanation will solve that
+         :-)</para>
    </section>
    <section>
       <title>Introduction</title>
@@ -214,16 +217,16 @@ http:send-request(
       &lt;title>Balisage: The Markup Conference&lt;/title>
       ...</programlisting>
       <para>This can sound strange to have a sequence as the result of the function, but this is the
-         only to provide the response description along to the payload expressed as a full document
-         node. That's a design choice as it prevent to mix different layers in the same document.
-         Depending on the content-type returned by the server, the body content is analyzed
-         differently. If the content type is an XML type, it is parsed and returned as a document
-         node; if it is an HTML type, it is tidied up, parsed and returned as a document node; if it
-         is a textual type, it is returned as a string; in any other case, it is returned as a
-            <code>xs:base64Binary</code> item. A multipart response will apply this rule for each
-         part, and return each part as a subsequent item after the <code>http:response</code>
-         element.</para>
-      <para>The ZIP module defines the following function to read the structure of a ZIP file, to
+         only way to provide the response description along side the payload expressed as a full
+         document node. That's a design choice as it prevent to mix different layers in the same
+         document. Depending on the content-type returned by the server, the body content is
+         analyzed differently. If the content type is an XML type, it is parsed and returned as a
+         document node; if it is an HTML type, it is tidied up, parsed and returned as a document
+         node; if it is a textual type, it is returned as a string; in any other case, it is
+         returned as a <code>xs:base64Binary</code> item. A multipart response will apply this rule
+         for each part, and return each part as a subsequent item after the
+            <code>http:response</code> element.</para>
+      <para>The ZIP module defines the following functions to read the structure of a ZIP file, to
          create a completely new ZIP file from scratch, and to create a new ZIP file, based on an
          existing file by changing only some entries:</para>
       <programlisting>
@@ -244,12 +247,12 @@ zip:update-entries($zip, $output) as empty-sequence()</programlisting>
       <para>Only the structure is returned, not the whole content of each file entry. The function
             <code>zip:zip-file()</code> takes a similar element as parameter, and create a new ZIP
          file based on that content. The element is similar, but in addition it contains the content
-         of each file entry, so the function has all the needed information. For each
-            <code>zip:entry</code>, the content of the element can be an XML document, a string, or
-         binary encoded as a base 64 string (an attribute tells if the content has to be serialized
-         as XML, HTML, text or binary.) An existing file can also be copied verbatim to the entry,
-         by giving its URI instead of the actual content. An example of a <code>zip:file</code>
-         element to pass to this function is:</para>
+         of each file entry, so the function has all the needed information to actually create the
+         whole file. For each <code>zip:entry</code>, the content of the element can be an XML
+         document, a string, or binary encoded as a base 64 string (an attribute tells if the
+         content has to be serialized as XML, HTML, text or binary.) An existing file can also be
+         copied verbatim to the entry, by giving its URI instead of the actual content. An example
+         of a <code>zip:file</code> element to pass to this function is:</para>
       <programlisting>
 &lt;zip:file href="some.zip">
    &lt;zip:entry name="file.xml" output="xml">
@@ -276,5 +279,109 @@ zip:xml-entry($href, $entry) as document-node()
 zip:html-entry($href, $entry) as document-node()
 zip:text-entry($href, $entry) as xs:string
 zip:binary-entry($href, $entry) as xs:base64Binary</programlisting>
+   </section>
+   <section>
+      <title>SOAP Web service sample</title>
+      <para>EXPath works at the XPath level. But it is never used standalone, always within a host
+         language. Among the various languages providing support for XPath, XSLT and XQuery have a
+         place of choice, by their close integration with XPath. I will then use them to show
+         complete samples of use of the functions introduced here. The ability of XQuery to create
+         elements directly within expressions make the examples very concise. When transforming XML
+         trees is fully part of the example, XSLT makes more sense.</para>
+      <para>The first sample consumes a SOAP Web service. The Web service takes as input an element
+         with a country code and a city name, and return an element with a corresponding place name
+         and the weather forecasting for this place for the next days. The format of the request and
+         response elements is:</para>
+      <programlisting>
+&lt;tns:weather-by-city-request>
+   &lt;tns:city>Montreal&lt;/tns:city>
+   &lt;tns:country>CA&lt;/tns:country>
+&lt;/tns:weather-by-city-request>
+
+&lt;tns:weather-by-city-response>
+   &lt;tns:place>Montreal, CA&lt;/tns:place>
+   &lt;tns:detail>
+      &lt;tns:day>2009-04-21&lt;/tns:day>
+      &lt;tns:min-temp>16&lt;/tns:min-temp>
+      &lt;tns:max-temp>23&lt;/tns:max-temp>
+      &lt;tns:desc>Some useful description.&lt;/tns:desc>
+   &lt;/tns:detail>
+   &lt;tns:detail>
+   ...
+&lt;/tns:weather-by-city-response></programlisting>
+      <para>The XQuery module thus have to send a SOAP request to the Web service HTTP endpoint, to
+         check the error conditions and to use the result content if everything went fine. Those
+         steps fit naturally into three different functions defined within the XQuery module. After
+         a few declarations (importing the HTTP Client module, declaring namespaces and variables,)
+         the three functions are defined and then composed together:</para>
+      <programlisting>
+xquery version "1.0";
+
+import module namespace http = "http://www.expath.org/mod/http-client";
+
+declare namespace soap = "http://schemas.xmlsoap.org/soap/envelope/";
+declare namespace tns  = "http://www.webservicex.net";
+
+declare variable $endpoint as xs:string    := "http://www.webservicex.net/WeatherForecast.asmx";
+declare variable $soap-action as xs:string := "http://www.webservicex.net/GetWeatherByPlaceName";
+
+declare function local:send-message()
+      as item()+
+{
+   http:send-request(
+      &lt;http:request method="post" href="{ $endpoint }">
+         &lt;http:header name="SOAPAction" value="{ $soap-action }"/>
+         &lt;http:body content-type="text/xml">
+            &lt;soap:Envelope>
+               &lt;soap:Header/>
+               &lt;soap:Body>
+                  &lt;tns:weather-by-city-request>
+                     &lt;tns:city>Brussels&lt;/tns:city>
+                     &lt;tns:country>BE&lt;/tns:country>
+                  &lt;/tns:weather-by-city-request>
+               &lt;/soap:Body>
+            &lt;/soap:Envelope>
+         &lt;/http:body>
+      &lt;/http:request>
+   )
+};
+
+declare function local:extract-payload($res as item()+)
+      as element(tns:weather-by-city-response)
+{
+   let $status := xs:integer($res[1]/@status)
+   let $weather := $res[2]/soap:Envelope/soap:Body/*
+      return
+         if ( $status ne 200 ) then
+            error(xs:QName('ERRSOAP001'),
+                  concat('HTTP error: ', $status, ' - ', $res[1]/@message))
+         else if ( empty($weather) ) then
+            error(xs:QName('ERRSOAP002'), "SOAP payload is empty?")
+         else
+            $weather
+};
+
+declare function local:format-result($weather as element(tns:weather-by-city-response))
+      as xs:string
+{
+   string-join((
+      'Place: ', $weather/tns:place, '&amp;#10;',
+      for $d in $weather/tns:detail return $d/concat(
+         '  - ', tns:day, ':&amp;#09;', tns:min-temp, ' - ',
+         tns:max-temp, ':&amp;#09;', tns:desc, '&amp;#10;'
+      )
+    ),
+   '')
+};
+
+let $http-res := local:send-message()
+let $payload  := local:extract-payload($http-res)
+   return
+      local:format-result($payload)</programlisting>
+      <para>If everything goes well, the result should look like the following:</para>
+      <programlisting>
+Place: Brussels, BE
+  - 2009-04-21:  10 - 38:  Sunny, oh sunny!
+  - 2009-04-22:  1 - 8:    You cannot have sun twice in Brussels...</programlisting>
    </section>
 </article>
