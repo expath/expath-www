@@ -282,12 +282,12 @@ zip:binary-entry($href, $entry) as xs:base64Binary</programlisting>
    </section>
    <section>
       <title>SOAP Web service sample</title>
-      <para>EXPath works at the XPath level. But it is never used standalone, always within a host
+      <para>EXPath works at the XPath level. But XPath is never used standalone, always from a host
          language. Among the various languages providing support for XPath, XSLT and XQuery have a
          place of choice, by their close integration with XPath. I will then use them to show
          complete samples of use of the functions introduced here. The ability of XQuery to create
          elements directly within expressions make the examples very concise. When transforming XML
-         trees is fully part of the example, XSLT makes more sense.</para>
+         trees is fully part of the example, XSLT makes maybe more sense.</para>
       <para>The first sample consumes a SOAP Web service. The Web service takes as input an element
          with a country code and a city name, and return an element with a corresponding place name
          and the weather forecasting for this place for the next days. The format of the request and
@@ -309,7 +309,7 @@ zip:binary-entry($href, $entry) as xs:base64Binary</programlisting>
    &lt;tns:detail>
    ...
 &lt;/tns:weather-by-city-response></programlisting>
-      <para>The XQuery module thus have to send a SOAP request to the Web service HTTP endpoint, to
+      <para>The XQuery module thus has to send a SOAP request to the Web service HTTP endpoint, to
          check the error conditions and to use the result content if everything went fine. Those
          steps fit naturally into three different functions defined within the XQuery module. After
          a few declarations (importing the HTTP Client module, declaring namespaces and variables,)
