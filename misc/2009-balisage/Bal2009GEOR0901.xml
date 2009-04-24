@@ -383,5 +383,6 @@ let $payload  := local:extract-payload($http-res)
 Place: Brussels, BE
   - 2009-04-21:  10 - 38:  Sunny, oh sunny!
   - 2009-04-22:  1 - 8:    You cannot have sun twice in Brussels...</programlisting>
+      <para>EXAMPLE OF USE OF THE WSDL-COMPILER...</para>
    </section>
 </article>
