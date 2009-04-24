@@ -2,7 +2,7 @@
 <?oxygen RNGSchema="http://www.balisage.net/DocumentModels/balisage-1-1.rng" type="xml"?>
 
 <article xmlns="http://docbook.org/ns/docbook">
-   <title>EXPath</title>
+   <title>A practical introduction to EXPath</title>
    <subtitle>Collaboratively Defining Open Standards for Portable XPath Extensions</subtitle>
    <info>
       <confgroup>
@@ -12,9 +12,9 @@
       <abstract>
          <para>For some months ago, extensions are more and more demanded, needed among the XML Core
             technologies, especially XSLT and XQuery. Looking at EXSLT and EXQuery projects, one
-            will see their goals are useful, but also that they overlap, as does their common core:
-            XPath. It is thus reasonable to share the job and to work at the common, XPath level. In
-            addition, any XPath-based language or processor could then benefit from those
+            will see that their goals are useful, but also that they overlap, as does their common
+            core: XPath. It is thus reasonable to share the job and to work at the common, XPath
+            level. In addition, any XPath-based language or processor could then benefit from those
             extensions.</para>
       </abstract>
       <author>
