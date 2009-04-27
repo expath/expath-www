@@ -1,2 +1,6 @@
 * SOAP example: find a public SOAP Web service to replace the weather
-  service, that seems out of service
+  service, that seems out of service.
+
+* See how it is possible to use user fields from ODF documents in the
+  Compound Document Template pattern (see text:user-field-decl and
+  text:user-field-get.)

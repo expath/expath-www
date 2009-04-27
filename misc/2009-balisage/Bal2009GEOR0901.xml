@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?oxygen RNGSchema="http://www.balisage.net/DocumentModels/balisage-1-1.rng" type="xml"?>
 
-<article xmlns="http://docbook.org/ns/docbook">
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
    <title>A practical introduction to EXPath</title>
    <subtitle>Collaboratively Defining Open Standards for Portable XPath Extensions</subtitle>
    <info>
@@ -11,10 +11,10 @@
       </confgroup>
       <abstract>
          <para>For some months ago, extensions are more and more demanded, needed among the XML Core
-            technologies, especially XSLT and XQuery. Looking at EXSLT and EXQuery projects, one
-            will see that their goals are useful, but also that they overlap, as does their common
-            core: XPath. It is thus reasonable to share the job and to work at the common, XPath
-            level. In addition, any XPath-based language or processor could then benefit from those
+            technologies, especially XSLT and XQuery. Looking at EXSLT and EXQuery projects, we can
+            see that their goals are useful, but also that they overlap, as does their common core:
+            XPath. It is thus reasonable to share the job and to work at the common, XPath level. In
+            addition, any XPath-based language or processor could then benefit from those
             extensions.</para>
       </abstract>
       <author>
@@ -23,7 +23,8 @@
             <surname>Georges</surname>
          </personname>
          <personblurb>
-            <para>Florent is bla bla bla... TODO: ...</para>
+            <para>Florent is bla bla bla... TODO: ... Well, seems required by the doc type, but not
+               used in publication.</para>
          </personblurb>
          <affiliation>
             <jobtitle>XML Architect</jobtitle>
@@ -44,33 +45,17 @@
    </info>
    <section>
       <title>Note to reviewers</title>
-      <para>The EXPath project has just been launched three days ago (as I start this document.) So
-         this paper is a first draft and presents initial thoughts about the project and its
-         potential evolution, and it is going to change over the following months, to reflect more
-         accurate and up-to-date information (while the main idea will remain the same, of course.)
-         The first part presents the context, the project and the definition process, and thus has
-         more risks to change. But the second one introduces real, cool examples dealing with REST
-         and SOAP services using an HTTP extension, as well as with Open Document files through a
-         ZIP extension, and is not really going to change.</para>
+      <para>The EXPath project has just been launched one week ago (as I start this document.) So
+         this paper is likely to change in the details, but the main idea won't: introduce the
+         project, then show live, concrete samples of two modules, the HTTP Client and the ZIP
+         modules. I haven't written the conclusion yet, because I prefer to have a bit more
+         experience with the project that is evolving rapidly now.</para>
       <para>About the examples, I didn't feel comfortable with explaining every single line of code.
-         Of course, some examples can be quite heavy, but live explanation will solve that
-         :-)</para>
+         Of course, some examples can require a bit more explanation than showed here, but live
+         explanation will solve that :-)</para>
    </section>
    <section>
       <title>Introduction</title>
-      <!--para>In the beginning of 2009, XPath 2.0, XQuery and XSLT 2.0 recommendations were going to
-         be 2 years old. While that's still young, the community around them had a lot of feedback
-         yet, accumulated for several years of use, even before they reached the status of
-         recommendation at W3C. There began to be more and more activity around various extension
-         projects to fulfil needs not covered by those recommendations, as EXQuery, or a new version
-         of the well-known EXSLT project.</para>
-      <para>Those projects try to provide new features to XQuery and XSLT, respectively. Those
-         features are usually the same on both sides, and the result is usually to define and
-         implement for several processor new XPath extension functions. </para>
-      <para>TODO: FUCK! THAT DOES NOT WORK!!! ... REWORK THE INTRO!</para>
-   </section>
-   <section>
-      <title>The project</title-->
       <para>XPath is a textual language to query XML content. Besides a very convenient way to
          navigate within an XML document through a path system, it provides the ability to make
          various kind of computation, like string manipulations or dates and times handling. Most of
@@ -281,7 +266,7 @@ zip:text-entry($href, $entry) as xs:string
 zip:binary-entry($href, $entry) as xs:base64Binary</programlisting>
    </section>
    <section>
-      <title>SOAP Web service sample</title>
+      <title>SOAP Web service client</title>
       <para>EXPath works at the XPath level. But XPath is never used standalone, always from a host
          language. Among the various languages providing support for XPath, XSLT and XQuery have a
          place of choice, by their close integration with XPath. I will then use them to show
@@ -322,8 +307,10 @@ import module namespace http = "http://www.expath.org/mod/http-client";
 declare namespace soap = "http://schemas.xmlsoap.org/soap/envelope/";
 declare namespace tns  = "http://www.webservicex.net";
 
-declare variable $endpoint as xs:string    := "http://www.webservicex.net/WeatherForecast.asmx";
-declare variable $soap-action as xs:string := "http://www.webservicex.net/GetWeatherByPlaceName";
+declare variable $endpoint as xs:string
+   := "http://www.webservicex.net/WeatherForecast.asmx";
+declare variable $soap-action as xs:string
+   := "http://www.webservicex.net/GetWeatherByPlaceName";
 
 declare function local:send-message()
       as item()+
@@ -361,7 +348,8 @@ declare function local:extract-payload($res as item()+)
             $weather
 };
 
-declare function local:format-result($weather as element(tns:weather-by-city-response))
+declare function local:format-result(
+            $weather as element(tns:weather-by-city-response))
       as xs:string
 {
    string-join((
@@ -383,6 +371,166 @@ let $payload  := local:extract-payload($http-res)
 Place: Brussels, BE
   - 2009-04-21:  10 - 38:  Sunny, oh sunny!
   - 2009-04-22:  1 - 8:    You cannot have sun twice in Brussels...</programlisting>
-      <para>EXAMPLE OF USE OF THE WSDL-COMPILER...</para>
+      <para>This sample is a simple example of client call to a SOAP Web service. Given that such
+         Web services are usually described by a WSDL service description, it is actually possible
+         to automatically generate something like the previous example, but once for all operations
+         described in the WSDL. This has been implemented in the WSDL Compiler, an XSLT stylesheet
+         that transform a WSDL file to an XSLT or an XQuery module. As each WSDL operation becomes a
+         function, the XPath processor actually checks at compile time that the namespace URI and
+         the function name are correct, as well as the number and the type of the parameters. Here
+         is the same example but using the module generated by this WSDL compiler:</para>
+      <programlisting>
+xquery version "1.0";
+
+import module namespace tns = "http://www.webservicex.net" at "weather.xql";
+
+declare function local:format-result(
+            $weather as element(tns:weather-by-city-response))
+      as xs:string
+{
+   string-join((
+      'Place: ', $weather/tns:place, '&amp;#10;',
+      for $d in $weather/tns:detail return $d/concat(
+         '  - ', tns:day, ':&amp;#09;', tns:min-temp, ' - ',
+         tns:max-temp, ':&amp;#09;', tns:desc, '&amp;#10;'
+      )
+    ),
+   '')
+};
+
+let $request := &lt;tns:weather-by-city-request>
+                   &lt;tns:city>Brussels&lt;/tns:city>
+                   &lt;tns:country>BE&lt;/tns:country>
+                &lt;/tns:weather-by-city-request>
+let $response := tns:weather-by-city($request)
+   return
+      local:format-result($response)</programlisting>
+      <para>All the HTTP and SOAP details have been hidden, and calling the Web service looks
+         exactly like using a library module. And technically, this is the case, only that module
+         uses the HTTP extension and has been generated from the WSDL file, so it knows how to
+         communicate with the Web service.</para>
+   </section>
+   <section>
+      <title>Compound Document Template pattern</title>
+      <para>This section introduces a new design pattern to generate new compound documents based on
+         ZIP, like OpenDocument or Open XML, by using a template file. It is particularly well
+         suited to file generation based on transformations. Let's take a concrete example,
+         transforming a simple contact list to an OpenDocument (ODF) text file (I use ODF as an
+         example here, but the pattern can be apply to other similar file formats.) A typical
+         transform of an input data document to an OpenDocument <code>content.xml</code> file can be
+         represented by the following workflow (within which a contact list is transformed to ODF
+         using XPath technologies, for instance an XSLT stylesheet):</para>
+      <para>
+         <mediaobject>
+            <imageobject>
+               <imagedata format="png" fileref="Bal2009GEOR090101.png" scale="99"/>
+            </imageobject>
+         </mediaobject>
+      </para>
+      <para>The <code>content.xml</code> file is just one file in a whole ODF document. Such a
+         document is actually a ZIP file, containing several XML files (the structure of the ZIP
+         file in a manifest, the several styles used in other parts, the content...) among other
+         files (for instance pictures in an OpenDocument Text file.) For instance, a typical ODF
+         text document could have a structure like the following (if you open it as a ZIP
+         file):</para>
+      <programlisting>
+mimetype
+content.xml
+styles.xml
+meta.xml
+settings.xml
+Thumbnails/
+META-INF/
+   manifest.xml
+Pictures/
+   d9e69.map.gif
+   d9e80.map.gif
+   d9e82.photo.png</programlisting>
+      <para>So the above transformation requires to have some post-processing, after the transform
+         itself, to create the ZIP file that bundles all those files into a proper ODF document. In
+         addition, some file depend on the way <code>content.xml</code> is generated (for instance
+         the style names it uses) even if they could be seen as static files. ODF is a comprehensive
+         and quite complex specification, and it could rapidly become complex to deal with all of
+         its aspects while generating a simple text document. This pattern simplifies this by
+         allowing one to create a template document using an application like Open Office. In this
+         particular example, this is as simple as creating a table, with several columns, where each
+         line is a contact. By using Open Office, we can set up all the layout visually, and create
+         one single contact in the table. The transform will then extract <code>content.xml</code>
+         from the template file, copy it identically except the fake contact line that will be used
+         as a template for each contact in the input contact list. Then the result is used to create
+         a new ZIP file, based on the template file, where all entries are copied except
+            <code>content.xml</code>, which is replaced by the result of the transform. The general
+         diagram for this pattern is:</para>
+      <para>
+         <mediaobject>
+            <imageobject>
+               <imagedata format="png" fileref="Bal2009GEOR090102.png" scale="99"/>
+            </imageobject>
+         </mediaobject>
+      </para>
+      <para>There are several variants: the transform can read some entries from the template file,
+         or not; it can generate several different entries or just the main content file... But the
+         important point is to be able to create and maintain the overall structure and the layout
+         details from within end-user applications for one ZIP-and-XML based format, and to be able
+         then to use this template and just fill in the blanks with actual data. Here is how the
+         last step (creating a new ZIP file based on the template file by updating some entries) can
+         be implemented in XSLT:</para>
+      <programlisting>
+&lt;xsl:param name="content" as="element(office:document-content)"/>
+
+&lt;xsl:variable name="desc" as="element(zip:file)">
+   &lt;zip:file href="template.odt">
+      &lt;zip:entry name="content.xml" output="xml">
+         &lt;xsl:sequence select="$content"/>
+      &lt;/zip:entry>
+   &lt;/zip:file>
+&lt;/xsl:variable>
+
+&lt;xsl:sequence select="zip:update-entries($desc, 'result.odt')"/></programlisting>
+      <para>TODO: Enhance this pattern by using ODF's user fields (see
+            <code>text:user-field-decl</code> and <code>text:user-field-get</code> elements.)
+         Generalize the approach to other similar formats by introducing the
+            <emphasis>placeholder</emphasis> concept.</para>
+   </section>
+   <section>
+      <title>Google Contacts to ODF</title>
+      <para>Using the <code>http:send-request()</code> extension introduced above, it is possible to
+         access Google Data REST Web services. It is even possible to write a library to encapsulate
+         those calls to the APIs into functions. I've written such a library for XSLT 2.0 (NOTE TO
+         REVIEWERS: not published yet, sorry.) Let's take for instance the <link
+            xlink:href="http://code.google.com/apis/contacts/">Google Contacts API</link>, and use
+         the contact information it provides to create a contact book in ODF Text format. The
+         contact book is a simple table with three columns: a picture of the contact if any, then
+         its textual information (name, email, address, etc.) then a last column with a thumbnail of
+         a Google Map of its neighbourhood:</para>
+      <para>
+         <mediaobject>
+            <imageobject>
+               <imagedata format="png" fileref="Bal2009GEOR090103.png" scale="125"/>
+            </imageobject>
+         </mediaobject>
+      </para>
+      <para>By using the Compound Document Template pattern, it is possible to create this table
+         directly in Open Office, by just creating one single row with a picture, a name in bold, an
+         email address as a link, other textual info, and a map. Let's save the file in, say,
+            <code>template.odt</code>. The transform contains three quite independent parts:
+         retrieve info from Google, format them into a new <code>content.xml</code> document, then
+         create a new <code>result.odt</code> file by updating <code>content.xml</code> and adding
+         the picture files:</para>
+      <para>
+         <mediaobject>
+            <imageobject>
+               <imagedata format="png" fileref="Bal2009GEOR090104.png" scale="125"/>
+            </imageobject>
+         </mediaobject>
+      </para>
+      <para>TODO: Introduce interesting pieces of code in <code>get-contacts.xsl</code> and
+            <code>update-zip.xsl</code>.</para>
+   </section>
+   <section>
+      <title>Conclusion</title>
+      <para>TODO: Introduce other modules people are working on at the time of the conference, and
+         further development ideas. Let's see where the project is going to be in a few months from
+         now (in June, July.)</para>
    </section>
 </article>
