@@ -3,9 +3,10 @@
 <sitemap>
 
    <!-- allow a kind of glob (like *.xml -> *.html) -->
-   <page src="about.xml"     href="about.html"     menu="main"/>
-   <page src="contact.xml"   href="contact.html"   menu="main"/>
+   <!--page src="about.xml"     href="about.html"     menu="main"/-->
+   <!--page src="contact.xml"   href="contact.html"   menu="main"/-->
    <page src="credits.xml"   href="credits.html"   menu="main"/>
+   <page src="faq.xml"       href="faq.html"       menu="main"/>
    <page src="index.xml"     href="index.html"     menu="main"/>
    <page src="lists.xml"     href="lists.html"     menu="main"/>
    <page src="modules.xml"   href="modules.html"   menu="main"/>
@@ -30,6 +31,7 @@
    <menu name="main">
       <item name="index" href="." title="EXPath Home">Home</item>
       <item name="news" href="news.html" title="EXPath News">News</item>
+      <item name="faq" href="faq.html" title="EXPath FAQ">FAQ</item>
       <item name="lists" href="lists.html" title="EXPath Mailing Lists">Mailing lists</item>
       <item name="modules" href="modules.html" title="Modules">Modules</item>
       <item name="resources" href="resources.html" title="Resources">Resources</item>
