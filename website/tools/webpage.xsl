@@ -31,6 +31,7 @@
       <html xml:lang="en">
          <head>
             <xsl:apply-templates select="title"/>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
             <meta name="DC.language" scheme="ISO 639-2/T" content="eng" />
             <meta name="DC.publisher" content="Florent Georges" />
             <meta name="DC.creator" content="Florent Georges" />
@@ -77,7 +78,7 @@
                      <a href="http://validator.w3.org/check?uri=referer">
                         <img src="{ $root }images/valid-xhtml11.gif" alt="Valid XHTML 1.1" height="31" width="88" style="border: 0;" />
                      </a>
-                     <a href="http://jigsaw.w3.org/css-validator/validator?uri=http://www.expath.org/style/default.css">
+                     <a href="http://jigsaw.w3.org/css-validator/check/referer">
                         <img src="{ $root }images/valid-css.gif" alt="Valid CSS!" style="border: 0;" />
                      </a>
                   </div>

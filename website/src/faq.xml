@@ -5,17 +5,54 @@
    <section>
       <title>Frequently Asked Questions</title>
       <!--image src="images/machine.jpg" alt="Machine"/-->
-      <para>TODO: Find an image...</para>
-      <para>TODO: Build the ToC automatically...</para>
-      <para>TODO: Bla bla bla...</para>
+      <para>This page gathers informations about the project in a whole, and answers most frequently
+         asked questions. It will evolve with time, so be sure to check it from time to time.</para>
       <list>
-         <item><link hre="#licence">What's the licencing?</link></item>
-         <item>...</item>
+         <item>
+            <link hre="#licence">What's the licencing?</link>
+         </item>
+         <item>
+            <link hre="#version">Versioning policy</link>
+         </item>
+         <item>
+            <link hre="#scope">What's the exact scope of EXPath?</link>
+         </item>
       </list>
    </section>
    <divider/>
    <primary id="licence">
       <title>What's the licencing?</title>
-      <para>Bla-bla...</para>
+      <para>The website content is under the <link
+            href="http://creativecommons.org/licenses/by/2.5/">Creative Commons 2.5</link>. The
+         specifications are under the <link href="http://creativecommons.org/licenses/by-nd/3.0/"
+            >Creative Commons 3.0 No Derivative</link>.</para>
+      <para>Each implementation has to provide clear licencing information. They are encouraged to
+         use the <link href="http://www.mozilla.org/MPL/">Mozilla Public License</link>, but other
+         open source licences could be accepted if the context requires to. Please check the
+         delivery notes of the implementations you want to use.</para>
+   </primary>
+   <primary id="version">
+      <title>Versioning policy</title>
+      <para>Each module specification is developed collaboratively by the community, under the lead
+         of one (or a few) editor. Working drafts are publicized to get feedback from the community
+         and to allow implementation of the current state of affairs. But only the accepted modules
+         should be used for production works; their versioning scheme is a major and a minor
+         numbers, dot-separated (1.0, 1.1, etc.)</para>
+      <para>The namespace URIs used by the specifications are of the form
+            <code>http://expath.org/ns/[module-name]</code> and should not include any versioning
+         information (unless it was properly justified.) The same namespace URI should be used for
+         the whole module; in particular, error codes should not be defined in anther namespace than
+         functions or elements used as return values or parameters.</para>
+   </primary>
+   <primary id="scope">
+      <title>What's the exact scope of EXPath?</title>
+      <para>The goal of this project is to provide the community with organized sets of extensions
+         to the XPath 2.0 language. TODO: ... can be done in plenty of ways ... privilege functions
+         and ban grammar changes ... if another lib exists, maybe just link to it ... don't want to
+         restrict too much, and trust good sense of the community; if people spend time to define
+         and implement module then why not? ... XSLT and XQuery should not have a particular
+         position in this project, but because their thigh relations with each other, the border is
+         not always obvious. The privileged mean of extension is clearly the function: defining
+      </para>
    </primary>
 </webpage>
