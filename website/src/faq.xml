@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<webpage menu="faq">
+   <title>EXPath - FAQ</title>
+   <section>
+      <title>Frequently Asked Questions</title>
+      <!--image src="images/machine.jpg" alt="Machine"/-->
+      <para>TODO: Find an image...</para>
+      <para>TODO: Build the ToC automatically...</para>
+      <para>TODO: Bla bla bla...</para>
+      <list>
+         <item><link hre="#licence">What's the licencing?</link></item>
+         <item>...</item>
+      </list>
+   </section>
+   <divider/>
+   <primary id="licence">
+      <title>What's the licencing?</title>
+      <para>Bla-bla...</para>
+   </primary>
+</webpage>
