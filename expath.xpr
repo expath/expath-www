@@ -1665,7 +1665,7 @@
                 <file name="website/src/about.xml"/>
                 <file name="website/src/contact.xml"/>
                 <file name="website/src/credits.xml"/>
-                <file name="file:/H:/xsl/expath/website/src/faq.xml"/>
+                <file name="website/src/faq.xml"/>
                 <file name="website/src/index.xml"/>
                 <file name="website/src/lists.xml"/>
                 <file name="website/src/modules.xml"/>
