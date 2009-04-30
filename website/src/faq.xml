@@ -4,9 +4,9 @@
    <title>EXPath - FAQ</title>
    <section>
       <title>Frequently Asked Questions</title>
-      <!--image src="images/machine.jpg" alt="Machine"/-->
+      <image src="images/machine.jpg" alt="Machine"/>
       <para>This page gathers informations about the project in a whole, and answers most frequently
-         asked questions. It will evolve with time, so be sure to check it from time to time.</para>
+         asked questions. It will evolve over time, so be sure to check it from time to time.</para>
       <list>
          <item>
             <link hre="#licence">What's the licencing?</link>
@@ -47,12 +47,15 @@
    <primary id="scope">
       <title>What's the exact scope of EXPath?</title>
       <para>The goal of this project is to provide the community with organized sets of extensions
-         to the XPath 2.0 language. TODO: ... can be done in plenty of ways ... privilege functions
-         and ban grammar changes ... if another lib exists, maybe just link to it ... don't want to
-         restrict too much, and trust good sense of the community; if people spend time to define
-         and implement module then why not? ... XSLT and XQuery should not have a particular
-         position in this project, but because their thigh relations with each other, the border is
-         not always obvious. The privileged mean of extension is clearly the function: defining
-      </para>
+         to the XPath 2.0 language. That can be done in plenty of different ways, but here we
+         clearly favor defining extension through functions, and forbid grammar-level changes. If
+         another library does exist yet that address one problem, we should maybe link to it and not
+         try to reinvent the wheel.</para>
+      <para>But I don't want to restrict too much the freedom of the module maintainers nor their
+         creativity, and I trust the good sense of the community. If people spend time to define and
+         implement a module, even if they not respect the above rules, and if there is some interest
+         in the community regarding this work, then why not?</para>
+      <para>XSLT and XQuery should not have any particular position in this project, but because
+         their tight relationships with each other, the border is not always obvious.</para>
    </primary>
 </webpage>
