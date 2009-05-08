@@ -9,10 +9,32 @@
          <item><link href="http://www.exslt.org/">EXSLT</link> project</item>
          <item><link href="http://www.exquery.org/">EXQuery</link> project</item>
          <item><link href="http://www.exproc.org/">EXProc</link> project</item>
-         <item><link href="http://www.exist-db.org/">eXist</link> XML database</item>
-         <item><link href="http://www.marklogic.com/">MarkLogic</link> XML database</item>
-         <item><link href="http://www.saxonica.com/">Saxon</link> XSLT &amp; XQuery processor</item>
-         <item><link href="http://www.zorba-xquery.com/">Zorba</link> XQuery processor</item>
+         <item><link href="http://www.exist-db.org/">eXist</link> XML
+            database, and its <link
+            href="http://demo.exist-db.org/exist/xquery/functions.xql">extension
+            modules</link>.  Please note that this page documents only
+            the extension modules activated on the build of eXist that
+            runs the website, for instance the HTTP Client module is not
+            activated by default, so it is not present in this online
+            documentation.  To have all the modules, you have to install
+            eXist and enable all modules.</item>
+         <item><link href="http://www.marklogic.com/">MarkLogic</link>
+            XML database, and its huge <link
+            href="http://xqzone.marklogic.com/pubs/4.0/apidocs/All.html">extension
+            module set</link>.</item>
+         <item><link href="http://www.saxonica.com/">Saxon</link> XSLT
+            &amp; XQuery processor, and its various <link
+            href="http://saxonica.com/documentation/extensions/intro.html">extensions</link>
+            (functions and others...)</item>
+         <item><link href="http://www.zorba-xquery.com/">Zorba</link>
+            XQuery processor.  A big part of the <link
+            href="http://www.zorba-xquery.com/doc/zorba-0.9.5/zorba/html/">user
+            manual</link> is about various extensions.</item>
+         <item><link href="http://mxquery.org/">MXQuery</link> XQuery
+            processor.  It supports various <link
+            href="http://mxquery.org/?page_id=107">extensions</link>,
+            most of them are compatible with (have the exact same
+            interface than) Zorba's extensions; that's worth noting.</item>
       </list>
    </section>
 </webpage>
