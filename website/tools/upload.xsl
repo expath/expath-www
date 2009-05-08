@@ -12,9 +12,9 @@
    <xsl:import href="webpage.xsl"/>
 
    <xsl:param name="href-base" select="'../build/'"/>
-   <!--xsl:param name="href-base" select="'http://localhost:8181/exist/rest/db/xxx/'"/-->
+   <!--xsl:param name="href-base" select="'http://localhost:8181/exist/rest/db/xxx/'"/>
    <xsl:param name="username"  select="'admin'"/>
-   <xsl:param name="password"  select="'adminadmin'"/>
+   <xsl:param name="password"  select="'adminadmin'"/-->
 
    <xsl:template match="/">
       <xsl:apply-templates select="*" mode="map"/>
