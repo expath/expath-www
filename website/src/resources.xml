@@ -33,6 +33,9 @@
             is worth noting it also supports the <link
                href="http://snelson.org.uk/~jpcs/higher-order-functions.html">first-class function
                objects</link> proposal for XQuery (by John Snelson, the author of XQilla.)</item>
+         <item><link href="http://www.xmlmind.com/qizx/">Qizx</link> XML database. The <link
+               href="http://www.xmlmind.com/qizx/_distrib/docs/manual/reference.html">reference
+               part</link> of its manual is almost all about extensions.</item>
       </list>
    </section>
 </webpage>
