@@ -10,12 +10,14 @@
          <confdates>11 - 14 August 2009</confdates>
       </confgroup>
       <abstract>
-         <para>For some months ago, extensions are more and more demanded, needed among the XML Core
-            technologies, especially XSLT and XQuery. Looking at EXSLT and EXQuery projects, we can
-            see that their goals are useful, but also that they overlap, as does their common core:
-            XPath. It is thus reasonable to share the job and to work at the common, XPath level. In
-            addition, any XPath-based language or processor could then benefit from those
-            extensions.</para>
+         <para>For some time now the demand for standardized extensions within the core XML
+            technologies, especially XSLT and XQuery, has been increasing. A closer look at the
+            EXSLT and EXQuery projects shows that their goals align to address the issue of
+            extensions, but also that they overlap, predominantly because of their common ancestor:
+            XPath. It is thus reasonable to assume that both projects should collaborate together on
+            common areas influenced by the underlying XPath specification. In addition, by jointly
+            working at the lower level, any XPath based language or processor could also benefit
+            from this work, like XProc, XForms or plain XPath engines.</para>
       </abstract>
       <author>
          <personname>
@@ -23,8 +25,13 @@
             <surname>Georges</surname>
          </personname>
          <personblurb>
-            <para>Florent is bla bla bla... TODO: ... Well, seems required by the doc type, but not
-               used in publication.</para>
+            <para>Florent Georges is a freelance IT consultant in Brussels who has been involved in
+               the XML world for 10 years, especially within the XSLT and XQuery communities. His
+               main interests are in the field of XSLT and XQuery extensions and libraries,
+               packaging, unit and functional testing, and portability between several processors.
+               Since the beginning of 2009, he has worked on EXPath, to define "standard" extension
+               function libraries that can be used in XPath (so in XSLT, XQuery and XProc as
+               well).</para>
          </personblurb>
          <affiliation>
             <jobtitle>XML Architect</jobtitle>
@@ -43,155 +50,149 @@
          <keyword>XQuery</keyword>
       </keywordset>
    </info>
-   <section>
+   <!--section>
       <title>Note to reviewers</title>
-      <para>The EXPath project has just been launched one week ago (as I start this document.) So
-         this paper is likely to change in the details, but the main idea won't: introduce the
-         project, then show live, concrete samples of two modules, the HTTP Client and the ZIP
-         modules. I haven't written the conclusion yet, because I prefer to have a bit more
-         experience with the project that is evolving rapidly now.</para>
-      <para>About the examples, I didn't feel comfortable with explaining every single line of code.
-         Of course, some examples can require a bit more explanation than showed here, but live
-         explanation will solve that :-)</para>
-   </section>
+      <para>The EXPath project has just been launched one week ago (as I start this document). So
+         this paper is likely to change in the details, but the main idea will not; introduce the
+         project, then show live concrete samples of two extension modules, the HTTP Client and the
+         ZIP modules. I haven't written the conclusion yet, because I prefer to have a bit more
+         experience with the project first; which is evolving rapidly now.</para>
+      <para>Regarding the examples, I didn't feel comfortable with explaining each line of code, of
+         course some examples can require a bit more explanation than shown here, but live
+         presentation will solve that :-)</para>
+   </section-->
    <section>
       <title>Introduction</title>
       <para>XPath is a textual language to query XML content. Besides a very convenient way to
          navigate within an XML document through a path system, it provides the ability to make
-         various kind of computation, like string manipulations or dates and times handling. Most of
-         those features are provided as functions, defined in a separate recommendation defining the
-         standard library. It is also possible to use other functions, in an implementation-defined
-         way. For instance, XSLT and XQuery use that fact and allow one to define new functions
-         directly in the stylesheet or in the query module. An XPath processor usually provides
-         libraries of additional functions, as well as a way to augment the set of available
-         functions by writing new functions in Java, or Python or whatever language it has been
-         written with.</para>
-      <para>That leads to the concept of extension function. This is not defined by XPath, but
-         inspired by XSLT this is defined as any function available in an expression while not
-         defined in any recommendation. There are two major kinds of extension functions: those
-         provided by the processor itself, and those written by the user. A processor can provide
-         extensions to deal with database management for instance, and the user can implement any
-         processing he could not write in XPath directly. For instance using a complex mathematical
-         library available in Java. Possible useful extensions can provide support for performing
-         HTTP requests, using WebDAV, reading and writing ZIP files (like EPUB eBook, Open XML and
-         OpenDocument files,) parsing and serializing XML and HTML documents, executing XSLT
-         transforms and XQuery queries, etcetera.</para>
-      <para>Extension functions are a very powerful way to extend XPath features. And a lot of
-         extensions have been written over the years, by many people. But it is hard, to not say
-         impossible, to share an extension function among several processors, and to maintain them
-         over time. And the extension functions provided by processors themselves are not
-         compatible, so an expression that uses them is not portable. That situation lead to the
-         creation of a project that would define libraries of extension functions from the outside
-         of any single processor, allowing existing processors to choose to implement them natively,
-         or a user to install the existing implementation as an external package in his processor.
-         That way, it becomes possible to use extension functions already defined and implemented,
-         and at least as important, to write expressions that become portable across every
-         processors that support the extension or that an implementation was provided to.</para>
-      <para>This is exactly what EXPath is.</para>
+         various kinds of computation, for example string manipulations or date and time processing.
+         Such features are provided as functions, defined in a separate recommendation detailing a
+         standard library. It is also possible to use additional defined functions; XSLT and XQuery
+         allow one to define new functions directly in the stylesheet or query module. An XPath
+         processor also usually provides implementation specific libraries of additional functions,
+         as well as a way to augment the set of available functions, these are typically written
+         using an API in the same language as the processor.</para>
+      <para>This leads to the concept of an extension function. Such a function is not defined by
+         XPath, but inspired by XSLT this is defined as any function available in an expression
+         although not defined in any recommendation. There are two major kinds of extension
+         functions: those provided by the processor itself, and those written by the user. A
+         processor can provide extensions to deal with database management for instance, and the
+         user can implement any processing he could not write in XPath directly (for instance using
+         a complex mathematical library available in Java.) Examples of possible useful extensions
+         could provide support for performing HTTP requests, using WebDAV, reading and writing ZIP
+         files (like EPUB eBook, Open XML and OpenDocument files,) parsing and serializing XML and
+         HTML documents, executing XSLT transforms and XQuery queries, etc.</para>
+      <para>Extension functions are very powerful ways to extend XPath functionality. Many
+         extensions have been written over the years and by many different people. Reflecting on
+         this, it appears almost impossible to create and then share an extension function among
+         several processors and to maintain interoperability with them all over time. Extension
+         functions provided by processors themselves are not compatible, so that an expression that
+         uses them is not portable between processors. It is that situation which has led to the
+         creation of a project that would define libraries of extension functions unrelated to any
+         single processor, allowing existing processors to choose to implement them natively, or
+         allowing a user to install an existing implementation as an external package in their
+         processor. In this way it becomes possible to use extension functions already defined and
+         implemented, and if not more importantly, to write expressions that become portable across
+         every processor that supports the extension or that an implementation was pre-provided
+         for.</para>
+      <para>This project is EXPath!</para>
    </section>
    <section>
       <title>The project</title>
-      <para>The project has been launched four months ago, in April 2009. It is divided in several
-         modules, rather independent from each other. The module is the delivery unit of EXPath. It
-         is a consistent set of functions providing support for a particular domain, and can be view
-         as a specific library of functions. Besides the specification of the functions itself,
-         implementations are provided for various processors. The first module that has been defined
-         is the HTTP Client. It provides support for sending HTTP request and handling their
-         responses. This module defines a single one function, how it represents HTTP requests and
-         responses as XML elements, and how it can be used to perform requests. It has also been
-         implemented for various processors (as the standalone XSLT and XQuery processor Saxon, the
-         XML database eXist, or MarkLogic Server) and implementations are provided on the website as
-         open source packages.</para>
-      <para>If someone needs new extension functions to address missing features, he can propose to
-         add a new module, with the help of other people interested in supporting the same features.
-         First he has to identify precise use cases for this feature, and describe examples of use.
-         That defines the scope of the module. Of course the scope can evolve over time, as well as
-         the use case examples, but that gives a formal basis for further discussions and marks the
-         trail to the specification.</para>
-      <para>Once the use cases have been identified, he has to propose a definition of the module,
-         and of all its functions. That proposal is discussed among the community through the
-         mailing list, and people interested in this module help to solve issues and to improve the
-         design. Extensions addressing the same problem can already exist, either built-in in some
-         processors, or developed as independent, individual projects; of course, they are valuable
-         materials to learn from during this stage. In parallel with this definition, it is
+      <para>EXPath was launched four months ago in April 2009. It is divided into several modules,
+         quite independent from each other. The module is the delivery unit of EXPath. It is a
+         consistent set of functions providing support for a particular domain, and can be viewed as
+         a specific library of functions. Besides the specification of the functions itself,
+         implementations can also be provided for various processors. The first module that has been
+         defined is the HTTP Client. It provides support to send HTTP requests and to handle the
+         responses. This module defines one single function, how it represents a HTTP request and
+         response as XML elements and how it can be used to perform requests. Implementations are
+         provided as open source packages via the website for a number of processors - Saxon, eXist
+         and MarkLogic.</para>
+      <para>If their is a need for new extension functions to address missing functionality, a new
+         module may be proposed by anyone with the help of other people interested in supporting the
+         same features. The first step in this process is to identify precise use cases for the
+         desired features, and describe examples of use; this sets the scope of the module and sets
+         us on the road to defining specifications. Of course the scope can evolve over time, as
+         well as the use case examples, but this gives a formal basis for further discussion.</para>
+      <para>Once the use cases have been identified, function signatures and definitions of
+         behaviour for the module must be proposed. That proposal is discussed among the community
+         through the mailing list, and people interested in this module help to solve issues and
+         improve its design. Extensions addressing the same problem might already exist, either as
+         part of a known processor, or developed as independent individual projects; this is
+         valuable material to learn from during this stage. In parallel with this definition, it is
          encouraged to develop at least one implementation to validate the feasibility of what is
-         specified (sometimes, there is something else quite as practical as a good theory.) Before
-         being officially endorsed as a module, at least two implementations should have been
-         provided, to ensure the specification is not too closely tight to a particular
-         processor.</para>
-      <para>Each module has its own maintainer, who is responsible to edit the specification, lead
-         the discussions and make design choices in accordance to those discussions. Similarly,
-         every implementation of a module for a particular processor has its own maintainer. If
-         someone needs the module to be implemented to another processor, he can volunteer for that
-         work, and propose an implementation. Test suite for the module should be carefully designed
-         to be sure every implementation reach the proper quality level. Of course, a processor
-         might also propose natively an implementation for some modules, in which case its
-         implementers takes the responsibility for the code they provide.</para>
+         being specified. Before being officially endorsed as a module, at least two implementations
+         should have been provided, to ensure that the specification is not too tightly linked to a
+         particular processor.</para>
+      <para>Each module has its own maintainer who is responsible for editing the specification,
+         leading the discussions and making design choices in according to those discussions.
+         Similarly, every implementation of a module for a particular processor has its own
+         maintainer. If someone needs the module to be implemented for another processor, they may
+         volunteer for that work, and propose an implementation. A test suite for the module should
+         be provided and carefully designed to ensure every implementation provides the same
+         functionality. The vendor of a processor might also propose a native implementation of a
+         module, in which case responsibility for the implementation and ensuring it meets the
+         specification and tests lies with the vendor.</para>
       <para>An interesting point about implementing a module is when a processor already provides a
-         similar feature through processor-specific extension functions. It could then be possible,
-         in some case, to reuse those existing extensions through a tiny wrapper exposing the EXPath
+         similar feature through processor-specific extension functions. It may then be sometimes
+         possible to reuse the existing extensions through a lightweight wrapper exposing the EXPath
          interface to the user. For instance, the HTTP Client has been implemented for MarkLogic
          Server with an XQuery module using MarkLogic's own HTTP Client set of extension functions.
-         This example shows also the limitations of this approach: the implementation is only
-         partial, because the MarkLogic's extensions do not provide exactly all the possibilities
-         required by the EXPath HTTP Client module.</para>
-      <para>As you can see, there is a lot of work, and everyone is welcome to help, at any level:
-         write specifications, review and comment on them, write actual implementation code, test
-         the implementations, write documentation and tutorials, or simply use the extensions, and
-         report feedback.</para>
-      <para>But let's call it a day for the theory, and let's see some real examples using two
-         modules: the HTTP Client and the ZIP modules.</para>
+         This example also shows the limitations of this approach: the implementation is only
+         partial, as the MarkLogic's extensions do not provide exactly all the possibilities
+         required by the EXPath HTTP Client module. It is thus not always possible to use this
+         technique to provide full conformance, but this is a convenient way to quickly provide a
+         (possibly partial) implementation.</para>
+      <para>Needless to say, lots of work needs to be done, and everyone is welcome to help, at
+         every level: writing specifications, writing documentation and tutorials, peer review,
+         discussion, coding, testing or simply using the extensions and providing feedback.</para>
+      <para>But let's call it a day on the theory, and let's examine some real examples using two
+         modules: the HTTP Client and ZIP modules.</para>
    </section>
    <section>
       <title>Two example modules</title>
-      <para>Before going to the actual examples, here is a simple introduction to those modules. The
+      <para>Before going through the examples, here is a simple introduction to the modules. The
          HTTP Client module, without any surprise, provides the ability to send HTTP requests and
-         handle their response. The ZIP module provides ZIP files support, either to read them,
-         create new files, or update entries in existing ZIP files.</para>
+         handle the responses. The ZIP module provides ZIP files support, either to extract entries
+         from them, add new entries, or update entries in existing ZIP files.</para>
       <para>The HTTP Client provides one single function: <code>http:send-request</code> (actually
          it defines four different arities for this function, but this is mainly a convenient way to
-         pass some values as separate parameters.) This function has been inspired from the
+         pass some values as separate parameters.) This function has been inspired by the
          corresponding XProc step, <code>p:http-request</code>. This function makes it possible to
          query REST services, Google services, Web services through SOAP, or simply to retrieve
-         resources on the Web. The signature of this function (of its one-parameter version)
-         is:</para>
-      <programlisting>
-http:send-request($request as element(http:request)) as item()+</programlisting>
-      <para>Its parameter is an element representing the request. Its structure is like the
+         resources on the Web. The signature of this function (the one-parameter version) is:</para>
+      <programlisting>http:send-request($request as element(http:request)) as item()+</programlisting>
+      <para>Its parameter is an element representing the request. It is structured as in the
          following sample:</para>
-      <programlisting>
-&lt;http:request href="http://www.example.com/..." method="post">
+      <programlisting>&lt;http:request href="http://www.example.com/..." method="post">
    &lt;http:header name="X-Header" value="some value"/>
+   &lt;http:header name="X-Other"  value="other value"/>
    &lt;http:body content-type="application/xml">
       &lt;hello>World!&lt;/hello>
    &lt;/http:body>
 &lt;/http:request></programlisting>
-      <para>The previous request will result in a HTTP POST, with Content-Type
-            <code>application/xml</code>, sent to the specified URI and with a header explicitly set
-         by the user (<code>X-Header: some value</code>.) The result is described with another
-         element, <code>http:response</code>, that describes the response returned by the
-         server:</para>
-      <programlisting>
-&lt;http:response status="200" message="OK">
+      <para>The request will result in a HTTP POST, with Content-Type <code>application/xml</code>,
+         sent to the specified URI and with a header explicitly set by the user (<code>X-Header:
+            some value</code>.) The result is described with another element,
+            <code>http:response</code>, that describes the response returned by the server:</para>
+      <programlisting>&lt;http:response status="200" message="OK">
    &lt;http:header name="..." value="..."/>
    ...
    &lt;http:body content-type="application/xml"/>
 &lt;/http:request></programlisting>
-      <para>The structure of this element is very similar to the request element. Instead of the URI
-         to send the request to and the HTTP method to use, it contains the status code and the
-         message returned by the HTTP server. One significant difference is in the way the response
-         body is returned. Opposed to the request, the response's body element (if any) is only a
-         description of the body. The body content itself is returned as a subsequent item in the
-         result sequence (or several items in case of a multipart response.) Let's analyse a sample
-         of use, in XQuery:</para>
-      <programlisting>
-http:send-request(
+      <para>The structure of this element is not dissimilar to the request element, instead of the
+         URI and HTTP method, it contains the status code and the message returned by the server.
+         One significant difference as opposed to the request, lies in the way in which the response
+         body is returned: the response body element (if any) is only a description of the body. The
+         body content itself is returned as a subsequent item in the result sequence (or several
+         items in case of a multipart response.) Let's analyse an example in XQuery:</para>
+      <programlisting>http:send-request(
    &lt;http:request href="http://www.balisage.net/" method="get"/>)</programlisting>
-      <para>This simply send a GET request to the web server of Balisage. The result of this
+      <para>This simply sends a GET request to the web server of Balisage. The result of this
          function call is a sequence of two items: the <code>http:result</code> element and the body
          content as a document node (holding an XHTML document):</para>
-      <programlisting>
-&lt;http:response status="200" message="OK">
+      <programlisting>&lt;http:response status="200" message="OK">
    &lt;http:header name="Server" value="Apache/1.3.41 (Unix)"/>
    ...
    &lt;http:body content-type="text/html"/>
@@ -201,28 +202,26 @@ http:send-request(
    &lt;head>
       &lt;title>Balisage: The Markup Conference&lt;/title>
       ...</programlisting>
-      <para>This can sound strange to have a sequence as the result of the function, but this is the
-         only way to provide the response description along side the payload expressed as a full
-         document node. That's a design choice as it prevent to mix different layers in the same
-         document. Depending on the content-type returned by the server, the body content is
-         analyzed differently. If the content type is an XML type, it is parsed and returned as a
-         document node; if it is an HTML type, it is tidied up, parsed and returned as a document
-         node; if it is a textual type, it is returned as a string; in any other case, it is
-         returned as a <code>xs:base64Binary</code> item. A multipart response will apply this rule
-         for each part, and return each part as a subsequent item after the
+      <para>It may sound strange to have a sequence as the result of the function, but this is the
+         only way to provide the response description alongside the payload expressed as a full
+         document node. This design choice prevents mixing different layers in the same document.
+         The body content is analysed based on the content-type returned by the server. If the
+         content type is of an XML type it is parsed and returned as a document node, if it is an
+         HTML type it is tidied up, parsed and returned as a document node, if it is a textual type
+         it is returned as a string, in any other case it is returned as a
+            <code>xs:base64Binary</code> item. In the case of a multipart response this rule is
+         applied to each part which is then returned as subsequent items after the
             <code>http:response</code> element.</para>
       <para>The ZIP module defines the following functions to read the structure of a ZIP file, to
          create a completely new ZIP file from scratch, and to create a new ZIP file, based on an
          existing file by changing only some entries:</para>
-      <programlisting>
-zip:entries($href) as element(zip:file)
+      <programlisting>zip:entries($href) as element(zip:file)
 zip:zip-file($zip as element(zip:file)) as empty-sequence()
 zip:update-entries($zip, $output) as empty-sequence()</programlisting>
       <para>The first function takes a ZIP file's URI as parameter, and returns a description of its
          structure (its entries) as a <code>zip:file</code> element. This element looks like the
          following:</para>
-      <programlisting>
-&lt;zip:file href="some.zip">
+      <programlisting>&lt;zip:file href="some.zip">
    &lt;zip:entry name="file.xml"/>
    &lt;zip:entry name="index.html"/>
    &lt;zip:dir name="dir">
@@ -232,14 +231,13 @@ zip:update-entries($zip, $output) as empty-sequence()</programlisting>
       <para>Only the structure is returned, not the whole content of each file entry. The function
             <code>zip:zip-file()</code> takes a similar element as parameter, and create a new ZIP
          file based on that content. The element is similar, but in addition it contains the content
-         of each file entry, so the function has all the needed information to actually create the
-         whole file. For each <code>zip:entry</code>, the content of the element can be an XML
+         of each file entry, so that the function has all the needed information to actually create
+         the whole file. For each <code>zip:entry</code>, the content of the element can be an XML
          document, a string, or binary encoded as a base 64 string (an attribute tells if the
          content has to be serialized as XML, HTML, text or binary.) An existing file can also be
          copied verbatim to the entry, by giving its URI instead of the actual content. An example
          of a <code>zip:file</code> element to pass to this function is:</para>
-      <programlisting>
-&lt;zip:file href="some.zip">
+      <programlisting>&lt;zip:file href="some.zip">
    &lt;zip:entry name="file.xml" output="xml">
       &lt;hello>World!&lt;/hello>
    &lt;/zip:entry>
@@ -250,35 +248,34 @@ zip:update-entries($zip, $output) as empty-sequence()</programlisting>
       &lt;/zip:entry>
    &lt;/zip:dir>
 &lt;/zip:file></programlisting>
-      <para>The third function, <code>zip:update-entries()</code>, is looks a lot like
+      <para>The third function, <code>zip:update-entries()</code> looks a lot like
             <code>zip:zip-file()</code>, but it uses an existing ZIP file to create a new one,
-         replacing the entries in the <code>zip:file</code> element in parameter. This is then
-         possible to use a pattern file, replacing only a few entries, using content computed in
-         this expression. To be complete, the module provides also 4 functions to read one specific
-         entry from an existing ZIP file, for instance depending on the result of
+         replacing the entries in the <code>zip:file</code> element in parameter. It then becomes
+         possible to use a pattern file, replacing only a few entries, with content computed in this
+         expression. To be complete, the module also provides 4 functions to read one specific entry
+         from an existing ZIP file, for instance depending on the result of
             <code>zip:entries()</code>. They return either a document node, a string or a
-            <code>xs:base64Binary</code> item, following the same rules than
+            <code>xs:base64Binary</code> item, following the same rules as
             <code>http:send-request()</code>:</para>
-      <programlisting>
-zip:xml-entry($href, $entry) as document-node()
+      <programlisting>zip:xml-entry($href, $entry) as document-node()
 zip:html-entry($href, $entry) as document-node()
 zip:text-entry($href, $entry) as xs:string
 zip:binary-entry($href, $entry) as xs:base64Binary</programlisting>
    </section>
    <section>
       <title>SOAP Web service client</title>
-      <para>EXPath works at the XPath level. But XPath is never used standalone, always from a host
-         language. Among the various languages providing support for XPath, XSLT and XQuery have a
-         place of choice, by their close integration with XPath. I will then use them to show
-         complete samples of use of the functions introduced here. The ability of XQuery to create
-         elements directly within expressions make the examples very concise. When transforming XML
-         trees is fully part of the example, XSLT makes maybe more sense.</para>
+      <para>EXPath works at the XPath level. But XPath is never used standalone, it is always used
+         from within a host language. Among the various languages providing support for XPath, XSLT
+         and XQuery have a place of choice, by their close integration with XPath. We will thus use
+         XQuery and XSLT to demonstrate complete examples of the functions introduced earlier.
+         XQuery's ability to create elements directly within expressions allows for very concise
+         examples that are easier to understand. However, where transforming XML trees is fully part
+         of the example, XSLT is used instead.</para>
       <para>The first sample consumes a SOAP Web service. The Web service takes as input an element
-         with a country code and a city name, and return an element with a corresponding place name
-         and the weather forecasting for this place for the next days. The format of the request and
-         response elements is:</para>
-      <programlisting>
-&lt;tns:weather-by-city-request>
+         with a country code and a city name. It returns an element with a corresponding place name
+         and the local short term weather forecast. The format of the request and response
+         elements:</para>
+      <programlisting>&lt;tns:weather-by-city-request>
    &lt;tns:city>Montreal&lt;/tns:city>
    &lt;tns:country>CA&lt;/tns:country>
 &lt;/tns:weather-by-city-request>
@@ -286,21 +283,20 @@ zip:binary-entry($href, $entry) as xs:base64Binary</programlisting>
 &lt;tns:weather-by-city-response>
    &lt;tns:place>Montreal, CA&lt;/tns:place>
    &lt;tns:detail>
-      &lt;tns:day>2009-04-21&lt;/tns:day>
+      &lt;tns:day>2009-08-13&lt;/tns:day>
       &lt;tns:min-temp>16&lt;/tns:min-temp>
-      &lt;tns:max-temp>23&lt;/tns:max-temp>
-      &lt;tns:desc>Some useful description.&lt;/tns:desc>
+      &lt;tns:max-temp>26&lt;/tns:max-temp>
+      &lt;tns:desc>Ideal temperature for a conference.&lt;/tns:desc>
    &lt;/tns:detail>
    &lt;tns:detail>
    ...
 &lt;/tns:weather-by-city-response></programlisting>
-      <para>The XQuery module thus has to send a SOAP request to the Web service HTTP endpoint, to
-         check the error conditions and to use the result content if everything went fine. Those
-         steps fit naturally into three different functions defined within the XQuery module. After
-         a few declarations (importing the HTTP Client module, declaring namespaces and variables,)
-         the three functions are defined and then composed together:</para>
-      <programlisting>
-xquery version "1.0";
+      <para>Thus, the XQuery module has to send a SOAP request to the Web service HTTP endpoint,
+         check any error conditions and then if everything went well, process the result content.
+         These steps fit naturally into three different functions defined within the XQuery module.
+         After a few declarations (importing the HTTP Client module, declaring namespaces and
+         variables,) the three functions are defined and then composed together:</para>
+      <programlisting>xquery version "1.0";
 
 import module namespace http = "http://www.expath.org/mod/http-client";
 
@@ -312,6 +308,8 @@ declare variable $endpoint as xs:string
 declare variable $soap-action as xs:string
    := "http://www.webservicex.net/GetWeatherByPlaceName";
 
+(: Send the message to the Web service.
+ :)
 declare function local:send-message()
       as item()+
 {
@@ -323,8 +321,8 @@ declare function local:send-message()
                &lt;soap:Header/>
                &lt;soap:Body>
                   &lt;tns:weather-by-city-request>
-                     &lt;tns:city>Brussels&lt;/tns:city>
-                     &lt;tns:country>BE&lt;/tns:country>
+                     &lt;tns:city>Montreal&lt;/tns:city>
+                     &lt;tns:country>CA&lt;/tns:country>
                   &lt;/tns:weather-by-city-request>
                &lt;/soap:Body>
             &lt;/soap:Envelope>
@@ -333,6 +331,9 @@ declare function local:send-message()
    )
 };
 
+(: Extract the SOAP payload from the HTTP response.
+ : Perform some sanity checks.
+ :)
 declare function local:extract-payload($res as item()+)
       as element(tns:weather-by-city-response)
 {
@@ -348,6 +349,8 @@ declare function local:extract-payload($res as item()+)
             $weather
 };
 
+(: Format the Web service response to a textual list.
+ :)
 declare function local:format-result(
             $weather as element(tns:weather-by-city-response))
       as xs:string
@@ -362,64 +365,60 @@ declare function local:format-result(
    '')
 };
 
+(: The main query, orchestrating the request, extracting and
+ : formating the response.
+ :)
 let $http-res := local:send-message()
 let $payload  := local:extract-payload($http-res)
    return
       local:format-result($payload)</programlisting>
       <para>If everything goes well, the result should look like the following:</para>
-      <programlisting>
-Place: Brussels, BE
-  - 2009-04-21:  10 - 38:  Sunny, oh sunny!
-  - 2009-04-22:  1 - 8:    You cannot have sun twice in Brussels...</programlisting>
-      <para>This sample is a simple example of client call to a SOAP Web service. Given that such
-         Web services are usually described by a WSDL service description, it is actually possible
-         to automatically generate something like the previous example, but once for all operations
+      <programlisting>Place: Montreal, CA
+  - 2009-08-13:  16 - 26:  Ideal temperature for a conference
+  - 2009-08-14:  24 - 32:  Enjoy holidays
+  ...</programlisting>
+      <para>This simple example shows a client call to a SOAP Web service. Given that such Web
+         services are usually described by a WSDL service description, it is actually possible to
+         automatically generate something like the previous example, but once for all operations
          described in the WSDL. This has been implemented in the WSDL Compiler, an XSLT stylesheet
-         that transform a WSDL file to an XSLT or an XQuery module. As each WSDL operation becomes a
-         function, the XPath processor actually checks at compile time that the namespace URI and
-         the function name are correct, as well as the number and the type of the parameters. Here
-         is the same example but using the module generated by this WSDL compiler:</para>
-      <programlisting>
-xquery version "1.0";
-
+         that transforms a WSDL file into an XSLT or XQuery module. As each WSDL operation becomes a
+         function, the XPath processor actually checks at compile time that the namespace URI,
+         function name and parameters are correct. Here is the same example but using the module
+         generated by this WSDL compiler:</para>
+      <programlisting>(: The module generated by the WSDL compiler.
+:)
 import module namespace tns = "http://www.webservicex.net" at "weather.xql";
 
-declare function local:format-result(
-            $weather as element(tns:weather-by-city-response))
-      as xs:string
-{
-   string-join((
-      'Place: ', $weather/tns:place, '&amp;#10;',
-      for $d in $weather/tns:detail return $d/concat(
-         '  - ', tns:day, ':&amp;#09;', tns:min-temp, ' - ',
-         tns:max-temp, ':&amp;#09;', tns:desc, '&amp;#10;'
-      )
-    ),
-   '')
-};
-
-let $request := &lt;tns:weather-by-city-request>
-                   &lt;tns:city>Brussels&lt;/tns:city>
-                   &lt;tns:country>BE&lt;/tns:country>
-                &lt;/tns:weather-by-city-request>
+(: The main query call the Web service like a function, passing
+ : directly its parameters and using its result.
+ :)
+local:format-result(
+   tns:weather-by-city(
+      &lt;tns:weather-by-city-request>
+         &lt;tns:city>Montreal&lt;/tns:city>
+         &lt;tns:country>CA&lt;/tns:country>
+      &lt;/tns:weather-by-city-request>
+   )
+)</programlisting>
+      <!--
 let $response := tns:weather-by-city($request)
    return
-      local:format-result($response)</programlisting>
+      local:format-result($response)</programlisting-->
       <para>All the HTTP and SOAP details have been hidden, and calling the Web service looks
-         exactly like using a library module. And technically, this is the case, only that module
-         uses the HTTP extension and has been generated from the WSDL file, so it knows how to
-         communicate with the Web service.</para>
+         exactly like using a library module. Technically speaking, this is the case: only that
+         module uses the HTTP extension and has been generated from the WSDL file, so that it knows
+         how to communicate with the Web service.</para>
    </section>
    <section>
       <title>Compound Document Template pattern</title>
-      <para>This section introduces a new design pattern to generate new compound documents based on
-         ZIP, like OpenDocument or Open XML, by using a template file. It is particularly well
-         suited to file generation based on transformations. Let's take a concrete example,
+      <para>This section introduces a new design pattern to generate compound documents based on
+         ZIP, such as OpenDocument or Open XML, by using a template file. It is particularly
+         well-suited to file generation based on transformations. Let us take a concrete example,
          transforming a simple contact list to an OpenDocument (ODF) text file (I use ODF as an
-         example here, but the pattern can be apply to other similar file formats.) A typical
-         transform of an input data document to an OpenDocument <code>content.xml</code> file can be
-         represented by the following workflow (within which a contact list is transformed to ODF
-         using XPath technologies, for instance an XSLT stylesheet):</para>
+         example here, but the pattern could equally applied to other similar formats.) A typical
+         transform of an input data-oriented document to an OpenDocument <code>content.xml</code>
+         file can be represented by the following workflow (by which a contact list is transformed
+         to ODF using XPath technologies, for instance an XSLT stylesheet):</para>
       <para>
          <mediaobject>
             <imageobject>
@@ -446,21 +445,20 @@ Pictures/
    d9e69.map.gif
    d9e80.map.gif
    d9e82.photo.png</programlisting>
-      <para>So the above transformation requires to have some post-processing, after the transform
-         itself, to create the ZIP file that bundles all those files into a proper ODF document. In
-         addition, some file depend on the way <code>content.xml</code> is generated (for instance
-         the style names it uses) even if they could be seen as static files. ODF is a comprehensive
-         and quite complex specification, and it could rapidly become complex to deal with all of
-         its aspects while generating a simple text document. This pattern simplifies this by
-         allowing one to create a template document using an application like Open Office. In this
-         particular example, this is as simple as creating a table, with several columns, where each
-         line is a contact. By using Open Office, we can set up all the layout visually, and create
-         one single contact in the table. The transform will then extract <code>content.xml</code>
-         from the template file, copy it identically except the fake contact line that will be used
-         as a template for each contact in the input contact list. Then the result is used to create
-         a new ZIP file, based on the template file, where all entries are copied except
-            <code>content.xml</code>, which is replaced by the result of the transform. The general
-         diagram for this pattern is:</para>
+      <para>So the above transformation requires some post-processing to create the ZIP file that
+         bundles all those files into a proper ODF document. In addition, some files depend on the
+         way <code>content.xml</code> is generated (for instance the style names it uses) even if
+         they could be seen as static files. ODF is a comprehensive and quite complex specification,
+         and it could rapidly become complicated to deal with all of its aspects while generating a
+         simple text document. This pattern simplifies this by allowing one to create a template
+         document using an application like Open Office. In this specific example, this is as simple
+         as creating a table, with several columns, where each line is a contact. By using Open
+         Office, we can set up all the layout visually, and create one single contact in the table.
+         The transform will then extract <code>content.xml</code> from the template file, copy it
+         identically except for the fake contact line that will be used as a template for each
+         contact in the input contact list. Then the result is used to create a new ZIP file, based
+         on the template file, where all entries are copied except <code>content.xml</code>, which
+         is replaced by the result of the transform. The general diagram for this pattern is:</para>
       <para>
          <mediaobject>
             <imageobject>
@@ -468,13 +466,13 @@ Pictures/
             </imageobject>
          </mediaobject>
       </para>
-      <para>There are several variants: the transform can read some entries from the template file,
-         or not; it can generate several different entries or just the main content file... But the
-         important point is to be able to create and maintain the overall structure and the layout
-         details from within end-user applications for one ZIP-and-XML based format, and to be able
-         then to use this template and just fill in the blanks with actual data. Here is how the
-         last step (creating a new ZIP file based on the template file by updating some entries) can
-         be implemented in XSLT:</para>
+      <para>There are several possible variants: the transform could read some entries from the
+         template file, or not; it can generate several different entries or just the main content
+         file... But the important point is to be able to create and maintain the overall structure
+         and the layout details from within end-user applications for one ZIP-and-XML based format,
+         and then to be able to use this template and just fill in the blanks with actual data. Here
+         is how the last step (creating a new ZIP file based on the template file by updating some
+         entries) can be implemented in XSLT:</para>
       <programlisting>
 &lt;xsl:param name="content" as="element(office:document-content)"/>
 
@@ -494,15 +492,15 @@ Pictures/
    </section>
    <section>
       <title>Google Contacts to ODF</title>
-      <para>Using the <code>http:send-request()</code> extension introduced above, it is possible to
-         access Google Data REST Web services. It is even possible to write a library to encapsulate
-         those calls to the APIs into functions. I've written such a library for XSLT 2.0 (NOTE TO
-         REVIEWERS: not published yet, sorry.) Let's take for instance the <link
-            xlink:href="http://code.google.com/apis/contacts/">Google Contacts API</link>, and use
-         the contact information it provides to create a contact book in ODF Text format. The
+      <para>Using the <code>http:send-request()</code> extension (introduced above) it is possible
+         to access Google's Data REST Web services. It is even possible to write a library to
+         encapsulate those API calls into our own reuseable functions. I have written such a library
+         for XSLT 2.0 (NOTE TO REVIEWERS: not published yet, sorry.) Let's take for instance the
+            <link xlink:href="http://code.google.com/apis/contacts/">Google Contacts API</link>, and
+         use the contact information it provides to create a contact book in ODF Text format. The
          contact book is a simple table with three columns: a picture of the contact if any, then
-         its textual information (name, email, address, etc.) then a last column with a thumbnail of
-         a Google Map of its neighbourhood:</para>
+         its textual information (name, email, address, etc.) and finally a last column with a
+         thumbnail of a Google Map of its neighbourhood:</para>
       <para>
          <mediaobject>
             <imageobject>
@@ -512,8 +510,8 @@ Pictures/
       </para>
       <para>By using the Compound Document Template pattern, it is possible to create this table
          directly in Open Office, by just creating one single row with a picture, a name in bold, an
-         email address as a link, other textual info, and a map. Let's save the file in, say,
-            <code>template.odt</code>. The transform contains three quite independent parts:
+         email address as a link, other textual info, and a map. Let's save the file in, for
+         instance, <code>template.odt</code>. The transform contains three rather independent parts:
          retrieve info from Google, format them into a new <code>content.xml</code> document, then
          create a new <code>result.odt</code> file by updating <code>content.xml</code> and adding
          the picture files:</para>
