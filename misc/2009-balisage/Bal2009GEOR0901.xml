@@ -420,7 +420,8 @@ local:format-result(
       <para>
          <mediaobject>
             <imageobject>
-               <imagedata format="png" fileref="Bal2009GEOR090101.png" scale="99"/>
+               <imagedata format="png" fileref="Bal2009GEOR090101.png" scale="50"/>
+               <!--imagedata format="png" fileref="Bal2009GEOR090101.png" scale="99"/-->
             </imageobject>
          </mediaobject>
       </para>
@@ -460,7 +461,8 @@ Pictures/
       <para>
          <mediaobject>
             <imageobject>
-               <imagedata format="png" fileref="Bal2009GEOR090102.png" scale="99"/>
+               <imagedata format="png" fileref="Bal2009GEOR090102.png" scale="50"/>
+               <!--imagedata format="png" fileref="Bal2009GEOR090102.png" scale="99"/-->
             </imageobject>
          </mediaobject>
       </para>
@@ -506,7 +508,8 @@ Pictures/
       <para>
          <mediaobject>
             <imageobject>
-               <imagedata format="png" fileref="Bal2009GEOR090103.png" scale="125"/>
+               <imagedata format="png" fileref="Bal2009GEOR090103.png" scale="50"/>
+               <!--imagedata format="png" fileref="Bal2009GEOR090103.png" scale="125"/-->
             </imageobject>
          </mediaobject>
       </para>
@@ -520,7 +523,8 @@ Pictures/
       <para>
          <mediaobject>
             <imageobject>
-               <imagedata format="png" fileref="Bal2009GEOR090104.png" scale="125"/>
+               <imagedata format="png" fileref="Bal2009GEOR090104.png" scale="50"/>
+               <!--imagedata format="png" fileref="Bal2009GEOR090104.png" scale="125"/-->
             </imageobject>
          </mediaobject>
       </para>
@@ -544,20 +548,31 @@ Pictures/
          around there written in XSLT like <link xlink:href="http://www.functx.com/">FunctX</link>,
             <link xlink:href="http://www.cranesoftwrights.com/resources/xslstyle/">XSLStyle</link>
          or <link xlink:href="http://www.schematron.com/">Schematron</link>, but the absence of a
-         standardized way to install them tends to slow down their adoption. However, each time has
-         to go the same process: figuring out the exposed URIs, creating a catalog mapping those
-         URIs to the install location, checking whether there are dependencies to install, plug the
-         catalog to the cataloging system of her processor or IDE (for each ot them,) etc. But there
-         is no homogeneity in the way each project package its resources and document them.</para>
+         standardized way to install them tends to slow down their adoption. However, each time one
+         has to go through the same process: figuring out the exposed URIs, creating a catalog
+         mapping those URIs to the install location, checking whether there are dependencies to
+         install, plug the catalog to the cataloging system of her processor or IDE (for each ot
+         them,) etc. But there is no homogeneity in the way each project packages its resources and
+         documents the install process.</para>
       <para>It would be nice though to be able to download a single file, to give that file to a
-         processor to install it automatically, and to rely only on the public URIs to use an XSLT
-         stylesheet, an XQuery module or an XProc pipeline. Or any library of functions, including
-         extension functions. Where other languages define packages, core XML technologies use URIs.
-         But the concept is the same, and we should only care about those URIs when developing,
-         instead of constantly keeping trace of physical files, and installing them again and again
-         on each machine we have to work on. Everything else than those public URIs should be hidden
-         deep in the internals of a simple packaging system supported by most processors, IDEs and
-         server environments.</para>
+         processor to install it automatically, and to rely only on the public URIs associated to
+         XSLT stylesheets, XQuery modules and XProc pipelines. Or with any library of functions,
+         including extension functions. Where other languages define packages, core XML technologies
+         use URIs. But the concept is the same, and we should only care about those URIs when
+         developing, instead of constantly keeping trace of physical files, and installing them
+         again and again on each machine we have to work on. Everything else than those public URIs
+         should be hidden deep in the internals of a simple packaging system supported by most
+         processors, IDEs and server environments.</para>
+      <para>There is not already a formal proposal for such a system, but the idea is quite
+         well-defined, and there is even an implementation of a prototype for Saxon, supporting
+         standard XSLT stylesheets and XQuery modules, as well as extension functions written in
+         Java. The principle is very simple: the graphical application manages a central repository
+         where it installs the libraries, as well as generated XML Catalogs. You can then use the
+         public import URI of the stylesheet to import the components provided by the stylesheet.
+         This is also possible with extension functions, even though Saxon does not provide any
+         (simple) way to link a URI to an extension function. The trick is to provide a wrapper
+         stylesheet that uses the Saxon-specific URI to access extension functions in Java, while
+         providing </para>
    </section>
    <section>
       <title>Conclusion</title>
