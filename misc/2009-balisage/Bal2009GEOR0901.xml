@@ -566,13 +566,17 @@ Pictures/
       <para>There is not already a formal proposal for such a system, but the idea is quite
          well-defined, and there is even an implementation of a prototype for Saxon, supporting
          standard XSLT stylesheets and XQuery modules, as well as extension functions written in
-         Java. The principle is very simple: the graphical application manages a central repository
-         where it installs the libraries, as well as generated XML Catalogs. You can then use the
-         public import URI of the stylesheet to import the components provided by the stylesheet.
-         This is also possible with extension functions, even though Saxon does not provide any
-         (simple) way to link a URI to an extension function. The trick is to provide a wrapper
-         stylesheet that uses the Saxon-specific URI to access extension functions in Java, while
-         providing </para>
+         Java. The principle is very simple: a graphical application helps you managing a central
+         repository where it installs the libraries, as well as generated XML Catalogs, and a shell
+         script wrapper or Java helper class configure correctly Saxon, so you can still use Saxon
+         from the command line or from within a Java program. You can then use the public import URI
+         of the installed stylesheet to import the components it provides. This is also possible
+         with extension functions, even though Saxon does not provide any (simple) way to link a URI
+         to an extension function. The trick is to provide a wrapper stylesheet that uses the
+         Saxon-specific URI to access extension functions in Java, while providing a wrapper
+         function defined in the correct namespace for each exported function from Java.</para>
+      <para>I have successfully packaged projects like DocBook XSLT stylesheets, XSLStyle
+         stylesheets, the FunctX library (for XSLT as for XQuery) or Schematron.</para>
    </section>
    <section>
       <title>Conclusion</title>
