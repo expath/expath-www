@@ -575,8 +575,9 @@ Pictures/
          to an extension function. The trick is to provide a wrapper stylesheet that uses the
          Saxon-specific URI to access extension functions in Java, while providing a wrapper
          function defined in the correct namespace for each exported function from Java.</para>
-      <para>I have successfully packaged projects like DocBook XSLT stylesheets, XSLStyle
-         stylesheets, the FunctX library (for XSLT as for XQuery) or Schematron.</para>
+      <para>I have successfully packaged projects like the DocBook XSLT stylesheets, the DITA Open
+         Toolkit XSLT stylesheets, the XSLStyle stylesheets, the FunctX library (for XSLT as for
+         XQuery) or Schematron.</para>
    </section>
    <section>
       <title>Conclusion</title>
