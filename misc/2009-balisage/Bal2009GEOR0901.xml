@@ -578,6 +578,38 @@ Pictures/
       <para>I have successfully packaged projects like the DocBook XSLT stylesheets, the DITA Open
          Toolkit XSLT stylesheets, the XSLStyle stylesheets, the FunctX library (for XSLT as for
          XQuery) or Schematron.</para>
+
+      <para>TODO: ...</para>
+      <para>TODO: Integrate the following paras into the text flow...</para>
+      <para>TODO: ...</para>
+      <para>TODO: Put the diagram right here (look into the yellow notebook...)</para>
+      <para>TODO: ...</para>
+
+      <para>The admin GUI is used to manage the repository. It can install, remove and rename
+         packages. Once installed, everything needed by a module resides in that repository (you can
+         have several repositories, for purposes or projects,) like stylesheets and queries, XML
+         catalogs and JAR files for extension functions. The shell script is used to execute Saxon
+         from the command line, while the Java helper class is used from within Java programs, for
+         instance in a web application. Both do configure Saxon with the needed resolvers to locate
+         properly the modules in the repository. The admin repository program can also be invoked
+         from the command line. For instance, you can add the following line to your project's
+         Makefile in order to generate the documentation with XSLStyle (I had to attribute a URI to
+         the main XSLStyle stylesheet, as it hasn't one yet, but this would be the responsibility of
+         the project's maintainer):</para>
+      <programlisting>> saxon \
+    -xsl:http://www.cranesoftwrights.com/xslstyle/xslstyle-dita.xsl \
+    -s:my-stylesheet.xsl</programlisting>
+      <para>This is an interesting example as XSLStyle relies on either DocBook or DITA (or both.)
+         The XSLStyle stylesheets simply use DocBook and DITA's public URIs. I had to modify them to
+         do so, instead of using a private copy of both systems (which is a bad practice, but one
+         has no other choice because there is no packaging system out there.) As long as the package
+         for DocBook or for DITA is installed (or both,) Saxon will find them through the packaging
+         system, ,by their public URIs. Furthermore, because Saxon is a standalone processor and can
+         be invoked from the command line directly by humans, the shell script allows you to use
+         symbolic names in addition to URIs. URIs are convenient from within program pieces like
+         stylesheets and queries, but are not well-suited to human beings. Depending on how exactly
+         you installed and configured the package, the above example can be rewritten as:</para>
+      <programlisting>> saxon --pkg=xslstyle-dita -s:my-stylesheet.xsl</programlisting>
    </section>
    <section>
       <title>Conclusion</title>
