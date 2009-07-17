@@ -420,8 +420,8 @@ local:format-result(
       <para>
          <mediaobject>
             <imageobject>
-               <imagedata format="png" fileref="Bal2009GEOR090101.png" scale="50"/>
-               <!--imagedata format="png" fileref="Bal2009GEOR090101.png" scale="99"/-->
+               <!--imagedata format="png" fileref="Bal2009GEOR090101.png" scale="50"/-->
+               <imagedata format="png" fileref="Bal2009GEOR090101.png" scale="99"/>
             </imageobject>
          </mediaobject>
       </para>
@@ -461,8 +461,8 @@ Pictures/
       <para>
          <mediaobject>
             <imageobject>
-               <imagedata format="png" fileref="Bal2009GEOR090102.png" scale="50"/>
-               <!--imagedata format="png" fileref="Bal2009GEOR090102.png" scale="99"/-->
+               <!--imagedata format="png" fileref="Bal2009GEOR090102.png" scale="50"/-->
+               <imagedata format="png" fileref="Bal2009GEOR090102.png" scale="99"/>
             </imageobject>
          </mediaobject>
       </para>
@@ -508,8 +508,8 @@ Pictures/
       <para>
          <mediaobject>
             <imageobject>
-               <imagedata format="png" fileref="Bal2009GEOR090103.png" scale="50"/>
-               <!--imagedata format="png" fileref="Bal2009GEOR090103.png" scale="125"/-->
+               <!--imagedata format="png" fileref="Bal2009GEOR090103.png" scale="50"/-->
+               <imagedata format="png" fileref="Bal2009GEOR090103.png" scale="125"/>
             </imageobject>
          </mediaobject>
       </para>
@@ -523,8 +523,8 @@ Pictures/
       <para>
          <mediaobject>
             <imageobject>
-               <imagedata format="png" fileref="Bal2009GEOR090104.png" scale="50"/>
-               <!--imagedata format="png" fileref="Bal2009GEOR090104.png" scale="125"/-->
+               <!--imagedata format="png" fileref="Bal2009GEOR090104.png" scale="50"/-->
+               <imagedata format="png" fileref="Bal2009GEOR090104.png" scale="125"/>
             </imageobject>
          </mediaobject>
       </para>
@@ -538,22 +538,18 @@ Pictures/
    </section>
    <section>
       <title>Packaging</title>
-      <para>TODO: Introduce the system.</para>
-      <para>TODO: "a good example of legitimate project besides a function library"</para>
-      <para>TODO: conclude with possible further work, as CXAN</para>
-      <para><!--Another project within EXPath is a packaging system for libraries for various core XML
-         technologies. -->
-         XPath and XSLT 1.0 recommendations are ten years old, and still there are very few
-         libraries and applications distributed in XSLT. You can find very valuable pieces of work
-         around there written in XSLT like <link xlink:href="http://www.functx.com/">FunctX</link>,
-            <link xlink:href="http://www.cranesoftwrights.com/resources/xslstyle/">XSLStyle</link>
-         or <link xlink:href="http://www.schematron.com/">Schematron</link>, but the absence of a
+      <para>XPath and XSLT 1.0 recommendations are ten years old, and still there are very few
+         libraries and applications distributed in XSLT. You can find around there very valuable
+         pieces of work written in XSLT like <link xlink:href="http://www.functx.com/"
+         >FunctX</link>, <link xlink:href="http://www.cranesoftwrights.com/resources/xslstyle/"
+            >XSLStyle</link>, <link xlink:href="http://www.schematron.com/">Schematron</link> or of
+         course <link xlink:href="http://www.docbook.org/">DocBook</link>, but the absence of a
          standardized way to install them tends to slow down their adoption. However, each time one
          has to go through the same process: figuring out the exposed URIs, creating a catalog
          mapping those URIs to the install location, checking whether there are dependencies to
          install, plug the catalog to the cataloging system of her processor or IDE (for each ot
          them,) etc. But there is no homogeneity in the way each project packages its resources and
-         documents the install process.</para>
+         it documents the install process.</para>
       <para>It would be nice though to be able to download a single file, to give that file to a
          processor to install it automatically, and to rely only on the public URIs associated to
          XSLT stylesheets, XQuery modules and XProc pipelines. Or with any library of functions,
@@ -566,53 +562,84 @@ Pictures/
       <para>There is not already a formal proposal for such a system, but the idea is quite
          well-defined, and there is even an implementation of a prototype for Saxon, supporting
          standard XSLT stylesheets and XQuery modules, as well as extension functions written in
-         Java. The principle is very simple: a graphical application helps you managing a central
-         repository where it installs the libraries, as well as generated XML Catalogs, and a shell
-         script wrapper or Java helper class configure correctly Saxon, so you can still use Saxon
-         from the command line or from within a Java program. You can then use the public import URI
-         of the installed stylesheet to import the components it provides. This is also possible
-         with extension functions, even though Saxon does not provide any (simple) way to link a URI
-         to an extension function. The trick is to provide a wrapper stylesheet that uses the
-         Saxon-specific URI to access extension functions in Java, while providing a wrapper
-         function defined in the correct namespace for each exported function from Java.</para>
-      <para>I have successfully packaged projects like the DocBook XSLT stylesheets, the DITA Open
-         Toolkit XSLT stylesheets, the XSLStyle stylesheets, the FunctX library (for XSLT as for
-         XQuery) or Schematron.</para>
+         Java. I have successfully packaged projects like the DocBook XSLT stylesheets, the DITA
+         Open Toolkit XSLT stylesheets, the XSLStyle stylesheets, or the FunctX library (for XSLT as
+         for XQuery.) The principle is very simple: a graphical application helps you to manage a
+         central repository where it installs the libraries, as well as generated XML Catalogs, and
+         a shell script wrapper or Java helper class configure correctly Saxon, so you can still use
+         Saxon from the command line or from within a Java program. You can then use the public
+         import URI of the installed stylesheet to import the components it provides. This is also
+         possible with extension functions, even though Saxon does not provide any (simple) way to
+         link a URI to an extension function. The trick is to provide a wrapper stylesheet that uses
+         the Saxon-specific URI to access extension functions in Java, while providing a wrapper
+         function defined in the correct namespace for each exported function from Java:</para>
+      <programlisting>&lt;xsl:stylesheet xmlns:http="http://www.expath.org/mod/http-client"
+                xmlns:http-java="java:org.expath.saxon.HttpClient"
+                ...>
 
-      <para>TODO: ...</para>
-      <para>TODO: Integrate the following paras into the text flow...</para>
-      <para>TODO: ...</para>
-      <para>TODO: Put the diagram right here (look into the yellow notebook...)</para>
-      <para>TODO: ...</para>
+   &lt;xsl:function name="http:send-request" as="item()+">
+      &lt;xsl:param name="request" as="element(http:request)?"/>
+      &lt;xsl:sequence select="http-java:send-request($request)"/>
+   &lt;/xsl:function>
 
-      <para>The admin GUI is used to manage the repository. It can install, remove and rename
-         packages. Once installed, everything needed by a module resides in that repository (you can
-         have several repositories, for purposes or projects,) like stylesheets and queries, XML
-         catalogs and JAR files for extension functions. The shell script is used to execute Saxon
-         from the command line, while the Java helper class is used from within Java programs, for
-         instance in a web application. Both do configure Saxon with the needed resolvers to locate
-         properly the modules in the repository. The admin repository program can also be invoked
-         from the command line. For instance, you can add the following line to your project's
-         Makefile in order to generate the documentation with XSLStyle (I had to attribute a URI to
-         the main XSLStyle stylesheet, as it hasn't one yet, but this would be the responsibility of
-         the project's maintainer):</para>
+   ...</programlisting>
+      <para>On the other hand, the stylesheet using the extension function does not rely on any
+         detail of its implementation. It uses a public absolute URI to import the library and the
+         namespace defined in the specification instead of the Java-bound namespace:</para>
+      <programlisting>&lt;xsl:stylesheet xmlns:http="http://www.expath.org/mod/http-client" ...>
+
+   &lt;xsl:import href="http://www.expath.org/mod/http-client.xsl"/>
+
+   &lt;xsl:template match="/">
+      &lt;xsl:sequence select="http:send-request(...)"/>
+      ...</programlisting>
+      <para>Here is how the different pieces fit together:</para>
+      <para>
+         <mediaobject>
+            <imageobject>
+               <!--imagedata format="png" fileref="Bal2009GEOR090105.png" scale="50"/-->
+               <imagedata format="png" fileref="Bal2009GEOR090105.png" scale="125"/>
+            </imageobject>
+         </mediaobject>
+      </para>
+      <para>The admin GUI is used to manage the repository (you can use it from the command line
+         too.) It can install, remove and rename packages. Once installed, everything needed by a
+         module resides in that repository (you can have several repositories, for purposes or
+         projects,) like stylesheets and queries, XML catalogs and JAR files for extension
+         functions. The shell script is used to execute Saxon from the command line, while the Java
+         helper class is used from within Java programs, for instance in a web application. Both do
+         configure Saxon with the needed resolvers to locate properly the modules in the repository.
+         The admin repository program can also be invoked from the command line. For instance, you
+         can add the following line to your project's Makefile in order to generate the
+         documentation with XSLStyle:</para>
       <programlisting>> saxon \
     -xsl:http://www.cranesoftwrights.com/xslstyle/xslstyle-dita.xsl \
     -s:my-stylesheet.xsl</programlisting>
-      <para>This is an interesting example as XSLStyle relies on either DocBook or DITA (or both.)
-         The XSLStyle stylesheets simply use DocBook and DITA's public URIs. I had to modify them to
-         do so, instead of using a private copy of both systems (which is a bad practice, but one
-         has no other choice because there is no packaging system out there.) As long as the package
-         for DocBook or for DITA is installed (or both,) Saxon will find them through the packaging
-         system, ,by their public URIs. Furthermore, because Saxon is a standalone processor and can
-         be invoked from the command line directly by humans, the shell script allows you to use
-         symbolic names in addition to URIs. URIs are convenient from within program pieces like
-         stylesheets and queries, but are not well-suited to human beings. Depending on how exactly
-         you installed and configured the package, the above example can be rewritten as:</para>
-      <programlisting>> saxon --pkg=xslstyle-dita -s:my-stylesheet.xsl</programlisting>
+      <para>This is an interesting example as XSLStyle relies on DocBook or DITA (or both.) Let us
+         examine how I packaged XSLStyle. The original distribution includes a private copy of both
+         DocBook and DITA. This is a bad practice in software engineering, but one has no other
+         choice as long as there is no packaging system out there. The first step is thus to remove
+         those external libraries, and package them separately. Then we have to define a public URI
+         to allow other stylesheets to import the stylesheets provided by this package. This URI
+         does not have to point to an actual resource; this is a logical identifier. As no one
+         existed yet, I chose
+            <code>http://www.cranesoftwrights.com/xslstyle/xslstyle-dita.xsl</code>, and a similar
+         one for the DocBook version. The same way, because we removed the private copies of DocBook
+         and DITA, we have to change the XSLStyle stylesheet accordingly, to use public URIs in
+         their import instructions. As long as the package for DocBook or for DITA are installed,
+         Saxon will find them through the packaging system, by their public URIs.</para>
+      <para>Furthermore, because Saxon is a standalone processor and can be invoked from the command
+         line directly by humans, the shell script allows you to use symbolic names in addition to
+         URIs. URIs are convenient from within program pieces like stylesheets and queries, but are
+         not well-suited to human beings. Depending on how exactly you installed and configured the
+         package, the above example can be rewritten as:</para>
+      <programlisting>> saxon --xsl=xslstyle-dita -s:my-stylesheet.xsl</programlisting>
+
+      <para>TODO: conclude with possible further work, as CXAN</para>
    </section>
    <section>
       <title>Conclusion</title>
+      <para>TODO: Pkg: "a good example of legitimate project besides a function library"</para>
       <para>TODO: Introduce other modules people are working on at the time of the conference, and
          further development ideas. Let's see where the project is going to be in a few months from
          now (in June, July.)</para>
