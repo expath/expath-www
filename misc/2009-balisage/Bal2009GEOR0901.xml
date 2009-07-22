@@ -84,7 +84,7 @@
          implemented, and if not more importantly, to write expressions that become portable across
          every processor that supports the extension or that an implementation was pre-provided
          for.</para>
-      <para>This project is EXPath!</para>
+      <para>This project is <link xlink:href="http://www.expath.org/">EXPath</link>!</para>
    </section>
    <section>
       <title>The project</title>
@@ -409,8 +409,8 @@ local:format-result(
       <para>
          <mediaobject>
             <imageobject>
-               <imagedata format="png" fileref="Bal2009GEOR090101.png" scale="50"/>
-               <!--imagedata format="png" fileref="Bal2009GEOR090101.png" scale="99"/-->
+               <!--imagedata format="png" fileref="Bal2009GEOR090101.png" scale="50"/-->
+               <imagedata format="png" fileref="Bal2009GEOR090101.png" scale="99"/>
             </imageobject>
          </mediaobject>
       </para>
@@ -449,8 +449,8 @@ Pictures/
       <para>
          <mediaobject>
             <imageobject>
-               <imagedata format="png" fileref="Bal2009GEOR090102.png" scale="50"/>
-               <!--imagedata format="png" fileref="Bal2009GEOR090102.png" scale="99"/-->
+               <!--imagedata format="png" fileref="Bal2009GEOR090102.png" scale="50"/-->
+               <imagedata format="png" fileref="Bal2009GEOR090102.png" scale="99"/>
             </imageobject>
          </mediaobject>
       </para>
@@ -494,8 +494,8 @@ Pictures/
       <para>
          <mediaobject>
             <imageobject>
-               <imagedata format="png" fileref="Bal2009GEOR090103.png" scale="50"/>
-               <!--imagedata format="png" fileref="Bal2009GEOR090103.png" scale="125"/-->
+               <!--imagedata format="png" fileref="Bal2009GEOR090103.png" scale="50"/-->
+               <imagedata format="png" fileref="Bal2009GEOR090103.png" scale="125"/>
             </imageobject>
          </mediaobject>
       </para>
@@ -509,8 +509,8 @@ Pictures/
       <para>
          <mediaobject>
             <imageobject>
-               <imagedata format="png" fileref="Bal2009GEOR090104.png" scale="50"/>
-               <!--imagedata format="png" fileref="Bal2009GEOR090104.png" scale="125"/-->
+               <!--imagedata format="png" fileref="Bal2009GEOR090104.png" scale="50"/-->
+               <imagedata format="png" fileref="Bal2009GEOR090104.png" scale="125"/>
             </imageobject>
          </mediaobject>
       </para>
@@ -583,8 +583,8 @@ Pictures/
       <para>
          <mediaobject>
             <imageobject>
-               <imagedata format="png" fileref="Bal2009GEOR090105.png" scale="50"/>
-               <!--imagedata format="png" fileref="Bal2009GEOR090105.png" scale="125"/-->
+               <!--imagedata format="png" fileref="Bal2009GEOR090105.png" scale="50"/-->
+               <imagedata format="png" fileref="Bal2009GEOR090105.png" scale="125"/>
             </imageobject>
          </mediaobject>
       </para>
