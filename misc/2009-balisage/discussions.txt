@@ -1,0 +1,15 @@
+Here are useful points I'd like to discuss with some attendees.
+
+* Jenni
+
+- How would it be possible to use XSpec to test really XPath
+  functions?  Without depending on being within XSLT?  And XQuery?
+
+* Mike, Wolfgang, Daniela, Norm, other X* implementers
+
+- Discuss the Packaging System.  How could it best integrate with
+  their processors?  Are they interested in supporting it?
+
+* E* projects members
+
+- Discuss some ideas in front of a beer, some evening?
