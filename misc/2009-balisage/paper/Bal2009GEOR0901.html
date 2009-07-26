@@ -1,0 +1,653 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>A practical introduction to EXPath</title><meta name="generator" content="DocBook XSL Stylesheets V1.73.2"><meta name="description" content="For some time now the demand for standardized extensions within the core XML technologies, especially XSLT and XQuery, has been increasing. A closer look at the EXSLT and EXQuery projects shows that their goals align to address the issue of extensions, but also that they overlap, predominantly because of their common ancestor: XPath. It is thus reasonable to assume that both projects should collaborate together on common areas influenced by the underlying XPath specification. In addition, by jointly working at the lower level, any XPath based language or processor could also benefit from this work, like XProc, XForms or plain XPath engines."><meta name="keywords" content="EXPath, extension, XPath, XSLT, XQuery"><style type="text/css">
+body { background-color: #E8EAFF }
+
+div#balisage-header,
+div#balisage-footer {
+  background-color: #6970BF;
+  color: white;
+  border: thin midnightblue outset } 
+
+div#balisage-footer { margin-top: 1em }
+
+pre.programlisting,
+div.variablelist,
+div.abstract,
+div.figure,
+div.table-wrapper
+{ margin-top: 0.5em;
+  background-color: white;
+  border: medium solid lightgrey;
+  padding: 0.5em }
+
+div.toc { font-family: sans-serif;
+  font-size: 80% }
+
+h1, h2, h3, h4, h5, h6 { font-family: sans-serif }
+
+p.title { margin-top: 0em;
+  color: darkblue }
+
+p { margin-bottom: 0em }
+
+th { background-color: lightgrey;
+     padding-left: 0.5em;
+     padding-right: 0.5em }
+td { padding-left: 0.5em;
+     padding-right: 0.5em }
+
+dl p, li p { margin-top: 0.25em }
+
+div.variablelist > dl {
+  margin-top: 0em;
+  margin-bottom: 0em }
+
+td p, th p, dd p { margin-top: 0em;
+  margin-bottom: 0em }
+
+
+span.ital { font-style: italic }
+span.bold { font-weight: bold }
+span.term { font-family: sans-serif;
+  font-weight: bold;
+  font-size: 90% }
+
+a { text-decoration: none }
+    </style></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div id="balisage-header"><h1 style="text-align: right; font-family: serif; margin:0.25em"><i>Balisage:</i>&nbsp;<small>The Markup Conference</small></h1></div><div class="article" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="d62e2"></a>A practical introduction to EXPath</h2></div><div><h3 class="subtitle"><i>Collaboratively Defining Open Standards for Portable XPath Extensions</i></h3></div><div><div class="author"><h3 class="author"><span class="firstname">Florent</span> <span class="surname">Georges</span></h3><div class="affiliation">
+            <span class="jobtitle">XML Architect<br></span>
+            <span class="orgname">fgeorges.org<br></span>
+         </div><code class="email">&lt;<a class="email" href="mailto:fgeorges@fgeorges.org">fgeorges@fgeorges.org</a>&gt;</code></div></div><div><div class="legalnotice"><a name="d62e57"></a>
+         <p>Copyright © 2009 Florent Georges. Used by permission.</p>
+      </div></div><div><div class="abstract"><p class="title"><b>Abstract</b></p>
+         <p>For some time now the demand for standardized extensions within the core XML
+            technologies, especially XSLT and XQuery, has been increasing. A closer look at the
+            EXSLT and EXQuery projects shows that their goals align to address the issue of
+            extensions, but also that they overlap, predominantly because of their common ancestor:
+            XPath. It is thus reasonable to assume that both projects should collaborate together on
+            common areas influenced by the underlying XPath specification. In addition, by jointly
+            working at the lower level, any XPath based language or processor could also benefit
+            from this work, like XProc, XForms or plain XPath engines.</p>
+      </div></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d62e82">Introduction</a></span></dt><dt><span class="section"><a href="#d62e103">The project</a></span></dt><dt><span class="section"><a href="#d62e132">Two example modules</a></span></dt><dt><span class="section"><a href="#d62e256">SOAP Web service client</a></span></dt><dt><span class="section"><a href="#d62e293">Compound Document Template pattern</a></span></dt><dt><span class="section"><a href="#d62e362">Google Contacts to ODF</a></span></dt><dt><span class="section"><a href="#d62e434">Packaging</a></span></dt><dt><span class="section"><a href="#d62e509">Conclusion</a></span></dt></dl></div>
+   
+   
+   
+   <div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d62e82"></a>Introduction</h2></div></div></div>
+      
+      <p>XPath is a textual language to query XML content. Besides a very convenient way to
+         navigate within an XML document through a path system, it provides the ability to make
+         various kinds of computation, for example string manipulations or date and time processing.
+         Such features are provided as functions, defined in a separate recommendation detailing a
+         standard library. It is also possible to use additional defined functions; XSLT and XQuery
+         allow one to define new functions directly in the stylesheet or query module. An XPath
+         processor also usually provides implementation specific libraries of additional functions,
+         as well as a way to augment the set of available functions, these are typically written
+         using an API in the same language as the processor.</p>
+      <p>This leads to the concept of an extension function. Such a function is not defined by
+         XPath, but inspired by XSLT this is defined as any function available in an expression
+         although not defined in any recommendation. There are two major kinds of extension
+         functions: those provided by the processor itself, and those written by the user. A
+         processor can provide extensions to deal with database management for instance, and the
+         user can implement any processing he could not write in XPath directly (for instance using
+         a complex mathematical library available in Java.) Examples of possible useful extensions
+         could provide support for performing HTTP requests, using WebDAV, reading and writing ZIP
+         files (like EPUB eBook, Open XML and OpenDocument files,) parsing and serializing XML and
+         HTML documents, executing XSLT transforms and XQuery queries, etc.</p>
+      <p>Extension functions are very powerful ways to extend XPath functionality. Many
+         extensions have been written over the years and by many different people. Reflecting on
+         this, it appears almost impossible to create and then share an extension function among
+         several processors and to maintain interoperability with them all over time. Extension
+         functions provided by processors themselves are not compatible, so that an expression that
+         uses them is not portable between processors. It is that situation which has led to the
+         creation of a project that would define libraries of extension functions unrelated to any
+         single processor, allowing existing processors to choose to implement them natively, or
+         allowing a user to install an existing implementation as an external package in their
+         processor. In this way it becomes possible to use extension functions already defined and
+         implemented, and if not more importantly, to write expressions that become portable across
+         every processor that supports the extension or that an implementation was pre-provided
+         for.</p>
+      <p>This project is <a class="ulink" href="http://www.expath.org/" target="_top">EXPath</a>!</p>
+   </div>
+   <div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d62e103"></a>The project</h2></div></div></div>
+      
+      <p>EXPath was launched four months ago in April 2009. It is divided into several modules,
+         quite independent from each other. The module is the delivery unit of EXPath. It is a
+         consistent set of functions providing support for a particular domain, and can be viewed as
+         a specific library of functions. Besides the specification of the functions itself,
+         implementations can also be provided for various processors. The first module that has been
+         defined is the HTTP Client. It provides support to send HTTP requests and to handle the
+         responses. This module defines one single function, how it represents a HTTP request and
+         response as XML elements and how it can be used to perform requests. Implementations are
+         provided as open source packages via the website for a number of processors - Saxon, eXist
+         and MarkLogic.</p>
+      <p>If there is a need for new extension functions to address missing functionality, a new
+         module may be proposed by anyone with the help of other people interested in supporting the
+         same features. The first step in this process is to identify precise use cases for the
+         desired features, and describe examples of use; this sets the scope of the module and sets
+         us on the road to defining specifications. Of course the scope can evolve over time, as
+         well as the use case examples, but this gives a formal basis for further discussion.</p>
+      <p>Once the use cases have been identified, function signatures and definitions of
+         behaviour for the module must be proposed. That proposal is discussed among the community
+         through the mailing list, and people interested in this module help to solve issues and
+         improve its design. Extensions addressing the same problem might already exist, either as
+         part of a known processor, or developed as independent individual projects; this is
+         valuable material to learn from during this stage. In parallel with this definition, it is
+         encouraged to develop at least one implementation to validate the feasibility of what is
+         being specified. Before being officially endorsed as a module, at least two implementations
+         should have been provided, to ensure that the specification is not too tightly linked to a
+         particular processor.</p>
+      <p>Each module has its own maintainer who is responsible for editing the specification,
+         leading the discussions and making design choices in according to those discussions.
+         Similarly, every implementation of a module for a particular processor has its own
+         maintainer. If someone needs the module to be implemented for another processor, they may
+         volunteer for that work, and propose an implementation. A test suite for the module should
+         be provided and carefully designed to ensure every implementation provides the same
+         functionality. The vendor of a processor might also propose a native implementation of a
+         module, in which case responsibility for the implementation and ensuring it meets the
+         specification and tests lies with the vendor.</p>
+      <p>An interesting point about implementing a module is when a processor already provides a
+         similar feature through processor-specific extension functions. It may then be sometimes
+         possible to reuse the existing extensions through a lightweight wrapper exposing the EXPath
+         interface to the user. For instance, the HTTP Client has been implemented for MarkLogic
+         Server with an XQuery module using MarkLogic's own HTTP Client set of extension functions.
+         This example also shows the limitations of this approach: the implementation is only
+         partial, as the MarkLogic's extensions do not provide exactly all the possibilities
+         required by the EXPath HTTP Client module. It is thus not always possible to use this
+         technique to provide full conformance, but this is a convenient way to quickly provide a
+         (possibly partial) implementation.</p>
+      <p>Needless to say, lots of work needs to be done, and everyone is welcome to help, at
+         every level: writing specifications, writing documentation and tutorials, peer review,
+         discussion, coding, testing or simply using the extensions and providing feedback.</p>
+      <p>But let's call it a day on the theory, and let's examine some real examples using two
+         modules: the HTTP Client and ZIP modules.</p>
+   </div>
+   <div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d62e132"></a>Two example modules</h2></div></div></div>
+      
+      <p>Before going through the examples, here is a simple introduction to the modules. The
+         HTTP Client module, without any surprise, provides the ability to send HTTP requests and
+         handle the responses. The ZIP module provides ZIP files support, either to extract entries
+         from them, add new entries, or update entries in existing ZIP files.</p>
+      <p>The HTTP Client provides one single function: <code class="code">http:send-request</code> (actually
+         it defines four different arities for this function, but this is mainly a convenient way to
+         pass some values as separate parameters.) This function has been inspired by the
+         corresponding XProc step, <code class="code">p:http-request</code>. This function makes it possible to
+         query REST services, Google services, Web services through SOAP, or simply to retrieve
+         resources on the Web. The signature of this function (the one-parameter version) is:</p>
+      <pre class="programlisting">http:send-request($request as element(http:request)) as item()+</pre>
+      <p>Its parameter is an element representing the request. It is structured as in the
+         following sample:</p>
+      <pre class="programlisting">&lt;http:request href="http://www.example.com/..." method="post"&gt;
+   &lt;http:header name="X-Header" value="some value"/&gt;
+   &lt;http:header name="X-Other"  value="other value"/&gt;
+   &lt;http:body content-type="application/xml"&gt;
+      &lt;hello&gt;World!&lt;/hello&gt;
+   &lt;/http:body&gt;
+&lt;/http:request&gt;</pre>
+      <p>The request will result in a HTTP POST, with Content-Type <code class="code">application/xml</code>,
+         sent to the specified URI and with a header explicitly set by the user (<code class="code">X-Header:
+            some value</code>.) The result is described with another element,
+            <code class="code">http:response</code>, that describes the response returned by the server:</p>
+      <pre class="programlisting">&lt;http:response status="200" message="OK"&gt;
+   &lt;http:header name="..." value="..."/&gt;
+   ...
+   &lt;http:body content-type="application/xml"/&gt;
+&lt;/http:request&gt;</pre>
+      <p>The structure of this element is not dissimilar to the request element, instead of the
+         URI and HTTP method, it contains the status code and the message returned by the server.
+         One significant difference as opposed to the request, lies in the way in which the response
+         body is returned: the response body element (if any) is only a description of the body. The
+         body content itself is returned as a subsequent item in the result sequence (or several
+         items in case of a multipart response.) Let's analyse an example in XQuery:</p>
+      <pre class="programlisting">http:send-request(
+   &lt;http:request href="http://www.balisage.net/" method="get"/&gt;)</pre>
+      <p>This simply sends a GET request to the web server of Balisage. The result of this
+         function call is a sequence of two items: the <code class="code">http:result</code> element and the body
+         content as a document node (holding an XHTML document):</p>
+      <pre class="programlisting">&lt;http:response status="200" message="OK"&gt;
+   &lt;http:header name="Server" value="Apache/1.3.41 (Unix)"/&gt;
+   ...
+   &lt;http:body content-type="text/html"/&gt;
+&lt;/http:response&gt;
+
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"&gt;
+   &lt;head&gt;
+      &lt;title&gt;Balisage: The Markup Conference&lt;/title&gt;
+      ...</pre>
+      <p>It may sound strange to have a sequence as the result of the function, but this is the
+         only way to provide the response description alongside the payload expressed as a full
+         document node. This design choice prevents mixing different layers in the same document.
+         The body content is analysed based on the content-type returned by the server. If the
+         content type is of an XML type it is parsed and returned as a document node, if it is an
+         HTML type it is tidied up, parsed and returned as a document node, if it is a textual type
+         it is returned as a string, in any other case it is returned as a
+            <code class="code">xs:base64Binary</code> item. In the case of a multipart response this rule is
+         applied to each part which is then returned as subsequent items after the
+            <code class="code">http:response</code> element.</p>
+      <p>The ZIP module defines the following functions to read the structure of a ZIP file, to
+         create a completely new ZIP file from scratch, and to create a new ZIP file, based on an
+         existing file by changing only some entries:</p>
+      <pre class="programlisting">zip:entries($href) as element(zip:file)
+zip:zip-file($zip as element(zip:file)) as empty-sequence()
+zip:update-entries($zip, $output) as empty-sequence()</pre>
+      <p>The first function takes a ZIP file's URI as parameter, and returns a description of its
+         structure (its entries) as a <code class="code">zip:file</code> element. This element looks like the
+         following:</p>
+      <pre class="programlisting">&lt;zip:file href="some.zip"&gt;
+   &lt;zip:entry name="file.xml"/&gt;
+   &lt;zip:entry name="index.html"/&gt;
+   &lt;zip:dir name="dir"&gt;
+      &lt;zip:entry name="file.txt"/&gt;
+   &lt;/zip:dir&gt;
+&lt;/zip:file&gt;</pre>
+      <p>Only the structure is returned, not the whole content of each file entry. The function
+            <code class="code">zip:zip-file()</code> takes a similar element as parameter, and create a new ZIP
+         file based on that content. The element is similar, but in addition it contains the content
+         of each file entry, so that the function has all the needed information to actually create
+         the whole file. For each <code class="code">zip:entry</code>, the content of the element can be an XML
+         document, a string, or binary encoded as a base 64 string (an attribute tells if the
+         content has to be serialized as XML, HTML, text or binary.) An existing file can also be
+         copied verbatim to the entry, by giving its URI instead of the actual content. An example
+         of a <code class="code">zip:file</code> element to pass to this function is:</p>
+      <pre class="programlisting">&lt;zip:file href="some.zip"&gt;
+   &lt;zip:entry name="file.xml" output="xml"&gt;
+      &lt;hello&gt;World!&lt;/hello&gt;
+   &lt;/zip:entry&gt;
+   &lt;zip:entry name="index.html" href="/some/file.html"/&gt;
+   &lt;zip:dir name="dir"&gt;
+      &lt;zip:entry name="file.txt" output="text"&gt;
+         Hello, world!
+      &lt;/zip:entry&gt;
+   &lt;/zip:dir&gt;
+&lt;/zip:file&gt;</pre>
+      <p>The third function, <code class="code">zip:update-entries()</code> looks a lot like
+            <code class="code">zip:zip-file()</code>, but it uses an existing ZIP file to create a new one,
+         replacing the entries in the <code class="code">zip:file</code> element in parameter. It then becomes
+         possible to use a pattern file, replacing only a few entries, with content computed in this
+         expression. To be complete, the module also provides 4 functions to read one specific entry
+         from an existing ZIP file, for instance depending on the result of
+            <code class="code">zip:entries()</code>. They return either a document node, a string or a
+            <code class="code">xs:base64Binary</code> item, following the same rules as
+            <code class="code">http:send-request()</code>:</p>
+      <pre class="programlisting">zip:xml-entry($href, $entry) as document-node()
+zip:html-entry($href, $entry) as document-node()
+zip:text-entry($href, $entry) as xs:string
+zip:binary-entry($href, $entry) as xs:base64Binary</pre>
+   </div>
+   <div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d62e256"></a>SOAP Web service client</h2></div></div></div>
+      
+      <p>EXPath works at the XPath level. But XPath is never used standalone, it is always used
+         from within a host language. Among the various languages providing support for XPath, XSLT
+         and XQuery have a place of choice, by their close integration with XPath. We will thus use
+         XQuery and XSLT to demonstrate complete examples of the functions introduced earlier.
+         XQuery's ability to create elements directly within expressions allows for very concise
+         examples that are easier to understand. However, where transforming XML trees is fully part
+         of the example, XSLT is used instead.</p>
+      <p>The first sample consumes a SOAP Web service. The Web service takes as input an element
+         with a country code and a city name. It returns an element with a corresponding place name
+         and the local short term weather forecast. The format of the request and response elements
+         is as follows:</p>
+      <pre class="programlisting">&lt;tns:weather-by-city-request&gt;
+   &lt;tns:city&gt;Montreal&lt;/tns:city&gt;
+   &lt;tns:country&gt;CA&lt;/tns:country&gt;
+&lt;/tns:weather-by-city-request&gt;
+
+&lt;tns:weather-by-city-response&gt;
+   &lt;tns:place&gt;Montreal, CA&lt;/tns:place&gt;
+   &lt;tns:detail&gt;
+      &lt;tns:day&gt;2009-08-13&lt;/tns:day&gt;
+      &lt;tns:min-temp&gt;16&lt;/tns:min-temp&gt;
+      &lt;tns:max-temp&gt;26&lt;/tns:max-temp&gt;
+      &lt;tns:desc&gt;Ideal temperature for a conference.&lt;/tns:desc&gt;
+   &lt;/tns:detail&gt;
+   &lt;tns:detail&gt;
+   ...
+&lt;/tns:weather-by-city-response&gt;</pre>
+      <p>Thus, the XQuery module has to send a SOAP request to the Web service HTTP endpoint,
+         check any error conditions and then if everything went well, process the result content.
+         These steps fit naturally into three different functions defined within the XQuery module.
+         After a few declarations (importing the HTTP Client module, declaring namespaces and
+         variables,) the three functions are defined and then composed together:</p>
+      <pre class="programlisting">xquery version "1.0";
+
+import module namespace http = "http://www.expath.org/mod/http-client";
+
+declare namespace soap = "http://schemas.xmlsoap.org/soap/envelope/";
+declare namespace tns  = "http://www.webservicex.net";
+
+declare variable $endpoint as xs:string
+   := "http://www.webservicex.net/WeatherForecast.asmx";
+declare variable $soap-action as xs:string
+   := "http://www.webservicex.net/GetWeatherByPlaceName";
+
+(: Send the message to the Web service.
+ :)
+declare function local:send-message()
+      as item()+
+{
+   http:send-request(
+      &lt;http:request method="post" href="{ $endpoint }"&gt;
+         &lt;http:header name="SOAPAction" value="{ $soap-action }"/&gt;
+         &lt;http:body content-type="text/xml"&gt;
+            &lt;soap:Envelope&gt;
+               &lt;soap:Header/&gt;
+               &lt;soap:Body&gt;
+                  &lt;tns:weather-by-city-request&gt;
+                     &lt;tns:city&gt;Montreal&lt;/tns:city&gt;
+                     &lt;tns:country&gt;CA&lt;/tns:country&gt;
+                  &lt;/tns:weather-by-city-request&gt;
+               &lt;/soap:Body&gt;
+            &lt;/soap:Envelope&gt;
+         &lt;/http:body&gt;
+      &lt;/http:request&gt;
+   )
+};
+
+(: Extract the SOAP payload from the HTTP response.
+ : Perform some sanity checks.
+ :)
+declare function local:extract-payload($res as item()+)
+      as element(tns:weather-by-city-response)
+{
+   let $status := xs:integer($res[1]/@status)
+   let $weather := $res[2]/soap:Envelope/soap:Body/*
+      return
+         if ( $status ne 200 ) then
+            error(xs:QName('ERRSOAP001'),
+                  concat('HTTP error: ', $status, '-', $res[1]/@message))
+         else if ( empty($weather) ) then
+            error(xs:QName('ERRSOAP002'), "SOAP payload is empty?")
+         else
+            $weather
+};
+
+(: Format the Web service response to a textual list.
+ :)
+declare function local:format-result(
+            $weather as element(tns:weather-by-city-response))
+      as xs:string
+{
+   string-join((
+      'Place: ', $weather/tns:place, '&amp;#10;',
+      for $d in $weather/tns:detail return $d/concat(
+         '  - ', tns:day, ':&amp;#09;', tns:min-temp, ' - ',
+         tns:max-temp, ':&amp;#09;', tns:desc, '&amp;#10;'
+      )
+    ),
+   '')
+};
+
+(: The main query, orchestrating the request, extracting and
+ : formating the response.
+ :)
+let $http-res := local:send-message()
+let $payload  := local:extract-payload($http-res)
+   return
+      local:format-result($payload)</pre>
+      <p>If everything goes well, the result should look like the following:</p>
+      <pre class="programlisting">Place: Montreal, CA
+  - 2009-08-13:  16 - 26:  Ideal temperature for a conference
+  - 2009-08-14:  24 - 32:  Enjoy holidays
+  ...</pre>
+      <p>This simple example shows a client call to a SOAP Web service. Given that such Web
+         services are usually described by a WSDL service description, it is actually possible to
+         automatically generate something like the previous example, but once for all operations
+         described in the WSDL. This has been implemented in the WSDL Compiler, an XSLT stylesheet
+         that transforms a WSDL file into an XSLT stylesheet or an XQuery module which can then be
+         used as a library module. As each WSDL operation becomes a function, the XPath processor
+         actually checks at compile time that the namespace URI, function name and parameters are
+         correct. Here is the same example but using the module generated by this WSDL
+         compiler:</p>
+      <pre class="programlisting">(: The module generated by the WSDL compiler.
+:)
+import module namespace tns = "http://www.webservicex.net" at "weather.xq";
+
+(: The main query call the Web service like a function, passing
+ : directly its parameters and using its result.
+ :)
+local:format-result(
+   tns:weather-by-city(
+      &lt;tns:weather-by-city-request&gt;
+         &lt;tns:city&gt;Montreal&lt;/tns:city&gt;
+         &lt;tns:country&gt;CA&lt;/tns:country&gt;
+      &lt;/tns:weather-by-city-request&gt;
+   )
+)</pre>
+      <p>All the HTTP and SOAP details have been hidden, and calling the Web service looks
+         exactly like using a library module. Technically speaking, this is the case: only that
+         module uses the HTTP extension and has been generated from the WSDL file, so that it knows
+         how to communicate with the Web service.</p>
+   </div>
+   <div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d62e293"></a>Compound Document Template pattern</h2></div></div></div>
+      
+      <p>This section introduces a new design pattern to generate compound documents based on the
+         ZIP format, such as OpenDocument or Open XML, by using a template file. It is particularly
+         well-suited to file generation based on transformations from data-oriented document to ODF
+         for presentation purpose. Let us take a concrete example, transforming a simple contact
+         list to an OpenDocument (ODF) text file (I use ODF as an example here, but the pattern
+         could equally applied to other similar formats.) A typical transform of an input
+         data-oriented document to an OpenDocument <code class="code">content.xml</code> file can be represented
+         by the following workflow (by which a contact list is transformed to ODF using XPath
+         technologies, for instance an XSLT stylesheet):</p>
+      <p>
+         </p><div class="mediaobject"><img src="Bal2009GEOR090101.png" width="534.6" alt="png image (Bal2009GEOR090101.png)"></div><p>
+      </p>
+      <p>The <code class="code">content.xml</code> file is just one file in a whole ODF document. Such a
+         document is actually a ZIP file, containing several XML files (the structure of the ZIP
+         file in a manifest, the several styles used in other parts, the content...) among other
+         files (for instance pictures in an OpenDocument Text file.) For instance, a typical ODF
+         text document could have a structure like the following (if you open it as a ZIP
+         file):</p>
+      <pre class="programlisting">mimetype
+content.xml
+styles.xml
+meta.xml
+settings.xml
+Thumbnails/
+META-INF/
+   manifest.xml
+Pictures/
+   d9e69.map.gif
+   d9e80.map.gif
+   d9e82.photo.png</pre>
+      <p>So the above transformation requires some post-processing to create the ZIP file that
+         bundles all those files into a proper ODF document. In addition, some files depend on the
+         way <code class="code">content.xml</code> is generated (for instance the style names it uses) even if
+         they could be seen as static files. ODF is a comprehensive and quite complex specification,
+         and it could rapidly become complicated to deal with all of its aspects while generating a
+         simple text document. This pattern simplifies this by allowing one to create a template
+         document using an application like Open Office. In this specific example, this is as simple
+         as creating a table, with several columns, where each line is a contact. By using Open
+         Office, we can set up all the layout visually, and create one single contact in the table.
+         The transform will then extract <code class="code">content.xml</code> from the template file, copy it
+         identically except for the fake contact line that will be used as a template for each
+         contact in the input contact list. Then the result is used to create a new ZIP file, based
+         on the template file, where all entries are copied except <code class="code">content.xml</code>, which
+         is replaced by the result of the transform. The general diagram for this pattern is:</p>
+      <p>
+         </p><div class="mediaobject"><img src="Bal2009GEOR090102.png" width="534.6" alt="png image (Bal2009GEOR090102.png)"></div><p>
+      </p>
+      <p>There are several possible variants: the transform could read some entries from the
+         template file, or not; it can generate several different entries or just the main content
+         file... But the important point is to be able to create and maintain the overall structure
+         and the layout details from within end-user applications for one ZIP-and-XML based format,
+         and then to be able to use this template and just fill in the blanks with actual data. Here
+         is how the last step (creating a new ZIP file based on the template file by updating some
+         entries) can be implemented in XSLT:</p>
+      <pre class="programlisting">&lt;xsl:param name="content" as="element(office:document-content)"/&gt;
+
+&lt;xsl:variable name="desc" as="element(zip:file)"&gt;
+   &lt;zip:file href="template.odt"&gt;
+      &lt;zip:entry name="content.xml" output="xml"&gt;
+         &lt;xsl:sequence select="$content"/&gt;
+      &lt;/zip:entry&gt;
+   &lt;/zip:file&gt;
+&lt;/xsl:variable&gt;
+
+&lt;xsl:sequence select="zip:update-entries($desc, 'result.odt')"/&gt;</pre>
+      <p>This ability to manipulate ZIP files opens up several possibilities with ODF.
+         Spreadsheets or text documents could for instance be used directly from within XSLT
+         stylesheets or XQuery modules as a natural human front-end for data input. But let us
+         examine a simpler transformation from a contact list to a text document.</p>
+   </div>
+   <div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d62e362"></a>Google Contacts to ODF</h2></div></div></div>
+      
+      <p>Using the <code class="code">http:send-request()</code> extension (introduced above) it is possible
+         to access Google's Data REST Web services. It is even possible to write a library to
+         encapsulate those API calls into our own reuseable functions. I have written such a library
+         for XSLT 2.0, supporting the underlying Data Service, as well as various dedicated
+         services, such as contacts and calendar (unfortunately, it is not published yet, but feel
+         free to contact me in private, or through the EXPath mailing list if you are interested in
+         obtaining a draft version.) Let's take for instance the <a class="ulink" href="http://code.google.com/apis/contacts/" target="_top">Google Contacts API</a>, and use
+         the contact information it provides to create a contact book in ODF Text format. The
+         contact book is a simple table with three columns: a picture of the contact if any, then
+         its textual information (name, email, address, etc.) and finally a last column with a
+         thumbnail of a Google Map of its neighbourhood:</p>
+      <p>
+         </p><div class="mediaobject"><img src="Bal2009GEOR090103.png" width="675" alt="png image (Bal2009GEOR090103.png)"></div><p>
+      </p>
+      <p>By using the Compound Document Template pattern, it is possible to create this table
+         directly in Open Office, by just creating one single row with a picture, a name in bold, an
+         email address as a link, other textual info, and a map. Let's save the file in, for
+         instance, <code class="code">template.odt</code>. The transform contains three rather independent parts:
+         retrieve info from Google, format them into a new <code class="code">content.xml</code> document, then
+         create a new <code class="code">result.odt</code> file by updating <code class="code">content.xml</code> and adding
+         the picture files:</p>
+      <p>
+         </p><div class="mediaobject"><img src="Bal2009GEOR090104.png" width="675" alt="png image (Bal2009GEOR090104.png)"></div><p>
+      </p>
+      <p>By using an intermediate document type for the contacts, we apply the
+            <span class="emphasis"><em>separation of concerns</em></span> principle to isolate the formatting itself,
+         making it independent of the specific Google Contacts format. The <span class="emphasis"><em>get
+            contacts</em></span> and <span class="emphasis"><em>update zip</em></span> modules use the same kind of
+         code shown in previous sections to ask the Google servers on the one hand, and to read and
+         update ZIP files on the other hand. The orchestration of those three modules is controlled
+         by the main driver: <span class="emphasis"><em>google contacts</em></span>.</p>
+   </div>
+   <div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d62e434"></a>Packaging</h2></div></div></div>
+      
+      <p>XPath and XSLT 1.0 recommendations are ten years old, and still there are very few
+         libraries and applications distributed in XSLT. You can find looking around very valuable
+         pieces of work written in XSLT like <a class="ulink" href="http://www.functx.com/" target="_top">FunctX</a>, <a class="ulink" href="http://www.cranesoftwrights.com/resources/xslstyle/" target="_top">XSLStyle</a>, <a class="ulink" href="http://www.schematron.com/" target="_top">Schematron</a> or of
+         course <a class="ulink" href="http://www.docbook.org/" target="_top">DocBook</a>, but the absence of a
+         standardized way to install them tends to slow down their adoption. However, each time one
+         has to go through the same process: figuring out the exposed URIs, creating a catalog
+         mapping those URIs to the install location, checking whether there are dependencies to
+         install, plug the catalog to the cataloging system of her processor or IDE (for each ot
+         them,) etc. But there is no homogeneity in the way each project packages its resources and
+         it documents the install process.</p>
+      <p>It would be nice though to be able to download a single file, to give that file to a
+         processor to install it automatically, and to rely only on the public URIs associated to
+         XSLT stylesheets, XQuery modules and XProc pipelines. Or with any library of functions,
+         including extension functions. Where other languages define packages, core XML technologies
+         use URIs. But the concept is the same, and we should only care about those URIs when
+         developing, instead of constantly keeping trace of physical files, and installing them
+         again and again on each machine we have to work on. Everything else than those public URIs
+         should be hidden deep in the internals of a simple packaging system supported by most
+         processors, IDEs and server environments.</p>
+      <p>There is not already a formal proposal for such a system, but the idea is quite
+         well-defined, and there is even an implementation of a prototype for Saxon, supporting
+         standard XSLT stylesheets and XQuery modules, as well as extension functions written in
+         Java. I have successfully packaged projects like the DocBook XSLT stylesheets, the DITA
+         Open Toolkit XSLT stylesheets, the XSLStyle stylesheets, or the FunctX library (for XSLT as
+         for XQuery.) The principle is very simple: a graphical application helps you to manage a
+         central repository where it installs the libraries, as well as generated XML Catalogs, and
+         a shell script wrapper or Java helper class configure correctly Saxon, so you can still use
+         Saxon from the command line or from within a Java program. You can then use the public
+         import URI of the installed stylesheet to import the components it provides. This is also
+         possible with extension functions, even though Saxon does not provide any (simple) way to
+         link a URI to an extension function. The trick is to provide a wrapper stylesheet that uses
+         the Saxon-specific URI to access extension functions in Java, while providing a wrapper
+         function defined in the correct namespace for each exported function from Java:</p>
+      <pre class="programlisting">&lt;xsl:stylesheet xmlns:http="http://www.expath.org/mod/http-client"
+                xmlns:http-java="java:org.expath.saxon.HttpClient"
+                ...&gt;
+
+   &lt;xsl:function name="http:send-request" as="item()+"&gt;
+      &lt;xsl:param name="request" as="element(http:request)?"/&gt;
+      &lt;xsl:sequence select="http-java:send-request($request)"/&gt;
+   &lt;/xsl:function&gt;
+
+   ...</pre>
+      <p>On the other hand, the stylesheet using the extension function does not rely on any
+         detail of its implementation. It uses a public absolute URI to import the library and the
+         namespace defined in the specification instead of the Java-bound namespace:</p>
+      <pre class="programlisting">&lt;xsl:stylesheet xmlns:http="http://www.expath.org/mod/http-client" ...&gt;
+
+   &lt;xsl:import href="http://www.expath.org/mod/http-client.xsl"/&gt;
+
+   &lt;xsl:template match="/"&gt;
+      &lt;xsl:sequence select="http:send-request(...)"/&gt;
+      ...</pre>
+      <p>Here is how the different pieces fit together:</p>
+      <p>
+         </p><div class="mediaobject"><img src="Bal2009GEOR090105.png" width="675" alt="png image (Bal2009GEOR090105.png)"></div><p>
+      </p>
+      <p>The admin GUI is used to manage the repository (you can use it from the command line
+         too.) It can install, remove and rename packages. Once installed, everything needed by a
+         module resides in that repository (you can have several repositories, for different
+         purposes or projects,) like stylesheets and queries, XML catalogs and JAR files for
+         extension functions. The shell script is used to execute Saxon from the command line, while
+         the Java helper class is used from within Java programs, for instance in a web application.
+         Both do configure Saxon with the appropriate resolvers to locate properly the modules in
+         the repository. For instance, you can add the following line to your project's Makefile in
+         order to generate the documentation with XSLStyle:</p>
+      <pre class="programlisting">&gt; saxon -xsl:urn:isbn:978-1-894049:xslstyle:xslstyle-dita.xsl -s:my.xsl</pre>
+      <p>This is an interesting example as XSLStyle relies on DocBook or DITA (or both.) Let us
+         examine how I packaged XSLStyle. The original distribution includes a private copy of both
+         DocBook and DITA. This is a bad practice in software engineering, but one has no other
+         choice as long as there is no packaging system out there. The first step is thus to remove
+         those external libraries, and package them separately. Then we have to define a public URI
+         to allow other stylesheets to import the stylesheets provided by this package. This URI
+         does not have to point to an actual resource; this is a logical identifier. Following Ken's
+         advice, I chose <code class="code">urn:isbn:978-1-894049:xslstyle:xslstyle-dita.xsl</code>, and a
+         similar one for the DocBook version. The same way, because we removed the private copies of
+         DocBook and DITA, we have to change the XSLStyle stylesheet accordingly, to use public URIs
+         in their import instructions. As long as the package for DocBook or for DITA are installed,
+         Saxon will find them through the packaging system, by their public URIs.</p>
+      <p>Furthermore, because Saxon is a standalone processor and can be invoked from the command
+         line directly by humans, the shell script allows you to use symbolic names in addition to
+         URIs. URIs are convenient from within program pieces like stylesheets and queries, but are
+         not well-suited to human beings. Depending on how exactly you installed and configured the
+         package, the above example can be rewritten as:</p>
+      <pre class="programlisting">&gt; saxon --xsl=xslstyle-dita -s:my.xsl</pre>
+      <p>This prototype has been implemented only for Saxon so far, but the concept of a central
+         repository is particularly well-suited for XML databases as well, like eXist or MarkLogic,
+         as they already own a private space on the filesystem to save and organize their components
+         and user data. And because the resolving mechanism is built on top of XML Catalogs, any
+         serious XML tool or environment (like oXygen) can be configured to share the same
+         repository. If this packaging system becomes widely used to deliver libraries and
+         applications, we can even think about a central website listing all existing packages,
+         allowing for automatic package management over the Internet. Like the APT system for
+         Debian, CTAN for TeX or CPAN for Perl. The later inspired in fact the concept and the name
+         of CXAN for such a system, thanks to Jim Fuller and Mohamed Zergaoui, which stands for
+         Comprehensive X* Archive Network (replace X* with your preferred core XML
+         technology.)</p>
+   </div>
+   <div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d62e509"></a>Conclusion</h2></div></div></div>
+      
+      <p>EXPath has just been launched, right after XML Prague 2009, and yet there are very
+         valuable modules. The most exiting of them being maybe the packaging system. Besides other
+         modules defined as function libraries, this system is a good example of a module that is
+         not a library, but rather a tool or a framework which various core XML technologies could
+         benefit from. Other ideas include nested sequences, useful to define and manipulate complex
+         data structures, first-class function items, to define higher-order functions, XML and HTML
+         parsers, or filesystem access. Another module under investigation aims to define an
+         abstract web container and the way a piece of X* code can plug itself into this container
+         to be evaluated when it receives requests from clients, as well as the communication means
+         between the container and the user code. Something similar to Java EE's servlets. For now,
+         there is no abstract description of the services provided by an X* server environment, like
+         an XML database. Given such a description of an abstract container, third-party frameworks
+         could be written in an implementation-independent way, like web MVC frameworks and
+         frameworks for XRX applications.</p>
+      <p>That gives me the opportunity to introduce three sibling extension projects: EXQuery,
+         EXSLT 2.0 and EXProc. Without any surprise, their goal is to define extensions to
+         respectively XQuery, XSLT 2.0 and XProc. Each of those projects is complementary with
+         EXPath, which has been created in the first place to avoid having to specify several times
+         the same features, in an non-compatible way.</p>
+      <p>There is a bunch of work to define new extensions, to write their specifications, to
+         implement and test them, to document them. Everyone is welcome to help on the project (and
+         I am sure on the other EX* projects.) Just use the extensions and give us feedback on the
+         mailing list: <a class="ulink" href="http://www.expath.org/" target="_top">http://www.expath.org/</a>.</p>
+      <p>See you soon!</p>
+   </div>
+</div><div id="balisage-footer"><h3 style="font-family: serif; margin:0.25em"><i>Balisage:</i>&nbsp;<small>The Markup Conference</small></h3></div></body></html>
