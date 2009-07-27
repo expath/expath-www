@@ -11,35 +11,13 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String xml:space="preserve">Sitemap - build</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">file:/H:/xsl/expath/website/src/sitemap.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
                                     <String xml:space="preserve">Balisage</String>
                                 </field>
                                 <field name="type">
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">file:/H:/xsl/expath/misc/2009-balisage/Bal2009GEOR0901.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">Balisage</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">misc/2009-balisage/Bal2009GEOR0901.xml</String>
+                                    <String xml:space="preserve">misc/2009-balisage/paper/Bal2009GEOR0901.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -55,17 +33,6 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String xml:space="preserve">Balisage</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">file:/../../H:/xsl/expath/misc/2009-balisage/Bal2009GEOR0901.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
                                     <String xml:space="preserve">GData main (mac)</String>
                                 </field>
                                 <field name="type">
@@ -73,17 +40,6 @@
                                 </field>
                                 <field name="url">
                                     <String xml:space="preserve">website/src/modules/http-client/samples-sample-7.xsl</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">Sitemap - build</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">file:/../../H:/xsl/expath/website/src/sitemap.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -1632,7 +1588,13 @@
     <projectTree name="expath.xpr">
         <folder name="misc">
             <folder name="balisage">
-                <file name="misc/2009-balisage/Bal2009GEOR0901.xml"/>
+                <folder name="examples"/>
+                <folder name="paper">
+                    <file
+                        name="file:/H:/xsl/expath/misc/2009-balisage/paper/Bal2009GEOR0901.xml"
+                    />
+                </folder>
+                <folder name="presentation"/>
             </folder>
         </folder>
         <folder name="website">
