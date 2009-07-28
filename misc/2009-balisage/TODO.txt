@@ -4,3 +4,9 @@
 * See how it is possible to use user fields from ODF documents in the
   Compound Document Template pattern (see text:user-field-decl and
   text:user-field-get.)
+
+
+  At Montreal!
+  ============
+
+* Check screen resolution.
