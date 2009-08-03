@@ -16,8 +16,10 @@
          <http:request href="http://www.balisage.net/" method="get"/>
       </xsl:variable>
 
-      <!-- actually sending it -->
-      <xsl:sequence select="http:send-request($req)[1]"/>
+      <result>
+         <!-- actually sending it -->
+         <xsl:sequence select="http:send-request($req)"/>
+      </result>
 
    </xsl:template>
 

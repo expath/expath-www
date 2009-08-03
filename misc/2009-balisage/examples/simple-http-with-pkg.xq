@@ -5,4 +5,4 @@ import module namespace http = "http://www.expath.org/mod/http-client"
 
 http:send-request(
    <http:request href="http://www.balisage.net/" method="get"/>
-)[1]
+)
