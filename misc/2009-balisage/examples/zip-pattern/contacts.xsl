@@ -13,19 +13,19 @@
 
    <xsl:import href="http://www.expath.org/mod/zip.xsl"/>
 
-   <xsl:param name="pattern" as="xs:anyURI" required="yes"/> <!-- pattern ZIP file -->
-   <xsl:param name="output"  as="xs:anyURI" required="yes"/> <!-- output ZIP file -->
+   <xsl:param name="template" as="xs:anyURI" required="yes"/> <!-- template ZIP file -->
+   <xsl:param name="output"   as="xs:anyURI" required="yes"/> <!-- output ZIP file -->
 
    <!--
-      $pattern and $output are resolved against the static base URI (the stylesheet)
+      $template and $output are resolved against the static base URI (the stylesheet)
    -->
-   <xsl:variable name="impl:pattern" as="xs:anyURI" select="resolve-uri($pattern)"/>
-   <xsl:variable name="impl:output"  as="xs:anyURI" select="resolve-uri($output)"/>
+   <xsl:variable name="impl:template" as="xs:anyURI" select="resolve-uri($template)"/>
+   <xsl:variable name="impl:output"   as="xs:anyURI" select="resolve-uri($output)"/>
 
    <xsl:template match="/">
       <xsl:variable name="content" as="element(office:document-content)">
          <xsl:variable name="c" as="element(office:document-content)" select="
-            zip:xml-entry($pattern, 'content.xml')/*"/>
+            zip:xml-entry($impl:template, 'content.xml')/*"/>
          <xsl:apply-templates mode="impl:odt" select="$c">
             <xsl:with-param name="contacts" select="contacts" tunnel="yes"/>
          </xsl:apply-templates>
@@ -101,13 +101,13 @@
    <xsl:template name="impl:zip">
       <xsl:param name="content" as="element(office:document-content)"/>
       <xsl:variable name="zip" as="element(zip:file)">
-         <zip:file href="{ $pattern }">
+         <zip:file href="{ $impl:template }">
             <zip:entry name="content.xml" output="xml">
                <xsl:sequence select="$content"/>
             </zip:entry>
          </zip:file>
       </xsl:variable>
-      <xsl:sequence select="zip:update-entries($zip, $output)"/>
+      <xsl:sequence select="zip:update-entries($zip, $impl:output)"/>
    </xsl:template>
 
 </xsl:stylesheet>
