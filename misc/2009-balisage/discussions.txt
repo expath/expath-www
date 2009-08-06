@@ -14,6 +14,8 @@ Here are useful points I'd like to discuss with some attendees.
  - Discuss the Packaging System.  How could it best integrate with
    their processors?  Are they interested in supporting it?
 
+ - In particular during the MarkLogic event...
+
 *** E* projects members
 
  - Discuss some ideas in front of a beer, some evening?
