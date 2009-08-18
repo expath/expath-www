@@ -3270,6 +3270,11 @@
                             name="website/src/modules/http-client/samples-sample-4.xml"
                         />
                     </folder>
+                    <folder name="packaging">
+                        <file
+                            name="website/src/modules/packaging/index.xml"
+                        />
+                    </folder>
                 </folder>
                 <file name="website/src/about.xml"/>
                 <file name="website/src/contact.xml"/>
