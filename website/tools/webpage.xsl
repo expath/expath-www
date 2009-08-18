@@ -14,8 +14,10 @@
 
    <xsl:param name="analytics-id" as="xs:string?" select="'UA-5463082-2'"/>
 
-   <!--xsl:variable name="root" as="xs:string?" select="
-       if ( /webpage/@root ) then concat(/webpage/@root, '/') else ()"/-->
+   <!-- URIs used in the document, relative to the root of the website -->
+   <xsl:variable name="style-default" select="'style/default.css'"/>
+   <xsl:variable name="style-serial"  select="'style/serial-oxygen.css'"/>
+   <xsl:variable name="img-logo"      select="'images/expath-logo.png'"/>
 
    <!-- By default, copy XHTML elements. Simple way to escape the XML format. -->
    <xsl:template match="h:*">
@@ -44,8 +46,9 @@
                content="EXPath - Collaboratively Defining Open Standards for Portable XPath Extensions" />
             <meta name="keywords"
                content="EXPath XPath XQuery XSLT functions standards open collaborative portable extensions XML development" />
-            <link rel="stylesheet" type="text/css" href="{ $root }style/default.css"/>
-            <link rel="stylesheet" type="text/css" href="{ $root }style/serial-oxygen.css"/>
+            <link rel="stylesheet" type="text/css"  href="{ $root }{ $style-default }"/>
+            <link rel="stylesheet" type="text/css"  href="{ $root }{ $style-serial }"/>
+            <link rel="stylesheet" type="image/png" href="{ $root }{ $img-logo }"/>
          </head>
          <body>
             <div id="upbg"/>
