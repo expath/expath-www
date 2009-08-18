@@ -1,14 +1,10 @@
 SAXON=$$HOME/bin/saxon
 
-MAP_KEY=ABQIAAAApauHa22s3jjpFII3xsFOmBQqOhBDBnQJ8Ao-CIne506W8LCJ2BRLlYzn22KelrVOyoJ7EA7OLwsGgw
+MAP_KEY=****
 
-USER=fgeorges.test
-PWD=testtest
+USER=username
+PWD=****
 OUT=contacts-test.odt
-
-# USER=fgeorges
-# PWD=****
-# OUT=contacts-fg.odt
 
 contacts:
 	echo contacts...
