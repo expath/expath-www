@@ -11,8 +11,15 @@
    </section>
    <divider/>
    <primary>
+      <title>Packaging System</title>
+      <details>Packaging and delivering all your X* stuff</details>
+      <para>A standard packaging system for several core XML technologies, like XSLT, XQuery, XProc
+         and XML Schema. Once packaged, libraries can be deployed on every supporting processor. See
+         the <link href="modules/packaging/">packaging page</link>.</para>
+   </primary>
+   <primary>
       <title>HTTP Client</title>
-      <details>Sending HTTP requests</details>
+      <details>Sending HTTP requests, and receiving the responses</details>
       <para>This module defines a set of functions to send HTTP requests and handle responses. This
          is a quite low-level functionality, allowing one to deal with most aspects of the HTTP
          protocol, while integrating smoothly within the <link
@@ -20,7 +27,7 @@
             href="modules/http-client/">module page</link> for details.</para>
    </primary>
    <primary>
-      <title>ZIP</title>
+      <title>ZIP Facility</title>
       <details>Reading and writing ZIP files</details>
       <para>This module has not been released yet, but will provide a set of functions to read the
          structure of a ZIP file, read entries out of a ZIP file, update entries in an existing ZIP

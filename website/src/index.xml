@@ -44,6 +44,20 @@
          work-in-progress function libraries.</para>
    </primary>
    <primary>
+      <title>Packaging System</title>
+      <para>An important contribution to the X* community is the packaging system of EXPath. The
+         goal is to be able to package any set of X* files into a single ZIP file, with enough
+         information to be installed within a processor. You can for instance use it to deliver an
+         XSLT library of stylesheets that transforms DocBook into HTML, or XQuery files providing
+         support for Google REST Web services. Of course, packaging extension functions (written in
+         a processor-dependent language) is also supported.</para>
+      <para>This is a work-in-progress for now, but an implementation prototype exists yet for Saxon
+         and eXist. For both those processors, it supports XSLT and XQuery, either standard files or
+         Java extensions. The goal is to support XSLT, XQuery, XProc, XML Schema and various DSDL
+         technologies. See the <link href="modules/packaging/">Packaging System</link> homepage for
+         further details and for implementations.</para>
+   </primary>
+   <primary>
       <title>Extensions to the language</title>
       <para>Besides function libraries, we want to address more fundamental XPath issues as well,
          right at the language level. One obvious example is nested sequences. XPath 2.0 does not

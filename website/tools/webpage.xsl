@@ -17,7 +17,7 @@
    <!-- URIs used in the document, relative to the root of the website -->
    <xsl:variable name="style-default" select="'style/default.css'"/>
    <xsl:variable name="style-serial"  select="'style/serial-oxygen.css'"/>
-   <xsl:variable name="img-logo"      select="'images/expath-logo.png'"/>
+   <xsl:variable name="img-logo"      select="'images/expath-icon.png'"/>
 
    <!-- By default, copy XHTML elements. Simple way to escape the XML format. -->
    <xsl:template match="h:*">

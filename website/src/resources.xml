@@ -5,37 +5,53 @@
    <title>EXPath - Resources</title>
    <section>
       <title>Resources</title>
-      <list>
-         <item><link href="http://www.exslt.org/">EXSLT</link> project</item>
-         <item><link href="http://www.exquery.org/">EXQuery</link> project</item>
-         <item><link href="http://www.exproc.org/">EXProc</link> project</item>
-         <item><link href="http://www.exist-db.org/">eXist</link> XML database, and its <link
-               href="http://demo.exist-db.org/exist/xquery/functions.xql">extension modules</link>.
-            Please note that this page documents only the extension modules activated on the build
-            of eXist that runs the website, for instance the HTTP Client module is not activated by
-            default, so it is not present in this online documentation. To have all the modules, you
-            have to install eXist and enable all modules.</item>
-         <item><link href="http://www.marklogic.com/">MarkLogic</link> XML database, and its huge
-               <link href="http://xqzone.marklogic.com/pubs/4.0/apidocs/All.html">extension module
-               set</link>.</item>
-         <item><link href="http://www.saxonica.com/">Saxon</link> XSLT &amp; XQuery processor,
-            and its various <link href="http://saxonica.com/documentation/extensions/intro.html"
-               >extensions</link> (functions and others...)</item>
-         <item><link href="http://www.zorba-xquery.com/">Zorba</link> XQuery processor. A big part
-            of the <link href="http://www.zorba-xquery.com/doc/zorba-0.9.5/zorba/html/">user
-               manual</link> is about various extensions.</item>
-         <item><link href="http://mxquery.org/">MXQuery</link> XQuery processor. It supports various
-               <link href="http://mxquery.org/?page_id=107">extensions</link>, most of them are
-            compatible with (have the exact same interface than) Zorba's extensions; that's worth
-            noting.</item>
-         <item><link href="http://xqilla.sf.net/">XQilla</link> XQuery processor. See the XQilla's
-               <link href="http://xqilla.sf.net/ExtensionFunctions">extension functions</link>. It
-            is worth noting it also supports the <link
-               href="http://snelson.org.uk/~jpcs/higher-order-functions.html">first-class function
-               objects</link> proposal for XQuery (by John Snelson, the author of XQilla.)</item>
-         <item><link href="http://www.xmlmind.com/qizx/">Qizx</link> XML database. The <link
-               href="http://www.xmlmind.com/qizx/_distrib/docs/manual/reference.html">reference
-               part</link> of its manual is almost all about extensions.</item>
-      </list>
+      <divider/>
+      <primary>
+         <title>Processors</title>
+         <list>
+            <item><link href="http://www.exslt.org/">EXSLT</link> project</item>
+            <item><link href="http://www.exquery.org/">EXQuery</link> project</item>
+            <item><link href="http://www.exproc.org/">EXProc</link> project</item>
+            <item><link href="http://www.exist-db.org/">eXist</link> XML database, and its <link
+                  href="http://demo.exist-db.org/exist/xquery/functions.xql">extension
+                  modules</link>. Please note that this page documents only the extension modules
+               activated on the build of eXist that runs the website, for instance the HTTP Client
+               module is not activated by default, so it is not present in this online
+               documentation. To have all the modules, you have to install eXist and enable all
+               modules.</item>
+            <item><link href="http://www.marklogic.com/">MarkLogic</link> XML database, and its huge
+                  <link href="http://xqzone.marklogic.com/pubs/4.0/apidocs/All.html">extension
+                  module set</link>.</item>
+            <item><link href="http://www.saxonica.com/">Saxon</link> XSLT &amp; XQuery
+               processor, and its various <link
+                  href="http://saxonica.com/documentation/extensions/intro.html">extensions</link>
+               (functions and others...)</item>
+            <item><link href="http://www.zorba-xquery.com/">Zorba</link> XQuery processor. A big
+               part of the <link href="http://www.zorba-xquery.com/doc/zorba-0.9.5/zorba/html/">user
+                  manual</link> is about various extensions.</item>
+            <item><link href="http://mxquery.org/">MXQuery</link> XQuery processor. It supports
+               various <link href="http://mxquery.org/?page_id=107">extensions</link>, most of them
+               are compatible with (have the exact same interface than) Zorba's extensions; that's
+               worth noting.</item>
+            <item><link href="http://xqilla.sf.net/">XQilla</link> XQuery processor. See the
+               XQilla's <link href="http://xqilla.sf.net/ExtensionFunctions">extension
+                  functions</link>. It is worth noting it also supports the <link
+                  href="http://snelson.org.uk/~jpcs/higher-order-functions.html">first-class
+                  function objects</link> proposal for XQuery (by John Snelson, the author of
+               XQilla.)</item>
+            <item><link href="http://www.xmlmind.com/qizx/">Qizx</link> XML database. The <link
+                  href="http://www.xmlmind.com/qizx/_distrib/docs/manual/reference.html">reference
+                  part</link> of its manual is almost all about extensions.</item>
+         </list>
+      </primary>
+      <primary>
+         <title>EXPath resources</title>
+         <list>
+            <item>The introduction to EXPath presented by Florent Georges at Balisage 2009: <link
+                  href="http://www.balisage.net/Proceedings/vol3/html/Georges01/BalisageVol3-Georges01.html"
+                  >the proceedings</link>.</item>
+            <item>TODO: Publish Balisage presentation and samples...</item>
+         </list>
+      </primary>
    </section>
 </webpage>

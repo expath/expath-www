@@ -255,6 +255,10 @@ padding: 0em 2.0em 1.3em 2.0em;
 font-weight: normal;
 color: #fff;
 font-size: 2.5em;
+text-indent: 40px;
+background-image: url("../images/expath-icon.png");
+background-repeat: no-repeat;
+background-position: center left;
 }
 
 #headercontent h1 sup

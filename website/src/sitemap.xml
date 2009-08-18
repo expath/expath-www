@@ -26,6 +26,9 @@
          <page src="implems.xml"  href="implems.html" menu="hc"/>
          <page src="samples.xml"  href="samples.html" menu="hc"/>
       </dir>
+      <dir base="packaging/" href="packaging/">
+         <page src="index.xml" href="index.html" menu="pkg"/>
+      </dir>
    </dir>
 
    <menu name="main">
@@ -43,6 +46,11 @@
       <item name="implems" href="implems.html"        title="EXPath HTTP Client Implems">Implementations</item>
       <item name="samples" href="samples.html"        title="EXPath HTTP Client Samples">Samples</item>
       <item name="spec"    href="../http-client.html" title="EXPath HTTP Client Spec">Specification</item>
+   </menu>
+
+   <menu name="pkg">
+      <item name="parent" href="../../modules.html" title="Modules">[ ../Modules ]</item>
+      <item name="index"  href="."                  title="EXPath Packaging System Home">Packaging</item>
    </menu>
 
 </sitemap>
