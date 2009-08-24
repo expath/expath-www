@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../webpage.xsl"?>
+
+<webpage menu="index" root="../..">
+   <title>EXPath - Packaging System</title>
+   <section>
+      <title>Packaging System</title>
+      <image src="../../images/packaging.jpg" alt="Packaging"/>
+      <para>Work in progress...</para>
+   </section>
+   <divider/>
+   <primary>
+      <title>Prototype</title>
+      <para>TODO: Publish the current prototype.</para>
+   </primary>
+</webpage>
