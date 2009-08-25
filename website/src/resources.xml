@@ -7,7 +7,7 @@
       <title>Resources</title>
       <divider/>
       <primary>
-         <title>Processors</title>
+         <title>Processors (and their extensions)</title>
          <list>
             <item><link href="http://www.exslt.org/">EXSLT</link> project</item>
             <item><link href="http://www.exquery.org/">EXQuery</link> project</item>
@@ -50,7 +50,17 @@
             <item>The introduction to EXPath presented by Florent Georges at Balisage 2009: <link
                   href="http://www.balisage.net/Proceedings/vol3/html/Georges01/BalisageVol3-Georges01.html"
                   >the proceedings</link>.</item>
-            <item>TODO: Publish Balisage presentation and samples...</item>
+            <item>The Balisage presentation, and its examples, are going to be published on the
+               official Balisage website. In the meanwhile, you can found here the <link
+                  href="http://www.expath.org/tmp/balisage-expath.pdf">presentation</link>
+               and the <link href="http://www.expath.org/tmp/balisage-examples.zip">examples</link>.</item>
+         </list>
+      </primary>
+      <primary>
+         <title>Existing extension projects</title>
+         <list>
+            <item>A <link href="http://www.xqsharp.com/xqsharp/functions.htm">math function
+                  library</link> for the XQSharp processor (for .NET.)</item>
          </list>
       </primary>
    </section>
