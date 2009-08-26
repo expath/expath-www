@@ -5,8 +5,10 @@
    <title>EXPath - Packaging System</title>
    <section>
       <title>Packaging System</title>
-      <image src="../../images/packaging.jpg" alt="Packaging"/>
-      <para>Work in progress...</para>
+      <image src="../../images/packaging.jpg" alt="Taps and pipes"/>
+      <para>This module does not define a set of XPath functions, but rather a file format to
+         package XML related ... XSLT, XQuery &amp; XProc ... might be extended to others ...
+         work in progress ...</para>
    </section>
    <divider/>
    <primary>
