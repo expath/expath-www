@@ -9,13 +9,19 @@
          asked questions. It will evolve over time, so be sure to check it from time to time.</para>
       <list>
          <item>
-            <link hre="#licence">What's the licencing?</link>
+            <link href="#who">How does decide what to define in EXPath?</link>
          </item>
          <item>
-            <link hre="#version">Versioning policy</link>
+            <link href="#licence">What's the licencing?</link>
          </item>
          <item>
-            <link hre="#scope">What's the exact scope of EXPath?</link>
+            <link href="#version">Versioning policy</link>
+         </item>
+         <item>
+            <link href="#scope">What's the exact scope of EXPath?</link>
+         </item>
+         <item>
+            <link href="#xpath21">Is not there a risk to be redundant with XPath 2.1?</link>
          </item>
       </list>
    </section>
@@ -58,4 +64,32 @@
       <para>XSLT and XQuery should not have any particular position in this project, but because
          their tight relationships with each other, the border is not always obvious.</para>
    </primary>
+   <primary id="xpath21">
+      <title>Is not there a risk to be redundant with XPath 2.1?</title>
+      <para>Yes, there is a risk. Actually, there is a risk to define something that will be in
+         XPath 2.1, and there is the risk to rely on something that will change in the different
+         drafts. But the risk can be reduced by asking the Working Group if something similar is on
+         its way to the XPath 2.1 Working Draft, and even if it is the case, that could be
+         interesting to have a parallel work to give feedback to the WG.</para>
+      <para>So the risk does exist, and we have to keep this future draft in mind. But this is
+         absolutely not a reason to not work on EXPath for now. This is the responsibility of each
+         editor to evaluate the situation and see if he wants to take the risk or not, and if he is
+         ready to follow closely the evolution of XPath 2.1.</para>
+   </primary>
+   <secondary id="who" box="true">
+      <title>How does decide what to define in EXPath?</title>
+      <para>You do!</para>
+      <para>EXPath is a collaborative, community-driven project. If you need a module which does not
+         exist in EXPath, but you think would be worth having as an EXPath module, you can propose
+         it on the <link href="lists.html">mailing list</link>.</para>
+      <para>But do not expect to find someone telling you that this is the best idea he never heard,
+         and who is ready to invest all his spare time in defining and implementing what you want.
+         The best option is to first discuss it on the list, to be sure no one else is working on a
+         similar feature, or that such a feature does not exist somewhere else. And maybe get some
+         advice of people who have thought about the same ideas. Then write a formal specification:
+         the function prototypes, their behavior, the context, etc. This will be concrete material
+         to discuss and to propose to be reviewed by pairs.</para>
+      <para>Discussing a module that no one is ready to actually spend time on it is just loosing
+         time. So launch your preferred editor and start writing down your ideas!</para>
+   </secondary>
 </webpage>
