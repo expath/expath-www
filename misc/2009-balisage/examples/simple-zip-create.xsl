@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.1" encoding="UTF-8"?>
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns:zip="http://www.expath.org/mod/zip"
@@ -23,6 +23,17 @@
             <!-- the 'mimetype' file within the ZIP -->
             <zip:entry name="mimetype" output="text">
                <xsl:text>application/epub+zip</xsl:text>
+            </zip:entry>
+            <!-- some XHTML file within the ZIP -->
+            <zip:entry name="hello.html" output="xhtml">
+               <html xmlns="http://www.w3.org/1999/xhtml" xmlns:zip="">
+                  <head>
+                     <title>Hello, world</title>
+                  </head>
+                  <body>
+                     <p>Hello, world!</p>
+                  </body>
+               </html>
             </zip:entry>
             <!-- the 'META-INF' dir within the ZIP -->
             <zip:dir name="META-INF">
