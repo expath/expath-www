@@ -3518,9 +3518,9 @@
                             name="website/src/modules/http-client/samples-sample-4.xml"
                         />
                     </folder>
-                    <folder name="packaging">
+                    <folder name="pkg">
                         <file
-                            name="website/src/modules/packaging/index.xml"
+                            name="file:/H:/xsl/expath/website/src/modules/pkg/index.xml"
                         />
                     </folder>
                 </folder>
