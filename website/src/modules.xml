@@ -15,7 +15,7 @@
       <details>Packaging and delivering all your X* stuff</details>
       <para>A standard packaging system for several core XML technologies, like XSLT, XQuery, XProc
          and XML Schema. Once packaged, libraries can be deployed on every supporting processor. See
-         the <link href="modules/packaging/">packaging page</link>.</para>
+         the <link href="modules/pkg/">packaging page</link>.</para>
    </primary>
    <primary>
       <title>HTTP Client</title>

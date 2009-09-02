@@ -26,7 +26,7 @@
          <page src="implems.xml"  href="implems.html" menu="hc"/>
          <page src="samples.xml"  href="samples.html" menu="hc"/>
       </dir>
-      <dir base="packaging/" href="packaging/">
+      <dir base="pkg/" href="pkg/">
          <page src="index.xml" href="index.html" menu="pkg"/>
       </dir>
    </dir>
