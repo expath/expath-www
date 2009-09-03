@@ -6,18 +6,37 @@
    <section>
       <title>Packaging System</title>
       <image src="../../images/packaging.jpg" alt="Taps and pipes"/>
-      <para>This module does not define a set of XPath functions, but rather a file format to
-         package XML related ... XSLT, XQuery &amp; XProc ... might be extended to others ...
-         work in progress ...</para>
+      <para>Unlike most the other modules, the Packaging System module does not define a set of
+         XPath functions, but rather a file format to package libraries written in some core XML
+         technologies. The goal is to support XSLT, XQuery and XProc in a first time, but support
+         for other related technologies could be added in the future (like XML Schema, XForms, etc.)
+         It also supports packaging of extension functions written in a processor-specific way (for
+         instance in Java,) for mainstream processors. it is also extensible by third parties, for
+         instance to support processor-dependent features.</para>
    </section>
    <divider/>
    <primary>
-      <title>Prototype</title>
+      <title>Prototype for Saxon and eXist</title>
+      <para>The ideal situation would be to have support for this packaging system right into the
+         various processors, tools and IDEs. Vendors will follow if there are enough users of this
+         system, and users will follow if there is enough support into their tools. So to break that
+         circle, we have to provide an implementation for various processors, even a partial
+         implementation. Doing so, we can get feedback from the community while defining the module,
+         the idea being the module will be easier to explain and that will ease discussions (by
+         having something concrete to discuss about...)</para>
+      <para>So you can find here a prototype implementation for Saxon, and another one for eXist.
+         They are not production-ready, but they should be stable enough to help you installing and
+         managing the libraries using the Packaging System (all the EXPath module implementations,
+         of course, but we plan also to help writers of major XSLT and XQuery libraries to package
+         their work, for instance the stylesheets for DocBook, XSLStyle, FunctX for both XSLT and
+         XQuery, the stylesheets for DITA, the FXSL library, etc.)</para>
       <para>TODO: Publish the current prototype.</para>
    </primary>
    <secondary box="true">
       <para>If a technology is too complicated, no matter how wonderful it is and how easy it makes
          a user's life, it won't be adopted on a wide scale.</para>
-      <para><em>--- <link href="http://www.ddj.com/184404686">James Clark</link></em></para>
+      <para>
+         <em>-- <link href="http://www.ddj.com/184404686">James Clark</link></em>
+      </para>
    </secondary>
 </webpage>
