@@ -3475,8 +3475,6 @@
                         <file
                             name="misc/2009-balisage/examples/zip-pattern/contacts.xsl"/>
                         <file
-                            name="file:/H:/xsl/expath/misc/2009-balisage/examples/simple-zip-create.xsl"/>
-                        <file
                             name="misc/2009-balisage/examples/simple-zip-extract.xsl"/>
                         <file
                             name="misc/2009-balisage/examples/simple-zip-list.xsl"
@@ -3519,9 +3517,7 @@
                         />
                     </folder>
                     <folder name="pkg">
-                        <file
-                            name="file:/H:/xsl/expath/website/src/modules/pkg/index.xml"
-                        />
+                        <file name="website/src/modules/pkg/index.xml"/>
                     </folder>
                 </folder>
                 <file name="website/src/about.xml"/>

@@ -265,6 +265,13 @@
       </p>
    </xsl:template>
 
+   <xsl:template match="emph">
+      <em>
+         <xsl:copy-of select="@*"/>
+         <xsl:apply-templates/>
+      </em>
+   </xsl:template>
+
    <xsl:template match="list">
       <ul>
          <xsl:copy-of select="@*"/>
