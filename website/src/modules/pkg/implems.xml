@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<webpage menu="implems" root="../..">
+   <title>EXPath - Package Managers</title>
+   <section>
+      <title>Package Managers</title>
+      <image src="../../images/packaging.jpg" alt="Taps and pipes"/>
+      <para>The only implementation of a package manager that has been released so far is for the
+            <link href="http://www.exist-db.org/">eXist database</link>. An implementation for <link
+            href="http://www.saxonica.com/">Saxon</link> (both XSLT and XQuery) is almost ready, but
+         still needs some cosmetic work in order to be released. This implementation for eXist is
+         just a prototype, provided as an external application to install and delete packages, and
+         based on the being-defined Packaging System module. So this module, and this implementation
+         can evolve (and will do) in the near future, depending on the feedback got from the
+         community.</para>
+      <para>The package manager for eXist is provided as a single <link
+            href="expath-pkg-exist-0.1.jar">JAR file</link>. Just download it and launch it the
+         usual way (depending on your platform, that could be by double-clicking on it, or by
+         executing the command <code>java -jar expath-pkg-exist-0.1.jar</code>.) For now, it
+         requires a windowing system, but a text oriented interface will be provided later, to
+         enable its usage on graphical-less environments, like servers. You can find a step-by-step
+         presentation of this package manager in the following <link href="TODO: ...">blog
+            post</link>.</para>
+   </section>
+</webpage>
