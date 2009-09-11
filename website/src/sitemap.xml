@@ -27,7 +27,8 @@
          <page src="samples.xml"  href="samples.html" menu="hc"/>
       </dir>
       <dir base="pkg/" href="pkg/">
-         <page src="index.xml" href="index.html" menu="pkg"/>
+         <page src="index.xml"   href="index.html"   menu="pkg"/>
+         <page src="implems.xml" href="implems.html" menu="pkg"/>
       </dir>
    </dir>
 
@@ -49,8 +50,9 @@
    </menu>
 
    <menu name="pkg">
-      <item name="parent" href="../../modules.html" title="Modules">[ ../Modules ]</item>
-      <item name="index"  href="."                  title="EXPath Packaging System Home">Packaging</item>
+      <item name="parent"  href="../../modules.html" title="Modules">[ ../Modules ]</item>
+      <item name="index"   href="."                  title="EXPath Packaging System Home">Packaging</item>
+      <item name="implems" href="implems.html"       title="EXPath Package Managers">Implementations</item>
    </menu>
 
 </sitemap>
