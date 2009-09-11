@@ -5,7 +5,7 @@
    <title>EXPath - HTTP Client Implementations</title>
    <section>
       <title>HTTP Client Implementations</title>
-      <image src="../../images/web2.jpg" alt="Machine"/>
+      <image src="../../images/web2.jpg" alt="Spider web"/>
       <para>For now, there are three implementations: for <link href="http://www.saxonica.com/"
             >Saxon</link> (XSLT 2.0 and XQuery,) for <link href="http://www.exist-db.org/"
             >eXist</link>, and for <link href="http://www.marklogic.com/">MarkLogic Server</link>.
