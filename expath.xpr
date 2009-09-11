@@ -3621,29 +3621,19 @@
             <folder name="src">
                 <folder name="modules">
                     <folder name="http-client">
-                        <file
-                            name="website/src/modules/http-client/implems.xml"/>
-                        <file
-                            name="website/src/modules/http-client/index.xml"/>
-                        <file
-                            name="website/src/modules/http-client/index-sample-1.xq"/>
-                        <file
-                            name="website/src/modules/http-client/index-sample-2.xml"/>
-                        <file
-                            name="website/src/modules/http-client/index-sample-3.xsl"/>
-                        <file
-                            name="website/src/modules/http-client/samples.xml"/>
-                        <file
-                            name="website/src/modules/http-client/samples-sample-1.xsl"/>
-                        <file
-                            name="website/src/modules/http-client/samples-sample-2.xml"/>
-                        <file
-                            name="website/src/modules/http-client/samples-sample-3.xml"/>
-                        <file
-                            name="website/src/modules/http-client/samples-sample-4.xml"
-                        />
+                        <file name="website/src/modules/http-client/implems.xml"/>
+                        <file name="website/src/modules/http-client/index.xml"/>
+                        <file name="website/src/modules/http-client/index-sample-1.xq"/>
+                        <file name="website/src/modules/http-client/index-sample-2.xml"/>
+                        <file name="website/src/modules/http-client/index-sample-3.xsl"/>
+                        <file name="website/src/modules/http-client/samples.xml"/>
+                        <file name="website/src/modules/http-client/samples-sample-1.xsl"/>
+                        <file name="website/src/modules/http-client/samples-sample-2.xml"/>
+                        <file name="website/src/modules/http-client/samples-sample-3.xml"/>
+                        <file name="website/src/modules/http-client/samples-sample-4.xml"/>
                     </folder>
                     <folder name="pkg">
+                        <file name="website/src/modules/pkg/implems.xml"/>
                         <file name="website/src/modules/pkg/index.xml"/>
                     </folder>
                 </folder>
