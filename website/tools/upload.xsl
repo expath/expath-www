@@ -16,14 +16,27 @@
    <xsl:param name="username"  select="'admin'"/>
    <xsl:param name="password"  select="'adminadmin'"/-->
 
+   <xsl:variable name="my:href-base" select="resolve-uri($href-base, base-uri(sitemap))"/>
+
    <xsl:template match="/">
+      <xsl:sequence select="my:delete-dir($my:href-base)"/>
       <xsl:apply-templates select="*" mode="map"/>
    </xsl:template>
 
+   <xsl:function name="my:delete-dir" xmlns:file="java:java.io.File">
+      <xsl:param name="dir" as="xs:anyURI"/>
+      <xsl:variable name="f" select="file:new($dir)"/>
+      <xsl:if test="file:exists($f)">
+         <xsl:sequence xmlns:utils="java:org.apache.commons.io.FileUtils"
+                       select="utils:deleteDirectory($f)"/>
+      </xsl:if>
+   </xsl:function>
+
    <xsl:template match="sitemap" mode="map">
       <xsl:apply-templates select="*" mode="map">
-         <xsl:with-param name="base" select="base-uri(.)"/>
-         <xsl:with-param name="href" select="resolve-uri($href-base, base-uri(.))"/>
+         <xsl:with-param name="base"  select="base-uri(.)"/>
+         <xsl:with-param name="href"  select="$my:href-base"/>
+         <xsl:with-param name="menus" select="menu" tunnel="yes"/>
       </xsl:apply-templates>
    </xsl:template>
 
@@ -40,24 +53,61 @@
       </xsl:apply-templates>
    </xsl:template>
 
-   <xsl:variable name="my:content-types-alist" as="element()+">
+   <xsl:template match="dir[@copy/xs:boolean(.)]" mode="map">
+      <xsl:param name="base" as="xs:anyURI"/>
+      <xsl:param name="href" as="xs:anyURI"/>
+      <xsl:variable name="b" select="if ( @base ) then resolve-uri(@base, $base) else $base"/>
+      <xsl:variable name="h" select="if ( @href ) then resolve-uri(@href, $href) else $href"/>
+      <xsl:sequence xmlns:utils="java:org.apache.commons.io.FileUtils"
+                    xmlns:file="java:java.io.File"
+                    select="utils:copyDirectory(file:new($b), file:new($h))"/>
+      <xsl:if test="exists(* except exclude)">
+         <xsl:sequence select="error((), 'dir[@copy] can only have ''exclude'' children')"/>
+      </xsl:if>
+      <xsl:apply-templates select="*" mode="map">
+         <xsl:with-param name="base" select="$b"/>
+         <xsl:with-param name="href" select="$h"/>
+      </xsl:apply-templates>
+   </xsl:template>
+
+   <xsl:template match="exclude" mode="map">
+      <xsl:param name="base"  as="xs:anyURI"/>
+      <xsl:param name="href"  as="xs:anyURI"/>
+      <xsl:variable name="h" select="resolve-uri(@name, $href)"/>
+      <xsl:sequence xmlns:utils="java:org.apache.commons.io.FileUtils"
+                    xmlns:file="java:java.io.File"
+                    select="utils:forceDelete(file:new($h))"/>
+   </xsl:template>
+
+   <!--xsl:variable name="my:content-types-alist" as="element()+">
       <ct ext="css"  type="text/css"/>
-      <!-- TODO: I guess there's a more appropriated type for XSLT. -->
+      <!- - TODO: I guess there's a more appropriated type for XSLT. - ->
       <ct ext="xsl"  type="application/xml"/>
       <ct ext="xml"  type="application/xml"/>
       <ct ext="html" type="text/html"/>
-   </xsl:variable>
+   </xsl:variable-->
+
+   <xsl:template match="rsrc" mode="map">
+      <xsl:param name="base"  as="xs:anyURI"/>
+      <xsl:param name="href"  as="xs:anyURI"/>
+      <xsl:variable name="s" select="resolve-uri(@src, $base)"/>
+      <xsl:variable name="h" select="resolve-uri(@href, $href)"/>
+      <xsl:sequence xmlns:file="java:java.io.File"
+                    xmlns:utils="java:org.apache.commons.io.FileUtils"
+                    select="utils:copyFile(file:new($s), file:new($h))"/>
+   </xsl:template>
 
    <xsl:template match="page" mode="map">
-      <xsl:param name="base" as="xs:anyURI"/>
-      <xsl:param name="href" as="xs:anyURI"/>
+      <xsl:param name="base"  as="xs:anyURI"/>
+      <xsl:param name="href"  as="xs:anyURI"/>
+      <xsl:param name="menus" as="element(menu)+" tunnel="yes"/>
       <xsl:variable name="s" select="resolve-uri(@src, $base)"  as="xs:anyURI"/>
       <xsl:variable name="h" select="resolve-uri(@href, $href)" as="xs:anyURI"/>
       <!--xsl:variable name="ext" select="replace(@src, '^.*\.', '')" as="xs:string"/-->
       <!--xsl:variable name="type" select="$my:content-types-alist[@ext eq $ext]/@type"/-->
       <xsl:result-document href="{ $h }" method="html">
          <xsl:apply-templates select="doc($s)/*">
-            <xsl:with-param name="menu" select="/sitemap/menu[@name eq current()/@menu]"/>
+            <xsl:with-param name="menu" select="$menus[@name eq current()/@menu]"/>
          </xsl:apply-templates>
       </xsl:result-document>
       <!--xsl:choose>
