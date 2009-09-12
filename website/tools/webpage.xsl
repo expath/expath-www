@@ -13,6 +13,7 @@
        doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
 
    <xsl:param name="analytics-id" as="xs:string?" select="'UA-5463082-2'"/>
+   <xsl:param name="menus"        as="element(menu)*"/>
 
    <!-- URIs used in the document, relative to the root of the website -->
    <xsl:variable name="style-default" select="'style/default.css'"/>
@@ -28,8 +29,8 @@
    </xsl:template>
 
    <xsl:template match="webpage">
-      <xsl:param name="menu" as="element(menu)"/>
-      <xsl:variable name="root" select="if ( exists(@root) ) then concat(@root, '/') else ()"/>
+      <xsl:param name="menu" as="element(menu)" select="$menus[@name eq current()/@menu]"/>
+      <xsl:variable name="root" select="@root/concat(., '/')"/>
       <html xml:lang="en">
          <head>
             <xsl:apply-templates select="title"/>
@@ -101,7 +102,9 @@
                   try {
                      var pageTracker = _gat._getTracker("<xsl:value-of select="$analytics-id"/>");
                      pageTracker._trackPageview();
-                  } catch(err) {}
+                  }
+                  catch(err) {
+                  }
                </script>
             </xsl:if>
          </body>
