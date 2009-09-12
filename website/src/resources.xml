@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--?xml-stylesheet type="text/xsl" href="webpage.xsl"?-->
 
 <webpage menu="resources">
    <title>EXPath - Resources</title>
@@ -42,8 +41,9 @@
             <item><link href="http://www.xmlmind.com/qizx/">Qizx</link> XML database. The <link
                   href="http://www.xmlmind.com/qizx/_distrib/docs/manual/reference.html">reference
                   part</link> of its manual is almost all about extensions.</item>
-            <item><link href="http://www.xqsharp.com/">XQSharp</link> XQuery processor for
-               the .NET Framework.</item>
+            <item><link href="http://www.xqsharp.com/">XQSharp</link> XQuery processor for the .NET
+               Framework. See its <link href="http://www.xqsharp.com/xqsharp/functions.htm"
+                  >extension functions</link> (only math functions at the time of writing.)</item>
          </list>
       </primary>
       <primary>
@@ -54,15 +54,9 @@
                   >the proceedings</link>.</item>
             <item>The Balisage presentation, and its examples, are going to be published on the
                official Balisage website. In the meanwhile, you can found here the <link
-                  href="http://www.expath.org/tmp/balisage-expath.pdf">presentation</link>
-               and the <link href="http://www.expath.org/tmp/balisage-examples.zip">examples</link>.</item>
-         </list>
-      </primary>
-      <primary>
-         <title>Existing extension projects</title>
-         <list>
-            <item>A <link href="http://www.xqsharp.com/xqsharp/functions.htm">math function
-                  library</link> for the XQSharp processor (for .NET.)</item>
+                  href="http://www.expath.org/tmp/balisage-expath.pdf">presentation</link> and the
+                  <link href="http://www.expath.org/tmp/balisage-examples.zip"
+               >examples</link>.</item>
          </list>
       </primary>
    </section>
