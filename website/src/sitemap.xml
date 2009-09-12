@@ -12,19 +12,27 @@
    <page src="modules.xml"   href="modules.html"   menu="main"/>
    <page src="news.xml"      href="news.html"      menu="main"/>
    <page src="resources.xml" href="resources.html" menu="main"/>
-   
-   <!--page src="webpage.xsl" href="webpage.xsl"/-->
-   <!--page src="../style/default.css" href="style/default.css"/>
-   <page src="../style/serial-oxygen.css" href="style/serial-oxygen.css"/-->
+
+   <dir base="../style/" href="style/">
+      <rsrc src="default.css"       href="default.css"/>
+      <rsrc src="serial-oxygen.css" href="serial-oxygen.css"/>
+   </dir>
 
    <!-- TODO: Commented out as it does not change often. -->
-   <!--dir src="images" href="images"/-->
+   <dir base="../images/" href="images/" copy="true">
+      <exclude name=".svn"/>
+   </dir>
 
    <dir base="modules/" href="modules/">
       <dir base="http-client/" href="http-client/">
          <page src="index.xml"    href="index.html"   menu="hc"/>
          <page src="implems.xml"  href="implems.html" menu="hc"/>
          <page src="samples.xml"  href="samples.html" menu="hc"/>
+         <rsrc src="../../../../../expath-http-client/exist/build/expath-http-client-exist-0.1.xar"    href="expath-http-client-exist-0.1.xar"/>
+         <rsrc src="../../../../../expath-http-client/exist/build/expath-http-client-ml-0.1.tar.gz"    href="expath-http-client-ml-0.1.tar.gz"/>
+         <rsrc src="../../../../../expath-http-client/exist/build/expath-http-client-ml-0.1.zip"       href="expath-http-client-ml-0.1.zip"/>
+         <rsrc src="../../../../../expath-http-client/exist/build/expath-http-client-saxon-0.3.tar.gz" href="expath-http-client-saxon-0.3.tar.gz"/>
+         <rsrc src="../../../../../expath-http-client/exist/build/expath-http-client-saxon-0.3.zip"    href="expath-http-client-saxon-0.3.zip"/>
       </dir>
       <dir base="pkg/" href="pkg/">
          <page src="index.xml"   href="index.html"   menu="pkg"/>
