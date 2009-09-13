@@ -30,11 +30,16 @@
          of course, but we plan also to help writers of major XSLT and XQuery libraries to package
          their work, for instance the stylesheets for DocBook, XSLStyle, FunctX for both XSLT and
          XQuery, the stylesheets for DITA, the FXSL library, etc.)</para>
-      <para>TODO: Publish the current prototype.</para>
+      <para>See the <link href="implems.html">implementations page</link> for further
+         details.</para>
    </primary>
    <secondary box="true">
-      <para><emph>If a technology is too complicated, no matter how wonderful it is and how easy it
-         makes a user's life, it won't be adopted on a wide scale.</emph></para>
-      <para><emph>-- <link href="http://www.ddj.com/184404686">James Clark</link></emph></para>
+      <para>
+         <emph>If a technology is too complicated, no matter how wonderful it is and how easy it
+            makes a user's life, it won't be adopted on a wide scale.</emph>
+      </para>
+      <para>
+         <emph>-- <link href="http://www.ddj.com/184404686">James Clark</link></emph>
+      </para>
    </secondary>
 </webpage>

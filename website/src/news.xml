@@ -6,6 +6,12 @@
       <title>News</title>
    </section>
    <primary>
+      <title>Packaging starts here</title>
+      <details>September 12, 2009</details>
+      <para>The prototype for eXist of the <link href="modules/pkg/">Packaging System</link> has
+         just been released.</para>
+   </primary>
+   <primary>
       <title>Hey!</title>
       <details>April 15, 2009</details>
       <para>The website has just been announced on various mailing lists. I hope people will

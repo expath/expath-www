@@ -23,21 +23,43 @@
       <exclude name=".svn"/>
    </dir>
 
+   <!--
+      TODO: Find a way to delegate to a sub-website.xml file !!!
+
+      A website.xml file would be create in each module, so each module con
+      contain its own webpages, reference its own resources, specifications,
+      etc.  At the very least, allow using a variable at the beginning of
+      @src...
+   -->
    <dir base="modules/" href="modules/">
+      <rsrc src="../../../../expath-http-client/spec/http-client.html"          href="http-client.html"/>
+      <rsrc src="../../../../expath-http-client/spec/http-client.xml"           href="http-client.xml"/>
+      <rsrc src="../../../../expath-http-client/spec/http-client-20090413.html" href="http-client-20090413.html"/>
+      <rsrc src="../../../../expath-http-client/spec/http-client-20090413.xml"  href="http-client-20090413.xml"/>
+      <rsrc src="../../../../expath-http-client/spec/http-client-20090302.html" href="http-client-20090302.html"/>
+      <rsrc src="../../../../expath-http-client/spec/http-client-20090302.xml"  href="http-client-20090302.xml"/>
+      <rsrc src="../../../../expath-http-client/spec/http-client-20090112.html" href="http-client-20090112.html"/>
       <dir base="http-client/" href="http-client/">
          <page src="index.xml"    href="index.html"   menu="hc"/>
          <page src="implems.xml"  href="implems.html" menu="hc"/>
          <page src="samples.xml"  href="samples.html" menu="hc"/>
-         <rsrc src="../../../../../expath-http-client/exist/build/expath-http-client-exist-0.1.xar"    href="expath-http-client-exist-0.1.xar"/>
-         <rsrc src="../../../../../expath-http-client/exist/build/expath-http-client-ml-0.1.tar.gz"    href="expath-http-client-ml-0.1.tar.gz"/>
-         <rsrc src="../../../../../expath-http-client/exist/build/expath-http-client-ml-0.1.zip"       href="expath-http-client-ml-0.1.zip"/>
-         <rsrc src="../../../../../expath-http-client/exist/build/expath-http-client-saxon-0.3.tar.gz" href="expath-http-client-saxon-0.3.tar.gz"/>
-         <rsrc src="../../../../../expath-http-client/exist/build/expath-http-client-saxon-0.3.zip"    href="expath-http-client-saxon-0.3.zip"/>
+         <rsrc src="../../../../../expath-http-client/exist/build/expath-http-client-exist-0.1.xar"     href="expath-http-client-exist-0.1.xar"/>
+         <rsrc src="../../../../../expath-http-client/marklogic/build/expath-http-client-ml-0.1.tar.gz" href="expath-http-client-ml-0.1.tar.gz"/>
+         <rsrc src="../../../../../expath-http-client/marklogic/build/expath-http-client-ml-0.1.zip"    href="expath-http-client-ml-0.1.zip"/>
+         <rsrc src="../../../../../expath-http-client/saxon/build/expath-http-client-saxon-0.3.tar.gz"  href="expath-http-client-saxon-0.3.tar.gz"/>
+         <rsrc src="../../../../../expath-http-client/saxon/build/expath-http-client-saxon-0.3.zip"     href="expath-http-client-saxon-0.3.zip"/>
       </dir>
       <dir base="pkg/" href="pkg/">
          <page src="index.xml"   href="index.html"   menu="pkg"/>
          <page src="implems.xml" href="implems.html" menu="pkg"/>
+         <rsrc src="../../../../../expath-pkg/exist/expath-pkg/dist/store/expath-pkg.jar" href="expath-pkg-exist-0.1.jar"/>
       </dir>
+   </dir>
+
+   <dir href="tmp/">
+      <rsrc src="../../misc/2009-balisage/balisage-examples.zip"               href="balisage-examples.zip"/>
+      <rsrc src="../../misc/2009-balisage/presentation/balisage-expath.pdf"    href="balisage-expath.pdf"/>
+      <rsrc src="../../../expath-zip/saxon/build/expath-zip-saxon-0.1.pkg.zip" href="expath-zip-saxon-0.1.pkg.zip"/>
    </dir>
 
    <menu name="main">
