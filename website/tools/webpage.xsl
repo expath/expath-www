@@ -49,7 +49,7 @@
                content="EXPath XPath XQuery XSLT functions standards open collaborative portable extensions XML development" />
             <link rel="stylesheet" type="text/css"  href="{ $root }{ $style-default }"/>
             <link rel="stylesheet" type="text/css"  href="{ $root }{ $style-serial }"/>
-            <link rel="stylesheet" type="image/png" href="{ $root }{ $img-logo }"/>
+            <link rel="shortcut icon" type="image/png" href="{ $root }{ $img-logo }"/>
          </head>
          <body>
             <div id="upbg"/>
