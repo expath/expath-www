@@ -46,20 +46,21 @@
          <rsrc src="../../../../../expath-http-client/exist/build/expath-http-client-exist-0.1.xar"     href="expath-http-client-exist-0.1.xar"/>
          <rsrc src="../../../../../expath-http-client/marklogic/build/expath-http-client-ml-0.1.tar.gz" href="expath-http-client-ml-0.1.tar.gz"/>
          <rsrc src="../../../../../expath-http-client/marklogic/build/expath-http-client-ml-0.1.zip"    href="expath-http-client-ml-0.1.zip"/>
-         <rsrc src="../../../../../expath-http-client/saxon/build/expath-http-client-saxon-0.3.tar.gz"  href="expath-http-client-saxon-0.3.tar.gz"/>
-         <rsrc src="../../../../../expath-http-client/saxon/build/expath-http-client-saxon-0.3.zip"     href="expath-http-client-saxon-0.3.zip"/>
+         <rsrc src="../../../../../expath-http-client/saxon/build/expath-http-client-saxon-0.3.xar"     href="expath-http-client-saxon-0.3.xar"/>
       </dir>
       <dir base="pkg/" href="pkg/">
          <page src="index.xml"   href="index.html"   menu="pkg"/>
          <page src="implems.xml" href="implems.html" menu="pkg"/>
          <rsrc src="../../../../../expath-pkg/exist/expath-pkg/dist/store/expath-pkg.jar" href="expath-pkg-exist-0.1.jar"/>
+         <rsrc src="../../../../../expath-pkg/saxon/expath-pkg/dist/expath-pkg-saxon.jar" href="expath-pkg-saxon-0.1.jar"/>
+         <rsrc src="../../../../../expath-pkg/saxon/expath-pkg/src/shell/saxon"           href="expath-pkg-saxon-0.1.sh"/>
       </dir>
    </dir>
 
    <dir href="tmp/">
       <rsrc src="../../misc/2009-balisage/balisage-examples.zip"               href="balisage-examples.zip"/>
       <rsrc src="../../misc/2009-balisage/presentation/balisage-expath.pdf"    href="balisage-expath.pdf"/>
-      <rsrc src="../../../expath-zip/saxon/build/expath-zip-saxon-0.1.pkg.zip" href="expath-zip-saxon-0.1.pkg.zip"/>
+      <!--rsrc src="../../../expath-zip/saxon/build/expath-zip-saxon-0.1.pkg.zip" href="expath-zip-saxon-0.1.pkg.zip"/-->
    </dir>
 
    <menu name="main">
