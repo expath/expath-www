@@ -11,13 +11,35 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String xml:space="preserve">use-cases</String>
+                                    <String xml:space="preserve">Exec</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XPROC</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../../xproc/calabash/calabash-tests/test/resolver/steps/sample.xpl</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">Sitemap - build</String>
                                 </field>
                                 <field name="type">
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">file:/H:/redress/use-case-xml/use-cases.xml</String>
+                                    <String xml:space="preserve">website/src/sitemap.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">XML Spec fgeorges</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../expath-pkg/spec/pkg.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -28,7 +50,7 @@
                                     <String xml:space="preserve">XPROC</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">file:/Documents/xproc/test/hello.xpl</String>
+                                    <String xml:space="preserve">../../../Documents/xproc/test/hello.xpl</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -50,7 +72,7 @@
                                     <String xml:space="preserve">XQUERY</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">file:/H:/xsl/expath/website/src/Untitled1.xquery</String>
+                                    <String xml:space="preserve">../../../../../H:/xsl/expath/website/src/Untitled1.xquery</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -58,21 +80,10 @@
                                     <String xml:space="preserve">Sitemap - build</String>
                                 </field>
                                 <field name="type">
-                                    <String xml:space="preserve">XSL</String>
+                                    <String xml:space="preserve">XML</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">file:/H:/xsl/expath/website/src/sitemap.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">Sitemap - build</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">website/src/sitemap.xml</String>
+                                    <String xml:space="preserve">../../../../../H:/xsl/expath/website/src/sitemap.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -113,7 +124,7 @@
                                     <String xml:space="preserve">use-cases</String>
                                 </field>
                                 <field name="type">
-                                    <String xml:space="preserve">XSL</String>
+                                    <String xml:space="preserve">XML</String>
                                 </field>
                                 <field name="url">
                                     <String xml:space="preserve">../../redress/use-case-xml/use-cases.xml</String>
@@ -2772,10 +2783,7 @@
                                 </field>
                             </scenario>
                             <xprocScenario>
-                                <field name="outputPorts">
-                                    <null/>
-                                </field>
-                                <field name="inputPorts">
+                                <field name="ports">
                                     <null/>
                                 </field>
                                 <field name="advancedOptionsMap">
