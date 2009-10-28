@@ -17,6 +17,17 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
+                                    <String xml:space="preserve">file:/H:/xsl/expath-pkg/spec/pkg.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">XML Spec fgeorges</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
                                     <String xml:space="preserve">../expath-pkg/spec/pkg.xml</String>
                                 </field>
                             </scenarioAssociation>
@@ -39,7 +50,7 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../../../../../H:/redress/use-case-xml/use-cases.xml</String>
+                                    <String xml:space="preserve">file:/../../H:/redress/use-case-xml/use-cases.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -391,7 +402,7 @@
                                     <String xml:space="preserve">XQUERY</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../../../../../../../H:/xsl/expath/website/src/Untitled1.xquery</String>
+                                    <String xml:space="preserve">file:/../../H:/xsl/expath/website/src/Untitled1.xquery</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -2307,7 +2318,7 @@
                                     <String xml:space="preserve"></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String xml:space="preserve">file:/Users/fgeorges/Projects/xml/oxygen/xsl/xmlspec/xhtml/xmlspec.xsl</String>
+                                    <String xml:space="preserve">file:/h:/xml/oxygen/override/xmlspec/xhtml/xmlspec.xsl</String>
                                 </field>
                                 <field name="inputXMLURL">
                                     <String xml:space="preserve">${currentFileURL}</String>
