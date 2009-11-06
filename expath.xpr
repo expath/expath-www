@@ -11,6 +11,28 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="name">
+                                    <String xml:space="preserve">use-cases</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">file:/H:/redress/svn/use-cases/use-cases.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">XML Spec fgeorges</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">file:/H:/xsl/expath-pkg/spec/pkg.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
                                     <String xml:space="preserve">EFP Schedule PDF</String>
                                 </field>
                                 <field name="type">
@@ -29,17 +51,6 @@
                                 </field>
                                 <field name="url">
                                     <String xml:space="preserve">file:/H:/tmp/schedule-121f79eaac9.fo</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">XML Spec fgeorges</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">file:/H:/xsl/expath-pkg/spec/pkg.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -2948,13 +2959,30 @@
                                     <Boolean xml:space="preserve">true</Boolean>
                                 </field>
                                 <field name="xsltParams">
-                                    <list/>
+                                    <list>
+                                    <transformationParameter>
+                                    <field name="name">
+                                    <String xml:space="preserve">doc-final</String>
+                                    </field>
+                                    <field name="value">
+                                    <String xml:space="preserve">Redress-I_Functional_Requirements.docx</String>
+                                    </field>
+                                    </transformationParameter>
+                                    <transformationParameter>
+                                    <field name="name">
+                                    <String xml:space="preserve">doc-manual</String>
+                                    </field>
+                                    <field name="value">
+                                    <String xml:space="preserve">Redress-I_Functional_Requirements-manual.docx</String>
+                                    </field>
+                                    </transformationParameter>
+                                    </list>
                                 </field>
                                 <field name="cascadingStylesheets">
                                     <String-array/>
                                 </field>
                                 <field name="xslTransformer">
-                                    <String xml:space="preserve">Saxon-PE</String>
+                                    <String xml:space="preserve">Saxon-B</String>
                                 </field>
                                 <field name="extensionURLs">
                                     <String-array>
