@@ -84,6 +84,7 @@
       <item name="parent"  href="../../modules.html" title="Modules">[ ../Modules ]</item>
       <item name="index"   href="."                  title="EXPath Packaging System Home">Packaging</item>
       <item name="implems" href="implems.html"       title="EXPath Package Managers">Implementations</item>
+      <item name="spec"    href="../pkg.html"        title="EXPath Packaging System Spec">Specification</item>
    </menu>
 
 </sitemap>
