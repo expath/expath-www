@@ -14,20 +14,10 @@
          functionality. Anyone is welcome to contribute of course, see the <link
             href="../../lists.html">mailing list</link>. I plan to provide a better support on these
          platform later.</para>
-      <para>For Saxon, you have to download the following tarball: <link
-            href="expath-http-client-saxon-0.3.tar.gz">expath-http-client-saxon-0.3.tar.gz</link> or
-         the same in ZIP format: <link href="expath-http-client-saxon-0.3.zip"
-            >expath-http-client-saxon-0.3.zip</link>. There is a README file that explains how to
-         run the simple example in the archive. The batch file (for Windows) and the shell script
-         (for Linux, Mac OS X and other Unix-like systems) can be used as an example: you have to
-         add the various JARs to your classpath (depending on how you launch Saxon.)</para>
-      <para>Saxon has a drawback: it is not possible (without interfering with the way you invoke
-         Saxon) to bind any namespace to an extension function in Java. One has to use a URI of the
-         form <code>java:package.ClassName</code>. So in your stylesheet, you have to use two
-         namespaces: the module's namespace URI as defined in the <link href="../http-client.html"
-            >specification</link> and the URI to bind the Java class:
-            <code>java:org.expath.saxon.HttpClient</code>. See the <link href="samples.html"
-            >samples</link> for an XSLT example.</para>
+      <para>For Saxon, you have the XAR package: <link href="expath-http-client-saxon-0.3.xar"
+            >expath-http-client-saxon-0.3.xar</link>. This package follows the EXPath <link
+            href="../pkg/">Packaging System</link> format and can be installed with the package
+         manager. See the packaging system implementations page for more information.</para>
       <para>For eXist, you can download the following X* archive: <link
             href="expath-http-client-exist-0.1.xar">expath-http-client-exist-0.1.xar</link>. This is
          a package for the EXPath <link href="../pkg/">Packaging System</link>. You can use the
@@ -36,11 +26,11 @@
          dev versions) it is included in the standard distribution, so you don't even have to
          install it!</para>
       <para>For MarkLogic Server, you can download the following tarball: <link
-            href="expath-http-client-ml-0.1.tar.gz">expath-http-client-ml-0.1.tar.gz</link> or the
-         equivalent ZIP file: <link href="expath-http-client-ml-0.1.zip"
-            >expath-http-client-ml-0.1.zip</link>. See instructions within there about how to
-         install the library module on your MarkLogic instance, and how to import it in your
-         query.</para>
+            href="expath-http-client-marklogic-0.1.tar.gz"
+            >expath-http-client-marklogic-0.1.tar.gz</link> or the equivalent ZIP file: <link
+            href="expath-http-client-marklogic-0.1.zip">expath-http-client-marklogic-0.1.zip</link>.
+         See instructions within there about how to install the library module on your MarkLogic
+         instance, and how to import it in your query.</para>
       <para>Request for help: this is the very first module for EXPath. If you have any thought,
          idea, comment or advice on how modules should be delivered, installed, deployed, used,
          packaged..., please comment on the <link href="../../lists.html">mailing

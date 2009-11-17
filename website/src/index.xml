@@ -53,7 +53,7 @@
       <para>This is a work-in-progress for now, but an implementation prototype exists yet for Saxon
          and eXist. For both those processors, it supports XSLT and XQuery, either standard files or
          Java extensions. The goal is to support XSLT, XQuery, XProc, XML Schema and various DSDL
-         technologies. See the <link href="modules/packaging/">Packaging System</link> homepage for
+         technologies. See the <link href="modules/pkg/">Packaging System</link> homepage for
          further details and for implementations.</para>
    </primary>
    <primary>

@@ -5,13 +5,17 @@
    <section>
       <title>Package Managers</title>
       <image src="../../images/packaging.jpg" alt="Taps and pipes"/>
-      <para>The only implementations of a package manager that has been released so far is for the
-            <link href="http://www.exist-db.org/">eXist database</link> and for the <link
-            href="http://www.saxonica.com/">Saxon XSLT and XQuery processor</link>. Both those
-         implementations are just prototypes, provided as an external application to install and
-         delete packages, and based on the being-defined Packaging System module. So this module,
-         and those implementations can evolve (and will do) in the near future, depending on the
-         feedback got from the community.</para>
+      <para>The Packaging System specification is still under development, but three implementations
+         have been released yet, supporting the current state of the working draft. Those
+         implementations are for the <link href="http://www.exist-db.org/">eXist database</link> ,
+         for the <link href="http://www.saxonica.com/">Saxon XSLT and XQuery processor</link> et for
+         the <link href="http://xmlcalabash.com/">Calabash XProc processor</link>. Those
+         implementations are just prototypes that add packaging support to those processors, as
+         external libraries. In addition, there is a standalone application to manage a repository
+         on the disk (Saxon and Calabash use the same repository layout, while eXist uses its own
+         method to deploy packages, based on JAR files.) Keep in mind that this module, and its
+         implementations, can evolve (and will do) in the near future, depending on the feedback got
+         from the community.</para>
       <para>The package manager for eXist is provided as a single <link
             href="expath-pkg-exist-0.1.jar">JAR file</link>. Just download it and launch it the
          usual way (depending on your platform, that could be by double-clicking on it, or by
