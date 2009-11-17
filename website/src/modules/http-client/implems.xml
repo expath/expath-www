@@ -14,8 +14,8 @@
          functionality. Anyone is welcome to contribute of course, see the <link
             href="../../lists.html">mailing list</link>. I plan to provide a better support on these
          platform later.</para>
-      <para>For Saxon, you have the XAR package: <link href="expath-http-client-saxon-0.3.xar"
-            >expath-http-client-saxon-0.3.xar</link>. This package follows the EXPath <link
+      <para>For Saxon, you have the XAR package: <link href="expath-http-client-saxon-0.4.xar"
+            >expath-http-client-saxon-0.4.xar</link>. This package follows the EXPath <link
             href="../pkg/">Packaging System</link> format and can be installed with the package
          manager. See the packaging system implementations page for more information.</para>
       <para>For eXist, you can download the following X* archive: <link
