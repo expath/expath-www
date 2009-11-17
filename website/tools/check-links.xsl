@@ -23,16 +23,17 @@
       <xsl:param name="dir" as="jt:java.io.File"/>
       <xsl:for-each select="file:list($dir)">
          <xsl:variable name="f" select="file:new($dir, xs:string(.))"/>
-         <!--xsl:message select="'FILE:', $f"/-->
          <xsl:choose>
             <xsl:when test="file:isDirectory($f)">
+               <xsl:message select="'Recursing:', $f"/>
                <xsl:sequence select="my:recurse-dir($f)"/>
             </xsl:when>
             <xsl:when test="ends-with(., $suffix)">
+               <xsl:message select="'Checking:', $f"/>
                <xsl:sequence select="my:check-file($f)"/>
             </xsl:when>
             <xsl:otherwise>
-               <!--xsl:message select="'Ignored:', $f"/-->
+               <xsl:message select="'Ignored:', $f"/>
             </xsl:otherwise>
          </xsl:choose>
       </xsl:for-each>
@@ -40,12 +41,12 @@
 
    <xsl:function name="my:check-file">
       <xsl:param name="f" as="jt:java.io.File"/>
-      <xsl:for-each select="document($f)//h:a/@href">
+      <xsl:for-each select="document(file:toURI($f))//h:a/@href">
          <xsl:if test=". ne '.'
                        and not(starts-with(., '#'))
                        and not(uri:is-absolute(uri:new(.)))">
             <xsl:variable name="target" select="file:new(resolve-uri(., base-uri(.)))"/>
-            <xsl:message select="'HREF:', $target"/>
+            <!--xsl:message select="'HREF:', $target"/-->
             <xsl:if test="not(file:exists($target))">
                <xsl:message select="'BROKEN LINK:', $target"/>
                <broken base="{ base-uri(.) }">
