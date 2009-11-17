@@ -15,6 +15,7 @@
    <!--xsl:param name="href-base" select="'http://localhost:8181/exist/rest/db/xxx/'"/>
    <xsl:param name="username"  select="'admin'"/>
    <xsl:param name="password"  select="'adminadmin'"/-->
+   <xsl:variable name="releases" select="resolve-uri('../../releases/')"/>
 
    <xsl:variable name="my:href-base" select="resolve-uri($href-base, base-uri(sitemap))"/>
 
@@ -90,8 +91,15 @@
    <xsl:template match="rsrc" mode="map">
       <xsl:param name="base"  as="xs:anyURI"/>
       <xsl:param name="href"  as="xs:anyURI"/>
-      <xsl:variable name="s" select="resolve-uri(@src, $base)"/>
+      <xsl:variable name="s" select="
+          if ( exists(@name) ) then
+            resolve-uri(@name, $releases)
+          else
+            resolve-uri(@src, $base)"/>
       <xsl:variable name="h" select="resolve-uri(@href, $href)"/>
+      <!-- logging -->
+      <xsl:message select="'Write rsrc', $h"/>
+      <!-- copy the resource -->
       <xsl:sequence xmlns:file="java:java.io.File"
                     xmlns:utils="java:org.apache.commons.io.FileUtils"
                     select="utils:copyFile(file:new($s), file:new($h))"/>
@@ -105,6 +113,9 @@
       <xsl:variable name="h" select="resolve-uri(@href, $href)" as="xs:anyURI"/>
       <!--xsl:variable name="ext" select="replace(@src, '^.*\.', '')" as="xs:string"/-->
       <!--xsl:variable name="type" select="$my:content-types-alist[@ext eq $ext]/@type"/-->
+      <!-- logging -->
+      <xsl:message select="'Write page', $h"/>
+      <!-- write the page -->
       <xsl:result-document href="{ $h }" method="html">
          <xsl:apply-templates select="doc($s)/*">
             <xsl:with-param name="menu" select="$menus[@name eq current()/@menu]"/>
