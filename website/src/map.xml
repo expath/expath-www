@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<webpage menu="map">
+   <title>EXPath - Map</title>
+   <section>
+      <title>Map</title>
+      <divider/>
+      <primary>
+         <title>EXPath</title>
+         <list>
+            <item><link href=".">Home</link></item>
+            <item><link href="news.html">News</link></item>
+            <item><link href="faq.html">FAQ</link></item>
+            <item><link href="lists.html">Mailing lists</link></item>
+            <item><link href="modules.html">Modules</link></item>
+            <item><link href="resources.html">Resources</link></item>
+            <item><link href="map.html">Site map</link></item>
+         </list>
+      </primary>
+      <primary>
+         <title>HTTP Client</title>
+         <list>
+            <item><link href="modules/http-client/">HTTP client home</link></item>
+            <item><link href="modules/http-client/implems.html">Implementations</link></item>
+            <item><link href="modules/http-client/samples.html">Samples</link></item>
+            <item><link href="modules/http-client.html">Specification</link></item>
+         </list>
+      </primary>
+      <primary>
+         <title>Packaging System</title>
+         <list>
+            <item><link href="modules/pkg/">Packaging system home</link></item>
+            <item><link href="modules/pkg/implems.html">Implementations</link></item>
+            <item><link href="modules/pkg.html">Specification</link></item>
+         </list>
+      </primary>
+   </section>
+</webpage>
