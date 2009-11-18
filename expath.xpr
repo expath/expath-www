@@ -3499,6 +3499,7 @@
                     </folder>
                 </folder>
                 <file name="website/src/about.xml"/>
+                <file name="website/src/atom.xml"/>
                 <file name="website/src/contact.xml"/>
                 <file name="website/src/credits.xml"/>
                 <file name="website/src/faq.xml"/>
@@ -3514,8 +3515,6 @@
                 <file name="website/style/serial-oxygen.css"/>
             </folder>
             <folder name="tools">
-                <file
-                    name="file:/H:/xsl/expath/website/tools/check-links.xsl"/>
                 <file name="website/tools/upload.xproc"/>
                 <file name="website/tools/upload.xsl"/>
                 <file name="website/tools/webpage.xsl"/>
