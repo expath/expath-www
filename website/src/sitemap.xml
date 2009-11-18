@@ -19,6 +19,7 @@
    <page src="news.xml"      href="news.html"      menu="main"/>
    <page src="resources.xml" href="resources.html" menu="main"/>
    <page src="map.xml"       href="map.html"       menu="main"/>
+   <rsrc src="atom.xml"      href="atom.xml"/>
 
    <dir base="../style/" href="style/">
       <rsrc src="default.css"       href="default.css"/>
@@ -49,6 +50,8 @@
       <rsrc name="pkg/pkg.xml"           href="pkg.xml"/>
       <rsrc name="pkg/pkg-20090901.html" href="pkg-20090901.html"/>
       <rsrc name="pkg/pkg-20090901.xml"  href="pkg-20090901.xml"/>
+      <rsrc name="pkg/pkg-20091118.html" href="pkg-20091118.html"/>
+      <rsrc name="pkg/pkg-20091118.xml"  href="pkg-20091118.xml"/>
       <dir base="http-client/" href="http-client/">
          <!-- pages -->
          <page src="index.xml"    href="index.html"   menu="hc"/>
