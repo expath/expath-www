@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?oxygen RNGSchema="http://www.fgeorges.org/purl/20090407/xproc-with-xslt.rnc" type="compact"?>
-
-<p:declare-step xmlns:p="http://www.w3.org/ns/xproc" xmlns:c="http://www.w3.org/ns/xproc-step">
+<p:declare-step xmlns:p="http://www.w3.org/ns/xproc"
+                xmlns:c="http://www.w3.org/ns/xproc-step">
 
    <p:output port="result"/>
 
@@ -16,19 +15,20 @@
       </p:input>
    </p:wrap>
 
-   <p:add-attribute match="/c:body" attribute-name="content-type" attribute-value="application/xml"/>
+   <p:add-attribute match="/c:body" attribute-name="content-type"
+      attribute-value="application/xml"/>
 
    <p:wrap wrapper="c:request" match="/"/>
 
-   <p:add-attribute attribute-name="username" match="/c:request">
+   <p:add-attribute match="/c:request" attribute-name="username">
       <p:with-option name="attribute-value" select="$username"/>
    </p:add-attribute>
 
-   <p:add-attribute attribute-name="password" match="/c:request">
+   <p:add-attribute match="/c:request" attribute-name="password">
       <p:with-option name="attribute-value" select="$password"/>
    </p:add-attribute>
 
-   <p:add-attribute attribute-name="href" match="/c:request"
+   <p:add-attribute match="/c:request" attribute-name="href"
       attribute-value="http://localhost:8181/exist/rest/db/expath/modules.xml"/>
 
    <p:set-attributes match="/c:request">
