@@ -50,6 +50,7 @@
             <link rel="stylesheet" type="text/css"  href="{ $root }{ $style-default }"/>
             <link rel="stylesheet" type="text/css"  href="{ $root }{ $style-serial }"/>
             <link rel="shortcut icon" type="image/png" href="{ $root }{ $img-logo }"/>
+            <link href="atom.xml" type="application/atom+xml" rel="alternate" title="EXPath Atom feed"/>
          </head>
          <body>
             <div id="upbg"/>
