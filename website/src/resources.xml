@@ -51,12 +51,10 @@
          <list>
             <item>The introduction to EXPath presented by Florent Georges at Balisage 2009: <link
                   href="http://www.balisage.net/Proceedings/vol3/html/Georges01/BalisageVol3-Georges01.html"
-                  >the proceedings</link>.</item>
-            <item>The Balisage presentation, and its examples, are going to be published on the
-               official Balisage website. In the meanwhile, you can found here the <link
-                  href="http://www.expath.org/tmp/balisage-expath.pdf">presentation</link> and the
-                  <link href="http://www.expath.org/tmp/balisage-examples.zip"
-               >examples</link>.</item>
+                  >the proceedings</link>. The conference website also hosts the PDF presentation
+               and the examples, see the <link
+                  href="http://www.balisage.net/Proceedings/vol3/author-pkg/Georges01/BalisageVol3-Georges01.html"
+                  >materials</link> page.</item>
          </list>
       </primary>
    </section>

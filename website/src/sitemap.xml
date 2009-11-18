@@ -18,6 +18,7 @@
    <page src="modules.xml"   href="modules.html"   menu="main"/>
    <page src="news.xml"      href="news.html"      menu="main"/>
    <page src="resources.xml" href="resources.html" menu="main"/>
+   <page src="map.xml"       href="map.html"       menu="main"/>
 
    <dir base="../style/" href="style/">
       <rsrc src="default.css"       href="default.css"/>
@@ -81,19 +82,20 @@
       </dir>
    </dir>
 
-   <dir href="tmp/">
-      <!--rsrc src="../../misc/2009-balisage/examples.zip"                     href="balisage-examples.zip"/>
-      <rsrc src="../../misc/2009-balisage/presentation/balisage-expath.pdf" href="balisage-expath.pdf"/-->
-      <!--rsrc prj="zip" src="saxon/build/expath-zip-saxon-0.1.pkg.zip" href="expath-zip-saxon-0.1.pkg.zip"/-->
-   </dir>
+   <!--dir href="tmp/">
+      <rsrc src="../../misc/2009-balisage/examples.zip"                     href="balisage-examples.zip"/>
+      <rsrc src="../../misc/2009-balisage/presentation/balisage-expath.pdf" href="balisage-expath.pdf"/>
+      <rsrc prj="zip" src="saxon/build/expath-zip-saxon-0.1.pkg.zip" href="expath-zip-saxon-0.1.pkg.zip"/>
+   </dir-->
 
    <menu name="main">
       <item name="index"     href="."              title="EXPath Home">Home</item>
       <item name="news"      href="news.html"      title="EXPath News">News</item>
       <item name="faq"       href="faq.html"       title="EXPath FAQ">FAQ</item>
       <item name="lists"     href="lists.html"     title="EXPath Mailing Lists">Mailing lists</item>
-      <item name="modules"   href="modules.html"   title="Modules">Modules</item>
-      <item name="resources" href="resources.html" title="Resources">Resources</item>
+      <item name="modules"   href="modules.html"   title="EXPath Modules">Modules</item>
+      <item name="resources" href="resources.html" title="EXPath Resources">Resources</item>
+      <item name="map"       href="map.html"       title="EXPath Website Map">Site map</item>
    </menu>
 
    <menu name="hc">
@@ -106,9 +108,9 @@
 
    <menu name="pkg">
       <item name="parent"  href="../../modules.html" title="Modules">[ ../Modules ]</item>
-      <item name="index"   href="."                  title="EXPath Packaging System Home">Packaging</item>
-      <item name="implems" href="implems.html"       title="EXPath Package Managers">Implementations</item>
-      <item name="spec"    href="../pkg.html"        title="EXPath Packaging System Spec">Specification</item>
+      <item name="index"   href="."                  title="EXPath Packaging Home">Packaging</item>
+      <item name="implems" href="implems.html"       title="EXPath Packaging Implems">Implementations</item>
+      <item name="spec"    href="../pkg.html"        title="EXPath Packaging Spec">Specification</item>
    </menu>
 
 </sitemap>
