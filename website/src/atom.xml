@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+   <title>EXPath news</title>
+   <link href="http://www.expath.org/atom.xml" rel="self"/>
+   <link href="http://www.expath.org/"/>
+   <link href="http://www.expath.org/news.html" rel="alternate" type="text/html"/>
+   <id>urn:uuid:a626d3d0-d49d-11de-8a39-0800200c9a66</id>
+   <updated>2009-11-18T23:23:00+01:00</updated>
+   <author>
+      <name>Florent Georges</name>
+      <email>fgeorges@expath.org</email>
+   </author>
+
+   <entry>
+      <title>Packaging update</title>
+      <link href="http://www.expath.org/modules/pkg.html"/>
+      <link href="http://www.expath.org/modules/pkg/implems.html"/>
+      <id>urn:uuid:cc7335b0-d49d-11de-8a39-0800200c9a66</id>
+      <updated>2009-11-18T00:00:00+01:00</updated>
+      <summary>An update of the packaging specification has been published, as well as a new
+         implementation for Calabash and an updated implementation for Saxon.</summary>
+   </entry>
+
+   <entry>
+      <title>Packaging starts here</title>
+      <link href="http://www.expath.org/modules/pkg/"/>
+      <id>urn:uuid:98ec86e0-d49f-11de-8a39-0800200c9a66</id>
+      <updated>2009-09-12T00:00:00+01:00</updated>
+      <summary>The prototype for eXist of the Packaging System has just been released.</summary>
+   </entry>
+
+   <entry>
+      <title>Hey!</title>
+      <link href="http://www.expath.org/"/>
+      <link href="http://www.expath.org/lists.html"/>
+      <id>urn:uuid:9ea9cbb0-d49f-11de-8a39-0800200c9a66</id>
+      <updated>2009-04-15T00:00:00+01:00</updated>
+      <summary>The website has just been announced on various mailing lists. I hope people will
+         subscribe to the mailing list and will provide valuable input and feedback.</summary>
+   </entry>
+
+   <entry>
+      <title>A new birth</title>
+      <link href="http://www.expath.org/"/>
+      <link href="http://www.youtube.com/watch?v=NcHdF1eHhgc"/>
+      <id>urn:uuid:c82cee90-d49f-11de-8a39-0800200c9a66</id>
+      <updated>2009-03-29T00:00:00+01:00</updated>
+      <summary>The website has just been launched. Hello, world!</summary>
+   </entry>
+
+</feed>
