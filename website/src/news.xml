@@ -4,7 +4,15 @@
    <title>EXPath - News</title>
    <section>
       <title>News</title>
+      <para>There is an <link href="atom.xml">Atom feed</link>.</para>
    </section>
+   <primary>
+      <title>Packaging update</title>
+      <details>November 18, 2009</details>
+      <para>An update of the <link href="modules/pkg.html">packaging specification</link> has been
+         published, as well as a new implementation for Calabash and an updated implementation for
+         Saxon.</para>
+   </primary>
    <primary>
       <title>Packaging starts here</title>
       <details>September 12, 2009</details>
