@@ -303,6 +303,13 @@
       </code>
    </xsl:template>
 
+   <xsl:template match="bold">
+      <b>
+         <xsl:copy-of select="@*"/>
+         <xsl:apply-templates/>
+      </b>
+   </xsl:template>
+
    <!--xsl:template match="divider">
       <div class="divider1"/>
    </xsl:template-->
