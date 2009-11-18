@@ -7,16 +7,52 @@
       <image src="../../images/packaging.jpg" alt="Taps and pipes"/>
       <para>The Packaging System specification is still under development, but three implementations
          have been released yet, supporting the current state of the working draft. Those
-         implementations are for the <link href="http://www.exist-db.org/">eXist database</link> ,
-         for the <link href="http://www.saxonica.com/">Saxon XSLT and XQuery processor</link> et for
-         the <link href="http://xmlcalabash.com/">Calabash XProc processor</link>. Those
+         implementations are for the <link href="http://www.exist-db.org/">eXist</link> database,
+         for the <link href="http://www.saxonica.com/">Saxon</link> XSLT and XQuery processor and
+         for the <link href="http://xmlcalabash.com/">Calabash</link> XProc processor. Those
          implementations are just prototypes that add packaging support to those processors, as
          external libraries. In addition, there is a standalone application to manage a repository
          on the disk (Saxon and Calabash use the same repository layout, while eXist uses its own
          method to deploy packages, based on JAR files.) Keep in mind that this module, and its
          implementations, can evolve (and will do) in the near future, depending on the feedback got
          from the community.</para>
-      <para>The package manager for eXist is provided as a single <link
+      <para>The current packaging <link href="../pkg.html">specification</link> defines a
+            <bold>standard repository</bold> layout. Currently, this layout is supported by
+         implementations for both Saxon and Calabash. The repository manager is thus common. It is a
+         command line program that allows one to initialize a new repository, install packages,
+         delete packages, list the installed packages, etc. Download the JAR file <link
+            href="expath-pkg-repo-0.1.jar">expath-pkg-repo-0.1.jar</link>, and use the command
+            <code>java -jar expath-pkg-repo-0.1.jar</code>. For more information, see this <link
+            href="http://fgeorges.blogspot.com/2009/11/expath-packaging-system-on-disk.html">blog
+            post</link>. In addition to this repository manager, you need a runtime support for your
+         processor (for now, Saxon and Calabash support the standard repository layout, eXist has
+         its own way of deploying packages.)</para>
+      <para>The runtime support for <bold>Saxon</bold> is included in the JAR file <link
+            href="expath-pkg-saxon-0.2.jar">expath-pkg-saxon-0.2.jar</link>. In addition, the
+         classpath must contain the JAR file for the repository management (see above.) If you use
+         Saxon from Java, you can use the class <code>org.expath.pkg.saxon.java.ConfigHelper</code>.
+         If you use Saxon from the command line, you have to use
+            <code>org.expath.pkg.saxon.java.EXPathTransform</code> as the main class for XSLT 2.0,
+         or <code>org.expath.pkg.saxon.java.EXPathQuery</code> for XQuery, instead of the Saxon's
+         main classes (resp. <code>net.sf.saxon.Transform</code> and
+         <code>net.sf.saxon.Query</code>.) You can use the following shell script to help you
+         setting up the classpath with the extensions installed in the repository and written in
+         Java: <link href="expath-pkg-saxon-0.2.sh">expath-pkg-saxon-0.2.sh</link>. See this <link
+            href="http://fgeorges.blogspot.com/2009/10/expath-packaging-system-prototype.html">blog
+            post</link> and this <link
+            href="http://fgeorges.blogspot.com/2009/11/expath-packaging-system-on-disk.html">blog
+            post</link> for more information (the first one is older and about Saxon in porticular,
+         the second one is up-to-date and more specifically about the shell script.)</para>
+      <para>For Calabash you can use the same instructions as for Saxon above, by adding in addition
+         the following JAR file to your classpath: <link href="expath-pkg-calabash-0.1.jar"
+            >expath-pkg-calabash-0.1.jar</link>, by using <code>org.expath.pkg.calabash.Main</code>
+         and the following shell script: <link href="expath-pkg-calabash-0.1.sh"
+            >expath-pkg-calabash-0.1.sh</link>. See this <link
+            href="http://fgeorges.blogspot.com/2009/11/expath-packaging-system-on-disk.html">blog
+            post</link> and this <link
+            href="http://fgeorges.blogspot.com/2009/11/expath-packaging-system-prototype.html">blog
+            post</link> for more information.</para>
+      <para>The package manager for <bold>eXist</bold> is provided as a single <link
             href="expath-pkg-exist-0.1.jar">JAR file</link>. Just download it and launch it the
          usual way (depending on your platform, that could be by double-clicking on it, or by
          executing the command <code>java -jar expath-pkg-exist-0.1.jar</code>.) For now, it
@@ -24,18 +60,6 @@
          enable its usage on graphical-less environments, like servers. You can find a step-by-step
          presentation of this package manager in the following <link
             href="http://fgeorges.blogspot.com/2009/09/expath-packaging-system-prototype.html">blog
-            post</link>.</para>
-      <para>The package manager for Saxon is provided as a single <link
-            href="expath-pkg-saxon-0.1.jar">JAR file</link>. If you launch it (either by
-         double-clicking on it, or by executing the command <code>java -jar
-            expath-pkg-saxon-0.1.jar</code>) the package manager itself starts. This is the
-         graphical application which allows you to install and remove packages, and manage
-         repositories. This JAR file also contains classes needed at runtime by Saxon to resolve the
-         stuff installed in the repository. If you want to call Saxon from a shell window, you can
-         use the following <link href="expath-pkg-saxon-0.1.sh">shell script</link> to set up
-         correctly your classpath. You can find a step-by-step presentation of this package manager
-         in the following <link
-            href="http://fgeorges.blogspot.com/2009/10/expath-packaging-system-prototype.html">blog
             post</link>.</para>
    </section>
 </webpage>
