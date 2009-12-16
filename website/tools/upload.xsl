@@ -11,12 +11,13 @@
 
    <xsl:import href="webpage.xsl"/>
 
+   <xsl:param name="rel-base"  select="'../../releases/'"/>
    <xsl:param name="href-base" select="'../build/'"/>
    <!--xsl:param name="href-base" select="'http://localhost:8181/exist/rest/db/xxx/'"/>
    <xsl:param name="username"  select="'admin'"/>
    <xsl:param name="password"  select="'adminadmin'"/-->
-   <xsl:variable name="releases" select="resolve-uri('../../releases/')"/>
 
+   <xsl:variable name="my:rel-base"  select="resolve-uri($rel-base,  base-uri(sitemap))"/>
    <xsl:variable name="my:href-base" select="resolve-uri($href-base, base-uri(sitemap))"/>
 
    <xsl:template match="/">
@@ -33,9 +34,20 @@
       </xsl:if>
    </xsl:function>
 
+   <xsl:function name="my:resolve-uri" as="xs:anyURI">
+      <xsl:param name="relative" as="xs:anyURI?"/>
+      <xsl:param name="base"     as="xs:anyURI"/>
+      <xsl:sequence select="
+          if ( exists($relative) ) then
+            resolve-uri($relative, $base)
+          else
+            $base"/>
+   </xsl:function>
+
    <xsl:template match="sitemap" mode="map">
       <xsl:apply-templates select="*" mode="map">
          <xsl:with-param name="base"  select="base-uri(.)"/>
+         <xsl:with-param name="rel"   select="$my:rel-base"/>
          <xsl:with-param name="href"  select="$my:href-base"/>
          <xsl:with-param name="menus" select="menu" tunnel="yes"/>
       </xsl:apply-templates>
@@ -45,20 +57,21 @@
 
    <xsl:template match="dir" mode="map">
       <xsl:param name="base" as="xs:anyURI"/>
+      <xsl:param name="rel"  as="xs:anyURI"/>
       <xsl:param name="href" as="xs:anyURI"/>
       <xsl:apply-templates select="*" mode="map">
-         <xsl:with-param name="base" select="
-             if ( @base ) then resolve-uri(@base, $base) else $base"/>
-         <xsl:with-param name="href" select="
-             if ( @href ) then resolve-uri(@href, $href) else $href"/>
+         <xsl:with-param name="base" select="my:resolve-uri(@base,    $base)"/>
+         <xsl:with-param name="rel"  select="my:resolve-uri(@release, $rel)"/>
+         <xsl:with-param name="href" select="my:resolve-uri(@href,    $href)"/>
       </xsl:apply-templates>
    </xsl:template>
 
    <xsl:template match="dir[@copy/xs:boolean(.)]" mode="map">
       <xsl:param name="base" as="xs:anyURI"/>
+      <xsl:param name="rel"  as="xs:anyURI"/>
       <xsl:param name="href" as="xs:anyURI"/>
-      <xsl:variable name="b" select="if ( @base ) then resolve-uri(@base, $base) else $base"/>
-      <xsl:variable name="h" select="if ( @href ) then resolve-uri(@href, $href) else $href"/>
+      <xsl:variable name="b" select="my:resolve-uri(@base, $base)"/>
+      <xsl:variable name="h" select="my:resolve-uri(@href, $href)"/>
       <xsl:sequence xmlns:utils="java:org.apache.commons.io.FileUtils"
                     xmlns:file="java:java.io.File"
                     select="utils:copyDirectory(file:new($b), file:new($h))"/>
@@ -67,12 +80,12 @@
       </xsl:if>
       <xsl:apply-templates select="*" mode="map">
          <xsl:with-param name="base" select="$b"/>
+         <xsl:with-param name="rel"  select="()"/> <!-- rel not useable anymore by descendants -->
          <xsl:with-param name="href" select="$h"/>
       </xsl:apply-templates>
    </xsl:template>
 
    <xsl:template match="exclude" mode="map">
-      <xsl:param name="base"  as="xs:anyURI"/>
       <xsl:param name="href"  as="xs:anyURI"/>
       <xsl:variable name="h" select="resolve-uri(@name, $href)"/>
       <xsl:sequence xmlns:utils="java:org.apache.commons.io.FileUtils"
@@ -90,13 +103,14 @@
 
    <xsl:template match="rsrc" mode="map">
       <xsl:param name="base"  as="xs:anyURI"/>
+      <xsl:param name="rel"   as="xs:anyURI"/>
       <xsl:param name="href"  as="xs:anyURI"/>
       <xsl:variable name="s" select="
           if ( exists(@name) ) then
-            resolve-uri(@name, $releases)
+            my:resolve-uri(@name, $rel)
           else
-            resolve-uri(@src, $base)"/>
-      <xsl:variable name="h" select="resolve-uri(@href, $href)"/>
+            my:resolve-uri(@src, $base)"/>
+      <xsl:variable name="h" select="my:resolve-uri(@href, $href)"/>
       <!-- logging -->
       <xsl:message select="'Write rsrc', $h"/>
       <!-- copy the resource -->
