@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<webpage menu="index" root="../..">
+   <title>EXPath - ZIP Facility</title>
+   <section>
+      <title>ZIP Facility</title>
+      <image src="../../images/packaging.jpg" alt="Taps and pipes"/>
+      <para>This module is still a work in progress. An implementation exists for Saxon, but the
+         specification has not been written yet, and there is almost no documentation. An
+         introduction to EXPath, presented at Balisage in August 2009 contains examples, see the
+            <link
+            href="http://www.balisage.net/Proceedings/vol3/html/Georges01/BalisageVol3-Georges01.html"
+            >proceedings</link> and the <link
+            href="http://www.balisage.net/Proceedings/vol3/author-pkg/Georges01/BalisageVol3-Georges01.html"
+            >materials</link> page. Any help, comment or suggestion greatly appreciated on the <link
+            href="../../lists.html">mailing list</link>.</para>
+   </section>
+   <divider/>
+   <section>
+      <title>Prototype for Saxon</title>
+      <para>The current implementation for Saxon is provided as a XAR package: <link
+            href="expath-zip-saxon-0.1.xar">expath-zip-saxon-0.1.xar</link>. You can use this
+         package with the <link href="../pkg/">Packaging System</link>, or just open it as a ZIP
+         file, get the JAR file within it, and set your Saxon processor up (especially the
+         classpath). Here is an complete example (provided you correctly installed the package in
+         your repository, you can just save it in a file and execute it with <code>saxon
+            -xsl:zip-list.xsl -file=.../some/file.zip</code>):</para>
+      <para>
+         <sample href="index-sample-1.html"/>
+      </para>
+   </section>
+   <!--secondary box="true">
+      <para>This module is ideal to work with <link href="http://en.wikipedia.org/wiki/OpenDocument"
+            >OpenDocument Format</link> (ODF) files, Microsoft's <link
+            href="http://en.wikipedia.org/wiki/Office_Open_XML">Open XML</link> files , <link
+            href="http://www.openebook.org/">EPUB</link> eBooks and other ZIPbased file
+         formats.</para>
+   </secondary-->
+</webpage>
