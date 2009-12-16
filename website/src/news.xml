@@ -7,6 +7,14 @@
       <para>There is an <link href="atom.xml">Atom feed</link>.</para>
    </section>
    <primary>
+      <title>ZIP Facility</title>
+      <details>December 15, 2009</details>
+      <para>First release of the <link href="modules/zip/">ZIP facility</link> module. The
+         specification has not been written yet, but a prototype implementation exists for Saxon,
+         and some infos about the interface are available here and there. See the <link
+            href="modules/zip/">module page</link> for details.</para>
+   </primary>
+   <primary>
       <title>Packaging update</title>
       <details>November 18, 2009</details>
       <para>An update of the <link href="modules/pkg.html">packaging specification</link> has been

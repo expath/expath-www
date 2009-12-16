@@ -34,5 +34,12 @@
             <item><link href="modules/pkg.html">Specification</link></item>
          </list>
       </primary>
+      <primary>
+         <title>ZIP Facility</title>
+         <list>
+            <item><link href="modules/zip/">ZIP facility home</link></item>
+            <item><link href="modules/zip.html">Specification</link></item>
+         </list>
+      </primary>
    </section>
 </webpage>

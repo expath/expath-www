@@ -14,6 +14,16 @@
    </author>
 
    <entry>
+      <title>ZIP Facility</title>
+      <link href="http://www.expath.org/modules/zip/"/>
+      <id>urn:uuid:e2f56c80-e9de-11de-8a39-0800200c9a66</id>
+      <updated>2009-12-15T00:00:00+01:00</updated>
+      <summary>First release of the ZIP facility module. The specification has not been written yet,
+         but a prototype implementation exists for Saxon, and some infos about the interface are
+         available here and there. See the module page for details.</summary>
+   </entry>
+
+   <entry>
       <title>Packaging update</title>
       <link href="http://www.expath.org/modules/pkg.html"/>
       <link href="http://www.expath.org/modules/pkg/implems.html"/>

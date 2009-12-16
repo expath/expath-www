@@ -52,36 +52,48 @@
       <rsrc name="pkg/pkg-20090901.xml"  href="pkg-20090901.xml"/>
       <rsrc name="pkg/pkg-20091118.html" href="pkg-20091118.html"/>
       <rsrc name="pkg/pkg-20091118.xml"  href="pkg-20091118.xml"/>
-      <dir base="http-client/" href="http-client/">
+      <rsrc name="zip/zip.html"          href="zip.html"/>
+      <rsrc name="zip/zip.xml"           href="zip.xml"/>
+      <rsrc name="zip/zip-20090526.html" href="zip-20090526.html"/>
+      <rsrc name="zip/zip-20090526.xml"  href="zip-20090526.xml"/>
+      <dir base="http-client/" href="http-client/" release="http-client/">
          <!-- pages -->
          <page src="index.xml"    href="index.html"   menu="hc"/>
          <page src="implems.xml"  href="implems.html" menu="hc"/>
          <page src="samples.xml"  href="samples.html" menu="hc"/>
          <!-- packages -->
-         <rsrc name="http-client/expath-http-client-exist-0.1.xar"        href="expath-http-client-exist-0.1.xar"/>
-         <rsrc name="http-client/expath-http-client-marklogic-0.1.tar.gz" href="expath-http-client-marklogic-0.1.tar.gz"/>
-         <rsrc name="http-client/expath-http-client-marklogic-0.1.zip"    href="expath-http-client-marklogic-0.1.zip"/>
-         <rsrc name="http-client/expath-http-client-saxon-0.3.tar.gz"     href="expath-http-client-saxon-0.3.tar.gz"/>
-         <rsrc name="http-client/expath-http-client-saxon-0.3.zip"        href="expath-http-client-saxon-0.3.zip"/>
-         <rsrc name="http-client/expath-http-client-saxon-0.4.xar"        href="expath-http-client-saxon-0.4.xar"/>
+         <rsrc name="expath-http-client-exist-0.1.xar"        href="expath-http-client-exist-0.1.xar"/>
+         <rsrc name="expath-http-client-marklogic-0.1.tar.gz" href="expath-http-client-marklogic-0.1.tar.gz"/>
+         <rsrc name="expath-http-client-marklogic-0.1.zip"    href="expath-http-client-marklogic-0.1.zip"/>
+         <rsrc name="expath-http-client-saxon-0.3.tar.gz"     href="expath-http-client-saxon-0.3.tar.gz"/>
+         <rsrc name="expath-http-client-saxon-0.3.zip"        href="expath-http-client-saxon-0.3.zip"/>
+         <rsrc name="expath-http-client-saxon-0.4.xar"        href="expath-http-client-saxon-0.4.xar"/>
       </dir>
-      <dir base="pkg/" href="pkg/">
+      <dir base="pkg/" href="pkg/" release="pkg/">
          <!-- pages -->
          <page src="index.xml"   href="index.html"   menu="pkg"/>
          <page src="implems.xml" href="implems.html" menu="pkg"/>
          <!-- repo -->
-         <rsrc name="pkg/expath-pkg-repo-0.1.jar"  href="expath-pkg-repo-0.1.jar"/>
+         <rsrc name="expath-pkg-repo-0.1.jar"  href="expath-pkg-repo-0.1.jar"/>
          <!-- calabash -->
-         <rsrc name="pkg/calabash-expath-r477.jar"    href="calabash-expath-r477.jar"/>
-         <rsrc name="pkg/expath-pkg-calabash-0.1.jar" href="expath-pkg-repo-0.1.jar"/>
-         <rsrc name="pkg/expath-pkg-calabash-0.1.sh"  href="expath-pkg-repo-0.1.sh"/>
+         <rsrc name="calabash-expath-r477.jar"    href="calabash-expath-r477.jar"/>
+         <rsrc name="expath-pkg-calabash-0.1.jar" href="expath-pkg-repo-0.1.jar"/>
+         <rsrc name="expath-pkg-calabash-0.1.sh"  href="expath-pkg-repo-0.1.sh"/>
          <!-- exist -->
-         <rsrc name="pkg/expath-pkg-exist-0.1.jar" href="expath-pkg-exist-0.1.jar"/>
+         <rsrc name="expath-pkg-exist-0.1.jar" href="expath-pkg-exist-0.1.jar"/>
          <!-- saxon -->
-         <rsrc name="pkg/expath-pkg-saxon-0.1.jar" href="expath-pkg-saxon-0.1.jar"/>
-         <rsrc name="pkg/expath-pkg-saxon-0.1.sh"  href="expath-pkg-saxon-0.1.sh"/>
-         <rsrc name="pkg/expath-pkg-saxon-0.2.jar" href="expath-pkg-saxon-0.2.jar"/>
-         <rsrc name="pkg/expath-pkg-saxon-0.2.sh"  href="expath-pkg-saxon-0.2.sh"/>
+         <rsrc name="expath-pkg-saxon-0.1.jar" href="expath-pkg-saxon-0.1.jar"/>
+         <rsrc name="expath-pkg-saxon-0.1.sh"  href="expath-pkg-saxon-0.1.sh"/>
+         <rsrc name="expath-pkg-saxon-0.2.jar" href="expath-pkg-saxon-0.2.jar"/>
+         <rsrc name="expath-pkg-saxon-0.2.sh"  href="expath-pkg-saxon-0.2.sh"/>
+      </dir>
+      <dir base="zip/" href="zip/" release="zip/">
+         <!-- pages -->
+         <page src="index.xml"    href="index.html"   menu="zip"/>
+         <!--page src="implems.xml"  href="implems.html" menu="zip"/>
+         <page src="samples.xml"  href="samples.html" menu="zip"/-->
+         <!-- packages -->
+         <rsrc name="expath-zip-saxon-0.1.xar" href="expath-zip-saxon-0.1.xar"/>
       </dir>
    </dir>
 
@@ -114,6 +126,13 @@
       <item name="index"   href="."                  title="EXPath Packaging Home">Packaging</item>
       <item name="implems" href="implems.html"       title="EXPath Packaging Implems">Implementations</item>
       <item name="spec"    href="../pkg.html"        title="EXPath Packaging Spec">Specification</item>
+   </menu>
+
+   <menu name="zip">
+      <item name="parent"  href="../../modules.html" title="Modules">[ ../Modules ]</item>
+      <item name="index"   href="."                  title="EXPath ZIP Home">ZIP</item>
+      <!--item name="implems" href="implems.html"       title="EXPath ZIP Implems">Implementations</item-->
+      <item name="spec"    href="../zip.html"        title="EXPath ZIP Spec">Specification</item>
    </menu>
 
 </sitemap>

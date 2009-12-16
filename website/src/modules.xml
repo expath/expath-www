@@ -28,12 +28,13 @@
    <primary>
       <title>ZIP Facility</title>
       <details>Reading and writing ZIP files</details>
-      <para>This module has not been released yet, but will provide a set of functions to read the
-         structure of a ZIP file, read entries out of a ZIP file, update entries in an existing ZIP
-         file or create brand-new files. So it will provide the ability to deal with Microsoft's
-            <link href="http://en.wikipedia.org/wiki/Office_Open_XML">Open XML</link>, OASIS's <link
-            href="http://en.wikipedia.org/wiki/OpenDocument">OpenDocument</link>, and other
-         ZIP-and-XML-based document formats. Stay tuned on the <link href="lists.html">mailing
-            list</link>.</para>
+      <para>This module provides a set of functions to read the structure of a ZIP file, read
+         entries out of a ZIP file, update entries in an existing ZIP file or create brand-new
+         files. So it will provide the ability to deal with Microsoft's <link
+            href="http://en.wikipedia.org/wiki/Office_Open_XML">Open XML</link>, OASIS's <link
+            href="http://en.wikipedia.org/wiki/OpenDocument">OpenDocument</link>, other
+         ZIP-and-XML-based document formats, like <link href="http://www.openebook.org/">EPUB</link>
+         eBooks, or simply any plain ZIP file. See the <link href="modules/zip/">module page</link>
+         for details.</para>
    </primary>
 </webpage>
