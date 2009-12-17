@@ -2,8 +2,7 @@
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:http="http://www.exslt.org/v2/http-client"
-                xmlns:http-java="java:org.fgeorges.exslt2.saxon.HttpClient"
+                xmlns:http="http://www.expath.org/mod/http-client"
                 xmlns:ser="http://www.fgeorges.org/xslt/serial"
                 xmlns:my="my..."
                 exclude-result-prefixes="#all"
@@ -86,7 +85,7 @@
    </xsl:template>
 
    <xsl:template match="exclude" mode="map">
-      <xsl:param name="href"  as="xs:anyURI"/>
+      <xsl:param name="href" as="xs:anyURI"/>
       <xsl:variable name="h" select="resolve-uri(@name, $href)"/>
       <xsl:sequence xmlns:utils="java:org.apache.commons.io.FileUtils"
                     xmlns:file="java:java.io.File"
@@ -102,9 +101,9 @@
    </xsl:variable-->
 
    <xsl:template match="rsrc" mode="map">
-      <xsl:param name="base"  as="xs:anyURI"/>
-      <xsl:param name="rel"   as="xs:anyURI"/>
-      <xsl:param name="href"  as="xs:anyURI"/>
+      <xsl:param name="base" as="xs:anyURI"/>
+      <xsl:param name="rel"  as="xs:anyURI"/>
+      <xsl:param name="href" as="xs:anyURI"/>
       <xsl:variable name="s" select="
           if ( exists(@name) ) then
             my:resolve-uri(@name, $rel)
@@ -193,7 +192,7 @@
 <xsl:message>
    REQ: <xsl:copy-of select="$req"/>
 </xsl:message>
-      <xsl:variable name="res" select="http-java:send-request($req, $href, $content)"/>
+      <xsl:variable name="res" select="http:send-request($req, $href, $content)"/>
 <xsl:message>
    RES: <xsl:copy-of select="$res"/>
 </xsl:message>
