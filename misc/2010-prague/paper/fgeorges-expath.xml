@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="http://www.balisage.net/DocumentModels/balisage-1-1.rng" type="xml"?>
+
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+   <title>EXPath: Packaging, and Web applications</title>
+   <subtitle>A packaging system for XML libraries and a portable web application
+      framework.</subtitle>
+   <info>
+      <confgroup>
+         <conftitle>XML Prague</conftitle>
+         <confdates>13 - 14 March 2010</confdates>
+      </confgroup>
+      <abstract>
+         <para>EXPath is a project to define portable extensions to core XML technologies. The main
+            means to doing so is the specification of libraries of XPath functions, usable within
+            any XPath expressions evaluator, including XSLT, XQuery and XProc. But EXPath is also
+            open to other kinds of specifications, like the Packaging System and the framework to
+            write Web Applications, both described in this paper.</para>
+      </abstract>
+      <author>
+         <personname>
+            <firstname>Florent</firstname>
+            <surname>Georges</surname>
+         </personname>
+         <personblurb>
+            <para>Florent Georges is a freelance IT consultant in Brussels who has been involved in
+               the XML world for 10 years, especially within the XSLT and XQuery communities. His
+               main interests are in the field of XSLT and XQuery extensions and libraries,
+               packaging, unit and functional testing, and portability between several processors.
+               Since the beginning of 2009, he has worked on EXPath, to define "standard" extension
+               function libraries that can be used in XPath (so in XSLT, XQuery and XProc as
+               well).</para>
+         </personblurb>
+         <affiliation>
+            <jobtitle>XML Architect</jobtitle>
+            <orgname>H2O Consulting</orgname>
+         </affiliation>
+         <email>fgeorges@fgeorges.org</email>
+      </author>
+      <legalnotice>
+         <para>Copyright &#x000A9; 2010 Florent Georges. Used by permission.</para>
+      </legalnotice>
+      <keywordset role="author">
+         <keyword>EXPath</keyword>
+         <keyword>extension</keyword>
+         <keyword>XPath</keyword>
+         <keyword>XSLT</keyword>
+         <keyword>XQuery</keyword>
+      </keywordset>
+   </info>
+   <note>
+      <para>This submission is really an early draft. Though I have a precise idea of both the
+         structure and the content of this paper, I unfortunately did not have time to write it
+         entirely before the submission deadline. In particular, there is no diagrams yet, no
+         samples, and the text obviously needs both more content and language reviewing.</para>
+      <para>The idea is to introduce the <link xlink:href="http://www.expath.org/">EXPath
+            project</link>, and more precisely its Packaging System and its framework for Web
+         Applications.</para>
+      <para>Hopefully, the Christmas holidays should give me the opportunity to write a complete
+         version of this paper on time for submission of final papers :-)</para>
+   </note>
+   <section>
+      <title>Introduce EXPath</title>
+      <section>
+         <title>History</title>
+         <para>Exactly one year ago, in this same room during XML Prague 2009, the idea of EXPath
+            was born. EXQuery was just launched and some people were trying to launch a new version
+            of EXSLT, for XSLT 2.0. EXProc welcomed its first extensions too. While all those
+            projects make perfect sense regarding their own technology, they also overlap in
+            providing some identical functionalities to their target languages. But because they all
+            use XPath, it is then possible to define an extension only once: at the XPath
+            level.</para>
+         <para>...</para>
+      </section>
+      <section>
+         <title>Processes &amp; goals</title>
+         <para>Describe how the project works...</para>
+         <para>...</para>
+      </section>
+      <section>
+         <title>Examples</title>
+         <para>Describe two traditional modules of functions: HTTP Client + ZIP, and show an example
+            using them (in particular how user can write code to use them).</para>
+         <para>...</para>
+      </section>
+   </section>
+   <section>
+      <title>Packaging System</title>
+      <section>
+         <title>Context</title>
+         <para>Describe what's the current state in delivering XSLT and XQuery libraries. The
+            several processor vendors. The interaction between several technologies and languages.
+            They all use URIs to identify "things". We can then design a system to write portable
+            packages that carry enough information to be installed on any processor. Bal bla
+            bla...</para>
+         <para>...</para>
+      </section>
+      <section>
+         <title>Architecture</title>
+         <para>XML technologies use URIs to identify "things". A package, in addition to the
+            components it actually package, must then also provide meta informations bout how to
+            refer to a component. Bla bla bla...</para>
+         <para>...</para>
+      </section>
+      <section>
+         <title>A "system", you said?</title>
+         <para>Package format, extensibility, softwares, CXAN, etc.</para>
+         <para>...</para>
+      </section>
+      <section>
+         <title>The package format</title>
+         <para>Describe the package structure and the package descriptor...</para>
+         <para>...</para>
+      </section>
+      <section>
+         <title>Example</title>
+         <para>A complete example with schemas, stylesheets, queries, pipelines, ... See if
+            everything is fine under oXygen (through using the on-disk repository).</para>
+         <para>...</para>
+      </section>
+   </section>
+   <section>
+      <title>Web Applications</title>
+      <para>...</para>
+      <section>
+         <title>Context</title>
+         <para>Each product providing its own tools, etc. What made some products or framework
+            largely used? -> a portable foundation to build upon. We need the same here, to be able
+            to build great libraries based on such an abstract webapp container...</para>
+         <para>...</para>
+      </section>
+      <section>
+         <title>Example</title>
+         <para>Build a simple example, to deploy in live within ServleX.</para>
+         <para>...</para>
+      </section>
+      <section>
+         <title>Future</title>
+         <para>Could be used to build MVC-like systems, like Struts, etc.</para>
+         <para>...</para>
+      </section>
+   </section>
+   <section>
+      <title>A comprehensive example</title>
+      <para>Show a sample using all of HTTP Client, ZIP, Pkg and Webapp. First a webapp with both
+         web and REST interfaces. Then a client that use the REST API to create an ODF document
+         (maybe a pipeline that 1/ gets the data, 2/ build an internal data model, 3/ choose between
+         formating in ODF or OOXML or PDF...) Show how it reacts without the ZIP module, then after
+         having added it to the repo (cxan install expath-zip).</para>
+      <para>...</para>
+   </section>
+   <section>
+      <title>Conclusion</title>
+      <para>...</para>
+   </section>
+</article>
