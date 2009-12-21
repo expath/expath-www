@@ -11,6 +11,17 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="name">
+                                    <String xml:space="preserve">Balisage</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">misc/2010-prague/paper/fgeorges-expath.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
                                     <String xml:space="preserve">EXPath XML Spec HTML</String>
                                 </field>
                                 <field name="type">
@@ -33,13 +44,13 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String xml:space="preserve">EXPath XML Spec HTML</String>
+                                    <String xml:space="preserve">Balisage</String>
                                 </field>
                                 <field name="type">
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../pkg/spec/pkg.xml</String>
+                                    <String xml:space="preserve">misc/2010-prague/paper/fgeorges-expath-prague-2010.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -286,17 +297,6 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String xml:space="preserve">Balisage</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">misc/2009-balisage/paper/Bal2009GEOR0901.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
                                     <String xml:space="preserve">Website page to HTML - src</String>
                                 </field>
                                 <field name="type">
@@ -469,6 +469,28 @@
                                 </field>
                                 <field name="url">
                                     <String xml:space="preserve">../../../../../H:/expath/pkg/spec/pkg-diff.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">Balisage</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">misc/2009-balisage/paper/Bal2009GEOR0901.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">EXPath XML Spec HTML</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../pkg/spec/pkg.xml</String>
                                 </field>
                             </scenarioAssociation>
                         </scenarioAssociation-array>
@@ -4299,6 +4321,13 @@
                     />
                 </folder>
                 <folder name="presentation"/>
+            </folder>
+            <folder name="prague">
+                <folder name="paper">
+                    <file
+                        name="misc/2010-prague/paper/fgeorges-expath.xml"
+                    />
+                </folder>
             </folder>
         </folder>
         <folder name="specs">
