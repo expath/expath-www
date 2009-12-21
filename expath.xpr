@@ -17,6 +17,17 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
+                                    <String xml:space="preserve">file:/H:/expath/expath/misc/2010-prague/paper/fgeorges-expath.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">Balisage</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
                                     <String xml:space="preserve">misc/2010-prague/paper/fgeorges-expath.xml</String>
                                 </field>
                             </scenarioAssociation>
@@ -61,7 +72,7 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../../../../../../../H:/tmp/efp/schedule-1254fbcb490.xml</String>
+                                    <String xml:space="preserve">file:/../../H:/tmp/efp/schedule-1254fbcb490.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -83,7 +94,7 @@
                                     <String xml:space="preserve">XQUERY</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../../../../../../../H:/xquery/decode-from-uri.xq</String>
+                                    <String xml:space="preserve">file:/../../H:/xquery/decode-from-uri.xq</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -105,7 +116,7 @@
                                     <String xml:space="preserve">XPROC</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../../../../../../../D:/xsl/expath/test/webdav-test.xproc</String>
+                                    <String xml:space="preserve">file:/../../D:/xsl/expath/test/webdav-test.xproc</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -116,7 +127,7 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../../../../../../../H:/expath/pkg/spec/pkg.xml</String>
+                                    <String xml:space="preserve">file:/../../H:/expath/pkg/spec/pkg.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -138,7 +149,7 @@
                                     <String xml:space="preserve">XQUERY</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../../../../../../../H:/expath/expath/website/src/Untitled1.xquery</String>
+                                    <String xml:space="preserve">file:/../../H:/expath/expath/website/src/Untitled1.xquery</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -369,7 +380,7 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../../../../../../../H:/tmp/schedule-121f79eaac9.fo</String>
+                                    <String xml:space="preserve">file:/../../H:/tmp/schedule-121f79eaac9.fo</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -380,7 +391,7 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../../../../../../../H:/tmp/schedule-121f79eaac9.xml</String>
+                                    <String xml:space="preserve">file:/../../H:/tmp/schedule-121f79eaac9.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -391,7 +402,7 @@
                                     <String xml:space="preserve">XML</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../../../../../../../H:/expath/expath/website/tools/check-links.xsl</String>
+                                    <String xml:space="preserve">file:/../../H:/expath/expath/website/tools/check-links.xsl</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -402,7 +413,7 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../../../../../../../H:/fgeorges.org/invoices/chloe-fgeorges.org/sword-invoice-h2o-2009-10.xml</String>
+                                    <String xml:space="preserve">file:/../../H:/fgeorges.org/invoices/chloe-fgeorges.org/sword-invoice-h2o-2009-10.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -424,7 +435,7 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../../../../../../../H:/tmp/efp/schedule-11fff71afb7.xml</String>
+                                    <String xml:space="preserve">file:/../../H:/tmp/efp/schedule-11fff71afb7.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -435,7 +446,7 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../../../../../../../H:/tmp/efp/schedule-1254f99181b.xml</String>
+                                    <String xml:space="preserve">file:/../../H:/tmp/efp/schedule-1254f99181b.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -446,7 +457,7 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../../../../../../../H:/tmp/efp/schedule-1256db25115.xml</String>
+                                    <String xml:space="preserve">file:/../../H:/tmp/efp/schedule-1256db25115.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -457,7 +468,7 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../../../../../../../H:/tmp/efp/schedule-1257297f43a.xml</String>
+                                    <String xml:space="preserve">file:/../../H:/tmp/efp/schedule-1257297f43a.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -468,7 +479,7 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../../../../../H:/expath/pkg/spec/pkg-diff.xml</String>
+                                    <String xml:space="preserve">file:/../../H:/expath/pkg/spec/pkg-diff.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -491,6 +502,17 @@
                                 </field>
                                 <field name="url">
                                     <String xml:space="preserve">../pkg/spec/pkg.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">Same name</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../../xsl/test/jcummings.xml</String>
                                 </field>
                             </scenarioAssociation>
                         </scenarioAssociation-array>
@@ -575,7 +597,7 @@
                                     <String-array/>
                                 </field>
                                 <field name="xslTransformer">
-                                    <String xml:space="preserve">Saxon-PE</String>
+                                    <String xml:space="preserve">Xalan</String>
                                 </field>
                                 <field name="extensionURLs">
                                     <String-array/>
@@ -1704,7 +1726,7 @@
                                     <String-array/>
                                 </field>
                                 <field name="xslTransformer">
-                                    <String xml:space="preserve">Saxon6.5.5</String>
+                                    <String xml:space="preserve">Saxon-HE</String>
                                 </field>
                                 <field name="extensionURLs">
                                     <String-array/>
