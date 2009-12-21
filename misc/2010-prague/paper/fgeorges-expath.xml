@@ -38,7 +38,7 @@
          <email>fgeorges@fgeorges.org</email>
       </author>
       <legalnotice>
-         <para>Copyright &#x000A9; 2010 Florent Georges. Used by permission.</para>
+         <para>Copyright &#xA9; 2010 Florent Georges. Used by permission.</para>
       </legalnotice>
       <keywordset role="author">
          <keyword>EXPath</keyword>
@@ -74,13 +74,13 @@
       </section>
       <section>
          <title>Processes &amp; goals</title>
-         <para>Describe how the project works...</para>
+         <para>[ TODO: ] Describe how the project works...</para>
          <para>...</para>
       </section>
       <section>
          <title>Examples</title>
-         <para>Describe two traditional modules of functions: HTTP Client + ZIP, and show an example
-            using them (in particular how user can write code to use them).</para>
+         <para>[ TODO: ] Describe two traditional modules of functions: HTTP Client + ZIP, and show
+            an example using them (in particular how user can write code to use them).</para>
          <para>...</para>
       </section>
    </section>
@@ -88,34 +88,34 @@
       <title>Packaging System</title>
       <section>
          <title>Context</title>
-         <para>Describe what's the current state in delivering XSLT and XQuery libraries. The
-            several processor vendors. The interaction between several technologies and languages.
-            They all use URIs to identify "things". We can then design a system to write portable
-            packages that carry enough information to be installed on any processor. Bal bla
-            bla...</para>
+         <para>[ TODO: ] Describe what's the current state in delivering XSLT and XQuery libraries.
+            The several processor vendors. The interaction between several technologies and
+            languages. They all use URIs to identify "things". We can then design a system to write
+            portable packages that carry enough information to be installed on any processor. Bal
+            bla bla...</para>
          <para>...</para>
       </section>
       <section>
          <title>Architecture</title>
-         <para>XML technologies use URIs to identify "things". A package, in addition to the
-            components it actually package, must then also provide meta informations bout how to
-            refer to a component. Bla bla bla...</para>
+         <para>[ TODO: ] XML technologies use URIs to identify "things". A package, in addition to
+            the components it actually packages, must then also provide meta informations about how
+            to refer to a component. Bla bla bla...</para>
          <para>...</para>
       </section>
       <section>
          <title>A "system", you said?</title>
-         <para>Package format, extensibility, softwares, CXAN, etc.</para>
+         <para>[ TODO: ] Package format, extensibility, softwares, CXAN, etc.</para>
          <para>...</para>
       </section>
       <section>
          <title>The package format</title>
-         <para>Describe the package structure and the package descriptor...</para>
+         <para>[ TODO: ] Describe the package structure and the package descriptor...</para>
          <para>...</para>
       </section>
       <section>
          <title>Example</title>
-         <para>A complete example with schemas, stylesheets, queries, pipelines, ... See if
-            everything is fine under oXygen (through using the on-disk repository).</para>
+         <para>[ TODO: ] A complete example with schemas, stylesheets, queries, pipelines, ... See
+            if everything is fine under oXygen (through using the on-disk repository).</para>
          <para>...</para>
       </section>
    </section>
@@ -124,29 +124,64 @@
       <para>...</para>
       <section>
          <title>Context</title>
-         <para>Each product providing its own tools, etc. What made some products or framework
-            largely used? -> a portable foundation to build upon. We need the same here, to be able
-            to build great libraries based on such an abstract webapp container...</para>
+         <para>These days, more and more applications are developed as <emphasis>web
+               applications</emphasis>. I do not want to even try to define what's a web
+            application, but let's say that is an application running on a server, and which
+            interacts with the rest of the world (usually end users) by responding to HTTP requests.
+            XML technologies are not an exception, and most processors offer a way to be accessed
+            via HTTP, from the simple REST API to access the processor features themselves, to
+            frameworks to build entire web applications.</para>
+         <para>In such systems, an HTTP request arrives to the server, which looks at the URI to
+            identify how to respond to this request. The URI will resolve either in an internal
+            server routine or in a user component, for instance an XQuery module. The module can
+            then use functions provided by the server to access information from the HTTP request,
+            like its headers, and to set properties of the response, like the HTTP response code.
+            The XQuery module will usually access a database (in read and/or write) and extract some
+            data, then it will transform this data to the format the user expect it (for instance in
+            HTML, or in a standard XML vocabulary).</para>
+         <para>As usual, the way to plug your components in such a system, as well as the way it can
+            interact with it (accessing information from the request and providing the response) is
+            implementation-defined. Even though those informations are exactly the same on all those
+            systems: they are defined by the HTTP request-response model.</para>
+         <para>[ TODO: ] Conclude this context description by noting that in other technologies,
+            largely used frameworks existed because a standardized abstract webapp container had
+            been defined (for instance frameworks like Struts or Swing MVC and the Java Servlet
+            specification).</para>
+      </section>
+      <section>
+         <title>Architecture</title>
+         <para>[ TODO: ] Describe the architecture of the abstract container, and the HTTP request
+            and response model. End this section with a description of the web application packaging
+            format, built upon the Packaging System.</para>
+         <para>...</para>
+      </section>
+      <section>
+         <title>ServleX</title>
+         <para>[ TODO: ] Introduce Servlex, an implementation of the web container using Java
+            Servlet technologies for the integration with HTTP and server-side, and Saxon and
+            Calabash for its X* processors (to actually evaluate the XSLT, XQuery and XProc
+            components). But the main target is of course existing XML databases like eXist and
+            MarkLogic.</para>
          <para>...</para>
       </section>
       <section>
          <title>Example</title>
-         <para>Build a simple example, to deploy in live within ServleX.</para>
+         <para>[ TODO: ] Build a simple example, to deploy and use in live within ServleX.</para>
          <para>...</para>
       </section>
       <section>
          <title>Future</title>
-         <para>Could be used to build MVC-like systems, like Struts, etc.</para>
+         <para>[ TODO: ] Could be used to build MVC-like systems, like Struts, etc.</para>
          <para>...</para>
       </section>
    </section>
    <section>
       <title>A comprehensive example</title>
-      <para>Show a sample using all of HTTP Client, ZIP, Pkg and Webapp. First a webapp with both
-         web and REST interfaces. Then a client that use the REST API to create an ODF document
-         (maybe a pipeline that 1/ gets the data, 2/ build an internal data model, 3/ choose between
-         formating in ODF or OOXML or PDF...) Show how it reacts without the ZIP module, then after
-         having added it to the repo (cxan install expath-zip).</para>
+      <para>[ TODO: ] Show a sample using all of HTTP Client, ZIP, Pkg and Webapp. First a webapp
+         with both web and REST interfaces. Then a client that use the REST API to create an ODF
+         document (maybe a pipeline that 1/ gets the data, 2/ build an internal data model, 3/
+         choose between formating in ODF or OOXML or PDF...) Show how it reacts without the ZIP
+         module, then after having added it to the repo (cxan install expath-zip).</para>
       <para>...</para>
    </section>
    <section>
