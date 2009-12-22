@@ -27,9 +27,9 @@
                the XML world for 10 years, especially within the XSLT and XQuery communities. His
                main interests are in the field of XSLT and XQuery extensions and libraries,
                packaging, unit and functional testing, and portability between several processors.
-               Since the beginning of 2009, he has worked on EXPath, to define "standard" extension
-               function libraries that can be used in XPath (so in XSLT, XQuery and XProc as
-               well).</para>
+               Since the beginning of 2009, he has worked on EXPath, to define "standard" tools and
+               extension function libraries that can be used in XPath (so in XSLT, XQuery and XProc
+               as well).</para>
          </personblurb>
          <affiliation>
             <jobtitle>XML Architect</jobtitle>
@@ -52,7 +52,8 @@
       <para>This submission is really an early draft. Though I have a precise idea of both the
          structure and the content of this paper, I unfortunately did not have time to write it
          entirely before the submission deadline. In particular, there is no diagrams yet, no
-         samples, and the text obviously needs both more content and language reviewing.</para>
+         samples, and the text obviously needs both more content and language reviewing, but I tried
+         to make the intention clear and precise enough.</para>
       <para>The idea is to introduce the <link xlink:href="http://www.expath.org/">EXPath
             project</link>, and more precisely its Packaging System and its framework for Web
          Applications.</para>
@@ -67,61 +68,153 @@
             was born. EXQuery was just launched and some people were trying to launch a new version
             of EXSLT, for XSLT 2.0. EXProc welcomed its first extensions too. While all those
             projects make perfect sense regarding their own technology, they also overlap in
-            providing some identical functionalities to their target languages. But because they all
-            use XPath, it is then possible to define an extension only once: at the XPath
-            level.</para>
-         <para>...</para>
+            providing some identical functionalities to their target languages. So the idea emerged
+            here: acting at the XPath level to touch a broader audience and to define a same
+            extension only once.</para>
+         <para>[ TODO: ] Continue...</para>
       </section>
       <section>
          <title>Processes &amp; goals</title>
-         <para>[ TODO: ] Describe how the project works...</para>
-         <para>...</para>
+         <para>[ TODO: ] Describe how the project works... What it delivers (libraries of functions,
+            but also other specifications like packaging)... How modules are specified, why are
+            implementations provided?... The goal is to write portable specifications, but
+            early implementations help in that process too...</para>
       </section>
       <section>
          <title>Examples</title>
-         <para>[ TODO: ] Describe two traditional modules of functions: HTTP Client + ZIP, and show
-            an example using them (in particular how user can write code to use them).</para>
-         <para>...</para>
+         <para>[ TODO: ] Describe two traditional function libraries: HTTP Client + ZIP, and show an
+            example using them (in particular how user can write code to use them). Idea: backup of
+            some Google service data into a ZIP archive (contacts data, agenda, or any other service
+            with data accessible with Atom Pub or any REST API).</para>
       </section>
    </section>
    <section>
       <title>Packaging System</title>
       <section>
          <title>Context</title>
-         <para>[ TODO: ] Describe what's the current state in delivering XSLT and XQuery libraries.
-            The several processor vendors. The interaction between several technologies and
-            languages. They all use URIs to identify "things". We can then design a system to write
-            portable packages that carry enough information to be installed on any processor. Bal
-            bla bla...</para>
-         <para>...</para>
+         <para>If you work with XSLT or XQuery for a few years, I guess you already tried to install
+            a third-party stylesheet or query, because it provided an out-of-the-box bar code
+            formating facility or some utility functions to deal with a particular XML language. So
+            you went to the library website, looked for the download page, downloaded the component
+            somewhere on your computer, and read the installation instruction: <emphasis>put the
+               stylesheet (or the query) in an appropriate place, please see your processor
+               documentation</emphasis>. So you put the component <emphasis>somewhere</emphasis>,
+            sometimes in the same directory than your stylesheets, sometimes you tried to create a
+            kind of central repository on your system. And you finally succeeded, after you figured
+            out the correct import statements, to run your transform from the command line. Then you
+            tried to configure your new XML IDE to be able to run the same transforms. Then you
+            integrated your components, and their dependencies, into the enterprise application that
+            uses then. Or even worse, you tried to find a way to deliver your stylesheets or queries
+            as a library, and had to take care about their third-party dependencies.</para>
+         <para>Then you needed the new version of that third-party library...</para>
+         <para>Why couldn't you just ask your tools: <emphasis>could you use this and that
+               libraries, please</emphasis>? After all, every XML technologies use the same tool to
+            identify dependencies: a URI. You want to use an XQuery library module? You have to give
+            its namespace URI. You want to import a stylesheet module? You have to give its URI. You
+            want to use an XProc pipeline? Well, guess what...</para>
+         <para>Actually URIs are very good at that game. There can be any level of indirections: the
+            processor itself, either if it knows the resource built-in, or if it resolves it through
+            its own documented mechanism, but also some configuration options, or networking
+            redirections. There is even a standard format to express URI redirections as an XML
+            document, or set of documents: XML Catalogs, from OASIS. (Most of) the existing
+            processors support (some of) those and other redirecting technologies, (more or less)
+            out of the box.</para>
+         <para>So why is it still so difficult to install an XSLT or XQuery library? In fact, while
+            the installation is not always easy, that's much the delivery of the components that is
+            difficult. For now, you cannot really do nothing much than putting your components into
+            a ZIP file or any other archive format, and say <emphasis>please see you processor
+               documentation</emphasis>.</para>
+         <para>It is interesting to note that even though XQuery has a module system that enforces
+            associating a URI to a library module, the situation is not much better than for XSLT.
+            It seems sometimes easier to find a place where to put the queries on an XML database
+            server, because it controls its own data space, as opposed to a standalone processor.
+            But some of those XML databases do not allow one to choose his/her own resolution
+            mechanism, requiring importing queries to use an implementation-defined "at hint" in its
+            import statements. Furthermore, publishing a library does not mean only providing its
+            components and the associated URIs. Some components are private and are just library's
+            internals. Or another component is an extension developed in another language. Or yet
+            another component is specific to a given processor.</para>
+         <para>The key is a common, portable packaging format.</para>
+         <para>A format that allows library authors to package their libraries without having to
+            worry about it. A common format understood by most of the existing processors. A format
+            that allows you to package a consistent library, not regarding the technologies it uses,
+            but its purpose: a format that allows you to deliver XSLT stylesheets, XQuery modules,
+            XML Schemas and XProc pipelines all together.</para>
       </section>
       <section>
          <title>Architecture</title>
-         <para>[ TODO: ] XML technologies use URIs to identify "things". A package, in addition to
-            the components it actually packages, must then also provide meta informations about how
-            to refer to a component. Bla bla bla...</para>
-         <para>...</para>
-      </section>
-      <section>
-         <title>A "system", you said?</title>
-         <para>[ TODO: ] Package format, extensibility, softwares, CXAN, etc.</para>
-         <para>...</para>
+         <para>As noted above, all XML technologies use URIs to identify dependencies. So the first
+            thing to do in order to resolve a URI to a resource is to get this URI. As explained,
+            XQuery has a first-class module system, and enforces the fact that a library module has
+            an associated URI: its target namespace. Other technologies, like XSLT and XProc, do not
+            have such a built-in module system. You have to use a URI to refer to an XSLT
+            stylesheet, but nothing force a user to use the same URI. Nothing is provided to the
+            library author to say: <emphasis>this is the public URI associated to this
+               stylesheet</emphasis>.</para>
+         <para>The EXPath Packaging System associates a <emphasis role="bold">public URI</emphasis>
+            to every public components. A public component is any XSLT stylesheet, XQuery module,
+            XProc pipeline, XML Schema or any other supported technology, aimed to be used directly
+            by the user. For instance, a top-level stylesheet is a public component, but not some of
+            the other stylesheets it imports, providing only private tools intern to the library
+            itself. The library author chooses the public URIs for his/her components. The user can
+            use those public URIs in other components. For instance in a stylesheet importing your
+            stylesheet. Because the public URIs are defined once by the library author, there is no
+            more the problem of modifying import statements in a third-party library just because
+            its author does not use the same processor than you.</para>
+         <para>When you provide a processor supporting the packaging system with a package, it will
+            install its content in some implementation-defined way. The way to provide the processor
+            with the package is implementation-defined itself. It can be by using a web-based admin
+            console, by putting the package in a predefined directory, or by using an XML IDE
+            graphical interface to manage a local repository on the disk, shared by several
+            processors. What is important is that the processor finds the correct component when you
+            use its public URI in, say, an <code>xsl:import</code> statement:</para>
+         <programlisting>
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                version="2.0">
+
+   &lt;!-- there is nothing at that URL, the module must have been installed -->
+   &lt;xsl:import href="http://example.org/project/something.xsl"/>
+</programlisting>
       </section>
       <section>
          <title>The package format</title>
-         <para>[ TODO: ] Describe the package structure and the package descriptor...</para>
-         <para>...</para>
+         <para>[ TODO: ] Describe the package structure and the package descriptor... Use this example:</para>
+         <programlisting>
+&lt;package xmlns="http://expath.org/ns/pkg">
+   &lt;module name="functx" version="1.0">
+      &lt;title>FunctX library&lt;/title>
+      &lt;xquery>
+         &lt;namespace>http://www.functx.com&lt;/namespace>
+         &lt;file>functx.xql&lt;/file>
+      &lt;/xquery>
+      &lt;xslt>
+         &lt;import-uri>http://www.functx.com/functx.xsl&lt;/import-uri>
+         &lt;file>functx.xsl&lt;/file>
+      &lt;/xslt>
+   &lt;/module>
+&lt;/package>
+</programlisting>
+         <programlisting>
+expath-pkg.xml
+functx/
+   functx.xql
+   functx.xsl
+</programlisting>
+      </section>
+      <section>
+         <title>A "system", you said?</title>
+         <para>[ TODO: ] Tells more about the package format, its extensibility opportunities and
+            mechanisms, various softwares (repo management, IDE...), CXAN, etc.</para>
       </section>
       <section>
          <title>Example</title>
-         <para>[ TODO: ] A complete example with schemas, stylesheets, queries, pipelines, ... See
-            if everything is fine under oXygen (through using the on-disk repository).</para>
-         <para>...</para>
+         <para>[ TODO: ] Write a complete example with schemas, stylesheets, queries, pipelines, ...
+            Show how it works under oXygen (through using the on-disk repository), Saxon, Calabash,
+            eXist...</para>
       </section>
    </section>
    <section>
       <title>Web Applications</title>
-      <para>...</para>
       <section>
          <title>Context</title>
          <para>These days, more and more applications are developed as <emphasis>web
@@ -144,8 +237,8 @@
             implementation-defined. Even though those informations are exactly the same on all those
             systems: they are defined by the HTTP request-response model.</para>
          <para>[ TODO: ] Conclude this context description by noting that in other technologies,
-            largely used frameworks existed because a standardized abstract webapp container had
-            been defined (for instance frameworks like Struts or Swing MVC and the Java Servlet
+            largely used frameworks emerged because a standardized abstract webapp container had
+            been defined (for instance frameworks like Struts or Spring MVC and the Java Servlet
             specification).</para>
       </section>
       <section>
@@ -153,7 +246,6 @@
          <para>[ TODO: ] Describe the architecture of the abstract container, and the HTTP request
             and response model. End this section with a description of the web application packaging
             format, built upon the Packaging System.</para>
-         <para>...</para>
       </section>
       <section>
          <title>ServleX</title>
@@ -162,30 +254,26 @@
             Calabash for its X* processors (to actually evaluate the XSLT, XQuery and XProc
             components). But the main target is of course existing XML databases like eXist and
             MarkLogic.</para>
-         <para>...</para>
       </section>
       <section>
          <title>Example</title>
          <para>[ TODO: ] Build a simple example, to deploy and use in live within ServleX.</para>
-         <para>...</para>
       </section>
       <section>
          <title>Future</title>
-         <para>[ TODO: ] Could be used to build MVC-like systems, like Struts, etc.</para>
-         <para>...</para>
+         <para>[ TODO: ] Could be used to build general-purpose MVC-like systems.</para>
       </section>
    </section>
    <section>
       <title>A comprehensive example</title>
       <para>[ TODO: ] Show a sample using all of HTTP Client, ZIP, Pkg and Webapp. First a webapp
-         with both web and REST interfaces. Then a client that use the REST API to create an ODF
+         with both web and REST interfaces. Then a client that uses the REST API to create an ODF
          document (maybe a pipeline that 1/ gets the data, 2/ build an internal data model, 3/
          choose between formating in ODF or OOXML or PDF...) Show how it reacts without the ZIP
          module, then after having added it to the repo (cxan install expath-zip).</para>
-      <para>...</para>
    </section>
    <section>
       <title>Conclusion</title>
-      <para>...</para>
+      <para>[ TODO: ] ...</para>
    </section>
 </article>
