@@ -234,26 +234,112 @@ functx/
             HTML, or in a standard XML vocabulary).</para>
          <para>As usual, the way to plug your components in such a system, as well as the way it can
             interact with it (accessing information from the request and providing the response) is
-            implementation-defined. Even though those informations are exactly the same on all those
-            systems: they are defined by the HTTP request-response model.</para>
-         <para>[ TODO: ] Conclude this context description by noting that in other technologies,
-            largely used frameworks emerged because a standardized abstract webapp container had
-            been defined (for instance frameworks like Struts or Spring MVC and the Java Servlet
-            specification).</para>
+            implementation-defined. Even though most of those informations are exactly the same on
+            all those systems: they are defined by the HTTP request-response model.</para>
+         <para>Besides the benefit of writing end-user web applications in a processor-independent
+            way, such a standard mechanism to deploy XML-based web applications would allow writing
+            frameworks for web applications directly in XQuery, XProc or XSLT (or more likely a mix
+            of them). Most popular frameworks for Java web applications for instance, like Struts or
+            Spring MVC, could be developed because the Java Servlet specification existed.</para>
       </section>
       <section>
          <title>Architecture</title>
-         <para>[ TODO: ] Describe the architecture of the abstract container, and the HTTP request
-            and response model. End this section with a description of the web application packaging
-            format, built upon the Packaging System.</para>
+         <para>A web application is a set of entry points. An entry point can be an XPath function
+            (provided by an XQuery library module, a stylesheet, or any other means), an XSLT named
+            template, an XQuery main module, an XSLT stylesheet or an XProc pipeline. Each kind of
+            entry point must follow different rules regarding how it accesses the request data and
+            how it provides the response content (for instance a function will get the request as
+            parameter, while an XQuery main module will get it as an external variable), but besides
+            these slightly different interfaces, they can do the same thing.</para>
+         <para>Each entry point is associated a regular expression to match the URI a request is
+            sent to. When a request is sent to server, the web container try to match the accessed
+            URI to an entry point. A representation of the request is build as an element node
+            (gathering informations like the HTTP headers, the request body content, etc.). This
+            request element is passed to the entry point component (for instance an XPath function).
+            The return value of this component is used to create the response to send back to the
+            user. A request element looks like the following:</para>
+         <programlisting>
+&lt;request servlet="srv-1" path="/some/page" method="post">
+   &lt;uri>http://www.host.org:8000/myapp/some/page&lt;/uri>
+   &lt;context-root>/myapp&lt;/context-root>
+   &lt;path>
+      &lt;part>/some/&lt;/part>
+      &lt;match>page&lt;/match>
+   &lt;/path>
+   &lt;auth method="basic" username="user">
+      &lt;basic sesame="YWRtaW46YWRtaW5hZG1pbg==" password="..."/>
+   &lt;/auth>
+   &lt;header name="host" value="www.host.org"/>
+   &lt;header name="connection" value="keep-alive"/>
+   &lt;multipart content-type="multipart/alternative"
+              boundary="=-=-=-=-=-=">
+      &lt;body content-type="text/plain"/>
+      &lt;body content-type="text/html"/>
+      &lt;body content-type="application/xml"/>
+   &lt;/multipart>
+&lt;/request>
+         </programlisting>
+         <para>In order to deploy an application, the web container needs to know the match patterns
+            and their associated URI patterns. The user gives those informations as an XML document:
+            the deployment descriptor. It lists the entry points with their components and URI
+            patterns, as well as a few other configuration infos:</para>
+         <programlisting>
+&lt;web-app xmlns="http://expath.org/ns/webapp"
+         xmlns:my1="http://mycorp.com/proj/my-app/servlet-1"
+         xmlns:my2="http://mycorp.com/proj/my-app/servlet-2"
+         name="http://fgeorges.org/example/my-webapp"
+         abbrev="my-webapp"
+         version="0.1">
+
+   &lt;title>My simple web application&lt;/title>
+
+   &lt;context>
+      &lt;param name="webmaster" value="webmaster@mycorp.com"/>
+      &lt;param name="collection" value="http://mycorp.com/dataset"/>
+   &lt;/context>
+   &lt;page>
+      &lt;url pattern="/(.+)\.html"/>
+   &lt;/page>
+
+   &lt;servlet name="srv-xq-1">
+      &lt;xquery function="my1:servlet"/>
+      &lt;url pattern="/catalog/(.+)"/>
+   &lt;/servlet>
+
+   &lt;servlet name="srv-xq-2">
+      &lt;xquery file="servlet-2.xq"/>
+      &lt;url pattern="/xq2/(.+)"/>
+   &lt;/servlet>
+
+   &lt;servlet name="srv-xsl-1">
+      &lt;xslt template="my2:servlet">
+         &lt;import-uri>http://www.mycorp.com/proj/my-app/servlet-2.xsl&lt;/import-uri>
+      &lt;/xslt>
+      &lt;url pattern="/(.+)-xsl/1/"/>
+   &lt;/servlet>
+
+   ...
+         </programlisting>
+         <para>After a few infos about the application itself, like its title and some configuration
+            parameters, the descriptor declares the various end points with the element
+               <code>servlet</code>. Each of them references a component (like an XSLT named
+            template or an XQuery main module) and a URI pattern. Based on this deployment
+            descriptor, the web container is able to dispatch the HTTP requests to the correct end
+            point.</para>
+         <para>The last part of the architecture is how to provide the web container with the data.
+            This one easy: it is built upon the packaging <emphasis>system</emphasis>. A web archive
+            has exactly the same structure as a regular package. A ZIP file with all components, and
+            the package descriptor <code>expath-pkg.xml</code> at the root of the package. For a web
+            archive, one just has to add the deployment descriptor next to the package
+            descriptor.</para>
       </section>
       <section>
          <title>ServleX</title>
          <para>[ TODO: ] Introduce Servlex, an implementation of the web container using Java
             Servlet technologies for the integration with HTTP and server-side, and Saxon and
             Calabash for its X* processors (to actually evaluate the XSLT, XQuery and XProc
-            components). But the main target is of course existing XML databases like eXist and
-            MarkLogic.</para>
+            components). But the main target of this specification is of course existing XML
+            databases like eXist and MarkLogic.</para>
       </section>
       <section>
          <title>Example</title>
