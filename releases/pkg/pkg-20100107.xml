@@ -490,6 +490,13 @@ functx/
    &lt;uri name="http://www.functx.com/functx.xsl"
         uri="../../functx/functx.xsl"/>
 &lt;/catalog></eg>
+         <p>A user can then import the FunctX library from either an XQuery module or an XSLT
+            stylesheet by using respectively an import statement:</p>
+         <eg>
+import module namespace fx = "http://www.functx.com/";</eg>
+         <p>or an import instruction:</p>
+         <eg>
+&lt;xsl:import href="http://www.functx.com/functx.xsl"/></eg>
       </div1>
       <!--div1>
          <head>Processor-specific files</head>

@@ -89,11 +89,11 @@ div.exampleHeader { font-weight: bold;
     4.1 <a href="#d3e368">XProc pipelines</a><br />
 5 <a href="#d3e404">On-disk repository layout</a><br />
 6 <a href="#d3e459">Example</a><br />
-7 <a href="#d3e532">Extensibility</a><br />
-8 <a href="#d3e544">Editorial notes</a><br />
+7 <a href="#d3e540">Extensibility</a><br />
+8 <a href="#d3e552">Editorial notes</a><br />
 </p>
-<h3><a name="appendices" id="appendices"></a>Appendices</h3><p class="toc">A <a href="#d3e574">Package descriptor schema</a><br />
-B <a href="#d3e580">References</a><br />
+<h3><a name="appendices" id="appendices"></a>Appendices</h3><p class="toc">A <a href="#d3e582">Package descriptor schema</a><br />
+B <a href="#d3e588">References</a><br />
 </p></div><hr /><div class="body"><div class="div1">
 <h2><a name="d3e61" id="d3e61"></a>1 Introduction</h2><p>XSLT, XQuery and XProc are amazing programming languages. But they lack a large choice
             of libraries, and when such libraries do exist, this is a challenge to install. There is
@@ -420,8 +420,11 @@ functx/
    &lt;!-- TODO: Should there be a system entry as well? --&gt;
    &lt;uri name="http://www.functx.com/functx.xsl"
         uri="../../functx/functx.xsl"/&gt;
-&lt;/catalog&gt;</pre></div></div></div><div class="diff-add"><div class="div1">
-<h2><a name="d3e532" id="d3e532"></a>7 Extensibility</h2><p>The package format defined in this specification is a complete system to package
+&lt;/catalog&gt;</pre></div><p>A user can then import the FunctX library from either an XQuery module or an XSLT
+            stylesheet by using respectively an import statement:</p><div class="exampleInner"><pre>
+import module namespace fx = "http://www.functx.com/";</pre></div><p>or an import instruction:</p><div class="exampleInner"><pre>
+&lt;xsl:import href="http://www.functx.com/functx.xsl"/&gt;</pre></div></div></div><div class="diff-add"><div class="div1">
+<h2><a name="d3e540" id="d3e540"></a>7 Extensibility</h2><p>The package format defined in this specification is a complete system to package
             libraries, for the right definition of a library. But a specfic kind of
                <em>library</em> can require more information. For instance, a web application is
             also a set of components, but requiring more configuration. An additional descriptor
@@ -432,7 +435,7 @@ functx/
             additional implementation-defined types.</p><p>More generally, an implementation may define any extension element in the package
             descriptor to achieve its purposes, providing that the new elements it defines are
             neither in the EXPath Packaging namespace nor in the null namespace.</p></div></div><div class="div1">
-<h2><a name="d3e544" id="d3e544"></a>8 Editorial notes</h2><ul><li><p>Should the package system define a set of XPath functions? Instead of just
+<h2><a name="d3e552" id="d3e552"></a>8 Editorial notes</h2><ul><li><p>Should the package system define a set of XPath functions? Instead of just
                   defining the package format and letting everything else as implementation-defined,
                   should it in addition define a module of functions to install, delete, and more
                   generally manage packages from within a processor?</p><p>Drawback: potential problems if the processor requires to be stopped?</p><p>Advantages: enables writing tools on top of the system (one single graphical
@@ -446,6 +449,6 @@ functx/
                   Catalogs, or just a simple format to map public URIs to files? (should really this
                   repository layout be defined here, anyway?)</p></li></div><div class="diff-add"><li><p>Add in the package descriptor an element for a description, or at very least a URL
                   to the home of the project.</p></li></div></ul></div></div><div class="back"><div class="div1">
-<h2><a name="d3e574" id="d3e574"></a>A Package descriptor schema</h2><p>[ ... TODO ... ]</p></div><div class="div1">
-<h2><a name="d3e580" id="d3e580"></a>B References</h2><dl><dt class="label"><a name="catalogs" id="catalogs"></a>Catalogs</dt><dd><a href="http://www.oasis-open.org/committees/documents.php?wg_abbrev=entity">XML
+<h2><a name="d3e582" id="d3e582"></a>A Package descriptor schema</h2><p>[ ... TODO ... ]</p></div><div class="div1">
+<h2><a name="d3e588" id="d3e588"></a>B References</h2><dl><dt class="label"><a name="catalogs" id="catalogs"></a>Catalogs</dt><dd><a href="http://www.oasis-open.org/committees/documents.php?wg_abbrev=entity">XML
                   Catalogs</a>, OASIS Standard V1.1, 7 October 2005</dd><dt class="label"><span class="diff-add"><a name="functx"></a>FunctX</span></dt><dd><div class="diff-add"><a href="http://www.functx.com/">FunctX</a> library of functions for XQuery and XSLT 2.0, Datypic</div></dd></dl></div></div></body></html>
