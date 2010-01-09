@@ -95,12 +95,12 @@
             <item>
                <p><code>$request</code> contains the various parameters of the request, for instance
                   the HTTP method to use or the HTTP headers. Among other things, it can also
-                  contain the other param's values: the URI, the content and the serialization
-                  option. If they are not set as parameter to the function, their value in $request,
-                  if any, is used instead. See the following section for the detailed definition of
-                  the http:request element. <phrase diff="add">If the parameter does not follow the
-                     grammar defined in this spec, this is an error <bibref ref="errHC005"
-                     />.</phrase></p>
+                  contain the other param's values: the URI <phrase diff="chg">and the
+                     bodies</phrase>. If they are not set as parameter to the function, their value
+                  in $request, if any, is used instead. See the following section for the detailed
+                  definition of the http:request element. <phrase diff="add">If the parameter does
+                     not follow the grammar defined in this spec, this is an error <bibref
+                        ref="errHC005"/>.</phrase></p>
             </item>
             <item>
                <p><code>$href</code> is the HTTP or HTTPS URI to send the request to. It is an
@@ -109,11 +109,12 @@
             </item>
             <item diff="add">
                <p><code>$bodies</code> is the request body content, for HTTP methods that can
-                  contain a body in the request (POST and PUT). This is an error if this param is
-                  not the empty sequence for other methods (DELETE, GET, HEAD and OPTIONS). In case
-                  of a multipart request, it can be a sequence of several items, each one is the
-                  body of the corresponding body descriptor in <code>$request</code>. See below for
-                  details.</p>
+                  contain a body in the request (e.g. POST). This is an error if this param is not
+                  the empty sequence for methods that must be empty (e.g. DELETE). The details of
+                  the methods are defined in their respective specs (e.g. <bibref ref="rfc2616"/> or
+                     <bibref ref="rfc4918"/>). In case of a multipart request, it can be a sequence
+                  of several items, each one is the body of the corresponding body descriptor in
+                     <code>$request</code>. See below for details.</p>
             </item>
             <item diff="del">
                <p><code>$content</code> is the request body content, for HTTP methods that can
@@ -326,14 +327,13 @@
          </div2>
          <div2>
             <head>Serializing the request content</head>
-            <p>
-               If the request can have content (one body or several body parts), it can be
-               specified by the <code>http:multipart</code> element, the <code>http:body</code>
-               element, and/or the parameter <code>$content</code>.  If <code>$content</code>
-               is not the empty sequence, it replaces the value of the <code>http:body</code>
-               element (in multipart, if there are several bodies, exactly one <code>http:body</code>
-               must be empty).  For each body, the content of the HTTP body is generated as follow.
-            </p>
+            <p>If the request can have content (one body or several body parts), it can be specified
+               by the <code>http:multipart</code> element, the <code>http:body</code> element,
+               and/or the parameter <code diff="chg">$bodies</code>. <phrase diff="del">If
+                     <code>$content</code> is not the empty sequence, it replaces the value of the
+                     <code>http:body</code> element (in multipart, if there are several bodies,
+                  exactly one <code>http:body</code> must be empty).</phrase> For each body, the
+               content of the HTTP body is generated as follow.</p>
             <p diff="add">Except when its attribute <code>src</code> is present, a
                   <code>http:request</code> element can have several attributes representing
                serialization parameters, as defined in <bibref ref="xserial"/>. This spec defines in
@@ -536,6 +536,10 @@
                M. Murata, S. St. Laurent, and D. Kohn, editors. Internet Engineering Task Force.
                January, 2001.
             </bibl>
+            <bibl id="rfc4918" key="RFC 4918" diff="add">
+               <loc href="http://www.ietf.org/rfc/rfc4918.txt">RFC 4918: HTTP Extensions for Web
+                  Distributed Authoring and Versioning (WebDAV)</loc>. L. Dusseault, editor.
+               Internet Engineering Task Force. June, 2007. </bibl>
             <bibl id="xserial" key="Serialization">
                <loc href="http://www.w3.org/TR/xslt-xquery-serialization/">XSLT 2.0 and XQuery 1.0
                Serialization</loc>.  Scott Boag, Michael Kay, Joanne Tong, Norman Walsh, and Henry

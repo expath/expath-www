@@ -61,17 +61,17 @@ div.exampleHeader { font-weight: bold;
     1.1 <a href="#d2e70">Namespace conventions</a><br />
     1.2 <a href="#d2e89">Error management</a><br />
 2 <a href="#d2e104">The http:send-request function</a><br />
-3 <a href="#d2e174">Sending a request</a><br />
-    3.1 <a href="#d2e179">The request elements</a><br />
-    3.2 <a href="#d2e358">Serializing the request content</a><br />
-    3.3 <a href="#d2e436">Authentication</a><br />
-4 <a href="#d2e489">Dealing with the response</a><br />
-    4.1 <a href="#d2e497">The result element</a><br />
-    4.2 <a href="#d2e523">Representing the result content</a><br />
-5 <a href="#d2e584">Content types handling</a><br />
+3 <a href="#d2e178">Sending a request</a><br />
+    3.1 <a href="#d2e183">The request elements</a><br />
+    3.2 <a href="#d2e362">Serializing the request content</a><br />
+    3.3 <a href="#d2e430">Authentication</a><br />
+4 <a href="#d2e483">Dealing with the response</a><br />
+    4.1 <a href="#d2e491">The result element</a><br />
+    4.2 <a href="#d2e517">Representing the result content</a><br />
+5 <a href="#d2e578">Content types handling</a><br />
 </p>
-<h3><a name="appendices" id="appendices"></a>Appendices</h3><p class="toc">A <a href="#d2e630">References</a><br />
-B <a href="#d2e688">Summary of Error Conditions</a><br />
+<h3><a name="appendices" id="appendices"></a>Appendices</h3><p class="toc">A <a href="#d2e624">References</a><br />
+B <a href="#d2e687">Summary of Error Conditions</a><br />
 </p></div><hr /><div class="body"><div class="div1">
 <h2><a name="d2e65" id="d2e65"></a>1 Introduction</h2><p>TODO: Add @href to http:response, taking redirects into account.</p><div class="div2">
 <h3><a name="d2e70" id="d2e70"></a>1.1 Namespace conventions</h3><p>The module defined by this document does define one function in the namespace
@@ -93,30 +93,31 @@ B <a href="#d2e688">Summary of Error Conditions</a><br />
                   $href as <code class="type">xs:string?</code>,
                   $bodies as <code class="type">item()*</code>) as <code class="type">item()+</code></pre></div><ul><li><p><code>$request</code> contains the various parameters of the request, for instance
                   the HTTP method to use or the HTTP headers. Among other things, it can also
-                  contain the other param's values: the URI, the content and the serialization
-                  option. If they are not set as parameter to the function, their value in $request,
-                  if any, is used instead. See the following section for the detailed definition of
-                  the http:request element. If the parameter does not follow the grammar defined in
-                  this spec, this is an error <a href="#errHC005">[err:HC005]</a>.</p></li><li><p><code>$href</code> is the HTTP or HTTPS URI to send the request to. It is an
+                  contain the other param's values: the URI and the bodies. If they are not set as
+                  parameter to the function, their value in $request, if any, is used instead. See
+                  the following section for the detailed definition of the http:request element. If
+                  the parameter does not follow the grammar defined in this spec, this is an error
+                     <a href="#errHC005">[err:HC005]</a>.</p></li><li><p><code>$href</code> is the HTTP or HTTPS URI to send the request to. It is an
                   xs:anyURI, but is declared as a string to be able to pass literal strings (without
                   requiring to explicitly cast it to an xs:anyURI).</p></li><li><p><code>$bodies</code> is the request body content, for HTTP methods that can
-                  contain a body in the request (POST and PUT). This is an error if this param is
-                  not the empty sequence for other methods (DELETE, GET, HEAD and OPTIONS). In case
-                  of a multipart request, it can be a sequence of several items, each one is the
-                  body of the corresponding body descriptor in <code>$request</code>. See below for
-                  details.</p></li></ul><p>Besides the 3-params signature above, there are 2 other signatures that are convenient
+                  contain a body in the request (e.g. POST). This is an error if this param is not
+                  the empty sequence for methods that must be empty (e.g. DELETE). The details of
+                  the methods are defined in their respective specs (e.g. <a href="#rfc2616">[RFC 2616]</a> or
+                     <a href="#rfc4918">[RFC 4918]</a>). In case of a multipart request, it can be a sequence
+                  of several items, each one is the body of the corresponding body descriptor in
+                     <code>$request</code>. See below for details.</p></li></ul><p>Besides the 3-params signature above, there are 2 other signatures that are convenient
             shortcuts (corresponding to the full version in which corresponding params have been set
             to the empty sequence). They are:</p><div class="exampleInner"><pre>
 <code class="function">http:send-request</code>($request as <code class="type">element(http:request)</code>) as <code class="type">item()+</code>
 <code class="function">http:send-request</code>($request as <code class="type">element(http:request)?</code>,
                   $href as <code class="type">xs:string?</code>) as <code class="type">item()+</code></pre></div></div><div class="div1">
-<h2><a name="d2e174" id="d2e174"></a>3 Sending a request</h2><p>
+<h2><a name="d2e178" id="d2e178"></a>3 Sending a request</h2><p>
             The functions defined in this module make one able to send a request to an
             HTTP server and receive the corresponding response.  Here is how the request
             is represented by the parameters to this function, and how they are used
             to generate the actual HTTP request to send.
          </p><div class="div2">
-<h3><a name="d2e179" id="d2e179"></a>3.1 The request elements</h3><p>
+<h3><a name="d2e183" id="d2e183"></a>3.1 The request elements</h3><p>
                The <code>http:request</code> element represents all the needed
                information to send the HTTP request.  So it is always possible
                to create such an element that will carry over all the needed info
@@ -232,14 +233,10 @@ B <a href="#d2e688">Summary of Error Conditions</a><br />
                is prefixed with "<code>--</code>" to form the actual boundary marker in the request;
                on the other way, this prefix is removed from the boundary marker in the response to
                set the value of the attribute).</p></div><div class="div2">
-<h3><a name="d2e358" id="d2e358"></a>3.2 Serializing the request content</h3><p>
-               If the request can have content (one body or several body parts), it can be
-               specified by the <code>http:multipart</code> element, the <code>http:body</code>
-               element, and/or the parameter <code>$content</code>.  If <code>$content</code>
-               is not the empty sequence, it replaces the value of the <code>http:body</code>
-               element (in multipart, if there are several bodies, exactly one <code>http:body</code>
-               must be empty).  For each body, the content of the HTTP body is generated as follow.
-            </p><p>Except when its attribute <code>src</code> is present, a <code>http:request</code>
+<h3><a name="d2e362" id="d2e362"></a>3.2 Serializing the request content</h3><p>If the request can have content (one body or several body parts), it can be specified
+               by the <code>http:multipart</code> element, the <code>http:body</code> element,
+               and/or the parameter <code>$bodies</code>. For each body, the content of the HTTP
+               body is generated as follow.</p><p>Except when its attribute <code>src</code> is present, a <code>http:request</code>
                element can have several attributes representing serialization parameters, as defined
                in <a href="#xserial">[Serialization]</a>. This spec defines in addition the method
                   <code>'binary'</code>; in this case the body content must be either an
@@ -255,7 +252,7 @@ B <a href="#d2e688">Summary of Error Conditions</a><br />
                as there are empty body elements. If there are three empty body elements, the content
                of the first of them is <code>$bodies[1]</code>, and so on. The number of empty body
                elements must be equal to the number of items in <code>$bodies</code>.</p></div><div class="div2">
-<h3><a name="d2e436" id="d2e436"></a>3.3 Authentication</h3><p>
+<h3><a name="d2e430" id="d2e430"></a>3.3 Authentication</h3><p>
                HTTP authentication when sending a request is controlled by the attributes 
                <code>username</code>, <code>password</code>, <code>auth-method</code> and
                <code>send-authorization</code> on the element <code>http:request</code>.
@@ -273,14 +270,14 @@ B <a href="#d2e688">Summary of Error Conditions</a><br />
                request, and if the response is an authentication challenge, then only send
                the credentials in a second message.
             </p></div></div><div class="div1">
-<h2><a name="d2e489" id="d2e489"></a>4 Dealing with the response</h2><p>
+<h2><a name="d2e483" id="d2e483"></a>4 Dealing with the response</h2><p>
             After having sent the request to the HTTP server, the function waits for
             the response.  It analyses it and returns a sequence representing this
             response.  This sequence has an <code>http:response</code> element as
             first item, which is followed be an additional item for each body or
             body part in the response.
          </p><div class="div2">
-<h3><a name="d2e497" id="d2e497"></a>4.1 The result element</h3><div class="exampleInner"><pre>
+<h3><a name="d2e491" id="d2e491"></a>4.1 The result element</h3><div class="exampleInner"><pre>
 &lt;http:response status = integer
                   message = string&gt;
    (http:header*,
@@ -295,7 +292,7 @@ B <a href="#d2e688">Summary of Error Conditions</a><br />
                and <code>http:multipart</code> elements are also like in the request, but
                <code>http:body</code> elements must be empty.
             </p></div><div class="div2">
-<h3><a name="d2e523" id="d2e523"></a>4.2 Representing the result content</h3><p>
+<h3><a name="d2e517" id="d2e517"></a>4.2 Representing the result content</h3><p>
                Instead of being inserted within the <code>http:response</code> element, the
                content of each body is returned as a single item in the return sequence.
                Each item is in the same order (after the <code>http:response</code> element)
@@ -325,7 +322,7 @@ B <a href="#d2e688">Summary of Error Conditions</a><br />
                the response is a multipart type, the value of <code>override-media-type</code> can
                only be a multipart type, or <code>application/octet-stream</code> (to get the raw
                entity as a binary item). If it is not, this is an error <a href="#errHC003">[err:HC003]</a>.</p></div></div><div class="div1">
-<h2><a name="d2e584" id="d2e584"></a>5 Content types handling</h2><p>
+<h2><a name="d2e578" id="d2e578"></a>5 Content types handling</h2><p>
             In both requests and responses, MIME type strings are used to choose the way the
             entity content has to be respectively serialized or parsed.  Four different kinds
             of type are defined here, which are used in the above text about sending request
@@ -350,7 +347,7 @@ B <a href="#d2e688">Summary of Error Conditions</a><br />
                   those binary types as either an XML, HTML or text media type if it is more
                   appropriate (this is implementation-defined).
                </p></li></ul></div></div><div class="back"><div class="div1">
-<h2><a name="d2e630" id="d2e630"></a>A References</h2><p>
+<h2><a name="d2e624" id="d2e624"></a>A References</h2><p>
             The structure of most of the elements and most of the attributes used in this
             candidate are inspired from the corresponding step in <a href="#xproc">[XProc]</a>.
          </p><dl><dt class="label"><a name="tidy" id="tidy"></a>HTML Tidy</dt><dd>
@@ -372,7 +369,10 @@ B <a href="#d2e688">Summary of Error Conditions</a><br />
                <a href="http://www.ietf.org/rfc/rfc3023.txt">RFC 3023: XML Media Types</a>.
                M. Murata, S. St. Laurent, and D. Kohn, editors. Internet Engineering Task Force.
                January, 2001.
-            </dd><dt class="label"><a name="xserial" id="xserial"></a>Serialization</dt><dd>
+            </dd><dt class="label"><a name="rfc4918" id="rfc4918"></a>RFC 4918</dt><dd>
+               <a href="http://www.ietf.org/rfc/rfc4918.txt">RFC 4918: HTTP Extensions for Web
+                  Distributed Authoring and Versioning (WebDAV)</a>. L. Dusseault, editor.
+               Internet Engineering Task Force. June, 2007. </dd><dt class="label"><a name="xserial" id="xserial"></a>Serialization</dt><dd>
                <a href="http://www.w3.org/TR/xslt-xquery-serialization/">XSLT 2.0 and XQuery 1.0
                Serialization</a>.  Scott Boag, Michael Kay, Joanne Tong, Norman Walsh, and Henry
                Zongaro, editors. W3C Recommendation. 23 January 2007.
@@ -390,6 +390,6 @@ B <a href="#d2e688">Summary of Error Conditions</a><br />
                <a href="http://www.w3.org/TR/xslt20/">XSL Transformations (XSLT) Version 2.0</a>.
                Michael Kay, editor. W3C Recommendation. 23 January 2007.
             </dd></dl></div><div class="div1">
-<h2><a name="d2e688" id="d2e688"></a>B Summary of Error Conditions</h2><dl><dt class="label"><a name="errHC001" id="errHC001"></a>err:HC001</dt><dd>An HTTP error occurred.</dd><dt class="label"><a name="errHC002" id="errHC002"></a>err:HC002</dt><dd>Error parsing the entity content as XML or HTML.</dd><dt class="label"><a name="errHC003" id="errHC003"></a>err:HC003</dt><dd>With a multipart response, the override-media-type
+<h2><a name="d2e687" id="d2e687"></a>B Summary of Error Conditions</h2><dl><dt class="label"><a name="errHC001" id="errHC001"></a>err:HC001</dt><dd>An HTTP error occurred.</dd><dt class="label"><a name="errHC002" id="errHC002"></a>err:HC002</dt><dd>Error parsing the entity content as XML or HTML.</dd><dt class="label"><a name="errHC003" id="errHC003"></a>err:HC003</dt><dd>With a multipart response, the override-media-type
                must be either a multipart media type or application/octet-stream.</dd><dt class="label"><a name="errHC004" id="errHC004"></a>err:HC004</dt><dd>The src attribute on the body element is mutually
                exclusive with all other attribute (except the media-type).</dd><dt class="label"><a name="errHC005" id="errHC005"></a>err:HC005</dt><dd>The request element is not valid.</dd><dt class="label"><a name="errHC006" id="errHC006"></a>err:HC006</dt><dd>A timeout occurred waiting for the response.</dd></dl></div></div></body></html>
