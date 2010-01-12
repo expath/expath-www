@@ -1,8 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang=""><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-<title>EXSLT 2.0 module - HTTP client</title><style type="text/css">
+<title>EXSLT 2.0 module - HTTP client</title>
+<link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css">
+<style type="text/css">
 code           { font-family: monospace; }
 
 div.constraint,
@@ -35,34 +37,34 @@ div.exampleHeader { font-weight: bold;
 
       code.function { font-weight: bold; }
       code.type { font-style: italic; }
-   </style><link rel="stylesheet" type="text/css" href="http-client-20090112_files/base.css" /></head><body><div class="head">
+   </style></head><body><div class="head">
 <h1><a name="title" id="title">EXSLT 2.0 module - HTTP client</a></h1>
 <h2><a name="w3c-doctype" id="w3c-doctype">Candidate 12 January 2009</a></h2><dl><dt><a name="w3c-doctype" id="w3c-doctype">This version:</a></dt><dd>
 <a name="w3c-doctype" id="w3c-doctype">         
          </a><a href="http://www.fgeorges.org/xslt/exslt2/http-client-20090112.html">http://www.fgeorges.org/xslt/exslt2/http-client-20090112.html</a>
       </dd><dt>Latest version:</dt><dd>
          <a href="http://www.fgeorges.org/xslt/exslt2/http-client.html">http://www.fgeorges.org/xslt/exslt2/http-client.html</a>
-      </dd><dt>Editor:</dt><dd>Florent Georges &lt;<a xmlns:fg="http://www.fgeorges.org/xmlspec" href="http://www.fgeorges.org/">http://www.fgeorges.org/</a>&gt;</dd></dl><p class="copyright"></p></div><hr /><div>
+      </dd><dt>Editor:</dt><dd>Florent Georges &lt;<a xmlns:fg="http://www.fgeorges.org/xmlspec" href="http://www.fgeorges.org/">http://www.fgeorges.org/</a>&gt;</dd></dl><p class="copyright"></p></div><hr><div>
 <h2><a name="abstract" id="abstract">Abstract</a></h2><p>
 <a name="abstract" id="abstract">            This proposal provides an HTTP client interface for XSLT
             2.0.  It defines one extension function to perform HTTP
             requests, and has been designed to be compatible with XQuery
             and XPath 2.0.
          </a></p></div><div class="toc">
-<h2><a name="contents" id="contents">Table of Contents</a></h2><p class="toc"><a name="contents" id="contents">1 </a><a href="#d2e50">Introduction</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;1.1 <a href="#d2e53">Namespace conventions</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;1.2 <a href="#d2e64">Error management</a><br />
-2 <a href="#d2e75">The http:send-request function</a><br />
-3 <a href="#d2e132">Sending a request</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;3.1 <a href="#d2e137">The request elements</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;3.2 <a href="#d2e289">Serializing the request content</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;3.3 <a href="#d2e354">Authentication</a><br />
-4 <a href="#d2e407">Dealing with the response</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;4.1 <a href="#d2e415">The result element</a><br />
-&nbsp;&nbsp;&nbsp;&nbsp;4.2 <a href="#d2e437">Representing the result content</a><br />
+<h2><a name="contents" id="contents">Table of Contents</a></h2><p class="toc"><a name="contents" id="contents">1 </a><a href="#d2e50">Introduction</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;1.1 <a href="#d2e53">Namespace conventions</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;1.2 <a href="#d2e64">Error management</a><br>
+2 <a href="#d2e75">The http:send-request function</a><br>
+3 <a href="#d2e132">Sending a request</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;3.1 <a href="#d2e137">The request elements</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;3.2 <a href="#d2e289">Serializing the request content</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;3.3 <a href="#d2e354">Authentication</a><br>
+4 <a href="#d2e407">Dealing with the response</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.1 <a href="#d2e415">The result element</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;4.2 <a href="#d2e437">Representing the result content</a><br>
 </p>
-<h3><a name="appendices" id="appendices">Appendix</a></h3><p class="toc"><a name="appendices" id="appendices">A </a><a href="#d2e491">References</a><br />
-</p></div><hr /><div class="body"><div class="div1">
+<h3><a name="appendices" id="appendices">Appendix</a></h3><p class="toc"><a name="appendices" id="appendices">A </a><a href="#d2e491">References</a><br>
+</p></div><hr><div class="body"><div class="div1">
 <h2><a name="d2e50" id="d2e50">1 Introduction</a></h2><div class="div2">
 <h3><a name="d2e53" id="d2e53">1.1 Namespace conventions</a></h3><p>
 <a name="d2e53" id="d2e53">               The module defined by this document does define one function in the namespace
