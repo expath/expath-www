@@ -14,6 +14,30 @@
    </author>
 
    <entry>
+      <title>HTTP Client update</title>
+      <link href="http://www.expath.org/modules/http-client.html"/>
+      <link href="http://www.expath.org/modules/http-client/"/>
+      <id>urn:uuid:3158c740-fcdc-11de-8a39-0800200c9a66</id>
+      <updated>2010-01-09T00:00:00+01:00</updated>
+      <summary>An update of the HTTP Client specification has been published. The namespaces have
+         been adapted to the standard, some errors have been added, the serialization mechanism is
+         based on the XSLT and XQuery serialization spec now, and a "revision markup" version,
+         highlighting differences, has been created.</summary>
+   </entry>
+
+   <entry>
+      <title>Packaging update</title>
+      <link href="http://www.expath.org/modules/pkg.html"/>
+      <link href="http://www.expath.org/modules/pkg/"/>
+      <id>urn:uuid:22b2ee50-fcdc-11de-8a39-0800200c9a66</id>
+      <updated>2010-01-07T00:00:00+01:00</updated>
+      <summary>An update of the packaging specification has been published. The section "Concepts"
+         has been rewritten, making clear distinction between concepts and the package descriptor
+         format. A complete example has been added too. And a "revision markup" version,
+         highlighting differences, has been created.</summary>
+   </entry>
+
+   <entry>
       <title>ZIP Facility</title>
       <link href="http://www.expath.org/modules/zip/"/>
       <id>urn:uuid:e2f56c80-e9de-11de-8a39-0800200c9a66</id>
