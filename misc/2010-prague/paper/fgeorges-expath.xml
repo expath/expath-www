@@ -65,20 +65,47 @@
       <section>
          <title>History</title>
          <para>Exactly one year ago, in this same room during XML Prague 2009, the idea of EXPath
-            was born. EXQuery was just launched and some people were trying to launch a new version
-            of EXSLT, for XSLT 2.0. EXProc welcomed its first extensions too. While all those
-            projects make perfect sense regarding their own technology, they also overlap in
+            was born. EXQuery was just launched and with some people we were trying to launch a new
+            version of EXSLT, for XSLT 2.0. EXProc welcomed its first extensions, too. While all
+            those projects make perfect sense regarding their own technology, they also overlap in
             providing some identical functionalities to their target languages. So the idea emerged
             here: acting at the XPath level to touch a broader audience and to define a same
             extension only once.</para>
-         <para>[ TODO: ] Continue...</para>
+         <para>So one year after it was born, this paper show the current state of the project and
+            introduces some new ideas and modules.</para>
       </section>
       <section>
          <title>Processes &amp; goals</title>
-         <para>[ TODO: ] Describe how the project works... What it delivers (libraries of functions,
-            but also other specifications like packaging)... How modules are specified, why are
-            implementations provided?... The goal is to write portable specifications, but
-            early implementations help in that process too...</para>
+         <para>The project is fundamentally a collaborative project. It is driven by the community
+            (essentially a mix of the XSLT, XQuery and XProc communities). When people want to
+            introduce a new module, for instance because they have to use such an extension within
+            their own project and think there is an interest to share their work and benefit from
+            the community feedback, then the first step is just to send an email to the EXPath
+            mailing list. They can see if the idea is well received and if someone else is also
+            interested in the same extension.</para>
+         <para>Once the discussion is launched, the next step is to write a draft specification for
+            this extension, and ask for feedback. The main project delivery unit is the
+               <emphasis>module</emphasis>. A module is a loosely-defined concept, gathering
+            everything related to the same functionality. For instance, all functions to deal with
+            ZIP files (reading, writing, etc.) are grouped into the same module. Most of the time, a
+            module is a library of XPath functions, but it could be anything related to core XML
+            technologies. For instance the packaging system introduced below is a module. Common
+            sense is our friend.</para>
+         <para>The first objective of a module is to define an implementation-independent
+            specification. It has always a maintainer, who is in charge of coordinating the efforts
+            around the module. The tasks involved are leading the discussions, finding consensus
+            when appropriate, writing and maintaining the spec(s) and the test suite(s), promoting
+            the module and coordinating implementation and documentation efforts. His/her tools are
+            the mailing list, the website, the community itself, the technical tools (editorial
+            schemas, test suite tools, etc.), Subversion repositories, the wiki, and any relevant
+            tool we could provide as a community project, supported by inpendent individuals.</para>
+         <para>The utimate goal is to have the specifications endorsed by vendors and implemented
+            directly by existing processors. But every vendors are not interested in providing the
+            same extensions, so it sometimes makes sense to implement them as third-party
+            extensions, and EXPath provides facilities to anyone willing to contribute such an
+            implementation. It is worth noting that such implementations are also a good way to
+            experiment and get feedback while in the process of writing the module
+            specification.</para>
       </section>
       <section>
          <title>Examples</title>
@@ -174,11 +201,14 @@
 
    &lt;!-- there is nothing at that URL, the module must have been installed -->
    &lt;xsl:import href="http://example.org/project/something.xsl"/>
+
+   ...
 </programlisting>
       </section>
       <section>
          <title>The package format</title>
-         <para>[ TODO: ] Describe the package structure and the package descriptor... Use this example:</para>
+         <para>[ TODO: ] Describe the package structure and the package descriptor... Use this
+            example:</para>
          <programlisting>
 &lt;package xmlns="http://expath.org/ns/pkg">
    &lt;module name="functx" version="1.0">
