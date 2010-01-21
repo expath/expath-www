@@ -108,11 +108,15 @@
             specification.</para>
       </section>
       <section>
-         <title>Examples</title>
+         <title>The HTTP Client module</title>
          <para>[ TODO: ] Describe two traditional function libraries: HTTP Client + ZIP, and show an
             example using them (in particular how user can write code to use them). Idea: backup of
             some Google service data into a ZIP archive (contacts data, agenda, or any other service
             with data accessible with Atom Pub or any REST API).</para>
+      </section>
+      <section>
+         <title>The ZIP module</title>
+         <para>[ TODO: ] And examples here too...</para>
       </section>
    </section>
    <section>
@@ -204,44 +208,73 @@
 
    ...
 </programlisting>
+         <para>This matches the usual way to deal with dependencies with other languages: you write
+            on the one hand the code that uses a library in a canonical way, especially regarding
+            how it references the imported library, and you maintain the list of installed packaged
+            on the other hand, in an implementation-dependent way.</para>
       </section>
       <section>
          <title>The package format</title>
-         <para>[ TODO: ] Describe the package structure and the package descriptor... Use this
-            example:</para>
+         <para>A package is a simple ZIP file containing the components (i.e. the source files). In
+            order to achieve independence on the processor, the package format must provide enough
+            information to map the public URIs to their respective components. This information, as
+            well as a few others like the name of the package, are provided within the package
+            descriptor. The package descriptor is a file named <code>expath-pkg.xml</code> at the
+            root of the package ZIP file.</para>
+         <para>If we take Priscilla Walmsley's famous FunctX library as an example, we could have
+            the following package descriptor:</para>
          <programlisting>
-&lt;package xmlns="http://expath.org/ns/pkg">
-   &lt;module name="functx" version="1.0">
-      &lt;title>FunctX library&lt;/title>
-      &lt;xquery>
-         &lt;namespace>http://www.functx.com&lt;/namespace>
-         &lt;file>functx.xql&lt;/file>
-      &lt;/xquery>
-      &lt;xslt>
-         &lt;import-uri>http://www.functx.com/functx.xsl&lt;/import-uri>
-         &lt;file>functx.xsl&lt;/file>
-      &lt;/xslt>
-   &lt;/module>
+&lt;package xmlns="http://expath.org/ns/pkg"
+         name="http://functx.com/"
+         version="1.0">
+   &lt;title>FunctX library&lt;/title>
+   &lt;xquery>
+      &lt;uri>http://www.functx.com&lt;/uri>
+      &lt;resource>functx.xql&lt;/resource>
+   &lt;/xquery>
+   &lt;xslt>
+      &lt;uri>http://www.functx.com/functx.xsl&lt;/uri>
+      &lt;resource>functx.xsl&lt;/resource>
+   &lt;/xslt>
 &lt;/package>
 </programlisting>
+         <para>That is, the descriptor declares two public components: an XQuery library module and
+            an XSLT stylesheet. For each it gives its public URI and the source file containing the
+            component. The structure of the package ZIP file itself is very simple:</para>
          <programlisting>
 expath-pkg.xml
-functx/
+content/
    functx.xql
    functx.xsl
 </programlisting>
       </section>
       <section>
          <title>A "system", you said?</title>
-         <para>[ TODO: ] Tells more about the package format, its extensibility opportunities and
-            mechanisms, various softwares (repo management, IDE...), CXAN, etc.</para>
+         <para><emphasis>Ok, so you have a package format. But why do you call it a package
+               "system"?</emphasis></para>
+         <para>This packaging format supports various XML technologies: XSLT, XQuery, XProc, XML
+            Schema, RelaxNG, Schematron and NVDL. Besides these standard component types, the
+            package format has been designed to be extensible in two ways. First, vendors can extend
+            it in a controled way to describe components specific to their processor. That could be
+            as simple as having standard components using vendor-specific extensions, or as complex
+            as extensions written in another language, like Java or C++. Second, another
+            specification can use this packaging format as a basis, and add specific informations
+            either in the package descriptor, or in additional files within the ZIP structure. This
+            is for instance the approach taken by the Webapp module, introduced later in this
+            paper.</para>
+         <para>Besides these extensibility mechanisms, this format allows the creation of repository
+            management softwares, support within XML IDEs, or even the CXAN system. CXAN is a
+            central repository of packages, and its associated tool to manage a local repository,
+            automatically downloading and installing packages from the internet and resolving
+            dependencies. It means Comprehensive XML Archive Network, and is named after CTAN and
+            CPAN, the same kind of websites and tools for resp. TeX and Perl.</para>
       </section>
-      <section>
+      <!--section>
          <title>Example</title>
          <para>[ TODO: ] Write a complete example with schemas, stylesheets, queries, pipelines, ...
             Show how it works under oXygen (through using the on-disk repository), Saxon, Calabash,
             eXist...</para>
-      </section>
+      </section-->
    </section>
    <section>
       <title>Web Applications</title>
@@ -337,14 +370,13 @@ functx/
    &lt;/servlet>
 
    &lt;servlet name="srv-xq-2">
-      &lt;xquery file="servlet-2.xq"/>
+      &lt;xquery resource="servlet-2.xq"/>
       &lt;url pattern="/xq2/(.+)"/>
    &lt;/servlet>
 
    &lt;servlet name="srv-xsl-1">
-      &lt;xslt template="my2:servlet">
-         &lt;import-uri>http://www.mycorp.com/proj/my-app/servlet-2.xsl&lt;/import-uri>
-      &lt;/xslt>
+      &lt;xslt uri="http://www.mycorp.com/proj/my-app/servlet-2.xsl"
+            template="my2:servlet"/>
       &lt;url pattern="/(.+)-xsl/1/"/>
    &lt;/servlet>
 
