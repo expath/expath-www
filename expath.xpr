@@ -11,6 +11,28 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="name">
+                                    <String xml:space="preserve">XSpec - compile to XSLT</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../http-client/test/cases/method.xspec</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">XSpec - compile to XQuery</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../http-client/test/cases/serial.xspec</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
                                     <String xml:space="preserve">Self XSLT EE</String>
                                 </field>
                                 <field name="type">
@@ -352,17 +374,6 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String xml:space="preserve">XSpec - compile</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">../xspec/test/first-suite.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
                                     <String xml:space="preserve">XSpec - format report</String>
                                 </field>
                                 <field name="type">
@@ -381,17 +392,6 @@
                                 </field>
                                 <field name="url">
                                     <String xml:space="preserve">../expath-http-client/misc/test/report.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">XSpec - compile</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">../expath-http-client/misc/test/first-xspec-suite.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -2428,7 +2428,7 @@
                                     <null/>
                                 </field>
                                 <field name="name">
-                                    <String xml:space="preserve">XSpec - compile</String>
+                                    <String xml:space="preserve">XSpec - compile to XQuery</String>
                                 </field>
                                 <field name="baseURL">
                                     <String xml:space="preserve"></String>
@@ -2446,7 +2446,90 @@
                                     <String xml:space="preserve"></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String xml:space="preserve">../xspec/trunk/generate-xspec-tests.xsl</String>
+                                    <String xml:space="preserve">${env(XSPEC_HOME)}/generate-query-tests.xsl</String>
+                                </field>
+                                <field name="inputXMLURL">
+                                    <String xml:space="preserve">${currentFileURL}</String>
+                                </field>
+                                <field name="defaultScenario">
+                                    <Boolean xml:space="preserve">false</Boolean>
+                                </field>
+                                <field name="isFOPPerforming">
+                                    <Boolean xml:space="preserve">false</Boolean>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="saveAs">
+                                    <Boolean xml:space="preserve">true</Boolean>
+                                </field>
+                                <field name="openInBrowser">
+                                    <Boolean xml:space="preserve">false</Boolean>
+                                </field>
+                                <field name="outputFile">
+                                    <File xml:space="preserve">compiled.xsl</File>
+                                </field>
+                                <field name="openOtherLocationInBrowser">
+                                    <Boolean xml:space="preserve">false</Boolean>
+                                </field>
+                                <field name="locationToOpenInBrowserURL">
+                                    <null/>
+                                </field>
+                                <field name="openInEditor">
+                                    <Boolean xml:space="preserve">false</Boolean>
+                                </field>
+                                <field name="showInHTMLPane">
+                                    <Boolean xml:space="preserve">false</Boolean>
+                                </field>
+                                <field name="showInXMLPane">
+                                    <Boolean xml:space="preserve">true</Boolean>
+                                </field>
+                                <field name="showInSVGPane">
+                                    <Boolean xml:space="preserve">false</Boolean>
+                                </field>
+                                <field name="showInResultSetPane">
+                                    <Boolean xml:space="preserve">false</Boolean>
+                                </field>
+                                <field name="useXSLTInput">
+                                    <Boolean xml:space="preserve">true</Boolean>
+                                </field>
+                                <field name="xsltParams">
+                                    <list/>
+                                </field>
+                                <field name="cascadingStylesheets">
+                                    <String-array/>
+                                </field>
+                                <field name="xslTransformer">
+                                    <String xml:space="preserve">Saxon-PE</String>
+                                </field>
+                                <field name="extensionURLs">
+                                    <String-array/>
+                                </field>
+                            </scenario>
+                            <scenario>
+                                <field name="advancedOptionsMap">
+                                    <null/>
+                                </field>
+                                <field name="name">
+                                    <String xml:space="preserve">XSpec - compile to XSLT</String>
+                                </field>
+                                <field name="baseURL">
+                                    <String xml:space="preserve"></String>
+                                </field>
+                                <field name="footerURL">
+                                    <String xml:space="preserve"></String>
+                                </field>
+                                <field name="fOPMethod">
+                                    <String xml:space="preserve">pdf</String>
+                                </field>
+                                <field name="fOProcessorName">
+                                    <String xml:space="preserve">Apache FOP</String>
+                                </field>
+                                <field name="headerURL">
+                                    <String xml:space="preserve"></String>
+                                </field>
+                                <field name="inputXSLURL">
+                                    <String xml:space="preserve">${env(XSPEC_HOME)}/generate-xspec-tests.xsl</String>
                                 </field>
                                 <field name="inputXMLURL">
                                     <String xml:space="preserve">${currentFileURL}</String>
