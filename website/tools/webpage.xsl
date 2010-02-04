@@ -262,6 +262,19 @@
       </img>
    </xsl:template>
 
+   <xsl:template match="slideshare">
+      <xsl:variable name="uri" select="'http://static.slidesharecdn.com/swf/ssplayer2.swf?doc='"/>
+      <p/>
+      <div>
+        <object width="425" height="355">
+          <param name="movie" value="{ $uri }{ @doc }"/>
+          <param name="allowFullScreen" value="true"/>
+          <embed src="{ $uri }{ @doc }" type="application/x-shockwave-flash"
+                 allowfullscreen="true" width="425" height="355"/>
+        </object>
+      </div>
+   </xsl:template>
+
    <xsl:template match="para">
       <p>
          <xsl:copy-of select="@*"/>

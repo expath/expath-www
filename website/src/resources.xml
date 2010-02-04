@@ -6,6 +6,16 @@
       <title>Resources</title>
       <divider/>
       <primary>
+         <title>EXPath resources</title>
+         <para>The introduction to EXPath presented by Florent Georges at Balisage 2009: <link
+               href="http://www.balisage.net/Proceedings/vol3/html/Georges01/BalisageVol3-Georges01.html"
+               >the proceedings</link>. The conference website also hosts the PDF presentation
+            and the examples, see the <link
+               href="http://www.balisage.net/Proceedings/vol3/author-pkg/Georges01/BalisageVol3-Georges01.html"
+               >materials</link> page.</para>
+         <slideshare doc="balisage-expath-100121190739-phpapp02"/>
+      </primary>
+      <primary>
          <title>Processors (and their extensions)</title>
          <list>
             <item><link href="http://www.exslt.org/">EXSLT</link> project</item>
@@ -44,17 +54,8 @@
             <item><link href="http://www.xqsharp.com/">XQSharp</link> XQuery processor for the .NET
                Framework. See its <link href="http://www.xqsharp.com/xqsharp/functions.htm"
                   >extension functions</link> (only math functions at the time of writing.)</item>
-         </list>
-      </primary>
-      <primary>
-         <title>EXPath resources</title>
-         <list>
-            <item>The introduction to EXPath presented by Florent Georges at Balisage 2009: <link
-                  href="http://www.balisage.net/Proceedings/vol3/html/Georges01/BalisageVol3-Georges01.html"
-                  >the proceedings</link>. The conference website also hosts the PDF presentation
-               and the examples, see the <link
-                  href="http://www.balisage.net/Proceedings/vol3/author-pkg/Georges01/BalisageVol3-Georges01.html"
-                  >materials</link> page.</item>
+            <item>See also the following <link href="http://expath.org/wiki/Engines">wiki
+                  page</link>.</item>
          </list>
       </primary>
    </section>
