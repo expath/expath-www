@@ -107,7 +107,7 @@
             experiment and get feedback while in the process of writing the module
             specification.</para>
       </section>
-      <section>
+      <!--section>
          <title>The HTTP Client module</title>
          <para>[ TODO: ] Describe two traditional function libraries: HTTP Client + ZIP, and show an
             example using them (in particular how user can write code to use them). Idea: backup of
@@ -117,7 +117,7 @@
       <section>
          <title>The ZIP module</title>
          <para>[ TODO: ] And examples here too...</para>
-      </section>
+      </section-->
    </section>
    <section>
       <title>Packaging System</title>
@@ -268,6 +268,8 @@ content/
             automatically downloading and installing packages from the internet and resolving
             dependencies. It means Comprehensive XML Archive Network, and is named after CTAN and
             CPAN, the same kind of websites and tools for resp. TeX and Perl.</para>
+         <para>The packaging system can be the basis to spread core XML technologies around, by
+            giving them a way to build a strong basis of libraries.</para>
       </section>
       <!--section>
          <title>Example</title>
@@ -288,13 +290,13 @@ content/
             via HTTP, from the simple REST API to access the processor features themselves, to
             frameworks to build entire web applications.</para>
          <para>In such systems, an HTTP request arrives to the server, which looks at the URI to
-            identify how to respond to this request. The URI will resolve either in an internal
-            server routine or in a user component, for instance an XQuery module. The module can
-            then use functions provided by the server to access information from the HTTP request,
-            like its headers, and to set properties of the response, like the HTTP response code.
-            The XQuery module will usually access a database (in read and/or write) and extract some
-            data, then it will transform this data to the format the user expect it (for instance in
-            HTML, or in a standard XML vocabulary).</para>
+            identify how to respond to this request. The URI will resolve either in a static page,
+            an internal server routine or in a user component, for instance an XQuery module. The
+            module can then use functions provided by the server to access information from the HTTP
+            request, like its headers, and to set properties of the response, like the HTTP response
+            code. The XQuery module will usually access a database (in read and/or write) and
+            extract some data, then it will transform this data to the format the user expect it
+            (for instance in HTML, or in a standard XML vocabulary).</para>
          <para>As usual, the way to plug your components in such a system, as well as the way it can
             interact with it (accessing information from the request and providing the response) is
             implementation-defined. Even though most of those informations are exactly the same on
@@ -303,7 +305,9 @@ content/
             way, such a standard mechanism to deploy XML-based web applications would allow writing
             frameworks for web applications directly in XQuery, XProc or XSLT (or more likely a mix
             of them). Most popular frameworks for Java web applications for instance, like Struts or
-            Spring MVC, could be developed because the Java Servlet specification existed.</para>
+            Spring MVC, could be developed because the Java Servlet specification existed. Having a
+            mechanism similar to servlets would allow to write MVC frameworks in an
+            implementation-independent way.</para>
       </section>
       <section>
          <title>Architecture</title>
@@ -320,7 +324,15 @@ content/
             (gathering informations like the HTTP headers, the request body content, etc.). This
             request element is passed to the entry point component (for instance an XPath function).
             The return value of this component is used to create the response to send back to the
-            user. A request element looks like the following:</para>
+            user.</para>
+         <para>
+            <mediaobject>
+               <imageobject>
+                  <imagedata format="png" fileref="webapp.png" align="center"/>
+               </imageobject>
+            </mediaobject>
+         </para>
+         <para>A request element looks like the following:</para>
          <programlisting>
 &lt;request servlet="srv-1" path="/some/page" method="post">
    &lt;uri>http://www.host.org:8000/myapp/some/page&lt;/uri>
@@ -340,14 +352,22 @@ content/
       &lt;body content-type="text/html"/>
       &lt;body content-type="application/xml"/>
    &lt;/multipart>
-&lt;/request>
-         </programlisting>
+&lt;/request></programlisting>
+         <para>The evaluation of the component (for instance calling the XPath function or running
+            the query module) will give the result to send back to the user. The result is also
+            represented as an element node, but representing an HTTP response instead of a request.
+            It looks like the following:</para>
+         <programlisting>
+&lt;response status="200" message="Ok">
+   &lt;header name="x-myheader" value="My own header value"/>
+   &lt;body content-type="text/plain">Hello, world!&lt;/body>
+&lt;/response></programlisting>
          <para>In order to deploy an application, the web container needs to know the match patterns
             and their associated URI patterns. The user gives those informations as an XML document:
             the deployment descriptor. It lists the entry points with their components and URI
             patterns, as well as a few other configuration infos:</para>
          <programlisting>
-&lt;web-app xmlns="http://expath.org/ns/webapp"
+&lt;webapp xmlns="http://expath.org/ns/webapp"
          xmlns:my1="http://mycorp.com/proj/my-app/servlet-1"
          xmlns:my2="http://mycorp.com/proj/my-app/servlet-2"
          name="http://fgeorges.org/example/my-webapp"
@@ -380,8 +400,7 @@ content/
       &lt;url pattern="/(.+)-xsl/1/"/>
    &lt;/servlet>
 
-   ...
-         </programlisting>
+&lt;/webapp></programlisting>
          <para>After a few infos about the application itself, like its title and some configuration
             parameters, the descriptor declares the various end points with the element
                <code>servlet</code>. Each of them references a component (like an XSLT named
@@ -389,39 +408,86 @@ content/
             descriptor, the web container is able to dispatch the HTTP requests to the correct end
             point.</para>
          <para>The last part of the architecture is how to provide the web container with the data.
-            This one easy: it is built upon the packaging <emphasis>system</emphasis>. A web archive
-            has exactly the same structure as a regular package. A ZIP file with all components, and
-            the package descriptor <code>expath-pkg.xml</code> at the root of the package. For a web
-            archive, one just has to add the deployment descriptor next to the package
-            descriptor.</para>
+            This one is easy: it is built upon the packaging <emphasis>system</emphasis>. A web
+            archive has exactly the same structure as a regular package. A ZIP file with all
+            components, and the package descriptor <code>expath-pkg.xml</code> at the root of the
+            package. For a web archive, one just has to add the deployment descriptor, called
+               <code>expath-web.xml</code>, next to the package descriptor.</para>
       </section>
       <section>
          <title>ServleX</title>
-         <para>[ TODO: ] Introduce Servlex, an implementation of the web container using Java
-            Servlet technologies for the integration with HTTP and server-side, and Saxon and
-            Calabash for its X* processors (to actually evaluate the XSLT, XQuery and XProc
-            components). But the main target of this specification is of course existing XML
-            databases like eXist and MarkLogic.</para>
-      </section>
-      <section>
-         <title>Example</title>
-         <para>[ TODO: ] Build a simple example, to deploy and use in live within ServleX.</para>
+         <para>ServleX is an early implementation of this specification, using Java Servlet
+            technologies for the integration with HTTP, and Saxon and Calabash for its X* processors
+            (to actually evaluate the XSLT, XQuery and XProc components). But the main target of
+            this specification is of course existing XML databases like eXist and MarkLogic, and
+            more specialized solutions like Sausalito. Because it uses Java Servlet, it can be
+            deployed in any servlet container, like Tomcat, Jetty, GlassFish, WebLogic, etc.</para>
+         <para>Let's look at a real example. This example is verry simple. The webapp contains only
+            one component, a function defined in an XQuery library module:</para>
+         <programlisting>
+module namespace my = "http://my-corp.com/";
+declare namespace srv = "http://expath.org/ns/webapp";
+
+declare function my:servlet($req as element(srv:request), $bodies as item()*)
+  as element(srv:response)
+{
+  &lt;srv:response status="200" message="Ok">
+    &lt;srv:body content-type="text/plain"> {
+      string-join(('Path: ', $req/srv:path/*), '')
+    }
+    &lt;/srv:body>
+  &lt;/srv:response>
+};</programlisting>
+         <para>The deployment descriptor looks like:</para>
+         <programlisting>
+&lt;webapp xmlns="http://expath.org/ns/webapp"
+         xmlns:my="http://my-corp.com/"
+         name="http://my-corp.com/example"
+         abbrev="my-webapp"
+         version="1.0">
+
+   &lt;title>A sample web application&lt;/title>
+
+   &lt;!-- catch all requests -->
+   &lt;servlet name="my-servlet">
+      &lt;xquery function="my:servlet"/>
+      &lt;url pattern="/(.+)"/>
+   &lt;/servlet>
+
+&lt;/webapp></programlisting>
+         <para>All requests will be dispatched to the only one servlet, which will return a
+            text/plain body with the string <code>Path: /some/path</code>, with the path requested
+            by the client.</para>
       </section>
       <section>
          <title>Future</title>
-         <para>[ TODO: ] Could be used to build general-purpose MVC-like systems.</para>
+         <para>Like Java Servlet, this is really a low-level technology in the web application
+            development process. But because it is aimed to be independent on any specific
+            implementation, it will allow writing separate frameworks to provide more high-level
+            features, like general-purpose web MVC frameworks handling mapping from requests to
+            components by using their file names for instance.</para>
+         <para>This specification is in its early stage but the current state already allows to
+            write working, simple web applications entirely in core XML technologies. If you have
+            any idea and want to contribute, just have a look at <link
+               xlink:href="http://www.expath.org/"/> and join the mailing list!</para>
       </section>
    </section>
-   <section>
+   <!--section>
       <title>A comprehensive example</title>
       <para>[ TODO: ] Show a sample using all of HTTP Client, ZIP, Pkg and Webapp. First a webapp
          with both web and REST interfaces. Then a client that uses the REST API to create an ODF
          document (maybe a pipeline that 1/ gets the data, 2/ build an internal data model, 3/
          choose between formating in ODF or OOXML or PDF...) Show how it reacts without the ZIP
          module, then after having added it to the repo (cxan install expath-zip).</para>
-   </section>
+   </section-->
    <section>
       <title>Conclusion</title>
-      <para>[ TODO: ] ...</para>
+      <para>The EXPath project is just one year, and it seems a lot of people are already looking
+         forward to useful modules, following the feedback received, both from users and vendors.
+         Its goal is not to be comprehensive nor to try to write specifications for everything
+         possible, but instead to be a central place to coordinate the efforts to write practical
+         extensions in a standard and collaborative way.</para>
+      <para>If you want to get more information, and maybe to join the mailing list, have a lok at
+         the <link xlink:href="http://www.expath.org/">website</link>.</para>
    </section>
 </article>
