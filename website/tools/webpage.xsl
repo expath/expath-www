@@ -273,6 +273,20 @@
                  allowfullscreen="true" width="425" height="355"/>
         </object>
       </div>
+      <p/>
+   </xsl:template>
+
+   <xsl:template match="youtube">
+      <xsl:variable name="uri" select="'http://www.youtube.com/v/'"/>
+      <p/>
+      <div>
+         <object width="560" height="340">
+            <param name="movie" value="{ $uri }{ @video }"/>
+            <param name="allowFullScreen" value="true"/>
+            <embed src="{ $uri }{ @video }" type="application/x-shockwave-flash"
+                   allowfullscreen="true" width="560" height="340"/>
+         </object>
+      </div>
    </xsl:template>
 
    <xsl:template match="para">
