@@ -48,18 +48,6 @@
          <keyword>XQuery</keyword>
       </keywordset>
    </info>
-   <note>
-      <para>This submission is really an early draft. Though I have a precise idea of both the
-         structure and the content of this paper, I unfortunately did not have time to write it
-         entirely before the submission deadline. In particular, there is no diagrams yet, no
-         samples, and the text obviously needs both more content and language reviewing, but I tried
-         to make the intention clear and precise enough.</para>
-      <para>The idea is to introduce the <link xlink:href="http://www.expath.org/">EXPath
-            project</link>, and more precisely its Packaging System and its framework for Web
-         Applications.</para>
-      <para>Hopefully, the Christmas holidays should give me the opportunity to write a complete
-         version of this paper on time for submission of final papers :-)</para>
-   </note>
    <section>
       <title>Introduce EXPath</title>
       <section>
@@ -229,11 +217,11 @@
          version="1.0">
    &lt;title>FunctX library&lt;/title>
    &lt;xquery>
-      &lt;uri>http://www.functx.com&lt;/uri>
+      &lt;uri>http://functx.com&lt;/uri>
       &lt;resource>functx.xql&lt;/resource>
    &lt;/xquery>
    &lt;xslt>
-      &lt;uri>http://www.functx.com/functx.xsl&lt;/uri>
+      &lt;uri>http://functx.com/functx.xsl&lt;/uri>
       &lt;resource>functx.xsl&lt;/resource>
    &lt;/xslt>
 &lt;/package>
@@ -469,7 +457,7 @@ declare function my:servlet($req as element(srv:request), $bodies as item()*)
          <para>This specification is in its early stage but the current state already allows to
             write working, simple web applications entirely in core XML technologies. If you have
             any idea and want to contribute, just have a look at <link
-               xlink:href="http://www.expath.org/"/> and join the mailing list!</para>
+               xlink:href="http://expath.org/"/> and join the mailing list!</para>
       </section>
    </section>
    <!--section>
@@ -488,6 +476,6 @@ declare function my:servlet($req as element(srv:request), $bodies as item()*)
          possible, but instead to be a central place to coordinate the efforts to write practical
          extensions in a standard and collaborative way.</para>
       <para>If you want to get more information, and maybe to join the mailing list, have a lok at
-         the <link xlink:href="http://www.expath.org/">website</link>.</para>
+         the <link xlink:href="http://expath.org/">website</link>.</para>
    </section>
 </article>
