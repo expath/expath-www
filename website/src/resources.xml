@@ -14,9 +14,14 @@
                href="http://www.balisage.net/Proceedings/vol3/author-pkg/Georges01/BalisageVol3-Georges01.html"
                >materials</link> page.</para>
          <slideshare doc="balisage-expath-100121190739-phpapp02"/>
+         <para>A video showing the ZIP module in <link href="http://www.qutoric.com/coherentweb/"
+               >CoherentWeb</link>:</para>
+         <youtube video="CllCpI9Od6Y"/>
       </primary>
       <primary>
          <title>Processors (and their extensions)</title>
+         <para>See also the following <link href="http://expath.org/wiki/Engines">wiki page</link>
+            for more informations.</para>
          <list>
             <item><link href="http://www.exslt.org/">EXSLT</link> project</item>
             <item><link href="http://www.exquery.org/">EXQuery</link> project</item>
@@ -54,8 +59,6 @@
             <item><link href="http://www.xqsharp.com/">XQSharp</link> XQuery processor for the .NET
                Framework. See its <link href="http://www.xqsharp.com/xqsharp/functions.htm"
                   >extension functions</link> (only math functions at the time of writing.)</item>
-            <item>See also the following <link href="http://expath.org/wiki/Engines">wiki
-                  page</link>.</item>
          </list>
       </primary>
    </section>

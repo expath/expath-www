@@ -24,6 +24,9 @@
             <link href="#xpath21">Is not there a risk to be redundant with XPath 2.1?</link>
          </item>
       </list>
+      <para/>
+      <para>The <link href="resources.html">resources</link> page contains also useful links and
+         documentation, as well as the <link href="wiki/">EXPath wiki</link>.</para>
    </section>
    <divider/>
    <primary id="licence">
