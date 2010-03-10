@@ -1,0 +1,5 @@
+<configuration edition="PE" xmlns="http://saxon.sf.net/ns/configuration">
+
+   <xquery moduleUriResolver="org.expath.pkg.saxon.java.QueryModuleResolver"/>
+
+</configuration>
