@@ -1,0 +1,7 @@
+namespace ex = "http://expath.org/ns/xmlspec"
+
+include "xmlspec-orig.rnc"
+
+eg.pcd.mix |=
+   element ex:function { text }
+ | element ex:type { text }

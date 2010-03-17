@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE catalog PUBLIC "-//OASIS//DTD Entity Resolution XML Catalog V1.0//EN"
+                         "http://www.oasis-open.org/committees/entity/release/1.1/catalog.dtd">
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+    <system systemId="http://expath.org/ns/xmlspec/xmlspec.rnc" uri="xmlspec.rnc"/>
+    <system systemId="http://expath.org/ns/xmlspec/xmlspec.xsl" uri="xmlspec.xsl"/>
+    <uri name="http://expath.org/ns/xmlspec/xmlspec.xsl" uri="xmlspec.xsl"/>
+
+</catalog>
