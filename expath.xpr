@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="11.1">
+<project version="11.2">
     <meta>
         <filters directoryPatterns="" filePatterns=""
             positiveFilePatterns="" showHiddenFiles="false"/>
         <options>
-            <serialized version="11.1">
+            <serialized version="11.2">
                 <map>
                     <entry>
                         <String xml:space="preserve">scenario.associations</String>
                         <scenarioAssociation-array>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">EXPath XML Spec HTML</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../http-client/spec/http-client.xml</String>
+                                </field>
+                            </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="name">
                                     <String xml:space="preserve">Self XQuery with EXPath Pkg</String>
@@ -29,17 +40,6 @@
                                 </field>
                                 <field name="url">
                                     <String xml:space="preserve">website/src/sitemap.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">EXPath Packager</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">../pkg/repo/packager/test/hello-world/build/packager.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -578,17 +578,6 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../http-client/spec/http-client.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">EXPath XML Spec HTML</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
                                     <String xml:space="preserve">../pkg/spec/pkg.xml</String>
                                 </field>
                             </scenarioAssociation>
@@ -656,6 +645,28 @@
                                 </field>
                                 <field name="url">
                                     <String xml:space="preserve">misc/2010-prague/paper/fgeorges-expath.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">EXPath Packager</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../pkg/repo/packager/test/hello-world/build/packager.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">Execute XQuery (Win)</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XQUERY</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../pkg/repo/packager/test/hello-world/build/Untitled3.xquery</String>
                                 </field>
                             </scenarioAssociation>
                         </scenarioAssociation-array>
@@ -972,6 +983,9 @@
                                     </field>
                                     <field name="initialTemplate">
                                     <null/>
+                                    </field>
+                                    <field name="traceXPathExpression">
+                                    <Boolean xml:space="preserve">false</Boolean>
                                     </field>
                                     <field name="errorRecoverPolicy">
                                     <String xml:space="preserve">saxon.recover.with.warning</String>
@@ -1696,7 +1710,7 @@
                                     <String xml:space="preserve"></String>
                                 </field>
                                 <field name="inputXSLURL">
-                                    <String xml:space="preserve">http://www.fgeorges.org/oxygen/override/xmlspec/xhtml/xmlspec.xsl</String>
+                                    <String xml:space="preserve">http://expath.org/ns/xmlspec/xmlspec.xsl</String>
                                 </field>
                                 <field name="inputXMLURL">
                                     <String xml:space="preserve">${currentFileURL}</String>
@@ -2068,6 +2082,9 @@
                                     </field>
                                     <field name="initialTemplate">
                                     <null/>
+                                    </field>
+                                    <field name="traceXPathExpression">
+                                    <Boolean xml:space="preserve">false</Boolean>
                                     </field>
                                     <field name="errorRecoverPolicy">
                                     <String xml:space="preserve">saxon.recover.with.warning</String>
@@ -2788,6 +2805,9 @@
                                     <field name="initialTemplate">
                                     <null/>
                                     </field>
+                                    <field name="traceXPathExpression">
+                                    <Boolean xml:space="preserve">false</Boolean>
+                                    </field>
                                     <field name="errorRecoverPolicy">
                                     <String xml:space="preserve">saxon.recover.with.warning</String>
                                     </field>
@@ -2911,6 +2931,9 @@
                                     <field name="initialTemplate">
                                     <String xml:space="preserve">{http://www.jenitennison.com/xslt/xspec}main</String>
                                     </field>
+                                    <field name="traceXPathExpression">
+                                    <Boolean xml:space="preserve">false</Boolean>
+                                    </field>
                                     <field name="errorRecoverPolicy">
                                     <String xml:space="preserve">saxon.recover.with.warning</String>
                                     </field>
@@ -2949,6 +2972,9 @@
                                     </field>
                                     <field name="initialTemplate">
                                     <String xml:space="preserve">{http://www.jenitennison.com/xslt/xspec}main</String>
+                                    </field>
+                                    <field name="traceXPathExpression">
+                                    <Boolean xml:space="preserve">false</Boolean>
                                     </field>
                                     <field name="errorRecoverPolicy">
                                     <String xml:space="preserve">saxon.recover.with.warning</String>
@@ -3163,6 +3189,9 @@
                                     <field name="initialTemplate">
                                     <String xml:space="preserve">main</String>
                                     </field>
+                                    <field name="traceXPathExpression">
+                                    <Boolean xml:space="preserve">false</Boolean>
+                                    </field>
                                     <field name="errorRecoverPolicy">
                                     <String xml:space="preserve">saxon.recover.with.warning</String>
                                     </field>
@@ -3286,6 +3315,9 @@
                                     <field name="initialTemplate">
                                     <String xml:space="preserve">main</String>
                                     </field>
+                                    <field name="traceXPathExpression">
+                                    <Boolean xml:space="preserve">false</Boolean>
+                                    </field>
                                     <field name="errorRecoverPolicy">
                                     <String xml:space="preserve">saxon.recover.with.warning</String>
                                     </field>
@@ -3324,6 +3356,9 @@
                                     </field>
                                     <field name="initialTemplate">
                                     <String xml:space="preserve">main</String>
+                                    </field>
+                                    <field name="traceXPathExpression">
+                                    <Boolean xml:space="preserve">false</Boolean>
                                     </field>
                                     <field name="errorRecoverPolicy">
                                     <String xml:space="preserve">saxon.recover.with.warning</String>
@@ -3918,6 +3953,9 @@
                                     <field name="initialTemplate">
                                     <null/>
                                     </field>
+                                    <field name="traceXPathExpression">
+                                    <Boolean xml:space="preserve">false</Boolean>
+                                    </field>
                                     <field name="errorRecoverPolicy">
                                     <String xml:space="preserve">saxon.recover.with.warning</String>
                                     </field>
@@ -4040,6 +4078,9 @@
                                     </field>
                                     <field name="initialTemplate">
                                     <String xml:space="preserve">main</String>
+                                    </field>
+                                    <field name="traceXPathExpression">
+                                    <Boolean xml:space="preserve">false</Boolean>
                                     </field>
                                     <field name="errorRecoverPolicy">
                                     <String xml:space="preserve">saxon.recover.with.warning</String>
@@ -4177,6 +4218,9 @@
                                     </field>
                                     <field name="initialTemplate">
                                     <null/>
+                                    </field>
+                                    <field name="traceXPathExpression">
+                                    <Boolean xml:space="preserve">false</Boolean>
                                     </field>
                                     <field name="errorRecoverPolicy">
                                     <String xml:space="preserve">saxon.recover.with.warning</String>
@@ -4383,6 +4427,9 @@
                                     </field>
                                     <field name="initialTemplate">
                                     <String xml:space="preserve">main</String>
+                                    </field>
+                                    <field name="traceXPathExpression">
+                                    <Boolean xml:space="preserve">false</Boolean>
                                     </field>
                                     <field name="errorRecoverPolicy">
                                     <String xml:space="preserve">saxon.recover.with.warning</String>
