@@ -35,7 +35,7 @@
    <!--
       Return all the contact groups as Atom entries.
    -->
-   <xsl:function name="impl:get-group-entries" as="element(atom:entry)+">
+   <xsl:function name="impl:get-groups" as="element(atom:entry)+">
       <xsl:variable name="feeds" as="element(atom:feed)+" select="
           gc:get-groups($impl:cp-service, (), $impl:chunck-param)"/>
       <xsl:sequence select="$feeds/atom:entry"/>
@@ -53,7 +53,7 @@
    <!--
       Return the contacts in 'My Contacts' as Atom entries.
    -->
-   <xsl:function name="impl:get-contact-entries">
+   <xsl:function name="impl:get-contacts">
       <xsl:param name="groups"   as="element(atom:entry)+"/>
       <xsl:param name="group-my" as="element(atom:entry)"/>
       <!-- TODO: It seems it is not possible to retreive all contacts
@@ -69,10 +69,9 @@
       Single entry point, return contacts as a 'contacts' element.
    -->
    <xsl:template name="impl:get-contacts" as="element(contacts)">
-      <xsl:variable name="groups"   select="impl:get-group-entries()"/>
+      <xsl:variable name="groups"   select="impl:get-groups()"/>
       <xsl:variable name="group-my" select="impl:get-group-my($groups)"/>
-      <xsl:variable name="contacts" select="
-          impl:get-contact-entries($groups, $group-my)"/>
+      <xsl:variable name="contacts" select="impl:get-contacts($groups, $group-my)"/>
       <contacts>
          <xsl:apply-templates select="$contacts" mode="impl:get-contacts">
             <xsl:with-param name="groups"   select="$groups"/>
