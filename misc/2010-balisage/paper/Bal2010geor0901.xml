@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="http://www.balisage.net/DocumentModels/balisage-1-2.rng" type="xml"?>
+
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+   <title>The EXPath Packaging System</title>
+   <subtitle>A framework to package libraries and applications for core XML technologies</subtitle>
+   <info>
+      <!--confgroup>
+         <conftitle>Balisage: The Markup Conference</conftitle>
+         <confdates>11 - 14 August 2009</confdates>
+      </confgroup-->
+      <abstract>
+         <para>For some time now the demand for standardized extensions within the core XML
+            technologies, especially XSLT and XQuery, has been increasing. A closer look at the
+            EXSLT and EXQuery projects shows that their goals align to address the issue of
+            extensions, but also that they overlap, predominantly because of their common ancestor:
+            XPath. It is thus reasonable to assume that both projects should collaborate together on
+            common areas influenced by the underlying XPath specification. In addition, by jointly
+            working at the lower level, any XPath based language or processor could also benefit
+            from this work, like XProc, XForms or plain XPath engines.</para>
+      </abstract>
+      <author>
+         <personname>
+            <firstname>Florent</firstname>
+            <surname>Georges</surname>
+         </personname>
+         <personblurb>
+            <para>Florent Georges is a freelance IT consultant in Brussels who has been involved in
+               the XML world for 10 years, especially within the XSLT and XQuery communities. His
+               main interests are in the field of XSLT and XQuery extensions and libraries,
+               packaging, unit and functional testing, and portability between several processors.
+               Since the beginning of 2009, he has worked on EXPath, to define "standard" extension
+               function libraries that can be used in XPath (so in XSLT, XQuery and XProc as
+               well).</para>
+         </personblurb>
+         <affiliation>
+            <jobtitle>XML Architect</jobtitle>
+            <orgname>fgeorges.org</orgname>
+         </affiliation>
+         <email>fgeorges@fgeorges.org</email>
+      </author>
+      <!--legalnotice>
+         <para>Copyright &#x000A9; 2009 Florent Georges. Used by permission.</para>
+      </legalnotice-->
+      <keywordset role="author">
+         <keyword>EXPath</keyword>
+         <keyword>extension</keyword>
+         <keyword>XPath</keyword>
+         <keyword>XSLT</keyword>
+         <keyword>XQuery</keyword>
+      </keywordset>
+   </info>
+   <section>
+      <title>Introduction</title>
+      <para>EXPath has been launched in early 2009. Its goal is to go behind core XML technologies
+         standards by specifying extensions to those technologies in a consistent and standard way
+         across different processors, collaboratively by the relevant communities.</para>
+      <para>Most of these core XML technologies are based on XPath, hence the decision to focus
+         principally on XPath. The whole project is divided into small parts, the
+            <emphasis>modules</emphasis>, more or less independent on each others. A specific
+         processor can thus chose to implement only some of those modules, regarding what is
+         relevant to the technologies it supports or what is relevant to each users.</para>
+      <para>Even though the idea is to provide the several vendors with a set of
+            (<emphasis>de-facto</emphasis>) standard modules to implement themselves, people may
+         chose to implement a module as a commercial or open-source product for a specific processor
+         (given this processor provides the appropriate extension mechanism). Actually some modules
+         are currently directly supported by some processors while other implementations exist as
+         third-party products. The EXPath community itself provides several open-source
+         implementations, as well as support for such projects.</para>
+      <para>This paper focuses especially on the Packaging System defined by EXPath as a way to
+         package and deliver XML libraries or applications <footnote>
+            <para>By <emphasis>XML libraries and applications</emphasis>, we mean libraries and
+               applications for (or written in) XSLT, XQuery, XProc, XML Schema, or other XML
+               technologies.</para>
+         </footnote> and to allow a user to rely on tools to automatically install (or deploy) such
+         packages.</para>
+   </section>
+   <section>
+      <title>The problem</title>
+      <para>To introduce the packaging system, let's try to answer the primary question <TODO>("la
+            question originelle")</TODO>: <emphasis>what is such a system useful for?</emphasis>
+         Let's try to do so by using a specific example.</para>
+      <para>You are in charge of an XQuery application which, very imaginatively, you called MyApp.
+         As several other XQuery applications, MyApp uses the FunctX library (and XQuery and XSLT
+         library providing general-purpose functions, like date and string manipulation functions).
+         In order to ease the integration of FunctX into MyApp, you decided to simply copy the
+         source file into your own code base. You then use the same rules to import the library as
+         for the import statements for your own XQuery modules:</para>
+      <programlisting>import module namespace f = "http://www.functx.com"
+   at "../../lib/functx.xq";</programlisting>
+      <para>So far, so good. Later on, you decide to use another library providing support for XBRL
+         (a standard language for business reporting). It turns out that this library actually uses
+         also FunctX. So you install the library into your code base, and you modify its source code
+         to adapt the import statements related to FunctX to follow your own rules for import
+         statements. Indeed, you feel guilty to modify the source code of a third-party library just
+         to be able to use it (as in the first place you did feel guilty to copy the source code of
+         a third-party library into your own code base). But you don't have any other choice, have
+         you?</para>
+      <para>You then use yet another library (remember?, MyApp is a big application using a lot of
+         different technologies). You follow the install instructions. Manually of course. Anyway
+         those instructions are more or less: <emphasis>Copy the files somewhere and use whatever
+            mechanism your processor provides you with to import the library modules</emphasis>. So
+         once again, you copy the whole source code into your own code base. You don't know it, but
+         actually that library also uses FunctX (yes, FunctX is really useful) and you end up with
+         two FunctX implementations into your own code base (hopefully the same
+         implementations).</para>
+      <para>We could continue this example for ever, with troubles updating FunctX or any of the
+         libraries using it, or by describing the pain of manually installing or updating any new
+         library. <TODO>REFORMULATE, and show actually the exact problems... ("all those steps could
+            be automated", "to solve this common problem you always have to think about a solution,
+            again and again"...)</TODO></para>
+      <para>And yet, those are only the issues a library user can find on his way. Let's now pretend
+         your are a library author. You are in a maze, struggling with dependency management and
+         installation instructions. You feel there should be a simple solution. You are getting
+         sleepy. Very sleepy. Your eyelids are heavy. Very heavy...</para>
+      <para>To make the long story short, dependency management is a complex problem and has always
+         been. And there is no standard addressing this problem accross several XML technologies.
+         Typically, each standard get rid of this problem by making it an implementation-defined,
+         optional feature.</para>
+   </section>
+   <section>
+      <title>The EXPath Packaging System</title>
+      <para>To address this problem, EXPath defines a packaging system to help library and
+         application authors to package and deliver their products without having to take care of
+         specific install procedures and of every possible existing processors, now or in the
+         future.</para>
+      <para><TODO>[ Reformulate... ]</TODO> The basic idea is simple. A package is a set of
+         components, and contains enough informations about those components for a processor to
+         install them properly, and to let a user refer to them within his own applications or
+         libraries by using always the same absolute URI, resolved by the processor at compile-time.
+         As soon as a library is packaged using this format, it is usable in all processors
+         supporting the packaging system, without the need for any further instructions for the
+         users.</para>
+      <para>So a package is a set of components. A component is any piece of code of a supported XML
+         technology, e.g. an XSLT stylesheet, an XQuery module, an XProc pipeline, or a schema (XSD,
+         Relax NG, NVDL, Schematron, etc.) The packaging system has been designed to be extensible,
+         and an implementation can support other kinds of component: a standard not supported yet
+         like BPEL, or even processor-specific components like a Java implementation of extensions
+         for Saxon (several implementations for Saxon of EXPath modules are actually delivered this
+         way).</para>
+      <para>The several components are packaged as a single file by creating a ZIP file. In order to
+         provide enough information to the installer, the structure of this ZIP file must follow a
+         few simple rules, and contains in addition a package descriptor. The package descriptor is
+         a simple XML file defined in the specification, providing informations about the components
+         and the package.</para>
+      <para>A central concept in the packaging system is the concept of public URIs. Each component
+         is associated with such a URI. In turn, this URI can be used to access the component. For
+         instance, if a library contains an XSLT stylesheet, a public URI for this stylesheet is
+         defined in the package descriptor. The user can then use this URI in an
+            <code>xsl:import</code> instruction to import this stylesheet:</para>
+      <programlisting>&lt;!-- the user's stylesheet can import the library's stylesheet -->
+&lt;xsl:import href="http://example.org/the/public/uri/of/the-stylesheet"/></programlisting>
+      <para>The package structure (i.e. the structure of the files and directories in the ZIP file)
+         is simple. It must contain the file descriptor at the top-level of the ZIP file (an XML
+         file named <code>expath-pkg.xml</code>) and a sub-directory with the actual components. The
+         library author is free to organize this sub-directory as he/she wants. If we take again the
+         example of FunctX, which contains an implementation of the functions both as an XQuery
+         module and as an XSLT stylesheet, it could have the following structure:</para>
+      <programlisting>- expath-pkg.xml
+- functx/
+    - functx.xq
+    - functx.xsl</programlisting>
+      <para>The package descriptor itself (i.e. the file <code>expath-pkg.xml</code>) provides a few
+         informations about the library itself (a name, a version number, etc.) and associates a
+         public URI to each component in the package:</para>
+      <programlisting>&lt;package xmlns="http://expath.org/ns/pkg"
+         name="http://www.functx.com"
+         version="1.0">
+
+   &lt;title>FunctX library&lt;/title>
+   &lt;desc>The FunctX library, both for XQuery 1.0 and XSLT 2.0.&lt;/desc>
+
+   &lt;xquery>
+      &lt;namespace>http://www.functx.com&lt;/namespace>
+      &lt;file>functx.xq&lt;/file>
+   &lt;/xquery>
+   &lt;xslt>
+      &lt;import-uri>http://www.functx.com/functx.xsl&lt;/import-uri>
+      &lt;file>functx.xsl&lt;/file>
+   &lt;/xslt>
+
+&lt;/package></programlisting>
+      <para>This is a simple package descriptor. It describes both components in the FunctX package:
+         the XSLT stylesheet and the XQuery module. The <code>file</code> element points to the
+         actual source code within the package, while the elements <code>import-uri</code> and
+            <code>namespace</code> set the public URI of each component. There are elements to
+         configure other kind of components like XProc, RNG, RNC, XSD, Schematron and NVDL. An
+         implementation can also define its own elements (in its own namespace). For instance, the
+         package for the Java implementation for Saxon of the EXPath HTTP Client contains the
+         following:</para>
+      <programlisting>&lt;java xmlns="http://expath.org/ns/pkg/saxon">
+   &lt;jar>saxon/jar/expath-http-client-saxon.jar&lt;/jar>
+   &lt;function>org.expath.httpclient.saxon.SendRequestFunction&lt;/function>
+   ...
+&lt;saxon></programlisting>
+   </section>
+   <section>
+      <title>Integration</title>
+      <para>As for other modules, and even more for the packaging system, the goal is to have to
+         implemented directly by the several processors. This is the case for eXist for instance
+            ([<emphasis role="bold">Note</emphasis>: to be confirmed in the final version of this
+         paper, as it is still a work in progress for now]). Third-party implementations have been
+         written for Saxon and Calabash too.</para>
+      <para>Even though a processor is allowed to implement the packaging system in any way, the
+         specification defines a standard on-disk repository layout. If such an on-disk repository
+         makes sense for a specific processor, it can then benefit from standard tools to manage the
+         repository (install new packages, remove existing one, install directly from the Internet,
+         etc.) The packaging support in Saxon and Calabash for instance are open-source third-party
+         implementations. Those implementations resolve at compile-time the URIs within the user
+         stylesheets and pipelines to the imported components in the repository. But the repository
+         itself is managed by a standalone application, dedicated to that purpose. Because this
+         repository format is defined in the specification, if an implementation chose to support
+         it, it does not have to take care at all about repository management, and the user can then
+         use one single tool to manage repositories, even for several processors. But for some
+         processors, such an on-disk repository just does not make sense, or is not the best design
+         choice (e.g. for embedded systems or processors that can pre-compile packages).</para>
+      <para><TODO>examples w/ Saxon &amp; Calabash</TODO></para>
+      <para><TODO>examples w/ eXist (web console...)</TODO></para>
+   </section>
+   <section>
+      <title>Going further</title>
+      <para>Webapp packaging...</para>
+      <para>Standard project structure...</para>
+      <para>CXAN...</para>
+   </section>
+</article>
