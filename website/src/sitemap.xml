@@ -20,6 +20,7 @@
    <page src="resources.xml" href="resources.html" menu="main"/>
    <page src="map.xml"       href="map.html"       menu="main"/>
    <rsrc src="atom.xml"      href="atom.xml"/>
+   <rsrc name="misc/fgeorges-expath-examples.zip" href="fgeorges-expath-examples.zip"/>
 
    <dir base="../style/" href="style/">
       <rsrc src="default.css"       href="default.css"/>

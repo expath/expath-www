@@ -7,6 +7,11 @@
       <divider/>
       <primary>
          <title>EXPath resources</title>
+         <para>The presentation given by Florent Georges at <link href="http://xmlprague.cz/2010/">XML
+            Prague 2010</link>, introducing the project as a whole, the Packaging System and the
+            Webapp Framework (you can find the <link href="fgeorges-expath-examples.zip">examples
+            here</link>):</para>
+         <slideshare doc="fgeorges-expath-100318160007-phpapp01"/>
          <para>The introduction to EXPath presented by Florent Georges at Balisage 2009: <link
                href="http://www.balisage.net/Proceedings/vol3/html/Georges01/BalisageVol3-Georges01.html"
                >the proceedings</link>. The conference website also hosts the PDF presentation
