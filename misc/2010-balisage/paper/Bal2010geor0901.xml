@@ -63,7 +63,7 @@
          principally on XPath. The whole project is divided into small parts, the
             <emphasis>modules</emphasis>, more or less independent on each others. A specific
          processor can thus chose to implement only some of those modules, regarding what is
-         relevant to the technologies it supports or what is relevant to each users.</para>
+         relevant to the technologies it supports or what is relevant to its users.</para>
       <para>Even though the idea is to provide the several vendors with a set of
             (<emphasis>de-facto</emphasis>) standard modules to implement themselves, people may
          chose to implement a module as a commercial or open-source product for a specific processor
@@ -85,7 +85,7 @@
             <emphasis>what is such a system useful for?</emphasis> Let's try to do so by using a
          specific example.</para>
       <para>You are in charge of an XQuery application which, very imaginatively, you called MyApp.
-         As several other XQuery applications, MyApp uses the FunctX library (and XQuery and XSLT
+         As several other XQuery applications, MyApp uses the FunctX library (an XQuery and XSLT
          library providing general-purpose functions, like date and string manipulation functions).
          In order to ease the integration of FunctX into MyApp, you decided to simply copy the
          source file into your own code base. You then use the same rules to import the library as
@@ -100,27 +100,50 @@
          to be able to use it (as in the first place you did feel guilty to copy the source code of
          a third-party library into your own code base). But you don't have any other choice, have
          you?</para>
-      <para>You then use yet another library (remember?, MyApp is a big application using a lot of
-         different technologies). You follow the install instructions. Manually of course. Anyway
-         those instructions are more or less: <emphasis>Copy the files somewhere and use whatever
-            mechanism your processor provides you with to import the library modules</emphasis>. So
-         once again, you copy the whole source code into your own code base. You don't know it, but
-         actually that library also uses FunctX (yes, FunctX is really useful) and you end up with
-         two FunctX implementations into your own code base (hopefully the same
-         implementations).</para>
+      <para>You then use yet another library. You follow the install instructions. Manually of
+         course. Anyway those instructions are more or less: <emphasis>Copy the files "somewhere"
+            and use whatever mechanism your processor provides you with to import the library
+            modules</emphasis>. So once again, you copy the whole source code into your own code
+         base. You don't know it, but actually that library also uses FunctX (yes, FunctX is really
+         useful) and you end up with two FunctX implementations into your own code base (hopefully
+         the same implementations).</para>
       <para>We could continue this example for ever, with troubles updating FunctX or any of the
          libraries using it, or by describing the pain of manually installing or updating any new
-         library. <TODO>REFORMULATE, and show actually the exact problems... ("all those steps could
-            be automated", "to solve this common problem you always have to think about a solution,
-            again and again"...)</TODO></para>
-      <para>And yet, those are only the issues a library user can find on his way. Let's now pretend
-         your are a library author. You are in a maze, struggling with dependency management and
-         installation instructions. You feel there should be a simple solution. You are getting
+         library. And yet, those are only the issues a library user can find on his way. Let's now
+         pretend your are a library author. You are in a maze, struggling with dependency management
+         and installation instructions. You feel there should be a simple solution. You are getting
          sleepy. Very sleepy. Your eyelids are heavy. Very heavy...</para>
       <para>To make the long story short, dependency management is a complex problem and has always
          been. And there is no standard addressing this problem accross several XML technologies.
          Typically, each standard get rid of this problem by making it an implementation-defined,
-         optional feature.</para>
+         optional feature. This is a reasonable decision at the level of each independent standard.
+         But having a specification addressing those issues accross several standards allows to
+         address the most common use cases and to build packaging tools compatible with several
+         processors. From the above example, we can list the following issues, that the Packaging
+         System tries to address:</para>
+      <itemizedlist>
+         <listitem>
+            <para>to solve the common problem of installing a third-party library, we always have to
+               think about similar technical solutions;</para>
+         </listitem>
+         <listitem>
+            <para>the way to install a library is always slightly different, because of differences
+               in the way the libraries themselves are packaged, whilst the concepts are always the
+               same;</para>
+         </listitem>
+         <listitem>
+            <para>library packaging (i.e. the other end of the delivery cycle) has the same
+               problems: no standards, no tools, and at the end of the day we always end up with
+               something different whilst the concepts are the same;</para>
+         </listitem>
+         <listitem>
+            <para>this situation prevents writing tools to help the developer to automate the build,
+               delivery and install cycle (for other languages, some tools provide a way to create
+               automatically a new project, from which they can automate the build process, and at
+               the other end systems provide the user with a way to automatically install those
+               packages).</para>
+         </listitem>
+      </itemizedlist>
    </section>
    <section>
       <title>The Packaging System</title>
@@ -211,7 +234,7 @@
          repository (install new packages, remove existing one, install directly from the Internet,
          etc.) The packaging support in Saxon and Calabash for instance are open-source third-party
          implementations. Those implementations resolve at compile-time the URIs within the user
-         stylesheets and pipelines to the imported components in the repository</para>
+         stylesheets and pipelines to the imported components in the repository:</para>
       <para>
          <mediaobject>
             <imageobject>
@@ -226,12 +249,49 @@
          for some processors, such an on-disk repository just does not make sense, or is not the
          best design choice (e.g. for embedded systems or processors that can pre-compile
          packages).</para>
-      <para><TODO>Introduce the stylesheet and the pipeline (and a query?)...</TODO> Here is an
-         example on the command line with Saxon and Calabash. The command <code>xrepo</code> is the
-         standalone repository manager. It can manage several repositories, list the content of a
-         specific repository, install and remove packages. This example shows a user stylesheet
-         importing the FunctX stylesheet. In a first time, FunctX is not installed yet, so the
-         transform fails. Then we install the package, and run the transform again:</para>
+      <para>Let us look at a concrete example. A stylesheet uses FunctX to build a date from three
+         integers (the year, the month and the day). Note that it uses an absolute URI to import the
+         FunctX stylesheet, and this URI does not point to an actual location. This is just a name,
+         and will be used to resolved the FunctX stylesheet from the repository:</para>
+      <programlisting>&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:f="http://www.functx.com"
+                exclude-result-prefixes="f"
+                version="2.0">
+
+   &lt;xsl:import href="http://www.functx.com/functx.xsl"/>
+
+   &lt;xsl:output indent="yes"/>
+
+   &lt;xsl:template name="main">
+      &lt;result>
+         &lt;xsl:sequence select="f:date(1979, 9, 1)"/>
+      &lt;/result>
+   &lt;/xsl:template>
+
+&lt;/xsl:stylesheet></programlisting>
+      <para>This stylesheet is also used in an XProc pipeline:</para>
+      <programlisting>&lt;p:declare-step xmlns:p="http://www.w3.org/ns/xproc"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:f="http://www.functx.com"
+                version="1.0">
+
+   &lt;p:input port="parameters" kind="parameter"/>
+   &lt;p:input port="source"/>
+   &lt;p:output port="result"/>
+
+   &lt;p:xslt template-name="main">
+      &lt;p:input port="stylesheet">
+         &lt;p:document href="user.xsl"/>
+      &lt;/p:input>
+   &lt;/p:xslt>
+
+&lt;/p:declare-step></programlisting>
+      <para>We have to install FunctX in the repository in order for those components to run
+         properly. The command <code>xrepo</code> is the standalone repository manager. It can
+         manage several repositories, list the content of a specific repository, install and remove
+         packages. This example shows a user stylesheet importing the FunctX stylesheet. In a first
+         time, FunctX is not installed yet, so the transform fails. Then we install the package, and
+         run the transform again:</para>
       <programlisting>> grep xsl:import user.xsl
 &lt;xsl:import href="http://www.functx.com/functx.xsl"/>
 
@@ -261,8 +321,8 @@ Install it to dir [functx]:
    <section>
       <title>Going further</title>
       <TODO>...</TODO>
+      <para>CXAN...</para>
       <para>Webapp packaging...</para>
       <para>Standard project structure...</para>
-      <para>CXAN...</para>
    </section>
 </article>
