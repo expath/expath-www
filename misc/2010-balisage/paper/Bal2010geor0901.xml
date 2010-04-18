@@ -7,17 +7,16 @@
    <info>
       <!--confgroup>
          <conftitle>Balisage: The Markup Conference</conftitle>
-         <confdates>11 - 14 August 2009</confdates>
+         <confdates>2 - 6 August 2010</confdates>
       </confgroup-->
       <abstract>
-         <para>For some time now the demand for standardized extensions within the core XML
-            technologies, especially XSLT and XQuery, has been increasing. A closer look at the
-            EXSLT and EXQuery projects shows that their goals align to address the issue of
-            extensions, but also that they overlap, predominantly because of their common ancestor:
-            XPath. It is thus reasonable to assume that both projects should collaborate together on
-            common areas influenced by the underlying XPath specification. In addition, by jointly
-            working at the lower level, any XPath based language or processor could also benefit
-            from this work, like XProc, XForms or plain XPath engines.</para>
+         <para>This paper introduces the EXPath Packaging System. It describes the problem addressed
+            by the application and library packaging, and the current lack of existing solutions for
+            XML technologies, before describing the Packaging System itself, its structure, its
+            usages and its implementations. It introduces briefly other systems built (or that could
+            be built) on top of this system, like a packaging for web applications written using
+            only XML technologies, an online library and application repository, or standard project
+            structures for XML libraries.</para>
       </abstract>
       <author>
          <personname>
@@ -35,12 +34,12 @@
          </personblurb>
          <affiliation>
             <jobtitle>XML Architect</jobtitle>
-            <orgname>fgeorges.org</orgname>
+            <orgname>H2O Consulting</orgname>
          </affiliation>
-         <email>fgeorges@fgeorges.org</email>
+         <email>fgeorges@h2oconsulting.be</email>
       </author>
       <!--legalnotice>
-         <para>Copyright &#x000A9; 2009 Florent Georges. Used by permission.</para>
+         <para>Copyright &#x000A9; 2010 Florent Georges. Used by permission.</para>
       </legalnotice-->
       <keywordset role="author">
          <keyword>EXPath</keyword>
@@ -50,11 +49,16 @@
          <keyword>XQuery</keyword>
       </keywordset>
    </info>
+   <note>
+      <title>Note to reviewers</title>
+      <para>Hey, reviewers...</para>
+   </note>
    <section>
       <title>Introduction</title>
-      <para>EXPath has been launched in early 2009. Its goal is to go behind core XML technologies
-         standards by specifying extensions to those technologies in a consistent and standard way
-         across different processors, collaboratively by the relevant communities.</para>
+      <para>EXPath has been launched in early 2009. Its goal is to go behind the standards for core
+         XML technologies by specifying extensions to those technologies in a consistent and
+         standard way across different processors, collaboratively by the relevant
+         communities.</para>
       <para>Most of these core XML technologies are based on XPath, hence the decision to focus
          principally on XPath. The whole project is divided into small parts, the
             <emphasis>modules</emphasis>, more or less independent on each others. A specific
@@ -77,9 +81,9 @@
    </section>
    <section>
       <title>The problem</title>
-      <para>To introduce the packaging system, let's try to answer the primary question <TODO>("la
-            question originelle")</TODO>: <emphasis>what is such a system useful for?</emphasis>
-         Let's try to do so by using a specific example.</para>
+      <para>To introduce the packaging system, let's try to answer the initial question:
+            <emphasis>what is such a system useful for?</emphasis> Let's try to do so by using a
+         specific example.</para>
       <para>You are in charge of an XQuery application which, very imaginatively, you called MyApp.
          As several other XQuery applications, MyApp uses the FunctX library (and XQuery and XSLT
          library providing general-purpose functions, like date and string manipulation functions).
@@ -119,7 +123,7 @@
          optional feature.</para>
    </section>
    <section>
-      <title>The EXPath Packaging System</title>
+      <title>The Packaging System</title>
       <para>To address this problem, EXPath defines a packaging system to help library and
          application authors to package and deliver their products without having to take care of
          specific install procedures and of every possible existing processors, now or in the
@@ -207,18 +211,56 @@
          repository (install new packages, remove existing one, install directly from the Internet,
          etc.) The packaging support in Saxon and Calabash for instance are open-source third-party
          implementations. Those implementations resolve at compile-time the URIs within the user
-         stylesheets and pipelines to the imported components in the repository. But the repository
-         itself is managed by a standalone application, dedicated to that purpose. Because this
-         repository format is defined in the specification, if an implementation chose to support
-         it, it does not have to take care at all about repository management, and the user can then
-         use one single tool to manage repositories, even for several processors. But for some
-         processors, such an on-disk repository just does not make sense, or is not the best design
-         choice (e.g. for embedded systems or processors that can pre-compile packages).</para>
-      <para><TODO>examples w/ Saxon &amp; Calabash</TODO></para>
-      <para><TODO>examples w/ eXist (web console...)</TODO></para>
+         stylesheets and pipelines to the imported components in the repository</para>
+      <para>
+         <mediaobject>
+            <imageobject>
+               <imagedata format="png" fileref="Bal2010geor090101.png" scale="50" align="center"/>
+            </imageobject>
+         </mediaobject>
+      </para>
+      <para>The repository itself is managed by a standalone application, dedicated to that purpose.
+         Because this repository format is defined in the specification, if an implementation chose
+         to support it, it does not have to take care at all about repository management, and the
+         user can then use one single tool to manage repositories, even for several processors. But
+         for some processors, such an on-disk repository just does not make sense, or is not the
+         best design choice (e.g. for embedded systems or processors that can pre-compile
+         packages).</para>
+      <para><TODO>Introduce the stylesheet and the pipeline (and a query?)...</TODO> Here is an
+         example on the command line with Saxon and Calabash. The command <code>xrepo</code> is the
+         standalone repository manager. It can manage several repositories, list the content of a
+         specific repository, install and remove packages. This example shows a user stylesheet
+         importing the FunctX stylesheet. In a first time, FunctX is not installed yet, so the
+         transform fails. Then we install the package, and run the transform again:</para>
+      <programlisting>> grep xsl:import user.xsl
+&lt;xsl:import href="http://www.functx.com/functx.xsl"/>
+
+> saxon -xsl:user.xsl -it:main
+Error at xsl:import on line 6 column 56 of user.xsl:
+  XTSE0165: java.io.FileNotFoundException: http://www.functx.com/functx.xsl
+Failed to compile stylesheet. 1 error detected.
+
+> calabash user.xproc
+Apr 18, 2010 3:02:05 AM com.xmlcalabash.core.XProcRuntime error
+SEVERE: Pipeline failed: [...]: Failed to compile stylesheet. 1 error detected.
+Apr 18, 2010 3:02:05 AM com.xmlcalabash.core.XProcRuntime error
+SEVERE: Underlying exception: [...]: Failed to compile stylesheet. 1 error detected.
+
+> xrepo install functx.xar
+Install module FunctX library? [true]: 
+Install it to dir [functx]: 
+
+> saxon -xsl:user.xsl -it:main
+&lt;result>1979-09-01&lt;/result>
+
+> calabash user.xproc
+&lt;result>1979-09-01&lt;/result></programlisting>
+      <para><TODO>Introduce and make screenshots of the graphical and web based repository
+            manager.</TODO></para>
    </section>
    <section>
       <title>Going further</title>
+      <TODO>...</TODO>
       <para>Webapp packaging...</para>
       <para>Standard project structure...</para>
       <para>CXAN...</para>
