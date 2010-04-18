@@ -12,5 +12,5 @@ Bal2010geor0901.fo: Bal2010geor0901.xml
 	    shade.verbatim=yes
 
 Bal2010geor0901.pdf: Bal2010geor0901.fo
-	export FOP_HOME=$(FOP_HOME)
-	$$FOP_HOME/fop $< $@
+	export FOP_HOME=$(FOP_HOME) && \
+	    $$FOP_HOME/fop $< $@
