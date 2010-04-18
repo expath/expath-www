@@ -71,10 +71,11 @@
       <para>
          <sample href="samples-sample-4.html"/>
       </para>
-      <para>Please note the <code>java:...</code> namespace URI to bind to the Java class that
-         implements this module for Saxon. This is because of the way Saxon binds namespace URIs to
-         extension implementations. See the <link href="implems.html">implementations page</link>
-         for more information.</para>
+      <para>The equivalent XQuery module is as follows (this is just a simple translation of the
+         above stylesheet into XQuery):</para>
+      <para>
+         <sample href="samples-sample-10.html"/>
+      </para>
    </section>
    <section id="contacts">
       <title>Google Contacts API</title>
