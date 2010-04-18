@@ -88,9 +88,12 @@
                      </a>
                   </div>
                   <div class="right">
-                     <div>Powered by: <a href="http://www.exist-db.org/">eXist</a></div>
-                     <div>Design by: <a href="http://www.nodethirtythree.com/">NodeThirtyThree Design</a></div>
-                     <div><a href="{ $root }credits.html">Credits</a></div>
+                     <xsl:text>Hosted by: </xsl:text>
+                     <a href="http://h2oconsulting.be/">H2O Consulting</a>
+                     <xsl:text> - Design by: </xsl:text>
+                     <a href="http://www.nodethirtythree.com/">NodeThirtyThree Design</a>
+                     <xsl:text> - </xsl:text>
+                     <a href="{ $root }credits.html">Credits</a>
                   </div>
                </div>
             </div>
