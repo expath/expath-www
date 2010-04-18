@@ -1,8 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:http="http://www.expath.org/mod/http-client"
-                xmlns:http-java="java:org.expath.saxon.HttpClient"
-                xmlns:goog="http://www.fgeorges.org/ns/xslt/google"
+                xmlns:http="http://expath.org/ns/http-client"
+                xmlns:goog="http://fgeorges.org/ns/test/xslt/google"
                 exclude-result-prefixes="#all"
                 version="2.0">
 
@@ -81,7 +80,7 @@
       <!-- the http request element -->
       <xsl:variable name="request" as="element()">
          <http:request method="post" href="{ $endpoint }">
-            <http:body content-type="application/x-www-form-urlencoded">
+            <http:body media-type="application/x-www-form-urlencoded">
                <xsl:for-each select="goog:auth-params($email, $pwd)">
                   <xsl:value-of select="@name"/>
                   <xsl:text>=</xsl:text>
@@ -94,7 +93,7 @@
          </http:request>
       </xsl:variable>
       <!-- send the request and get the response -->
-      <xsl:variable name="response" select="http-java:send-request($request)"/>
+      <xsl:variable name="response" select="http:send-request($request)"/>
       <!-- was the request ok? -->
       <xsl:sequence select="goog:check-error($response[1], 'Error while login')"/>
       <!-- get the auth token in the response -->
@@ -130,7 +129,7 @@
          </http:request>
       </xsl:variable>
       <!-- send the request and get the response -->
-      <xsl:variable name="response" select="http-java:send-request($request)"/>
+      <xsl:variable name="response" select="http:send-request($request)"/>
       <!-- was the request ok? -->
       <xsl:sequence select="goog:check-error($response[1], 'Error while getting groups')"/>
       <!-- get the response as an xml element -->

@@ -2,8 +2,7 @@
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:http="http://www.expath.org/mod/http-client"
-                xmlns:http-java="java:org.expath.saxon.HttpClient"
+                xmlns:http="http://expath.org/ns/http-client"
                 xmlns:impl="urn:X-EXPath:httpclient:samples:exist:impl"
                 exclude-result-prefixes="#all"
                 version="2.0">
@@ -48,11 +47,11 @@
                        send-authorization="true"/>
       </xsl:variable>
       <!-- error checking is left as an exercise -->
-      <xsl:sequence select="http-java:send-request($req)[2]"/>
+      <xsl:sequence select="http:send-request($req)[2]"/>
    </xsl:function>
 
    <!-- upload the output doc -->
-   <xsl:function name="impl:put-out" as="element()">
+   <xsl:function name="impl:put-out" as="item()*">
       <xsl:param name="doc" as="document-node()"/>
       <xsl:variable name="req" as="element()">
          <http:request href="{ $rest }{ $out }"
@@ -61,11 +60,11 @@
                        password="{ $password }"
                        auth-method="basic"
                        send-authorization="true">
-            <http:body content-type="application/xml"/>
+            <http:body media-type="application/xml"/>
          </http:request>
       </xsl:variable>
       <!-- error checking is left as an exercise -->
-      <xsl:sequence select="http-java:send-request($req, (), $doc)"/>
+      <xsl:sequence select="http:send-request($req, (), $doc)"/>
    </xsl:function>
 
 </xsl:stylesheet>

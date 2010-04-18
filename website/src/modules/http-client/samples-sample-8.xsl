@@ -2,8 +2,7 @@
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
                 xmlns:wsx="http://www.webservicex.net"
-                xmlns:http="http://www.expath.org/mod/http-client"
-                xmlns:http-java="java:org.expath.saxon.HttpClient"
+                xmlns:http="http://expath.org/ns/http-client"
                 exclude-result-prefixes="#all"
                 version="2.0">
 
@@ -21,7 +20,7 @@
    <xsl:variable name="request" as="element()">
       <http:request method="post">
          <http:header name="SOAPAction" value="http://www.webservicex.net/GetWeatherByPlaceName"/>
-         <http:body content-type="application/xml">
+         <http:body media-type="text/xml">
             <soap:Envelope>
                <soap:Header/>
                <soap:Body>
@@ -37,7 +36,7 @@
    <!-- The main template -->
    <xsl:template match="/" name="main">
       <!-- Send the HTTP request and get the result back -->
-      <xsl:variable name="response" select="http-java:send-request($request, $endpoint)"/>
+      <xsl:variable name="response" select="http:send-request($request, $endpoint)"/>
       <!-- Check for error in the HTTP layer -->
       <xsl:if test="$response[1]/xs:integer(@status) ne 200">
          <xsl:sequence select="
