@@ -44,9 +44,12 @@
       <keywordset role="author">
          <keyword>EXPath</keyword>
          <keyword>extension</keyword>
+         <keyword>packaging</keyword>
+         <keyword>webapp</keyword>
          <keyword>XPath</keyword>
          <keyword>XSLT</keyword>
          <keyword>XQuery</keyword>
+         <keyword>XProc</keyword>
       </keywordset>
    </info>
    <note>
@@ -58,10 +61,10 @@
    </note>
    <section>
       <title>Note to reviewers</title>
-      <para>This is really only a first draft of the paper. I still needs to be augmented, with more
-         text and with more diagrams and examples. Some paragraphs need to be reformulated, but the
-         main idea is there. It has not been reviewed by a native English yet, but will be if it is
-         selected.</para>
+      <para>This is really only a first draft of the paper. It is definitely not production-ready.
+         It still needs to be augmented, with more text and with more diagrams and examples. Some
+         paragraphs need to be reformulated, but the main idea is there. It has not been reviewed by
+         native English yet, but the final version will be.</para>
    </section>
    <section>
       <title>Introduction</title>
@@ -390,21 +393,29 @@ Install it to dir [functx]:
             module and the public URI is set as the value of the global variable
                <code>$pkg:import</code>. For instance, this is an excerpt of these kind of
             components:</para>
-         <programlisting>(: an XQuery main module, sets $pkg:import-uri :)
+         <programlisting>(:~
+ : an XQuery main module, sets $pkg:import-uri
+ :)
 declare namespace pkg = "http://expath.org/ns/pkg";
 declare variable $pkg:import-uri := 'http://example.org/hello-world/hello-world.xq';
 ...
 
-(: an XQuery library module, already contains enough information :)
+(:~
+ : an XQuery library module, already contains enough information
+ :)
 module namespace hw = "http://example.org/hello-world";
 ...
 
-&lt;!-- an XSLT stylesheet, uses a user element pkg:import-uri -->
+&lt;!--
+   an XSLT stylesheet, uses a user element pkg:import-uri
+-->
 &lt;xsl:stylesheet ...>
    &lt;pkg:import-uri>http://example.org/hello-world/hello.xsl&lt;/pkg:import-uri>
    ...
 
-&lt;!-- an XProc pipeline, uses an element pkg:import-uri -->
+&lt;!--
+   an XProc pipeline, uses an element pkg:import-uri
+-->
 &lt;p:pipeline ...>
    &lt;pkg:import-uri>http://example.org/hello-world/hello.xproc&lt;/pkg:import-uri>
    ...</programlisting>
@@ -414,26 +425,101 @@ module namespace hw = "http://example.org/hello-world";
             neither to maintain the package descriptor when adding new components, he/she just has
             to set properly the public URI within the component.</para>
          <para>The packager itself is an XSLT stylesheet using the EXPath Files and ZIP modules to
-            navigate the file system and create the actual package in <code>build/</code>.</para>
+            navigate the file system and create the actual package in <code>build/</code> (either
+            for a library or a web application). This is all the packager does for now. But it will
+            be extended to support XSpec (to automatically run unit tests), deployment of a web
+            application on a Webapp container, documentation generation, and other tasks we usually
+            find in project managers and IDEs.</para>
       </section>
       <section>
          <title>CXAN</title>
-         <para>[<emphasis role="bold">TODO</emphasis>:...] This section is only an overview, it
-            still must be expanded.</para>
          <para>The Packaging System defines the format and the structure of one package. So it can
-            be build from sources by a packager tool, and be installed in a processor or a local
-            repository by the user. But it contains also meta informations like a name (which is a
-            URI)</para>
+            be built from sources by a packager tool, and be installed in a processor or a local
+            repository by the user. It contains also meta informations like a name and a version
+            number. This provides the needed mechanisms to create a global directory of known
+            libraries and applications in and for XSLT, XQuery, XProc, etc.</para>
+         <para>Like CTAN for TeX and LaTeX, CPAN for Perl, or also the APT system for Linux
+            programs, the Packaging System makes it possible to create CXAN, the
+               <emphasis>Comprehensive XML Archive Network</emphasis> (or the
+               <emphasis>Comprehensive X* Archive Network</emphasis> if you prefer a stronger
+            difference between XML and the XML technologies we are discussing here).</para>
+         <para>CXAN (pronounce it <emphasis>c-zan</emphasis>) is composed of two parts. First a
+            website which contains all the uploaded packages and provides a way to navigate through
+            them, search for them and download them. And second a client program to retrieve a
+            package over the Internet and install it locally. This is a good example of the benefit
+            of using the standard repository layout for a processor implementing the Packaging
+            System, because there is an open-source implementation of a CXAN client that supports
+            local on-disk repositories with the standard layout. Other implementations can of course
+            support CXAN as well, but then they have to implement this support themselves.</para>
+         <para>The client part is similar to the programs <code>cpan</code> or <code>apt-get</code>.
+            It provides the ability to look into the package database and directly install the
+            package on a local repository. In the example about the standard repository manager,
+               <code>xrepo</code>, in the above section, we shaw how to install the FunctX package,
+            provided it has already downloaded somehow:</para>
+         <programlisting>xrepo install functx.xar</programlisting>
+         <para>If this package has been uploaded to CXAN, under the name <code>functx</code>, we can
+            easily adapt this example to CXAN by using the following command instead:</para>
+         <programlisting>cxan install functx</programlisting>
+         <para>In this case, there is nothing on the local hard drive (except the local repository
+            of course), and the CXAN manager will automatically retrieve the FunctX package on
+               <code>http://cxan.org/</code> and install it in the local repository.</para>
+         <para>CXAN is only a prototype at this stage, but the concepts are quite simple and the
+            technical part almost trivial once we have a packaging system. The crucial work will be
+            the amount of libraries uploaded, their quality and the quality of their meta-data. But
+            there are plenty of talented X* developers out there with a lot of interesting ideas of
+            libraries. Reaching a large audience with an XML library is quite difficult for now,
+            because of the differences between the processors, and the lack of automatic install
+            processes even for one single processor. But with the help of a proper packaging system
+            and a system like CXAN, it is finally possible to write a general-purpose library and
+            diffuse it over the whole community.</para>
       </section>
       <section>
          <title>Webapp packaging</title>
-         <para>[<emphasis role="bold">TODO</emphasis>:...] This section is only an overview, it
-            still must be expanded.</para>
-         <para>...</para>
+         <para>[<emphasis role="bold">TODO</emphasis>:... This section is only an overview, and
+            still must be expanded.]</para>
+         <para>EXPath contains several modules for several needs. The typical EXPath module is a set
+            of XPath functions, defined in a specification. The Packaging System is a bit different
+            as it defines instead a whole system and a file format to package XML libraries. There
+            is another EXPath module which defines a system rather than a library of functions: the
+            Webapp module. Its goal is to make it possible to write web applications entirely with
+            XML technologies. The Webapp module defines an abstract web application container, the
+            services it provides to the deployed web applications, and the way it maps HTTP requests
+            and responses to and from those applications. This is a well-known abstraction used by
+            several major frameworks for web applications, like the Java Servlet technology.</para>
+         <para>Basically, a web application based on this module is written in plain XSLT, XQuery or
+            XProc, with some entry points respecting an interface defined in Webapp. Those entry
+            points (function, template, pipeline...) receive a representation of the HTTP request as
+            input and return a representation of the HTTP response as output. They are configured in
+            a web application descriptor to be mapped to some URIs or URI patterns. When the server
+            receives a request on a URI, it looks for a matching component, calls it with the proper
+            input and return its result as the coresponding HTTP response.</para>
+         <para>[<emphasis role="bold">TODO</emphasis>: Show an example of webapp descriptor, and
+            create a diagram for the processing of a request (the request reach the server, a
+            component is looked up, it is called, and the response is returned). This is only
+            illustrative though, as the main point here is the packaging of such webapps.]</para>
+         <para>The packaging of those web applications is based on the Packaging System. The Webapp
+            module specification does refer to the specification of the Packaging System, and
+            extends it by adding the web descriptor. The web descriptor maps URI patterns to
+            specific components in the package, or to specific functions, templates or steps within
+            those components. All the packaging machinery itself is already defined.</para>
+         <para>Servlex is an open-source implementation of Webapp, using Saxon and Calabash as the
+            processors to execute the components. It uses a standard on-disk repository layout to
+            deploy the web applications on the server. Thanks to this, it can reuse the existing
+            open-source implementation of the Packaging System, and just need to process the webapp
+            descriptor to initialize a map between URIs and components.</para>
+         <para>[<emphasis role="bold">TODO</emphasis>: Show a diagram of the Servlex webapp
+            container, the repository it uses, the standard repository manager, and their relations.
+            Show how a webapp is deployed and their components accessed.]</para>
+         <para>Because the Packaging System specification has been designed to be extensible, it is
+            possible to use it in other specifications, and to reuse some existing tools for more
+            specific needs.</para>
       </section>
    </section>
    <section>
       <title>Conclusion</title>
-      <para>...</para>
+      <para>[<emphasis role="bold">TODO</emphasis>:... This section is still to be written, but
+         shall conclude on the problems identified at the beginning of the paper, the solution given
+         by the Packaging System, a summary of its advantages and drawbacks, and its different
+         usages or possible usages in other projects and specifications]</para>
    </section>
 </article>
