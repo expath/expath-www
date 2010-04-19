@@ -50,9 +50,19 @@
       </keywordset>
    </info>
    <note>
-      <title>Note to reviewers</title>
-      <para>Hey, reviewers...</para>
+      <title>Quote</title>
+      <para><quote><emphasis>You're supposed (in the new order) to give everything (stylesheets,
+               you, your fridge) an absolute URI and just use that; then the URI used to refer to
+               your stylesheet never need to change.</emphasis></quote></para>
+      <para>--David Carlisle</para>
    </note>
+   <section>
+      <title>Note to reviewers</title>
+      <para>This is really only a first draft of the paper. I still needs to be augmented, with more
+         text and with more diagrams and examples. Some paragraphs need to be reformulated, but the
+         main idea is there. It has not been reviewed by a native English yet, but will be if it is
+         selected.</para>
+   </section>
    <section>
       <title>Introduction</title>
       <para>EXPath has been launched in early 2009. Its goal is to go behind the standards for core
@@ -151,13 +161,12 @@
          application authors to package and deliver their products without having to take care of
          specific install procedures and of every possible existing processors, now or in the
          future.</para>
-      <para><TODO>[ Reformulate... ]</TODO> The basic idea is simple. A package is a set of
-         components, and contains enough informations about those components for a processor to
-         install them properly, and to let a user refer to them within his own applications or
-         libraries by using always the same absolute URI, resolved by the processor at compile-time.
-         As soon as a library is packaged using this format, it is usable in all processors
-         supporting the packaging system, without the need for any further instructions for the
-         users.</para>
+      <para>The basic idea is simple. A package is a set of components, and contains enough
+         informations about those components for a processor to install them properly, and to let a
+         user refer to them within his own applications or libraries by using always the same
+         absolute URI, resolved by the processor at compile-time. As soon as a library is packaged
+         using this format, it is usable in all processors supporting the packaging system, without
+         the need for any further instructions for the users.</para>
       <para>So a package is a set of components. A component is any piece of code of a supported XML
          technology, e.g. an XSLT stylesheet, an XQuery module, an XProc pipeline, or a schema (XSD,
          Relax NG, NVDL, Schematron, etc.) The packaging system has been designed to be extensible,
@@ -225,8 +234,8 @@
       <title>Integration</title>
       <para>As for other modules, and even more for the packaging system, the goal is to have to
          implemented directly by the several processors. This is the case for eXist for instance
-            ([<emphasis role="bold">Note</emphasis>: to be confirmed in the final version of this
-         paper, as it is still a work in progress for now]). Third-party implementations have been
+            [<emphasis role="bold">Note</emphasis>: to be confirmed in the final version of this
+         paper, as it is still a work in progress for now]. Third-party implementations have been
          written for Saxon and Calabash too.</para>
       <para>Even though a processor is allowed to implement the packaging system in any way, the
          specification defines a standard on-disk repository layout. If such an on-disk repository
@@ -289,13 +298,9 @@
       <para>We have to install FunctX in the repository in order for those components to run
          properly. The command <code>xrepo</code> is the standalone repository manager. It can
          manage several repositories, list the content of a specific repository, install and remove
-         packages. This example shows a user stylesheet importing the FunctX stylesheet. In a first
-         time, FunctX is not installed yet, so the transform fails. Then we install the package, and
-         run the transform again:</para>
-      <programlisting>> grep xsl:import user.xsl
-&lt;xsl:import href="http://www.functx.com/functx.xsl"/>
-
-> saxon -xsl:user.xsl -it:main
+         packages. In a first time, FunctX is not installed yet, so the transform fails. Then we
+         install the package, and run the transform again:</para>
+      <programlisting>> saxon -xsl:user.xsl -it:main
 Error at xsl:import on line 6 column 56 of user.xsl:
   XTSE0165: java.io.FileNotFoundException: http://www.functx.com/functx.xsl
 Failed to compile stylesheet. 1 error detected.
@@ -315,14 +320,120 @@ Install it to dir [functx]:
 
 > calabash user.xproc
 &lt;result>1979-09-01&lt;/result></programlisting>
-      <para><TODO>Introduce and make screenshots of the graphical and web based repository
-            manager.</TODO></para>
+      <para>[<emphasis role="bold">TODO</emphasis>: Introduce and make screenshots of the graphical
+         and web-based repository manager.]</para>
    </section>
    <section>
       <title>Going further</title>
-      <TODO>...</TODO>
-      <para>CXAN...</para>
-      <para>Webapp packaging...</para>
-      <para>Standard project structure...</para>
+      <para>The Packaging System specification tries to be extensible and generic enough to allow
+         different kind of tools as well as other specification to be built on top of it. We
+         introduce here three of those related projects: a standard structure for XML projects and
+         its associated tools to automatically build the packages, an online directory of packages a
+         la CPAN, and an extended version of the packaging system itself for web applications
+         written only with XML technologies (as defined in the EXPath Webapp module).</para>
+      <section>
+         <title>Standard project structure</title>
+         <para>The packaging system specification is a low-level specification. It is interesting
+            for a user to understand how this system works and how it has been designed, but ideally
+            he/she should never need to read it in order to use it. The user should never be
+            bothered with the low-level details of the package's ZIP file structure nor even by the
+            package descriptor. How many Java developer do really build their JAR files using the
+            UNIX tar command, and write the JAR Manifest file by hand? In some case that can be
+            useful, but usually a Java developer just rely on its IDE to create a (more or less)
+            adapted project structure, and to provide the action <emphasis>build</emphasis> to
+            automatically build the JAR file.</para>
+         <para>Java is indeed only an example, but all mainstream languages do have such tools. And
+            that is a good thing as this allows the developer to focus on what is really important:
+            the business logic. The packaging is of course important as well. But usually the
+            packaging, and more generally the build system of a project, involve always the same
+            steps and can be handled automatically by a program.</para>
+         <para>This idea is to create a well-defined directory structure for a new project, so a
+            packaging program can use be used to package the project as a XAR file. Different kinds
+            of structure can be defined, or different flavors for different needs (e.g. a plain
+            XProc library, a web application, or an extension for eXist written in Java).</para>
+         <para>This is only a research area for now, but a simple structure has been defined for
+            plain libraries (i.e. packages of standard components), and a tool has been created that
+            use this structure to automatically build the XAR file. This tool is called
+               <code>packager</code>. The directory structure of a new project must have a
+               <code>build/</code> subdirectory for the build infos, as well as a <code>src/</code>
+            subdirectory for the actual sources of the components. Here the structure of an
+            hypothetical project <code>hello-world</code>:</para>
+         <programlisting>hello-world/
+   build/
+      project.xml
+   src/
+      hello-world.xq
+      hello.xql
+      hello.xsl</programlisting>
+         <para>The <code>build/</code> dir is used by the build process, and contains a file
+               <code>project.xml</code> provided by the user. This file give the packager all the
+            infos it needs and that it cannot infer from the directory structure and from the source
+            files themselves. Principally, those are the infos like the name and the version number
+            of the package to build:</para>
+         <programlisting>&lt;package xmlns="http://expath.org/ns/packager"
+         name="http://example.org/hello-world"
+         version="1.0">
+   &lt;title>Hello, world!: an example project&lt;/title>
+&lt;/package></programlisting>
+         <para>In order to build the package, the packager needs to know which files to include as
+            components. Those are simply the files in the <code>src/</code> directory with a
+            specific extension (like *.xql, *.xproc, *.xsl, etc.) And for each of them, it also
+            needs to know the public URI to associate to the component. Instead of requiring the
+            developer to maintain an external document with this information (like the package
+            descriptor), those public URIs are directly set into each component. That makes more
+            sense as this public URI can be seen as the name of the component, and there is no
+            better place for this name than within the component itself.</para>
+         <para>The exact way a URI is associated to a component depends on the kind of component.
+            For components that are also XML documents, like XProc pipelines and XSLT stylesheet,
+            this is done by adding an element <code>pkg:import-uri</code>. For XQuery, the component
+            is either a library module and thus already has a target namespace, or it is a main
+            module and the public URI is set as the value of the global variable
+               <code>$pkg:import</code>. For instance, this is an excerpt of these kind of
+            components:</para>
+         <programlisting>(: an XQuery main module, sets $pkg:import-uri :)
+declare namespace pkg = "http://expath.org/ns/pkg";
+declare variable $pkg:import-uri := 'http://example.org/hello-world/hello-world.xq';
+...
+
+(: an XQuery library module, already contains enough information :)
+module namespace hw = "http://example.org/hello-world";
+...
+
+&lt;!-- an XSLT stylesheet, uses a user element pkg:import-uri -->
+&lt;xsl:stylesheet ...>
+   &lt;pkg:import-uri>http://example.org/hello-world/hello.xsl&lt;/pkg:import-uri>
+   ...
+
+&lt;!-- an XProc pipeline, uses an element pkg:import-uri -->
+&lt;p:pipeline ...>
+   &lt;pkg:import-uri>http://example.org/hello-world/hello.xproc&lt;/pkg:import-uri>
+   ...</programlisting>
+         <para>With the public URIs set directly within the component, with the well-known directory
+            structure, and with the few infos in <code>build/project.xml</code>, the packager tool
+            has all it needs to create automatically the package. The developer does not have
+            neither to maintain the package descriptor when adding new components, he/she just has
+            to set properly the public URI within the component.</para>
+         <para>The packager itself is an XSLT stylesheet using the EXPath Files and ZIP modules to
+            navigate the file system and create the actual package in <code>build/</code>.</para>
+      </section>
+      <section>
+         <title>CXAN</title>
+         <para>[<emphasis role="bold">TODO</emphasis>:...] This section is only an overview, it
+            still must be expanded.</para>
+         <para>The Packaging System defines the format and the structure of one package. So it can
+            be build from sources by a packager tool, and be installed in a processor or a local
+            repository by the user. But it contains also meta informations like a name (which is a
+            URI)</para>
+      </section>
+      <section>
+         <title>Webapp packaging</title>
+         <para>[<emphasis role="bold">TODO</emphasis>:...] This section is only an overview, it
+            still must be expanded.</para>
+         <para>...</para>
+      </section>
+   </section>
+   <section>
+      <title>Conclusion</title>
+      <para>...</para>
    </section>
 </article>
