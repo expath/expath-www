@@ -29,7 +29,8 @@
          and a library of XSLT and XQuery modules to support the <link
             href="http://code.google.com/apis/gdata/">Google GData</link> protocol, based on REST,
          and providing convenient functions for several Google services (based on GDAta or not.)
-         Unfortunately, those have not been released yet. Links will follow shortly.</para>
+         The WSDL compiler has not been released yet, but the Google APIs library can be found in the
+         <link href="http://xlibs.googlecode.com/">project xlibs</link>.</para>
       <para>This page presents the following examples:</para>
       <list>
          <item>

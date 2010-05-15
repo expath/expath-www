@@ -6,6 +6,8 @@
                 exclude-result-prefixes="#all"
                 version="2.0">
 
+   <xsl:import href="http://expath.org/ns/http-client.xsl"/>
+
    <!-- The result is text -->
    <xsl:output method="text"/>
 

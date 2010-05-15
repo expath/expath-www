@@ -1,7 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:http="http://expath.org/ns/http-client"
-                xmlns:goog="http://fgeorges.org/ns/test/xslt/google"
+                xmlns:goog="http://fgeorges.org/ns/test/google"
                 exclude-result-prefixes="#all"
                 version="2.0">
 
@@ -10,6 +10,8 @@
        http://code.google.com/apis/accounts/docs/AuthForInstalledApps.html
        http://code.google.com/apis/contacts/developers_guide_protocol.html
    -->
+
+   <xsl:import href="http://expath.org/ns/http-client.xsl"/>
 
    <xsl:output indent="yes"/>
 
