@@ -42,7 +42,7 @@
       /* h1, h2, h3 { color: #84001C; background: white } */
       /* a, :link, :visited, a:active { color: #84005C; background: white } */
       body {
-        background-image: url(http://www.expath.org/images/logo-candidate.png);
+        background-image: url(http://expath.org/images/logo-candidate.png);
       }
    </xsl:param>
 
@@ -111,12 +111,32 @@
 
    <xsl:template match="h:div[@class eq 'head']" mode="postproc">
       <p>
-         <a href="http://www.expath.org/">
-            <img src="http://www.expath.org/images/expath-icon.png"
+         <a href="http://expath.org/">
+            <img src="http://expath.org/images/expath-icon.png"
                  alt="EXPath" height="32" width="32"/>
          </a>
       </p>
       <xsl:next-match/>
+   </xsl:template>
+
+   <!-- override... -->
+   <xsl:template match="authlist">
+      <xsl:variable name="editor"   select="author[1]"/>
+      <xsl:variable name="contribs" select="* except $editor"/>
+      <dt xmlns="http://www.w3.org/1999/xhtml">
+         <xsl:text>Editor:</xsl:text>
+      </dt>
+      <xsl:apply-templates select="$editor"/>
+      <xsl:if test="exists($contribs)">
+         <dt xmlns="http://www.w3.org/1999/xhtml">
+            <xsl:text>Contributor</xsl:text>
+            <xsl:if test="count($contribs) gt 1">
+               <xsl:text>s</xsl:text>
+            </xsl:if>
+            <xsl:text>:</xsl:text>
+         </dt>
+         <xsl:apply-templates select="* except $editor"/>
+      </xsl:if>
    </xsl:template>
 
 </xsl:stylesheet>
