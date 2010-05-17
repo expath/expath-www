@@ -1,0 +1,668 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>EXPath: Packaging, and Web applications</title><style type="text/css">html { }
+
+body { background-color: white }
+
+div { }
+
+div#balisage-header,
+div#balisage-footer
+{
+  font-style: italic;
+}
+
+.navbar { 
+  display:table-cell;
+  vertical-align: middle;
+  height:30px;
+  padding-left: 0.5em;
+  padding-right: 0.5em }
+
+.page-header { margin: 0em;
+               padding-left: 0.25em }
+
+h2.page-header { margin-top: 10px }
+
+div.article, div.content
+{ margin: 0.5em }
+
+div.abstract, div.author-block, div.toc, div.box
+{
+  background-color: white;
+  border: thin solid lightgrey;
+  margin-top: 1em;
+  padding: 0.5em 
+}
+
+div.index
+{
+  background-color: white;
+  border: thin solid lightgrey;
+  margin-top: 0.5em;
+  padding: 0.25em 
+}
+
+div.toc ul { margin-bottom: 0em;
+  margin-top: 0.5em;
+  font-size: 90%;
+  padding-left: 1em;
+  list-style-position: outside }
+
+div.toc dl { margin-bottom: 0em;
+  font-size: 90% }
+
+div.index dl { margin: 0em;
+  font-size: 90% }
+
+div.box { font-family: sans-serif;
+  font-size: 90%;
+  text-align: center }
+
+div.appendix { }
+
+div.author { }
+
+div.bibliography { }
+
+div.bibliomixed { }
+
+div.blockquote { }
+
+div.caption { }
+
+pre.programlisting,
+div.variablelist,
+div.figure,
+div.table-wrapper,
+div.notice,
+div.note,
+div.mediaobject
+{
+  margin-top: 0.5em;
+  background-color: white;
+  border: medium solid lightgrey;
+  padding: 0.5em 
+}
+
+div.figure-contents { }
+
+div.figure-contents div.mediaobject
+{ margin: 0em;
+  border: none;
+  padding: 0em }
+  
+div.figure-float { }
+
+div.folder { margin: 0em }
+
+div.footnote { }
+
+div.footnotes { }
+
+div.itemizedlist { }
+
+div.legalnotice { }
+
+div.mediaobject { }
+
+div.section { }
+
+div.table-caption { }
+
+div.titlepage { }
+
+div.toc
+{
+  font-family: sans-serif
+}
+
+blockquote.blockquote { }
+
+h1, h2, h3, h4, h5, h6
+{
+   font-family: sans-serif 
+}
+
+.title, .subtitle
+  { margin-bottom: 0em;
+    margin-top: 0.5em }
+
+p.title { margin-top: 0em }
+
+div.index p.title { font-weight:normal; font-size: 90% }
+
+h3.title { font-style: italic }
+div.note h3.title { margin: 0em;
+  font-size: 90%;
+  font-style: italic }
+  
+pre.programlisting > .title,
+div.variablelist > .title,
+div.figure > .title,
+div.table-wrapper > .title,
+div.notice > .title,
+div.note > .title
+  { margin-top: 0em;
+    font-style: normal }
+
+div.article > h2.title { font-size: 160% }
+
+h3.author { margin:0em }
+ 
+h3.notice-title { margin-top:0em;
+  margin-bottom: 1em }
+ 
+div.author { margin-top:0.5em;
+  margin-bottom:0em }
+
+div.affiliation { margin:0em }
+
+p { margin-top: 0.5em;
+    margin-bottom: 0em }
+
+div.toc p,
+p.notice { margin: 0em }
+
+p.title
+{
+  font-family: sans-serif;
+  font-weight: bold
+}
+
+p.bibliomixed { margin-left: 1em; text-indent: -1em }
+
+table { }
+
+col { }
+
+tbody { }
+
+th
+{
+  background-color: lightgrey;
+  padding-left: 0.5em;
+  padding-right: 0.5em 
+}
+
+td
+{
+  padding-left: 0.5em;
+  padding-right: 0.5em 
+}
+
+thead { }
+
+tr { }
+
+ul { }
+
+li { }
+
+  
+dl p, li p
+{
+   margin-top: 0.25em 
+}
+
+dt
+{
+  margin-left: 1em;
+  text-indent: -1em
+}
+div.index dl dt { margin-left: 2.5em }
+
+div.variablelist > dl
+{
+  margin-top: 0em;
+  margin-bottom: 0em 
+}
+
+dd
+{
+   
+}
+
+td p, th p, dd p
+{
+  margin-top: 0em;
+  margin-bottom: 0em 
+}
+
+hr
+{
+   
+}
+
+br
+{
+   
+}
+
+img
+{
+   
+}
+
+b
+{
+   
+}
+
+code.code
+{
+   
+}
+
+code.email
+{
+   
+}
+
+i
+{
+   
+}
+
+strong
+{
+   
+}
+
+sup
+{
+   
+}
+
+span.ital
+{
+   font-style: italic 
+}
+
+span.bold
+{
+   font-weight: bold 
+}
+
+span.appendix
+{
+   
+}
+
+span.bibliography
+{
+   
+}
+
+span.citation
+{
+   
+}
+
+span.firstname
+{
+   
+}
+
+span.jobtitle
+{
+   
+}
+
+span.orgname
+{
+   
+}
+
+span.othername
+{
+   
+}
+
+span.section
+{
+   
+}
+
+span.surname
+{
+   
+}
+
+span.term
+{
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 90% 
+}
+
+a
+{
+  color: darkslategrey;
+  text-decoration: none 
+}
+
+a.email { }
+
+a.footnote { }
+
+a.para { }
+
+a.xref { }
+
+img.toc-icon { vertical-align: text-top;
+  border: none }
+</style><meta name="generator" content="DocBook XSL-NS Stylesheets V1.75.2"><meta name="keywords" content="EXPath, extension, XPath, XSLT, XQuery"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div id="balisage-header"><h1 style="text-align: right; font-family: serif; margin:0.25em"><i>XML Prague</i></h1></div><div class="article" title="EXPath: Packaging, and Web applications"><div class="titlepage"><div><div><h2 class="title"><a name="d55e2"></a>EXPath: Packaging, and Web applications</h2></div><div><h3 class="subtitle"><i>A packaging system for XML libraries and a portable web application
+      framework.</i></h3></div><div><div class="author"><h3 class="author">
+            Florent
+             Georges
+         </h3><div class="affiliation"><span class="jobtitle">XML Architect<br></span><span class="orgname">H2O Consulting<br></span></div><code class="email">&lt;<a class="email" href="mailto:fgeorges@fgeorges.org">fgeorges@fgeorges.org</a>&gt;</code></div></div><div><div class="legalnotice" title="Legal Notice"><a name="d55e37"></a><p>Copyright © 2010 Florent Georges. Used by permission.</p></div></div><div><div class="abstract" title="Abstract"><p class="title"><b>Abstract</b></p><p>EXPath is a project to define portable extensions to core XML technologies. The main
+            means to doing so is the specification of libraries of XPath functions, usable within
+            any XPath expressions evaluator, including XSLT, XQuery and XProc. But EXPath is also
+            open to other kinds of specifications, like the Packaging System and the framework to
+            write Web Applications, both described in this paper.</p></div></div></div><div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d55e51">Introduce EXPath</a></span></dt><dd><dl><dt><span class="section"><a href="#d55e54">History</a></span></dt><dt><span class="section"><a href="#d55e61">Processes &amp; goals</a></span></dt></dl></dd><dt><span class="section"><a href="#d55e76">Packaging System</a></span></dt><dd><dl><dt><span class="section"><a href="#d55e79">Context</a></span></dt><dt><span class="section"><a href="#d55e110">Architecture</a></span></dt><dt><span class="section"><a href="#d55e132">The package format</a></span></dt><dt><span class="section"><a href="#d55e148">A "system", you said?</a></span></dt></dl></dd><dt><span class="section"><a href="#d55e161">Web Applications</a></span></dt><dd><dl><dt><span class="section"><a href="#d55e164">Context</a></span></dt><dt><span class="section"><a href="#d55e178">Architecture</a></span></dt><dt><span class="section"><a href="#d55e220">ServleX</a></span></dt><dt><span class="section"><a href="#d55e238">Future</a></span></dt></dl></dd><dt><span class="section"><a href="#d55e248">Conclusion</a></span></dt></dl></div><div class="section" title="Introduce EXPath"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d55e51"></a>Introduce EXPath</h2></div></div><div></div></div><div class="section" title="History"><div class="titlepage"><div><div><h3 class="title"><a name="d55e54"></a>History</h3></div></div><div></div></div><p>Exactly one year ago, in this same room during XML Prague 2009, the idea of EXPath
+            was born. EXQuery was just launched and with some people we were trying to launch a new
+            version of EXSLT, for XSLT 2.0. EXProc welcomed its first extensions, too. While all
+            those projects make perfect sense regarding their own technology, they also overlap in
+            providing some identical functionalities to their target languages. So the idea emerged
+            here: acting at the XPath level to touch a broader audience and to define a same
+            extension only once.</p><p>So one year after it was born, this paper show the current state of the project and
+            introduces some new ideas and modules.</p></div><div class="section" title="Processes &amp; goals"><div class="titlepage"><div><div><h3 class="title"><a name="d55e61"></a>Processes &amp; goals</h3></div></div><div></div></div><p>The project is fundamentally a collaborative project. It is driven by the community
+            (essentially a mix of the XSLT, XQuery and XProc communities). When people want to
+            introduce a new module, for instance because they have to use such an extension within
+            their own project and think there is an interest to share their work and benefit from
+            the community feedback, then the first step is just to send an email to the EXPath
+            mailing list. They can see if the idea is well received and if someone else is also
+            interested in the same extension.</p><p>Once the discussion is launched, the next step is to write a draft specification for
+            this extension, and ask for feedback. The main project delivery unit is the
+               <span class="emphasis"><em>module</em></span>. A module is a loosely-defined concept, gathering
+            everything related to the same functionality. For instance, all functions to deal with
+            ZIP files (reading, writing, etc.) are grouped into the same module. Most of the time, a
+            module is a library of XPath functions, but it could be anything related to core XML
+            technologies. For instance the packaging system introduced below is a module. Common
+            sense is our friend.</p><p>The first objective of a module is to define an implementation-independent
+            specification. It has always a maintainer, who is in charge of coordinating the efforts
+            around the module. The tasks involved are leading the discussions, finding consensus
+            when appropriate, writing and maintaining the spec(s) and the test suite(s), promoting
+            the module and coordinating implementation and documentation efforts. His/her tools are
+            the mailing list, the website, the community itself, the technical tools (editorial
+            schemas, test suite tools, etc.), Subversion repositories, the wiki, and any relevant
+            tool we could provide as a community project, supported by inpendent individuals.</p><p>The utimate goal is to have the specifications endorsed by vendors and implemented
+            directly by existing processors. But every vendors are not interested in providing the
+            same extensions, so it sometimes makes sense to implement them as third-party
+            extensions, and EXPath provides facilities to anyone willing to contribute such an
+            implementation. It is worth noting that such implementations are also a good way to
+            experiment and get feedback while in the process of writing the module
+            specification.</p></div></div><div class="section" title="Packaging System"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d55e76"></a>Packaging System</h2></div></div><div></div></div><div class="section" title="Context"><div class="titlepage"><div><div><h3 class="title"><a name="d55e79"></a>Context</h3></div></div><div></div></div><p>If you work with XSLT or XQuery for a few years, I guess you already tried to install
+            a third-party stylesheet or query, because it provided an out-of-the-box bar code
+            formating facility or some utility functions to deal with a particular XML language. So
+            you went to the library website, looked for the download page, downloaded the component
+            somewhere on your computer, and read the installation instruction: <span class="emphasis"><em>put the
+               stylesheet (or the query) in an appropriate place, please see your processor
+               documentation</em></span>. So you put the component <span class="emphasis"><em>somewhere</em></span>,
+            sometimes in the same directory than your stylesheets, sometimes you tried to create a
+            kind of central repository on your system. And you finally succeeded, after you figured
+            out the correct import statements, to run your transform from the command line. Then you
+            tried to configure your new XML IDE to be able to run the same transforms. Then you
+            integrated your components, and their dependencies, into the enterprise application that
+            uses then. Or even worse, you tried to find a way to deliver your stylesheets or queries
+            as a library, and had to take care about their third-party dependencies.</p><p>Then you needed the new version of that third-party library...</p><p>Why couldn't you just ask your tools: <span class="emphasis"><em>could you use this and that
+               libraries, please</em></span>? After all, every XML technologies use the same tool to
+            identify dependencies: a URI. You want to use an XQuery library module? You have to give
+            its namespace URI. You want to import a stylesheet module? You have to give its URI. You
+            want to use an XProc pipeline? Well, guess what...</p><p>Actually URIs are very good at that game. There can be any level of indirections: the
+            processor itself, either if it knows the resource built-in, or if it resolves it through
+            its own documented mechanism, but also some configuration options, or networking
+            redirections. There is even a standard format to express URI redirections as an XML
+            document, or set of documents: XML Catalogs, from OASIS. (Most of) the existing
+            processors support (some of) those and other redirecting technologies, (more or less)
+            out of the box.</p><p>So why is it still so difficult to install an XSLT or XQuery library? In fact, while
+            the installation is not always easy, that's much the delivery of the components that is
+            difficult. For now, you cannot really do nothing much than putting your components into
+            a ZIP file or any other archive format, and say <span class="emphasis"><em>please see you processor
+               documentation</em></span>.</p><p>It is interesting to note that even though XQuery has a module system that enforces
+            associating a URI to a library module, the situation is not much better than for XSLT.
+            It seems sometimes easier to find a place where to put the queries on an XML database
+            server, because it controls its own data space, as opposed to a standalone processor.
+            But some of those XML databases do not allow one to choose his/her own resolution
+            mechanism, requiring importing queries to use an implementation-defined "at hint" in its
+            import statements. Furthermore, publishing a library does not mean only providing its
+            components and the associated URIs. Some components are private and are just library's
+            internals. Or another component is an extension developed in another language. Or yet
+            another component is specific to a given processor.</p><p>The key is a common, portable packaging format.</p><p>A format that allows library authors to package their libraries without having to
+            worry about it. A common format understood by most of the existing processors. A format
+            that allows you to package a consistent library, not regarding the technologies it uses,
+            but its purpose: a format that allows you to deliver XSLT stylesheets, XQuery modules,
+            XML Schemas and XProc pipelines all together.</p></div><div class="section" title="Architecture"><div class="titlepage"><div><div><h3 class="title"><a name="d55e110"></a>Architecture</h3></div></div><div></div></div><p>As noted above, all XML technologies use URIs to identify dependencies. So the first
+            thing to do in order to resolve a URI to a resource is to get this URI. As explained,
+            XQuery has a first-class module system, and enforces the fact that a library module has
+            an associated URI: its target namespace. Other technologies, like XSLT and XProc, do not
+            have such a built-in module system. You have to use a URI to refer to an XSLT
+            stylesheet, but nothing force a user to use the same URI. Nothing is provided to the
+            library author to say: <span class="emphasis"><em>this is the public URI associated to this
+               stylesheet</em></span>.</p><p>The EXPath Packaging System associates a <span class="bold"><strong>public URI</strong></span>
+            to every public components. A public component is any XSLT stylesheet, XQuery module,
+            XProc pipeline, XML Schema or any other supported technology, aimed to be used directly
+            by the user. For instance, a top-level stylesheet is a public component, but not some of
+            the other stylesheets it imports, providing only private tools intern to the library
+            itself. The library author chooses the public URIs for his/her components. The user can
+            use those public URIs in other components. For instance in a stylesheet importing your
+            stylesheet. Because the public URIs are defined once by the library author, there is no
+            more the problem of modifying import statements in a third-party library just because
+            its author does not use the same processor than you.</p><p>When you provide a processor supporting the packaging system with a package, it will
+            install its content in some implementation-defined way. The way to provide the processor
+            with the package is implementation-defined itself. It can be by using a web-based admin
+            console, by putting the package in a predefined directory, or by using an XML IDE
+            graphical interface to manage a local repository on the disk, shared by several
+            processors. What is important is that the processor finds the correct component when you
+            use its public URI in, say, an <code class="code">xsl:import</code> statement:</p><pre class="programlisting">
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                version="2.0"&gt;
+
+   &lt;!-- there is nothing at that URL, the module must have been installed --&gt;
+   &lt;xsl:import href="http://example.org/project/something.xsl"/&gt;
+
+   ...
+</pre><p>This matches the usual way to deal with dependencies with other languages: you write
+            on the one hand the code that uses a library in a canonical way, especially regarding
+            how it references the imported library, and you maintain the list of installed packaged
+            on the other hand, in an implementation-dependent way.</p></div><div class="section" title="The package format"><div class="titlepage"><div><div><h3 class="title"><a name="d55e132"></a>The package format</h3></div></div><div></div></div><p>A package is a simple ZIP file containing the components (i.e. the source files). In
+            order to achieve independence on the processor, the package format must provide enough
+            information to map the public URIs to their respective components. This information, as
+            well as a few others like the name of the package, are provided within the package
+            descriptor. The package descriptor is a file named <code class="code">expath-pkg.xml</code> at the
+            root of the package ZIP file.</p><p>If we take Priscilla Walmsley's famous FunctX library as an example, we could have
+            the following package descriptor:</p><pre class="programlisting">
+&lt;package xmlns="http://expath.org/ns/pkg"
+         name="http://functx.com/"
+         version="1.0"&gt;
+   &lt;title&gt;FunctX library&lt;/title&gt;
+   &lt;xquery&gt;
+      &lt;uri&gt;http://functx.com&lt;/uri&gt;
+      &lt;resource&gt;functx.xql&lt;/resource&gt;
+   &lt;/xquery&gt;
+   &lt;xslt&gt;
+      &lt;uri&gt;http://functx.com/functx.xsl&lt;/uri&gt;
+      &lt;resource&gt;functx.xsl&lt;/resource&gt;
+   &lt;/xslt&gt;
+&lt;/package&gt;
+</pre><p>That is, the descriptor declares two public components: an XQuery library module and
+            an XSLT stylesheet. For each it gives its public URI and the source file containing the
+            component. The structure of the package ZIP file itself is very simple:</p><pre class="programlisting">
+expath-pkg.xml
+content/
+   functx.xql
+   functx.xsl
+</pre></div><div class="section" title="A &#34;system&#34;, you said?"><div class="titlepage"><div><div><h3 class="title"><a name="d55e148"></a>A "system", you said?</h3></div></div><div></div></div><p><span class="emphasis"><em>Ok, so you have a package format. But why do you call it a package
+               "system"?</em></span></p><p>This packaging format supports various XML technologies: XSLT, XQuery, XProc, XML
+            Schema, RelaxNG, Schematron and NVDL. Besides these standard component types, the
+            package format has been designed to be extensible in two ways. First, vendors can extend
+            it in a controled way to describe components specific to their processor. That could be
+            as simple as having standard components using vendor-specific extensions, or as complex
+            as extensions written in another language, like Java or C++. Second, another
+            specification can use this packaging format as a basis, and add specific informations
+            either in the package descriptor, or in additional files within the ZIP structure. This
+            is for instance the approach taken by the Webapp module, introduced later in this
+            paper.</p><p>Besides these extensibility mechanisms, this format allows the creation of repository
+            management softwares, support within XML IDEs, or even the CXAN system. CXAN is a
+            central repository of packages, and its associated tool to manage a local repository,
+            automatically downloading and installing packages from the internet and resolving
+            dependencies. It means Comprehensive XML Archive Network, and is named after CTAN and
+            CPAN, the same kind of websites and tools for resp. TeX and Perl.</p><p>The packaging system can be the basis to spread core XML technologies around, by
+            giving them a way to build a strong basis of libraries.</p></div></div><div class="section" title="Web Applications"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d55e161"></a>Web Applications</h2></div></div><div></div></div><div class="section" title="Context"><div class="titlepage"><div><div><h3 class="title"><a name="d55e164"></a>Context</h3></div></div><div></div></div><p>These days, more and more applications are developed as <span class="emphasis"><em>web
+               applications</em></span>. I do not want to even try to define what's a web
+            application, but let's say that is an application running on a server, and which
+            interacts with the rest of the world (usually end users) by responding to HTTP requests.
+            XML technologies are not an exception, and most processors offer a way to be accessed
+            via HTTP, from the simple REST API to access the processor features themselves, to
+            frameworks to build entire web applications.</p><p>In such systems, an HTTP request arrives to the server, which looks at the URI to
+            identify how to respond to this request. The URI will resolve either in a static page,
+            an internal server routine or in a user component, for instance an XQuery module. The
+            module can then use functions provided by the server to access information from the HTTP
+            request, like its headers, and to set properties of the response, like the HTTP response
+            code. The XQuery module will usually access a database (in read and/or write) and
+            extract some data, then it will transform this data to the format the user expect it
+            (for instance in HTML, or in a standard XML vocabulary).</p><p>As usual, the way to plug your components in such a system, as well as the way it can
+            interact with it (accessing information from the request and providing the response) is
+            implementation-defined. Even though most of those informations are exactly the same on
+            all those systems: they are defined by the HTTP request-response model.</p><p>Besides the benefit of writing end-user web applications in a processor-independent
+            way, such a standard mechanism to deploy XML-based web applications would allow writing
+            frameworks for web applications directly in XQuery, XProc or XSLT (or more likely a mix
+            of them). Most popular frameworks for Java web applications for instance, like Struts or
+            Spring MVC, could be developed because the Java Servlet specification existed. Having a
+            mechanism similar to servlets would allow to write MVC frameworks in an
+            implementation-independent way.</p></div><div class="section" title="Architecture"><div class="titlepage"><div><div><h3 class="title"><a name="d55e178"></a>Architecture</h3></div></div><div></div></div><p>A web application is a set of entry points. An entry point can be an XPath function
+            (provided by an XQuery library module, a stylesheet, or any other means), an XSLT named
+            template, an XQuery main module, an XSLT stylesheet or an XProc pipeline. Each kind of
+            entry point must follow different rules regarding how it accesses the request data and
+            how it provides the response content (for instance a function will get the request as
+            parameter, while an XQuery main module will get it as an external variable), but besides
+            these slightly different interfaces, they can do the same thing.</p><p>Each entry point is associated a regular expression to match the URI a request is
+            sent to. When a request is sent to server, the web container try to match the accessed
+            URI to an entry point. A representation of the request is build as an element node
+            (gathering informations like the HTTP headers, the request body content, etc.). This
+            request element is passed to the entry point component (for instance an XPath function).
+            The return value of this component is used to create the response to send back to the
+            user.</p><p>
+            <div class="mediaobject" align="center"><img src="webapp.png" align="middle" alt="png image (webapp.png)"></div>
+         </p><p>A request element looks like the following:</p><pre class="programlisting">
+&lt;request servlet="srv-1" path="/some/page" method="post"&gt;
+   &lt;uri&gt;http://www.host.org:8000/myapp/some/page&lt;/uri&gt;
+   &lt;context-root&gt;/myapp&lt;/context-root&gt;
+   &lt;path&gt;
+      &lt;part&gt;/some/&lt;/part&gt;
+      &lt;match&gt;page&lt;/match&gt;
+   &lt;/path&gt;
+   &lt;auth method="basic" username="user"&gt;
+      &lt;basic sesame="YWRtaW46YWRtaW5hZG1pbg==" password="..."/&gt;
+   &lt;/auth&gt;
+   &lt;header name="host" value="www.host.org"/&gt;
+   &lt;header name="connection" value="keep-alive"/&gt;
+   &lt;multipart content-type="multipart/alternative"
+              boundary="=-=-=-=-=-="&gt;
+      &lt;body content-type="text/plain"/&gt;
+      &lt;body content-type="text/html"/&gt;
+      &lt;body content-type="application/xml"/&gt;
+   &lt;/multipart&gt;
+&lt;/request&gt;</pre><p>The evaluation of the component (for instance calling the XPath function or running
+            the query module) will give the result to send back to the user. The result is also
+            represented as an element node, but representing an HTTP response instead of a request.
+            It looks like the following:</p><pre class="programlisting">
+&lt;response status="200" message="Ok"&gt;
+   &lt;header name="x-myheader" value="My own header value"/&gt;
+   &lt;body content-type="text/plain"&gt;Hello, world!&lt;/body&gt;
+&lt;/response&gt;</pre><p>In order to deploy an application, the web container needs to know the match patterns
+            and their associated URI patterns. The user gives those informations as an XML document:
+            the deployment descriptor. It lists the entry points with their components and URI
+            patterns, as well as a few other configuration infos:</p><pre class="programlisting">
+&lt;webapp xmlns="http://expath.org/ns/webapp"
+         xmlns:my1="http://mycorp.com/proj/my-app/servlet-1"
+         xmlns:my2="http://mycorp.com/proj/my-app/servlet-2"
+         name="http://fgeorges.org/example/my-webapp"
+         abbrev="my-webapp"
+         version="0.1"&gt;
+
+   &lt;title&gt;My simple web application&lt;/title&gt;
+
+   &lt;context&gt;
+      &lt;param name="webmaster" value="webmaster@mycorp.com"/&gt;
+      &lt;param name="collection" value="http://mycorp.com/dataset"/&gt;
+   &lt;/context&gt;
+   &lt;page&gt;
+      &lt;url pattern="/(.+)\.html"/&gt;
+   &lt;/page&gt;
+
+   &lt;servlet name="srv-xq-1"&gt;
+      &lt;xquery function="my1:servlet"/&gt;
+      &lt;url pattern="/catalog/(.+)"/&gt;
+   &lt;/servlet&gt;
+
+   &lt;servlet name="srv-xq-2"&gt;
+      &lt;xquery resource="servlet-2.xq"/&gt;
+      &lt;url pattern="/xq2/(.+)"/&gt;
+   &lt;/servlet&gt;
+
+   &lt;servlet name="srv-xsl-1"&gt;
+      &lt;xslt uri="http://www.mycorp.com/proj/my-app/servlet-2.xsl"
+            template="my2:servlet"/&gt;
+      &lt;url pattern="/(.+)-xsl/1/"/&gt;
+   &lt;/servlet&gt;
+
+&lt;/webapp&gt;</pre><p>After a few infos about the application itself, like its title and some configuration
+            parameters, the descriptor declares the various end points with the element
+               <code class="code">servlet</code>. Each of them references a component (like an XSLT named
+            template or an XQuery main module) and a URI pattern. Based on this deployment
+            descriptor, the web container is able to dispatch the HTTP requests to the correct end
+            point.</p><p>The last part of the architecture is how to provide the web container with the data.
+            This one is easy: it is built upon the packaging <span class="emphasis"><em>system</em></span>. A web
+            archive has exactly the same structure as a regular package. A ZIP file with all
+            components, and the package descriptor <code class="code">expath-pkg.xml</code> at the root of the
+            package. For a web archive, one just has to add the deployment descriptor, called
+               <code class="code">expath-web.xml</code>, next to the package descriptor.</p></div><div class="section" title="ServleX"><div class="titlepage"><div><div><h3 class="title"><a name="d55e220"></a>ServleX</h3></div></div><div></div></div><p>ServleX is an early implementation of this specification, using Java Servlet
+            technologies for the integration with HTTP, and Saxon and Calabash for its X* processors
+            (to actually evaluate the XSLT, XQuery and XProc components). But the main target of
+            this specification is of course existing XML databases like eXist and MarkLogic, and
+            more specialized solutions like Sausalito. Because it uses Java Servlet, it can be
+            deployed in any servlet container, like Tomcat, Jetty, GlassFish, WebLogic, etc.</p><p>Let's look at a real example. This example is verry simple. The webapp contains only
+            one component, a function defined in an XQuery library module:</p><pre class="programlisting">
+module namespace my = "http://my-corp.com/";
+declare namespace srv = "http://expath.org/ns/webapp";
+
+declare function my:servlet($req as element(srv:request), $bodies as item()*)
+  as element(srv:response)
+{
+  &lt;srv:response status="200" message="Ok"&gt;
+    &lt;srv:body content-type="text/plain"&gt; {
+      string-join(('Path: ', $req/srv:path/*), '')
+    }
+    &lt;/srv:body&gt;
+  &lt;/srv:response&gt;
+};</pre><p>The deployment descriptor looks like:</p><pre class="programlisting">
+&lt;webapp xmlns="http://expath.org/ns/webapp"
+         xmlns:my="http://my-corp.com/"
+         name="http://my-corp.com/example"
+         abbrev="my-webapp"
+         version="1.0"&gt;
+
+   &lt;title&gt;A sample web application&lt;/title&gt;
+
+   &lt;!-- catch all requests --&gt;
+   &lt;servlet name="my-servlet"&gt;
+      &lt;xquery function="my:servlet"/&gt;
+      &lt;url pattern="/(.+)"/&gt;
+   &lt;/servlet&gt;
+
+&lt;/webapp&gt;</pre><p>All requests will be dispatched to the only one servlet, which will return a
+            text/plain body with the string <code class="code">Path: /some/path</code>, with the path requested
+            by the client.</p></div><div class="section" title="Future"><div class="titlepage"><div><div><h3 class="title"><a name="d55e238"></a>Future</h3></div></div><div></div></div><p>Like Java Servlet, this is really a low-level technology in the web application
+            development process. But because it is aimed to be independent on any specific
+            implementation, it will allow writing separate frameworks to provide more high-level
+            features, like general-purpose web MVC frameworks handling mapping from requests to
+            components by using their file names for instance.</p><p>This specification is in its early stage but the current state already allows to
+            write working, simple web applications entirely in core XML technologies. If you have
+            any idea and want to contribute, just have a look at <a class="link" href="http://expath.org/" target="_top">http://expath.org/</a> and join the mailing list!</p></div></div><div class="section" title="Conclusion"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d55e248"></a>Conclusion</h2></div></div><div></div></div><p>The EXPath project is just one year, and it seems a lot of people are already looking
+         forward to useful modules, following the feedback received, both from users and vendors.
+         Its goal is not to be comprehensive nor to try to write specifications for everything
+         possible, but instead to be a central place to coordinate the efforts to write practical
+         extensions in a standard and collaborative way.</p><p>If you want to get more information, and maybe to join the mailing list, have a lok at
+         the <a class="link" href="http://expath.org/" target="_top">website</a>.</p></div></div><div id="balisage-footer"><h3 style="font-family: serif; margin:0.25em"><i>XML Prague</i></h3></div></body></html>
