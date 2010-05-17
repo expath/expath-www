@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?oxygen RNGSchema="http://www.w3.org/XML/1998/06/schema/xmlspec.rng" type="xml"?>
+
+<spec role="editors-copy" xmlns:fg="http://www.fgeorges.org/xmlspec">
+   <header>
+      <title>Web Application</title>
+      <w3c-designation>w3c-designation</w3c-designation>
+      <w3c-doctype>EXPath Candidate Module</w3c-doctype>
+      <pubdate>
+         <day>17</day>
+         <month>December</month>
+         <year>2009</year>
+      </pubdate>
+      <publoc>
+         <loc href="http://www.expath.org/modules/webapp-20091217.html"/>
+      </publoc>
+      <altlocs>
+         <loc href="http://www.expath.org/modules/webapp-20091217.xml">XML</loc>
+      </altlocs>
+      <latestloc>
+         <loc href="http://www.expath.org/modules/webapp.html"/>
+      </latestloc>
+      <!--prevlocs>
+         <loc href="http://www.expath.org/modules/webapp-2009mmdd.html"/>
+         <loc href="http://www.expath.org/modules/webapp-2009mmdd.html"/>
+         ...
+         </prevlocs-->
+      <authlist>
+         <author>
+            <name>Florent Georges</name>
+            <affiliation>H2O Consulting</affiliation>
+         </author>
+      </authlist>
+      <copyright>
+         <p/>
+      </copyright>
+      <abstract>
+         <p>Bla bla bla</p>
+      </abstract>
+      <status>
+         <p>Must be ignored, but is required by the schema...</p>
+      </status>
+      <langusage>
+         <language>langusage</language>
+      </langusage>
+      <revisiondesc>
+         <p>revisiondesc</p>
+      </revisiondesc>
+   </header>
+   <body>
+      <div1>
+         <head>Introduction</head>
+         <p>Bla bla bla</p>
+         <div2>
+            <head>Namespace conventions</head>
+            <p>Bla bla bla</p>
+         </div2>
+      </div1>
+      <div1>
+         <head>Bla bla bla</head>
+         <p>...</p>
+      </div1>
+   </body>
+   <back>
+      <div1>
+         <head>References</head>
+         <blist>
+            <bibl id="odf" key="OpenDocument">
+               <loc href="http://en.wikipedia.org/wiki/OpenDocument">OpenDocument format</loc>
+               (ODF). The Organization for the Advancement of Structured Information Standards
+               (OASIS).</bibl>
+         </blist>
+      </div1>
+   </back>
+</spec>

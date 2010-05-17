@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?oxygen RNGSchema="http://www.w3.org/XML/1998/06/schema/xmlspec.rng" type="xml"?>
+
+<spec role="editors-copy" xmlns:fg="http://www.fgeorges.org/xmlspec">
+   <header>
+      <title>ZIP Module</title>
+      <w3c-designation>w3c-designation</w3c-designation>
+      <w3c-doctype>EXPath Candidate Module</w3c-doctype>
+      <pubdate>
+         <day>26</day>
+         <month>May</month>
+         <year>2009</year>
+      </pubdate>
+      <publoc>
+         <loc href="http://www.expath.org/modules/zip-20090526.html"/>
+      </publoc>
+      <altlocs>
+         <loc href="http://www.expath.org/modules/zip-20090526.xml">XML</loc>
+      </altlocs>
+      <latestloc>
+         <loc href="http://www.expath.org/modules/zip.html"/>
+      </latestloc>
+      <!--prevlocs>
+         <loc href="http://www.expath.org/modules/zip-2009mmdd.html"/>
+         <loc href="http://www.expath.org/modules/zip-2009mmdd.html"/>
+         ...
+      </prevlocs-->
+      <authlist>
+         <author>
+            <name>Florent Georges</name>
+            <affiliation>fgeorges.org</affiliation>
+         </author>
+      </authlist>
+      <copyright>
+         <p/>
+      </copyright>
+      <abstract>
+         <p>This proposal defines a set of XPath 2.0 extension functions to handle ZIP files. It
+            defines one function to read ZIP files structure, functions to read actual entry's
+            content, as well as functions to create brand-new ZIP files or to create ZIP files based
+            on existing template files. It has been designed to be compatible with XQuery 1.0 and
+            XSLT 2.0, as well as any other XPath 2.0 usage.</p>
+      </abstract>
+      <status>
+         <p>Must be ignored, but is required by the schema...</p>
+      </status>
+      <langusage>
+         <language>langusage</language>
+      </langusage>
+      <revisiondesc>
+         <p>revisiondesc</p>
+      </revisiondesc>
+   </header>
+   <body>
+      <div1>
+         <head>Introduction</head>
+         <p>This specification defines a set of functions to read and write ZIP files structure and
+            actual content. It has been designed as a general ZIP tool set for XPath, while it is
+            expected to be particularly useful with document <emph>package formats</emph> based on
+            XML and ZIP, as for instance <bibref ref="epub"/>, <bibref ref="openxml"/>, and <bibref
+               ref="odf"/>.</p>
+         <div2>
+            <head>Namespace conventions</head>
+            <p>The module defined by this document does define one function in the namespace
+                  <code>http://www.expath.org/mod/zip</code>. In this document, the <code>zip</code>
+               prefix, when used, is bound to this namespace URI.</p>
+         </div2>
+         <div2>
+            <head>Error management</head>
+            <p>Error conditions are identified by a code (a <code>QName</code>.) When such an error
+               condition is reached in the evaluation of an expression, an dynamic error is thrown,
+               with the corresponding error code (as if the standard XPath function
+                  <code>error</code> had been called.) TODO: Codes have not been defined yet.</p>
+         </div2>
+         <div2>
+            <head>What is a ZIP file?</head>
+            <p>A ZIP file is a file, identified by a URI, that contains a set of
+                  <emph>entries</emph>, organized as a tree. An entry is either a
+                  <emph>directory</emph> (containing other entries) or a <emph>file</emph> entry
+               (carrying actual content.) The entries are organized as a tree, where files are leaf
+               nodes, and directories contains other entries. This hierarchy is the
+                  <emph>structure</emph> of the ZIP file. All entries have a unique name among its
+               siblings, and a particular entry can be identified using a path starting at the ZIP
+               file level, down to this entry, passing by each directory in between.</p>
+            <p>For instance, the following shows the structure of a ZIP file containing one file
+               entry with the name <code>README</code> and one directory with the name
+                  <code>dir</code>. This directory contains two files, named
+                  <code>content.txt</code> and <code>content.html</code>. The path for the later
+               entry is <code>dir/content.html</code>: <eg>
+README
+dir/
+   content.txt
+   content.html</eg></p>
+         </div2>
+      </div1>
+      <div1>
+         <head>Bla bla...</head>
+         <p>...</p>
+      </div1>
+      <div1>
+         <head>TODO: ...</head>
+         <p>Take a look at <bibref ref="ml-zip"/> (not sure to keep that ref
+            in later versions, though.)</p>
+      </div1>
+      <div1>
+         <head>TODO: Old text...</head>
+         <p>...: <eg xml:space="preserve">
+<fg:function>http:send-request</fg:function>($request as
+   <fg:type>element(http:request)?</fg:type>, $href as <fg:type>xs:string?</fg:type>,
+$content as <fg:type>item()?</fg:type>, $serial as <fg:type>item()?</fg:type>) as
+   <fg:type>item()+</fg:type></eg>
+         </p>
+         <ulist>
+            <item>
+               <p>
+                  <code>$...</code> is ...</p>
+            </item>
+            <item>
+               <p>
+                  <code>$...</code> is ...</p>
+            </item>
+         </ulist>
+      </div1>
+   </body>
+   <back>
+      <div1>
+         <head>References</head>
+         <blist>
+            <bibl id="epub" key="EPUB"><loc href="http://www.openebook.org/">EPUB set of
+                  specifications</loc>. International Digital Publishing Forum.</bibl>
+            <bibl id="openxml" key="Open XML">
+               <loc href="http://en.wikipedia.org/wiki/Office_Open_XML">Office Open XML</loc>.
+               Microsoft Corporation.</bibl>
+            <bibl id="odf" key="OpenDocument">
+               <loc href="http://en.wikipedia.org/wiki/OpenDocument">OpenDocument format</loc>
+               (ODF). The Organization for the Advancement of Structured Information Standards
+               (OASIS).</bibl>
+            <bibl id="ml-zip" key="MarkLogic ZIP module">
+               <loc href="http://xqzone.marklogic.com/pubs/4.0/apidocs/package.html">Module:
+               ZIP Package</loc>.  In MarkLogic Server 4.0 documentation.  MarkLogic
+               Corporation.</bibl>
+         </blist>
+      </div1>
+   </back>
+</spec>

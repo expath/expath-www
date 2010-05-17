@@ -5399,9 +5399,10 @@
         </folder>
         <folder name="specs">
             <file name="specs/file/file.xml"/>
-            <file name="../http-client/spec/http-client.xml"/>
-            <file name="../pkg/spec/pkg.xml"/>
-            <file name="../zip/spec/zip.xml"/>
+            <file name="specs/http-client/http-client.xml"/>
+            <file name="specs/pkg/pkg.xml"/>
+            <file name="specs/webapp/webapp.xml"/>
+            <file name="specs/zip/zip.xml"/>
         </folder>
         <folder name="tmp"/>
         <folder name="website">

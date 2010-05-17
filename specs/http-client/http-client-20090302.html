@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><title>EXSLT 2.0 module - HTTP client</title><style type="text/css">
+code           { font-family: monospace; }
+
+div.constraint,
+div.issue,
+div.note,
+div.notice     { margin-left: 2em; }
+
+ol.enumar      { list-style-type: decimal; }
+ol.enumla      { list-style-type: lower-alpha; }
+ol.enumlr      { list-style-type: lower-roman; }
+ol.enumua      { list-style-type: upper-alpha; }
+ol.enumur      { list-style-type: upper-roman; }
+
+
+div.exampleInner pre { margin-left: 1em;
+                       margin-top: 0em; margin-bottom: 0em}
+div.exampleOuter {border: 4px double gray;
+                  margin: 0em; padding: 0em}
+div.exampleInner { background-color: #d5dee3;
+                   border-top-width: 4px;
+                   border-top-style: double;
+                   border-top-color: #d3d3d3;
+                   border-bottom-width: 4px;
+                   border-bottom-style: double;
+                   border-bottom-color: #d3d3d3;
+                   padding: 4px; margin: 0em }
+div.exampleWrapper { margin: 4px }
+div.exampleHeader { font-weight: bold;
+                    margin: 4px}
+
+      code.function { font-weight: bold; }
+      code.type { font-style: italic; }
+   </style><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css"/></head><body><div class="head">
+<h1><a name="title" id="title"/>EXSLT 2.0 module - HTTP client</h1>
+<h2><a name="w3c-doctype" id="w3c-doctype"/>Candidate 2 March 2009</h2><dl><dt>This version:</dt><dd>
+         <a href="http://www.fgeorges.org/xslt/exslt2/http-client-20090302.html">http://www.fgeorges.org/xslt/exslt2/http-client-20090302.html</a>
+      </dd><dt>Latest version:</dt><dd>
+         <a href="http://www.fgeorges.org/xslt/exslt2/http-client.html">http://www.fgeorges.org/xslt/exslt2/http-client.html</a>
+      </dd><dt>Previous version:</dt><dd>
+         <a href="http://www.fgeorges.org/xslt/exslt2/http-client-20090112.html">http://www.fgeorges.org/xslt/exslt2/http-client-20090112.html</a>
+      </dd><dt>Editor:</dt><dd>Florent Georges, fgeorges.org</dd></dl><p class="copyright"/></div><hr/><div>
+<h2><a name="abstract" id="abstract"/>Abstract</h2><p>
+            This proposal provides an HTTP client interface for XSLT
+            2.0.  It defines one extension function to perform HTTP
+            requests, and has been designed to be compatible with XQuery
+            and XPath 2.0.
+         </p></div><div class="toc">
+<h2><a name="contents" id="contents"/>Table of Contents</h2><p class="toc">1 <a href="#d2e51">Introduction</a><br/>
+    1.1 <a href="#d2e54">Namespace conventions</a><br/>
+    1.2 <a href="#d2e65">Error management</a><br/>
+2 <a href="#d2e76">The http:send-request function</a><br/>
+3 <a href="#d2e174">Sending a request</a><br/>
+    3.1 <a href="#d2e179">The request elements</a><br/>
+    3.2 <a href="#d2e346">Serializing the request content</a><br/>
+    3.3 <a href="#d2e420">Authentication</a><br/>
+4 <a href="#d2e473">Dealing with the response</a><br/>
+    4.1 <a href="#d2e481">The result element</a><br/>
+    4.2 <a href="#d2e503">Representing the result content</a><br/>
+5 <a href="#d2e552">Content types handling</a><br/>
+</p>
+<h3><a name="appendices" id="appendices"/>Appendix</h3><p class="toc">A <a href="#d2e598">References</a><br/>
+</p></div><hr/><div class="body"><div class="div1">
+<h2><a name="d2e51" id="d2e51"/>1 Introduction</h2><div class="div2">
+<h3><a name="d2e54" id="d2e54"/>1.1 Namespace conventions</h3><p>
+               The module defined by this document does define one function in the namespace
+               <code>http://www.exslt.org/v2/http-client</code>.  In this document, the
+               <code>http</code> prefix, when used, is bound to this namespace URI.
+            </p></div><div class="div2">
+<h3><a name="d2e65" id="d2e65"/>1.2 Error management</h3><p>
+               Error conditions are identified by a code (a <code>QName</code>.)  When such
+               an error condition is reached in the evaluation of an expression, an dynamic
+               error is thrown, with the corresponding error code (as if the standard XPath
+               function <code>error</code> had been called.)  TODO: Have not been defined yet.
+            </p></div></div><div class="div1">
+<h2><a name="d2e76" id="d2e76"/>2 The <code>http:send-request</code> function</h2><p>
+            This module defines an XPath extension function that sends an
+            HTTP request and return the corresponding response.  It supports
+            HTTP multi-part messages.  Here is the signature of this function:
+            <div class="exampleInner"><pre>
+<code xmlns:fg="http://www.fgeorges.org/xmlspec" class="function">http:send-request</code>($uri as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">xs:string?</code>,
+                  $request as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">element(http:request)?</code>,
+                  $content as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">item()?</code>,
+                  $serial as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">item()?</code>) as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">item()+</code></pre></div>
+         </p><ul><li><p>
+                  <code>$uri</code> is the HTTP or HTTPS URI to send the request to.  It is an
+                  xs:anyURI, but is declared as a string to be able to pass literal
+                  strings (without requiring to explicitly cast it to an xs:anyURI.)
+               </p></li><li><p>
+                  <code>$content</code> is the request body content, for HTTP methods that can
+                  contain a body in the request (POST and PUT.)  This is an error if
+                  this param is not the empty sequence for other methods (DELETE, GET,
+                  HEAD and OPTIONS.)
+               </p></li><li><p>
+                  <code>$request</code> contains the various parameters of the request, for instance
+                  the HTTP method to use or the HTTP headers.  Among other things, it
+                  can also contain the other param's values: the URI, the content and
+                  the serialization option.  If they are not set as parameter to the
+                  function, their value in $request, if any, is used instead.  See the
+                  following section for the detailed definition of the http:request
+                  element.
+               </p></li><li><p>
+                  <code>$serial</code> defines the serialization option to serialize the content
+                  to the HTTP request.  It can be either a serialization method (a string,
+                  either 'xml', 'html', 'xhtml' or 'text',) the name of an output definition
+                  (a string, which is the name of a named xsl:output instruction,) or an xsl:output
+                  element itself.  The content is then serialized accordingly to the chosen method
+                  or xsl:output regarding <a href="#xserial">[Serialization]</a>.
+               </p></li></ul><p>
+            Besides the 4-params signature above, there are 3 other signatures that
+            are convenient shortcuts (corresponding to the full version in which
+            corresponding params have been set to the empty sequence.)  They are:
+            <div class="exampleInner"><pre>
+<code xmlns:fg="http://www.fgeorges.org/xmlspec" class="function">http:send-request</code>($request as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">element(http:request)</code>) as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">item()+</code>
+<code xmlns:fg="http://www.fgeorges.org/xmlspec" class="function">http:send-request</code>($uri as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">xs:string?</code>,
+                  $request as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">element(http:request)?</code>) as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">item()+</code>
+<code xmlns:fg="http://www.fgeorges.org/xmlspec" class="function">http:send-request</code>($uri as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">xs:string?</code>,
+                  $request as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">element(http:request)?</code>,
+                  $content as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">item()?</code>) as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">item()+</code></pre></div>
+         </p></div><div class="div1">
+<h2><a name="d2e174" id="d2e174"/>3 Sending a request</h2><p>
+            The functions defined in this module make one able to send a request to an
+            HTTP server and receive the corresponding response.  Here is how the request
+            is represented by the parameters to this function, and how they are used
+            to generate the actual HTTP request to send.
+         </p><div class="div2">
+<h3><a name="d2e179" id="d2e179"/>3.1 The request elements</h3><p>
+               The <code>http:request</code> element represents all the needed
+               information to send the HTTP request.  So it is always possible
+               to create such an element that will carry over all the needed info
+               for a particular request.  For some of those values though, you
+               can use an additional param instead.  For instance, some signatures
+               define the parameter <code>$uri</code>.  If the value of this parameter
+               is not the empty sequence, it will then be used instead of the value
+               of the attribute <code>href</code> on the <code>http:request</code>
+               element.
+            </p><div class="exampleInner"><pre>
+&lt;http:request method = NCName
+              href? = anyURI
+              status-only? = boolean
+              username? = string
+              password? = string
+              auth-method? = string
+              send-authorization? = boolean
+              override-content-type? = string
+              follow-redirect? = boolean&gt;
+   (http:header*,
+     (http:multipart|
+      http:body)?)
+&lt;/http:request&gt;</pre></div><ul><li><p>
+                     <code>method</code> is the HTTP verb to use, as GET, POST, etc.  It is case
+                     insensitive
+                  </p></li><li><p>
+                     <code>href</code> is the URI the request has to be sent to.  It can be overridden
+                     by the parameter <code>$uri</code>
+                  </p></li><li><p>
+                     <code>status-only</code> control how the response will look like; if it is
+                     true, only the status code and the headers are returned, the content is not
+                     (no http:body nor http:multipart, nor the interpreted additional value in the
+                     returned sequence, see hereafter.)
+                  </p></li><li><p>
+                     <code>username</code>, <code>password</code>, <code>auth-method</code>
+                     and <code>send-authorization</code> are used for authentication (see section
+                     below.)
+                  </p></li><li><p>
+                     <code>override-content-type</code> is a MIME type.  It can be used only with
+                     <code>http:request</code>, and will override the Content-Type header returned
+                     by the server.
+                  </p></li><li><p>
+                     <code>follow-redirect</code> control whether an HTTP redirect is automatically
+                     followed or not.  If it is false, the HTTP redirect is returned as the response.
+                     If it is true (the default) the function tries to follow the redirect, by sending
+                     the same request to the new address (including body, headers, and authentication
+                     credentials.)  Maximum one redirect is followed (there is no attempt to follow
+                     a redirect in response to following a first redirect.)
+                  </p></li><li><p>
+                     <code>http:header</code> represent an HTTP header, either in the
+                     <code>http:request</code> or in the <code>http:response</code> elements, as
+                     defined below.
+                  </p></li><li><p>
+                     <code>http:multipart</code> represents a multi-part body, either in a request
+                     or a response, as defined below.
+                  </p></li><li><p>
+                     <code>http:body</code> represents a multi-part body, either in a request
+                     or a response, as defined below.  It can be overridden by the parameter
+                     <code>$content</code> (the way <code>$content</code> is used to build the
+                     body can be controlled by the parameter <code>$serial</code>, see section
+                     below for details.)
+                  </p></li></ul><div class="exampleInner"><pre>
+&lt;http:header name = string
+             value = string/&gt;</pre></div><p>
+               The <code>http:header</code> element represents an HTTP header, either in a request
+               or in a response.
+            </p><div class="exampleInner"><pre>
+&lt;http:body content-type = string
+           encoding? = string
+           id? = string
+           description? = string
+           href? = string&gt;
+   any*
+&lt;/http:body&gt;</pre></div><p>
+               The <code>http:body</code> element represents the body of either an HTTP request
+               or of an HTTP response (in multi-part requests and responses, it represents
+               the body of a single one part.)
+            </p><p>
+               The <code>content-type</code> and <code>encoding</code> attributes are used to
+               control the way the content of this element is used to create the HTTP request
+               (how it is serialized to the request content.)  See section below for details.
+               The <code>id</code> attribute specifies the value of the HTTP header
+               <code>Content-ID</code> and <code>description</code> the value of the HTTP header
+               <code>Content-Description</code>.  The <code>href</code> attribute can be used
+               in a request to set the body content as the content of the linked resource instead
+               of using the children of the <code>http:body</code> element (children of this
+               element and the <code>href</code> attribute are mutually exclusive.)
+            </p><div class="exampleInner"><pre>
+&lt;http:multipart content-type = string
+                boundary = string&gt;
+   (http:header*,
+    http:body)+
+&lt;/http:multipart&gt;</pre></div><p>
+               The <code>http:multipart</code> element represents an HTTP multi-part request
+               or response.  The <code>content-type</code> attribute is the media type of the
+               whole request or response, and has to be a multipart media type (that is, its
+               main type must be <code>multipart</code>.)  The <code>boundary</code> attribute
+               is the boundary marker used to separate the several parts in the message (the
+               value of the attribute is prefixed with "<code>--</code>" to form the actual
+               boundary marker in the request; on the other way, this prefix is removed from
+               the boundary marker in the response to set the value of the attribute.)
+            </p></div><div class="div2">
+<h3><a name="d2e346" id="d2e346"/>3.2 Serializing the request content</h3><p>
+               If the request can have content (one body or several body parts,) it can be
+               specified by the <code>http:multipart</code> element, the <code>http:body</code>
+               element, and/or the parameter <code>$content</code>.  If <code>$content</code>
+               is not the empty sequence, it replaces the value of the <code>http:body</code>
+               element (in multipart, if there are several bodies, exactly one <code>http:body</code>
+               must be empty.)  For each body, the content of the HTTP body is generated as follow.
+            </p><p>
+               The parameter <code>$serial</code> is used to control the way the content is
+               serialized.  This parameter can be an <code>xsl:output</code> element, as defined
+               in <a href="#xslt20">[XSLT 2.0]</a>, and the serialization is defined in <a href="#xserial">[Serialization]</a>.
+               <code>$serial</code> can also be a string, either '<code>xml</code>', '<code>html</code>',
+               '<code>xhtml</code>' or '<code>text</code>' (other values are implementation-defined,
+               as explained in the above mentioned recommendations.) (Note: <code>$serial</code> should be
+               able to be a function item too, when EXSLT will have defined the corresponding module.)  If
+               <code>$serial</code> is the empty sequence, the default value for this parameter depends
+               on the <code>content-type</code> of the body: it is '<code>xml</code>' if it is an XML
+               media type, '<code>html</code>' if it is an HTML media type, '<code>xhtml</code>' if
+               it is <code>application/xhtml+xml</code> or 'text' for any other case.
+            </p></div><div class="div2">
+<h3><a name="d2e420" id="d2e420"/>3.3 Authentication</h3><p>
+               HTTP authentication when sending a request is controlled by the attributes 
+               <code>username</code>, <code>password</code>, <code>auth-method</code> and
+               <code>send-authorization</code> on the element <code>http:request</code>.
+               If <code>username</code> has a value, <code>password</code> and
+               <code>auth-method</code> must have a value too.  And if any one of the three
+               other attributes have been set, <code>username</code> must be set too.
+            </p><p>
+               The attribute <code>auth-method</code> can be either "<code>Basic</code>" or
+               "<code>Digest</code>", but other values can also be used, in an
+               implementation-defined way.  The handling of those attributes must be done
+               in conformance to <a href="#rfc2617">[RFC 2617]</a>.  If <code>send-authorization</code>
+               is true (default value is false) and the authentication method supports
+               generating the header <code>Authorization</code> without challenge, the
+               request contains this header.  The default value is to send a non-authenticated
+               request, and if the response is an authentication challenge, then only send
+               the credentials in a second message.
+            </p></div></div><div class="div1">
+<h2><a name="d2e473" id="d2e473"/>4 Dealing with the response</h2><p>
+            After having sent the request to the HTTP server, the function waits for
+            the response.  It analyses it and returns a sequence representing this
+            response.  This sequence has an <code>http:response</code> element as
+            first item, which is followed be an additional item for each body or
+            body part in the response.
+         </p><div class="div2">
+<h3><a name="d2e481" id="d2e481"/>4.1 The result element</h3><div class="exampleInner"><pre>
+&lt;http:response status = integer&gt;
+   (http:header*,
+     (http:multipart |
+      http:body)?)
+&lt;/http:response&gt;</pre></div><p>
+               This is the first item returned by the function defined in this module.
+               The <code>status</code> attribute is the HTTP status code returned by the
+               server.  The <code>http:header</code> elements are as defined for the
+               request, but represent instead the response headers.  The <code>http:body</code>
+               and <code>http:multipart</code> elements are also like in the request, but
+               <code>http:body</code> elements must be empty.
+            </p></div><div class="div2">
+<h3><a name="d2e503" id="d2e503"/>4.2 Representing the result content</h3><p>
+               Instead of being inserted within the <code>http:response</code> element, the
+               content of each body is returned as a single item in the return sequence.
+               Each item is in the same order (after the <code>http:response</code> element)
+               than the <code>http:body</code> elements.  For each body, the way this item
+               is built from the HTTP response is as follow.
+            </p><p>
+               If the <code>status-only</code> attribute has the value <code>true</code>
+               (default is <code>false</code>,) the returned sequence will only contain the
+               <code>http:response</code> element (with the headers, but also the empty
+               <code>http:body</code> or <code>http:multipart</code> elements, as if
+               <code>status-only</code> was false,) and the following items, representing
+               the bodies content are not generated from the HTTP response.
+            </p><p>
+               For each body that has to be interpreted, the following rules apply in order to
+               build the corresponding item.  If the body media type is a text media type, the
+               item is a string, containing the body content.  If the media type is an XML
+               media type, the content is parsed and the item is the resulting document node.
+               If the media type is an HTML type, the content is <em>tidied up</em> and
+               parsed (this process is implementation-dependant) and the item is the resulting
+               document node.  If this is a binary media type, the content is returned as a
+               base64Binary item.  From the previous rules, a result item can then be either a
+               document node (from XML or HTML,) a string or a base64Binary.
+            </p><p>
+               If the attribute <code>override-content-type</code> is set on the request, its
+               value is used instead of the content-type returned by the HTTP server (TODO: how
+               does it fit with multipart responses?)
+            </p></div></div><div class="div1">
+<h2><a name="d2e552" id="d2e552"/>5 Content types handling</h2><p>
+            In both requests and responses, MIME type strings are used to choose the way the
+            entity content has to be respectively serialized or parsed.  Four different kinds
+            of type are defined here, which are used in the above text about sending request
+            and receiving response.  The intent is to provide the spirit of the entity content
+            handling regarding its content type, but an implementation is encouraged to deviate
+            from those rules if it is obvious that a particular type should be treated in a
+            specific way (normally, that would be the case only to treat a binary type as
+            another type.)
+         </p><ul><li><p>
+                  An XML media type has a MIME type of <code>text/xml</code>,
+                  <code>application/xml</code>, <code>text/xml-external-parsed-entity</code>,
+                  or <code>application/xml-external-parsed-entity</code>, as defined in
+                  <a href="#rfc3023">[RFC 3023]</a> (except that <code>application/xml-dtd</code> is
+                  considered a text media type.)  MIME types ending by <code>+xml</code> are
+                  also XML media types.
+               </p></li><li><p>
+                  An HTML media type has a MIME type of <code>text/html</code>.
+               </p></li><li><p>
+                  Text media types are the remaining types beginning with <code>text/</code>.
+               </p></li><li><p>
+                  Binary types are all the other types.  An implementation can treat some of
+                  those binary types as either an XML, HTML or text media type if it is more
+                  appropriate (this is implementation-defined.)
+               </p></li></ul></div></div><div class="back"><div class="div1">
+<h2><a name="d2e598" id="d2e598"/>A References</h2><p>
+            The structure of most of the elements and most of the attributes used in this
+            candidate are inspired from the corresponding step in <a href="#xproc">[XProc]</a>.
+         </p><dl><dt class="label"><a name="tidy" id="tidy"/>HTML Tidy</dt><dd>
+               <a href="http://tidy.sf.net/">HTML Tidy Library Project</a>. SourceForge project.
+            </dd><dt class="label"><a name="rfc1521" id="rfc1521"/>RFC 1521</dt><dd>
+               <a href="http://www.ietf.org/rfc/rfc1521.txt">RFC 1521: MIME (Multipurpose Internet
+                  Mail Extensions) Part One: Mechanisms for Specifying and Describing the Format of
+                  Internet Message Bodies</a>.  N. Borenstein, N. Freed, editors. Internet
+               Engineering Task Force. September, 1993.
+            </dd><dt class="label"><a name="rfc2616" id="rfc2616"/>RFC 2616</dt><dd>
+               <a href="http://www.ietf.org/rfc/rfc2616.txt">RFC 2616: Hypertext Transfer Protocol
+               — HTTP/1.1</a>.  R. Fielding, J. Gettys, J. Mogul, et. al., editors. Internet
+               Engineering Task Force. June, 1999.
+            </dd><dt class="label"><a name="rfc2617" id="rfc2617"/>RFC 2617</dt><dd>
+               <a href="http://www.ietf.org/rfc/rfc2617.txt">RFC 2617: HTTP Authentication: Basic
+               and Digest Access Authentication</a>.  J. Franks, P. Hallam-Baker, J. Hostetler,
+               S. Lawrence, P. Leach, A. Luotonen, L. Stewart. June, 1999.
+            </dd><dt class="label"><a name="rfc3023" id="rfc3023"/>RFC 3023</dt><dd>
+               <a href="http://www.ietf.org/rfc/rfc3023.txt">RFC 3023: XML Media Types</a>.
+               M. Murata, S. St. Laurent, and D. Kohn, editors. Internet Engineering Task Force.
+               January, 2001.
+            </dd><dt class="label"><a name="xserial" id="xserial"/>Serialization</dt><dd>
+               <a href="http://www.w3.org/TR/xslt-xquery-serialization/">XSLT 2.0 and XQuery 1.0
+               Serialization</a>.  Scott Boag, Michael Kay, Joanne Tong, Norman Walsh, and Henry
+               Zongaro, editors. W3C Recommendation. 23 January 2007.
+            </dd><dt class="label"><a name="tagsoup" id="tagsoup"/>TagSoup</dt><dd>
+               <a href="http://ccil.org/~cowan/XML/tagsoup/">TagSoup - Just Keep On Truckin'</a>.
+               John Cowan.
+            </dd><dt class="label"><a name="xproc" id="xproc"/>XProc</dt><dd>
+               <a href="http://www.w3.org/TR/xproc/">XProc: An XML Pipeline Language</a>.
+               N. Walsh, A. Milowski, and H. S. Thompson, editors. W3C Candidate Recommendation.
+               26 November 2008.
+            </dd><dt class="label"><a name="xslt20" id="xslt20"/>XSLT 2.0</dt><dd>
+               <a href="http://www.w3.org/TR/xslt20/">XSL Transformations (XSLT) Version 2.0</a>.
+               Michael Kay, editor. W3C Recommendation. 23 January 2007.
+            </dd></dl></div></div></body></html>
