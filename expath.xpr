@@ -5350,7 +5350,7 @@
     </meta>
     <projectTree name="expath.xpr">
         <folder name="misc">
-            <folder name="balisage">
+            <folder name="2009-08-balisage">
                 <folder name="examples">
                     <folder name="contacts">
                         <file
@@ -5389,10 +5389,17 @@
                 </folder>
                 <folder name="presentation"/>
             </folder>
-            <folder name="prague">
+            <folder name="2010-03-prague">
                 <folder name="paper">
                     <file
                         name="misc/2010-prague/paper/fgeorges-expath.xml"
+                    />
+                </folder>
+            </folder>
+            <folder name="2010-08-balisage">
+                <folder name="paper">
+                    <file
+                        name="misc/2010-balisage/paper/Bal2010geor0901.xml"
                     />
                 </folder>
             </folder>
