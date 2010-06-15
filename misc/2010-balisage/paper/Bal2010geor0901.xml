@@ -57,7 +57,7 @@
       <para><quote><emphasis>You're supposed (in the new order) to give everything (stylesheets,
                you, your fridge) an absolute URI and just use that; then the URI used to refer to
                your stylesheet never need to change.</emphasis></quote></para>
-      <para>--David Carlisle</para>
+      <para>--David Carlisle, on XSL List</para>
    </note>
    <section>
       <title>Note to reviewers</title>
@@ -232,6 +232,9 @@
    &lt;function>org.expath.httpclient.saxon.SendRequestFunction&lt;/function>
    ...
 &lt;saxon></programlisting>
+      <para>[<emphasis role="bold">TODO</emphasis>: Describe, using a diagram, the different
+         software involved: the repository manager (or any installation software) and the runtime
+         resolver... This is important to be able to refer to them later on in the paper...]</para>
    </section>
    <section>
       <title>Integration</title>
@@ -259,8 +262,8 @@
          to support it, it does not have to take care at all about repository management, and the
          user can then use one single tool to manage repositories, even for several processors. But
          for some processors, such an on-disk repository just does not make sense, or is not the
-         best design choice (e.g. for embedded systems or processors that can pre-compile
-         packages).</para>
+         best design choice (e.g. for embedded systems or processors that can pre-compile packages
+         on a distributed environment).</para>
       <para>Let us look at a concrete example. A stylesheet uses FunctX to build a date from three
          integers (the year, the month and the day). Note that it uses an absolute URI to import the
          FunctX stylesheet, and this URI does not point to an actual location. This is just a name,
@@ -325,6 +328,87 @@ Install it to dir [functx]:
 &lt;result>1979-09-01&lt;/result></programlisting>
       <para>[<emphasis role="bold">TODO</emphasis>: Introduce and make screenshots of the graphical
          and web-based repository manager.]</para>
+      <para>The format of the repository itself is simplistic. This is a directory on the
+         filesystem, which contains one sub-directory per installed library. Each of those
+         sub-directory has the same structure as the XAR file it was created with, with possibly a
+         few informations generated during the install process in order to simplify the resolving
+         mechanism at runtime. For instance, if the package contains extension functions written in
+         Java for either Saxon or eXist, a simple file is generated containing the classpath needed
+         by this module in an application in order to work:</para>
+      <programlisting>/usr/share/expath/repo/
+   .expath-pkg/
+      ...
+      [management infos, to help building efficient implementations]
+      ...
+   functx-1.0/
+      expath-pkg.xml
+      functx/
+         functx.xql
+         functx.xsl
+   google-apis-0.2/
+      expath-pkg.xml
+      google-apis/
+         xq/
+            gdata.xql
+            gdata-impl.xql
+         xsl/
+            gcontacts.xsl
+            gdata.xsl
+            gdata-impl.xsl
+            gdocs.xsl
+            gcode.xsl
+            gmaps.xsl
+   expath-http-client-0.6/
+      expath-pkg.xml
+      .exist/
+         classpath.txt
+      .saxon/
+         classpath.txt
+      expath-http-client/
+         exist/
+            expath-http-client-exist.jar
+         saxon/
+            expath-http-client-saxon.jar
+            expath-http-client-saxon.xql
+            expath-http-client-saxon.xsl
+         lib/
+            apache-mime4j-0.6.jar
+            commons-codec-1.4.jar
+            commons-logging-1.1.1.jar
+            httpclient-4.0.1.jar
+            httpcore-4.0.1.jar
+            tagsoup-1.2.jar</programlisting>
+      <para>Let us have a closer look at this particular repository. Three libraries have been
+         installed: FunctX 1.0, the Google APIs 0.2 and the EXPath HTTP Client for Saxon and eXist
+         0.6, an implementation in Java of the EXPath HTTP Client module. The first directory,
+            <code>.expath-pkg</code>, contains internal informations about what is installed, and
+         how to use it. It is not used already, but its first usage will probably be to record for
+         each package the longest URI prefix common to all its components. This in turn can be used
+         by the runtime resolvers to know in which package look for a particular component, given
+         its public URI. This is important for standalone processors like Saxon which during one
+         execution will typically use only a few components from the repository, as this enable it
+         to only parse the package descriptors for those packages, and not for the whole repository.
+         In general, the directory <code>.expath-pkg</code> is a place to put management data about
+         the repository as a whole.</para>
+      <para>The second directory, <code>functx-0.1</code>, contains the FunctX library. This
+         directory has exactly the same structure as the XAR package. Put another way, this
+         directory is the result of unzipping the XAR file. The package descriptor, that is
+            <code>expath-pkg.xml</code>, contains all the information to resolve a public URI to an
+         actual component at runtime. The third directory, <code>google-apis-0.2</code>, contains
+         another example of a package, just a bit more complex. Especially, we can see the package
+         directory internal structure is preserved (the subdirectories <code>xq</code> and
+            <code>xsl</code>).</para>
+      <para>The last directory, <code>expath-http-client-0.6</code>, shows a library implemented in
+         Java. It contains an implementation for both Saxon and eXist. In addition to the usual
+         content of the package (the package descriptor and the package directory), we can see we
+         have two subdirectories, containing additional infos about the package for different
+         implementations (here, Saxon and eXist). The classpath.txt file, in both cases, contains a
+         line-separated list of JAR files that must be added to the classpath in order to use the
+         extension. Simply speaking, this contains the JAR within which the extension has been
+         compiled, and a list of the libraries it depends on. Those files are generated at the
+         install-time by the installer, based on the package descriptor. They are used by the
+         launchers to properly set the classpath, ...... TODO:... (parce que le classpath doit etre
+         sette au demarrage, etc etc, et on ne veut pas parser tous les descriptors...)</para>
    </section>
    <section>
       <title>Going further</title>
@@ -359,7 +443,7 @@ Install it to dir [functx]:
             use this structure to automatically build the XAR file. This tool is called
                <code>packager</code>. The directory structure of a new project must have a
                <code>build/</code> subdirectory for the build infos, as well as a <code>src/</code>
-            subdirectory for the actual sources of the components. Here the structure of an
+            subdirectory for the actual sources of the components. Here is the structure of an
             hypothetical project <code>hello-world</code>:</para>
          <programlisting>hello-world/
    build/
