@@ -10,13 +10,13 @@
          <confdates>2 - 6 August 2010</confdates>
       </confgroup-->
       <abstract>
-         <para>This paper introduces the EXPath Packaging System. It describes the problem addressed
-            by the application and library packaging, and the current lack of existing solutions for
-            XML technologies, before describing the Packaging System itself, its structure, its
-            usages and its implementations. It introduces briefly other systems built (or that could
-            be built) on top of this system, like a packaging for web applications written using
-            only XML technologies, an online library and application repository, or standard project
-            structures for XML libraries.</para>
+         <para>This paper introduces the EXPath Packaging System. It describes the problems
+            addressed by application and library packaging, and the current lack of existing
+            solutions for XML technologies, before describing the Packaging System itself, its
+            structure, its usages and its implementations. It introduces briefly other systems built
+            (or that could be built) on top of this system, like a packaging for web applications
+            written using only XML technologies, an online repository of libraries and applications,
+            or standard structures for XML projects.</para>
       </abstract>
       <author>
          <personname>
@@ -231,18 +231,33 @@
    &lt;jar>saxon/jar/expath-http-client-saxon.jar&lt;/jar>
    &lt;function>org.expath.httpclient.saxon.SendRequestFunction&lt;/function>
    ...
-&lt;saxon></programlisting>
-      <para>[<emphasis role="bold">TODO</emphasis>: Describe, using a diagram, the different
-         software involved: the repository manager (or any installation software) and the runtime
-         resolver... This is important to be able to refer to them later on in the paper...]</para>
+   &lt;saxon></programlisting>
+      <para>The Packaging System specification defines the format of the packages. That is required
+         to ensure compatibility accross different implementations. So while everything else is
+         implementation-defined, an implementation will typically use the following components:</para>
+      <para>
+         <mediaobject>
+            <imageobject>
+               <!-- use this for HTML -->
+               <imagedata format="png" fileref="Bal2010geor090101.png" align="center"/>
+               <!-- use this for PDF -->
+               <!--imagedata format="png" fileref="Bal2010geor090101.png" scale="60" align="center"/-->
+            </imageobject> 
+         </mediaobject>
+      </para>
+      <para>The central piece is the <emphasis>repository</emphasis>, where the packages are
+         installed. It can be dedicated to one product (or even one instance of a product, e.g. for
+         a database), or be shared accross several products. The <emphasis>processors</emphasis> are
+         the products you want to be able to use the packages with (that is, your usual XQuery or
+         XSLT or XProc processors). A <emphasis>manager</emphasis> (part of the processor or
+         provided as a separate program) is used to actually install the packages into the
+         repository (or remove them, list them, etc.)</para>
    </section>
    <section>
       <title>Integration</title>
       <para>As for other modules, and even more for the packaging system, the goal is to have to
-         implemented directly by the several processors. This is the case for eXist for instance
-            [<emphasis role="bold">Note</emphasis>: to be confirmed in the final version of this
-         paper, as it is still a work in progress for now]. Third-party implementations have been
-         written for Saxon and Calabash too.</para>
+         implemented directly by the several processors. This is the case for eXist for instance.
+         Third-party implementations have been written for Saxon and Calabash too.</para>
       <para>Even though a processor is allowed to implement the packaging system in any way, the
          specification defines a standard on-disk repository layout. If such an on-disk repository
          makes sense for a specific processor, it can then benefit from standard tools to manage the
@@ -253,8 +268,11 @@
       <para>
          <mediaobject>
             <imageobject>
-               <imagedata format="png" fileref="Bal2010geor090101.png" scale="60" align="center"/>
-            </imageobject>
+               <!-- use this for HTML -->
+               <imagedata format="png" fileref="Bal2010geor090102.png" align="center"/>
+               <!-- use this for PDF -->
+               <!--imagedata format="png" fileref="Bal2010geor090102.png" scale="60" align="center"/-->
+            </imageobject> 
          </mediaobject>
       </para>
       <para>The repository itself is managed by a standalone application, dedicated to that purpose.
@@ -326,15 +344,15 @@ Install it to dir [functx]:
 
 > calabash user.xproc
 &lt;result>1979-09-01&lt;/result></programlisting>
-      <para>[<emphasis role="bold">TODO</emphasis>: Introduce and make screenshots of the graphical
-         and web-based repository manager.]</para>
+      <!--para>[<emphasis role="bold">TODO</emphasis>: Introduce and make screenshots of the graphical
+         and web-based repository manager.]</para-->
       <para>The format of the repository itself is simplistic. This is a directory on the
          filesystem, which contains one sub-directory per installed library. Each of those
          sub-directory has the same structure as the XAR file it was created with, with possibly a
          few informations generated during the install process in order to simplify the resolving
          mechanism at runtime. For instance, if the package contains extension functions written in
          Java for either Saxon or eXist, a simple file is generated containing the classpath needed
-         by this module in an application in order to work:</para>
+         by this module in order for an application to find it:</para>
       <programlisting>/usr/share/expath/repo/
    .expath-pkg/
       ...
@@ -397,7 +415,7 @@ Install it to dir [functx]:
          actual component at runtime. The third directory, <code>google-apis-0.2</code>, contains
          another example of a package, just a bit more complex. Especially, we can see the package
          directory internal structure is preserved (the subdirectories <code>xq</code> and
-            <code>xsl</code>).</para>
+            <code>xsl</code>).  This is important for relative import statements to work.</para>
       <para>The last directory, <code>expath-http-client-0.6</code>, shows a library implemented in
          Java. It contains an implementation for both Saxon and eXist. In addition to the usual
          content of the package (the package descriptor and the package directory), we can see we
@@ -405,10 +423,20 @@ Install it to dir [functx]:
          implementations (here, Saxon and eXist). The classpath.txt file, in both cases, contains a
          line-separated list of JAR files that must be added to the classpath in order to use the
          extension. Simply speaking, this contains the JAR within which the extension has been
-         compiled, and a list of the libraries it depends on. Those files are generated at the
+         compiled, and a list of the libraries it depends on. Those files are generated at
          install-time by the installer, based on the package descriptor. They are used by the
-         launchers to properly set the classpath, ...... TODO:... (parce que le classpath doit etre
-         sette au demarrage, etc etc, et on ne veut pas parser tous les descriptors...)</para>
+         launchers to properly set the classpath, because this must be done at launch time, when we
+         don't know yet which libraries we will use, and we don't want to parse every package
+         descriptor every time we launch the application (and typically a few libraries only will
+         define Java extensions).</para>
+      <para>One of the advantages of having such a standard layout for the repositories is to be
+         able to share the implementation (as it is actually shared between Saxon, eXist and
+         Calabash), which means better maintained and up-to-date software. It is also very
+         lightweight, and it is possible to create several repositories for dedicated purposes.
+         Typically a general repository will be created on a machine to be used by interactive tools
+         like Saxon and Calabash, and maybe IDEs like oXygen. Then specific repositories can be
+         created for large projects like a Java Enterprise application, for which we want to control
+         precisely the set of dependencies.</para>
    </section>
    <section>
       <title>Going further</title>
@@ -559,41 +587,84 @@ module namespace hw = "http://example.org/hello-world";
       </section>
       <section>
          <title>Webapp packaging</title>
-         <para>[<emphasis role="bold">TODO</emphasis>:... This section is only an overview, and
-            still must be expanded.]</para>
-         <para>EXPath contains several modules for several needs. The typical EXPath module is a set
+         <para>EXPath contains several modules for several needs. A typical EXPath module is a set
             of XPath functions, defined in a specification. The Packaging System is a bit different
             as it defines instead a whole system and a file format to package XML libraries. There
             is another EXPath module which defines a system rather than a library of functions: the
             Webapp module. Its goal is to make it possible to write web applications entirely with
             XML technologies. The Webapp module defines an abstract web application container, the
             services it provides to the deployed web applications, and the way it maps HTTP requests
-            and responses to and from those applications. This is a well-known abstraction used by
-            several major frameworks for web applications, like the Java Servlet technology.</para>
+            and responses to and from those applications (as well as a mechanism to package such
+            applications). This is a well-known abstraction used by several major frameworks for web
+            applications, like the Java Servlet technology.</para>
          <para>Basically, a web application based on this module is written in plain XSLT, XQuery or
-            XProc, with some entry points respecting an interface defined in Webapp. Those entry
-            points (function, template, pipeline...) receive a representation of the HTTP request as
-            input and return a representation of the HTTP response as output. They are configured in
-            a web application descriptor to be mapped to some URIs or URI patterns. When the server
-            receives a request on a URI, it looks for a matching component, calls it with the proper
-            input and return its result as the coresponding HTTP response.</para>
-         <para>[<emphasis role="bold">TODO</emphasis>: Show an example of webapp descriptor, and
-            create a diagram for the processing of a request (the request reach the server, a
-            component is looked up, it is called, and the response is returned). This is only
-            illustrative though, as the main point here is the packaging of such webapps.]</para>
+            XProc, with some entry points respecting an interface defined by the Webapp module.
+            Those entry points (function, template, pipeline...) receive a representation of the
+            HTTP request as input and return a representation of the HTTP response as output. They
+            are configured in a web application descriptor to be mapped to some URIs or URI
+            patterns. When the server receives a request on a URI, it looks for a matching
+            component, calls it with the proper input and return its result as the coresponding HTTP
+            response, as shown on the following diagram:</para>
+         <para>
+            <mediaobject>
+               <imageobject>
+                  <!-- use this for HTML -->
+                  <imagedata format="png" fileref="Bal2010geor090103.png" align="center"/>
+                  <!-- use this for PDF -->
+                  <!--imagedata format="png" fileref="Bal2010geor090103.png" scale="60" align="center"/-->
+               </imageobject> 
+            </mediaobject>
+         </para>
          <para>The packaging of those web applications is based on the Packaging System. The Webapp
             module specification does refer to the specification of the Packaging System, and
             extends it by adding the web descriptor. The web descriptor maps URI patterns to
             specific components in the package, or to specific functions, templates or steps within
-            those components. All the packaging machinery itself is already defined.</para>
+            those components. But all the packaging machinery itself is already defined. Just to get
+            an idea, here is an excerpt of such a web descriptor:</para>
+         <programlisting>&lt;webapp name="http://h2oconsulting.be/ns/website"
+        ...>
+
+   &lt;title>H2O Consulting website&lt;/title>
+
+   &lt;!--
+       The Freedom page.
+   -->
+   &lt;servlet name="freedom">
+      &lt;xslt function="free:backup-servlet">
+         &lt;import-uri>http://h2oconsulting.be/ns/website/freedom.xsl&lt;/import-uri>
+      &lt;/xslt>
+      &lt;url pattern="/freedom"/>
+   &lt;/servlet>
+
+   &lt;!--
+       Serve main pages, transformed from XML files to XHTML.
+   -->
+   &lt;servlet name="pages">
+      &lt;xslt function="h2o:pages-servlet">
+         &lt;import-uri>http://h2oconsulting.be/ns/website/servlets.xsl&lt;/import-uri>
+      &lt;/xslt>
+      &lt;url pattern="/([-a-z0-9]+)?">
+         &lt;match group="1" name="page"/>
+      &lt;/url>
+   &lt;/servlet>
+
+   ...
+
+&lt;/webapp></programlisting>
+         <para>You can see that the principal role of this web descriptor is to map URIs (or URI
+            patterns) to entry points (functions, templates, pipelines, etc.) Note in particular
+            that those entry points, behind their name, are identified by an import URI (and not by
+            a file name for instance). This import URI is the one defined by the Packaging System
+            and is set in the package descriptor. The Webapp module does not have to worry about
+            such a mechanism to resolve stylesheets or XQuery modules. It can simply reuse the
+            Packaging System mechanism, by extending it with entry points name in order to point to
+            specific functions, templates or pipelines within those components.</para>
          <para>Servlex is an open-source implementation of Webapp, using Saxon and Calabash as the
-            processors to execute the components. It uses a standard on-disk repository layout to
-            deploy the web applications on the server. Thanks to this, it can reuse the existing
-            open-source implementation of the Packaging System, and just need to process the webapp
-            descriptor to initialize a map between URIs and components.</para>
-         <para>[<emphasis role="bold">TODO</emphasis>: Show a diagram of the Servlex webapp
-            container, the repository it uses, the standard repository manager, and their relations.
-            Show how a webapp is deployed and their components accessed.]</para>
+            processors to execute the components. It uses the same standard on-disk repository
+            layout to deploy the web applications on the server. Thanks to this, it can reuse the
+            existing open-source implementation of the Packaging System, and its integrations within
+            both Saxon and Calabash, and needs just to process the webapp descriptor to initialize a
+            map between URIs and components.</para>
          <para>Because the Packaging System specification has been designed to be extensible, it is
             possible to use it in other specifications, and to reuse some existing tools for more
             specific needs.</para>
@@ -601,9 +672,13 @@ module namespace hw = "http://example.org/hello-world";
    </section>
    <section>
       <title>Conclusion</title>
-      <para>[<emphasis role="bold">TODO</emphasis>:... This section is still to be written, but
-         shall conclude on the problems identified at the beginning of the paper, the solution given
-         by the Packaging System, a summary of its advantages and drawbacks, and its different
-         usages or possible usages in other projects and specifications]</para>
+      <para>The lack of a proper packaging format to publish XML libraries has prevented people to
+         write and publish such libraries in an implementation agnostic way (implementations usually
+         do not provide such a facility anyway). The EXPath Packaging System aims to solve this
+         problem, by defining an implementation-independent packaging format. This format is
+         extensible and can be reused for other needs, like the web application packaging. This
+         system is not only a way to distribute packages, but can also be the missing piece for a
+         lot of different applications, like CXAN and the project structures. And other ideas we
+         have not thought about yet...</para>
    </section>
 </article>
