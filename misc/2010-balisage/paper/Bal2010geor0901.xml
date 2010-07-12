@@ -60,13 +60,6 @@
       <para>--David Carlisle, on XSL List</para>
    </note>
    <section>
-      <title>Note to reviewers</title>
-      <para>This is really only a first draft of the paper. It is definitely not production-ready.
-         It still needs to be augmented, with more text and with more diagrams and examples. Some
-         paragraphs need to be reformulated, but the main idea is there. It has not been reviewed by
-         native English yet, but the final version will be.</para>
-   </section>
-   <section>
       <title>Introduction</title>
       <para>EXPath has been launched in early 2009. Its goal is to go behind the standards for core
          XML technologies by specifying extensions to those technologies in a consistent and
