@@ -1,0 +1,29 @@
+<webapp xmlns="http://expath.org/ns/webapp/descriptor"
+        xmlns:app="http://example.org/ns/hello-web"
+        name="http://example.org/hello-web"
+        abbrev="hello-web"
+        version="1.0">
+
+   <title>Hello web application</title>
+
+   <!--
+       Main page, with the form.
+   -->
+   <servlet name="main">
+      <xslt function="app:main">
+         <import-uri>http://example.org/ns/hello-web/servlets.xsl</import-uri>
+      </xslt>
+      <url pattern="/"/>
+   </servlet>
+
+   <!--
+       The target of the form, with the greetings.
+   -->
+   <servlet name="greets">
+      <xslt function="app:greets">
+         <import-uri>http://example.org/ns/hello-web/servlets.xsl</import-uri>
+      </xslt>
+      <url pattern="/greetings"/>
+   </servlet>
+
+</webapp>

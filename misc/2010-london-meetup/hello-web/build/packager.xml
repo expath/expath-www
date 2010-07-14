@@ -1,0 +1,8 @@
+<package xmlns="http://expath.org/ns/packager"
+         name="http://example.org/hello-web">
+
+   <module name="hello-web" version="1.0">
+      <title>The hello web application</title>
+   </module>
+
+</package>

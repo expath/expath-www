@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<t:description xmlns:t="http://www.jenitennison.com/xslt/xspec"
+               xmlns:xs="http://www.w3.org/2001/XMLSchema"
+               xmlns:h="http://example.org/ns/hello-world"
+               query="http://example.org/ns/hello-world"
+               stylesheet="http://example.org/ns/hello-world.xsl">
+
+   <t:scenario label="hello world test">
+      <t:call function="h:greetings">
+         <t:param select="'world'"/>
+      </t:call>
+      <t:expect test="$t:result eq 'Hello, world!'"/>
+   </t:scenario>
+
+</t:description>
