@@ -1,0 +1,19 @@
+<webapp xmlns="http://expath.org/ns/webapp/descriptor"
+        xmlns:h="http://fgeorges.org/tmp/hello"
+        name="http://fgeorges.org/tmp/hello"
+        abbrev="balisage-hello-web"
+        version="1.0">
+
+   <title>Balisage sample webapp</title>
+
+   <servlet name="home">
+      <xquery function="h:home-servlet"/>
+      <url pattern="/"/>
+   </servlet>
+
+   <servlet name="hello">
+      <xquery function="h:hello-servlet"/>
+      <url pattern="/hello"/>
+   </servlet>
+
+</webapp>

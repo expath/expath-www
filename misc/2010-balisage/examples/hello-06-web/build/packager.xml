@@ -1,0 +1,8 @@
+<package xmlns="http://expath.org/ns/packager"
+         name="http://fgeorges.org/balisage-hello-web">
+
+   <module name="balisage-hello-web" version="1.0">
+      <title>Sample webapp for Balisage 2010</title>
+   </module>
+
+</package>

@@ -1,0 +1,11 @@
+<package xmlns="http://expath.org/ns/pkg">
+
+   <module name="balisage-hello" version="1.0">
+      <title>Sample hello world for Balisage 2010</title>
+      <xquery>
+         <namespace>http://fgeorges.org/tmp/hello</namespace>
+         <file>hello.xql</file>
+      </xquery>
+   </module>
+
+</package>
