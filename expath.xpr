@@ -17,7 +17,106 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
+                                    <String xml:space="preserve">../../../Downloads/my-docs-sword-20091230/fgeorges.org/invoices/chloe-fgeorges.org/mercator-invoice-h2o-2010-07.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">Execute XQuery (Win)</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XQUERY</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">misc/2010-balisage/examples/ubl-xqm/ubl-invoice-format.xqm</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">Self XProc - no input, no output</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XPROC</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../../../tmp/jostein/http-client-test.xproc</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">Balisage 2010 - ubl-xqm/ubl-invoice-format</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XML_XQUERY</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../../../tmp/cvs.new/WWW/XML/Group/EXI/TTF/Benchmarks/data/UBL-1.0/xml/office/UBL-Invoice-1.0-Office-Example.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">H2O Invoice</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
                                     <String xml:space="preserve">../../../Downloads/my-docs-sword-20091230/fgeorges.org/invoices/chloe-fgeorges.org/mercator-invoice-h2o-2010-06.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">Balisage XHTML</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">misc/2010-balisage/paper/Bal2010geor0901.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">H2O Invoice</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../../../Downloads/my-docs-sword-20091230/fgeorges.org/invoices/chloe-fgeorges.org/mercator-invoice-h2o-2010-03.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">H2O Invoice</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../../../Downloads/my-docs-sword-20091230/fgeorges.org/invoices/chloe-fgeorges.org/mercator-invoice-h2o-2010-04.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">H2O Invoice</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../../../Downloads/my-docs-sword-20091230/fgeorges.org/invoices/chloe-fgeorges.org/mercator-invoice-h2o-2010-05.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">Same name</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../../../tmp/dick.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -726,28 +825,6 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String xml:space="preserve">Balisage XHTML</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">misc/2010-balisage/paper/Bal2010geor0901.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">H2O Invoice</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">../../../Downloads/my-docs-sword-20091230/fgeorges.org/invoices/chloe-fgeorges.org/mercator-invoice-h2o-2010-03.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
                                     <String xml:space="preserve">Execute XQuery (Win)</String>
                                 </field>
                                 <field name="type">
@@ -755,17 +832,6 @@
                                 </field>
                                 <field name="url">
                                     <String xml:space="preserve">../../../Downloads/my-docs-sword-20091230/fgeorges.org/invoices/chloe-fgeorges.org/Untitled7.xquery</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">H2O Invoice</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">../../../Downloads/my-docs-sword-20091230/fgeorges.org/invoices/chloe-fgeorges.org/mercator-invoice-h2o-2010-04.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -849,7 +915,7 @@
                                     <Boolean xml:space="preserve">false</Boolean>
                                 </field>
                                 <field name="isFOPPerforming">
-                                    <Boolean xml:space="preserve">false</Boolean>
+                                    <Boolean xml:space="preserve">true</Boolean>
                                 </field>
                                 <field name="type">
                                     <String xml:space="preserve">XSL</String>
@@ -861,7 +927,7 @@
                                     <Boolean xml:space="preserve">false</Boolean>
                                 </field>
                                 <field name="outputFile">
-                                    <File xml:space="preserve">${cfn}.fo</File>
+                                    <File xml:space="preserve">${cfn}.pdf</File>
                                 </field>
                                 <field name="openOtherLocationInBrowser">
                                     <Boolean xml:space="preserve">false</Boolean>
@@ -3321,6 +3387,89 @@
                             </scenario>
                             <scenario>
                                 <field name="advancedOptionsMap">
+                                    <null/>
+                                </field>
+                                <field name="name">
+                                    <String xml:space="preserve">Balisage 2010 - ubl-xqm/ubl-invoice-format</String>
+                                </field>
+                                <field name="baseURL">
+                                    <String xml:space="preserve"></String>
+                                </field>
+                                <field name="footerURL">
+                                    <String xml:space="preserve"></String>
+                                </field>
+                                <field name="fOPMethod">
+                                    <String xml:space="preserve">pdf</String>
+                                </field>
+                                <field name="fOProcessorName">
+                                    <String xml:space="preserve">Apache FOP</String>
+                                </field>
+                                <field name="headerURL">
+                                    <String xml:space="preserve"></String>
+                                </field>
+                                <field name="inputXSLURL">
+                                    <String xml:space="preserve">file:/Users/fgeorges/projects/expath/expath/misc/2010-balisage/examples/ubl-xqm/ubl-invoice-format.xqm</String>
+                                </field>
+                                <field name="inputXMLURL">
+                                    <String xml:space="preserve">${currentFileURL}</String>
+                                </field>
+                                <field name="defaultScenario">
+                                    <Boolean xml:space="preserve">false</Boolean>
+                                </field>
+                                <field name="isFOPPerforming">
+                                    <Boolean xml:space="preserve">false</Boolean>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XML_XQUERY</String>
+                                </field>
+                                <field name="saveAs">
+                                    <Boolean xml:space="preserve">true</Boolean>
+                                </field>
+                                <field name="openInBrowser">
+                                    <Boolean xml:space="preserve">false</Boolean>
+                                </field>
+                                <field name="outputFile">
+                                    <null/>
+                                </field>
+                                <field name="openOtherLocationInBrowser">
+                                    <Boolean xml:space="preserve">false</Boolean>
+                                </field>
+                                <field name="locationToOpenInBrowserURL">
+                                    <null/>
+                                </field>
+                                <field name="openInEditor">
+                                    <Boolean xml:space="preserve">false</Boolean>
+                                </field>
+                                <field name="showInHTMLPane">
+                                    <Boolean xml:space="preserve">false</Boolean>
+                                </field>
+                                <field name="showInXMLPane">
+                                    <Boolean xml:space="preserve">true</Boolean>
+                                </field>
+                                <field name="showInSVGPane">
+                                    <Boolean xml:space="preserve">false</Boolean>
+                                </field>
+                                <field name="showInResultSetPane">
+                                    <Boolean xml:space="preserve">true</Boolean>
+                                </field>
+                                <field name="useXSLTInput">
+                                    <Boolean xml:space="preserve">true</Boolean>
+                                </field>
+                                <field name="xsltParams">
+                                    <list/>
+                                </field>
+                                <field name="cascadingStylesheets">
+                                    <String-array/>
+                                </field>
+                                <field name="xslTransformer">
+                                    <String xml:space="preserve">Saxon-EE XQuery</String>
+                                </field>
+                                <field name="extensionURLs">
+                                    <String-array/>
+                                </field>
+                            </scenario>
+                            <scenario>
+                                <field name="advancedOptionsMap">
                                     <map>
                                     <entry>
                                     <String xml:space="preserve">Saxon-EE</String>
@@ -5408,6 +5557,95 @@
                 </folder>
             </folder>
             <folder name="2010-08-balisage">
+                <folder name="examples">
+                    <folder name="hello-01-pb">
+                        <file
+                            name="misc/2010-balisage/examples/hello-01-pb/hello-exist.xqm"/>
+                        <file
+                            name="misc/2010-balisage/examples/hello-01-pb/hello-pb.xqm"/>
+                        <file
+                            name="misc/2010-balisage/examples/hello-01-pb/hello-saxon.xqm"/>
+                        <file
+                            name="misc/2010-balisage/examples/hello-01-pb/Makefile"
+                        />
+                    </folder>
+                    <folder name="hello-02-use">
+                        <file
+                            name="misc/2010-balisage/examples/hello-02-use/hello.xqm"/>
+                        <file
+                            name="misc/2010-balisage/examples/hello-02-use/Makefile"
+                        />
+                    </folder>
+                    <folder name="hello-03-write">
+                        <folder name="balisage-hello">
+                            <file
+                                name="misc/2010-balisage/examples/hello-03-write/balisage-hello/hello.xql"
+                            />
+                        </folder>
+                        <file
+                            name="misc/2010-balisage/examples/hello-03-write/balisage-hello-1.0.xar"/>
+                        <file
+                            name="misc/2010-balisage/examples/hello-03-write/expath-pkg.xml"/>
+                        <file
+                            name="misc/2010-balisage/examples/hello-03-write/hello.xql"/>
+                        <file
+                            name="misc/2010-balisage/examples/hello-03-write/Makefile"/>
+                        <file
+                            name="misc/2010-balisage/examples/hello-03-write/test.xqm"
+                        />
+                    </folder>
+                    <folder name="hello-04-proj">
+                        <folder name="balisage-hello">
+                            <folder name="build">
+                                <file
+                                    name="misc/2010-balisage/examples/hello-04-proj/balisage-hello/build/balisage-hello-1.0.xar"/>
+                                <file
+                                    name="misc/2010-balisage/examples/hello-04-proj/balisage-hello/build/balisage-hello-1.0.zip"/>
+                                <file
+                                    name="misc/2010-balisage/examples/hello-04-proj/balisage-hello/build/packager.xml"
+                                />
+                            </folder>
+                            <folder name="src">
+                                <file
+                                    name="misc/2010-balisage/examples/hello-04-proj/balisage-hello/src/hello.xql"
+                                />
+                            </folder>
+                        </folder>
+                        <file
+                            name="misc/2010-balisage/examples/hello-04-proj/Makefile"/>
+                        <file
+                            name="misc/2010-balisage/examples/hello-04-proj/test.xqm"
+                        />
+                    </folder>
+                    <folder name="hello-05-release">
+                        <folder name="build">
+                            <file
+                                name="misc/2010-balisage/examples/hello-05-release/build/balisage-hello-1.0.xar"/>
+                            <file
+                                name="misc/2010-balisage/examples/hello-05-release/build/balisage-hello-1.0.zip"/>
+                            <file
+                                name="misc/2010-balisage/examples/hello-05-release/build/packager.xml"/>
+                            <file
+                                name="misc/2010-balisage/examples/hello-05-release/build/project.xml"/>
+                            <file
+                                name="misc/2010-balisage/examples/hello-05-release/build/README"
+                            />
+                        </folder>
+                        <folder name="sample">
+                            <file
+                                name="misc/2010-balisage/examples/hello-05-release/sample/test.xqm"
+                            />
+                        </folder>
+                        <folder name="src">
+                            <file
+                                name="misc/2010-balisage/examples/hello-05-release/src/hello.xql"
+                            />
+                        </folder>
+                        <file
+                            name="misc/2010-balisage/examples/hello-05-release/Makefile"
+                        />
+                    </folder>
+                </folder>
                 <folder name="paper">
                     <file
                         name="misc/2010-balisage/paper/Bal2010geor0901.xml"
