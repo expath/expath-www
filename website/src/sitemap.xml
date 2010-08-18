@@ -88,11 +88,17 @@
          <rsrc name="expath-pkg-saxon-0.2.jar" href="expath-pkg-saxon-0.2.jar"/>
          <rsrc name="expath-pkg-saxon-0.2.sh"  href="expath-pkg-saxon-0.2.sh"/>
       </dir>
+      <dir base="webapp/" href="webapp/" release="webapp/">
+         <!-- pages -->
+         <page src="index.xml"    href="index.html"   menu="webapp"/>
+         <page src="implems.xml"  href="implems.html" menu="webapp"/>
+         <page src="samples.xml"  href="samples.html" menu="webapp"/>
+      </dir>
       <dir base="zip/" href="zip/" release="zip/">
          <!-- pages -->
          <page src="index.xml"    href="index.html"   menu="zip"/>
-         <!--page src="implems.xml"  href="implems.html" menu="zip"/>
-         <page src="samples.xml"  href="samples.html" menu="zip"/-->
+         <page src="implems.xml"  href="implems.html" menu="zip"/>
+         <page src="samples.xml"  href="samples.html" menu="zip"/>
          <!-- packages -->
          <rsrc name="expath-zip-saxon-0.1.xar" href="expath-zip-saxon-0.1.xar"/>
       </dir>
@@ -105,35 +111,59 @@
    </dir-->
 
    <menu name="main">
-      <item name="index"     href="."              title="EXPath Home">Home</item>
-      <item name="news"      href="news.html"      title="EXPath News">News</item>
-      <item name="faq"       href="faq.html"       title="EXPath FAQ">FAQ</item>
-      <item name="lists"     href="lists.html"     title="EXPath Mailing Lists">Mailing lists</item>
-      <item name="modules"   href="modules.html"   title="EXPath Modules">Modules</item>
-      <item name="resources" href="resources.html" title="EXPath Resources">Resources</item>
-      <item name="map"       href="map.html"       title="EXPath Website Map">Site map</item>
+      <item name="index"     href="."         title="EXPath Home">Home</item>
+      <item name="news"      href="news"      title="EXPath News">News</item>
+      <item name="faq"       href="faq"       title="EXPath FAQ">FAQ</item>
+      <item name="lists"     href="lists"     title="EXPath Mailing Lists">Lists</item>
+      <item name="modules"   href="modules"   title="EXPath Modules">Modules</item>
+      <item name="specs"     href="spec"      title="EXPath Specifications">Specs</item>
+      <item name="resources" href="resources" title="EXPath Resources">Resources</item>
+      <item name="map"       href="map"       title="EXPath Website Map">Map</item>
+      <item name="wiki"      href="wiki/"     title="EXPath Wiki">Wiki</item>
+   </menu>
+
+   <menu name="file">
+      <item name="parent"  href="../../modules"   title="Modules">[ ../Modules ]</item>
+      <item name="index"   href="."               title="EXPath File Home">Webapp</item>
+      <item name="implems" href="implems"         title="EXPath File Implems">Implementations</item>
+      <item name="samples" href="samples"         title="EXPath File Samples">Samples</item>
+      <item name="spec"    href="../../spec/file" title="EXPath File Spec">Specification</item>
+      <item name="wiki"    href="../../wiki/File" title="EXPath File Wiki">Wiki</item>
    </menu>
 
    <menu name="hc">
-      <item name="parent"  href="../../modules.html"  title="Modules">[ ../Modules ]</item>
-      <item name="index"   href="."                   title="EXPath HTTP Client Home">HTTP Client</item>
-      <item name="implems" href="implems.html"        title="EXPath HTTP Client Implems">Implementations</item>
-      <item name="samples" href="samples.html"        title="EXPath HTTP Client Samples">Samples</item>
-      <item name="spec"    href="../http-client.html" title="EXPath HTTP Client Spec">Specification</item>
+      <item name="parent"  href="../../modules"          title="Modules">[ ../Modules ]</item>
+      <item name="index"   href="."                      title="EXPath HTTP Client Home">HTTP Client</item>
+      <item name="implems" href="implems"                title="EXPath HTTP Client Implems">Implementations</item>
+      <item name="samples" href="samples"                title="EXPath HTTP Client Samples">Samples</item>
+      <item name="spec"    href="../../spec/http-client" title="EXPath HTTP Client Spec">Specification</item>
+      <item name="wiki"    href="../../wiki/HttpClient"  title="EXPath HTTP Client Wiki">Wiki</item>
    </menu>
 
    <menu name="pkg">
-      <item name="parent"  href="../../modules.html" title="Modules">[ ../Modules ]</item>
-      <item name="index"   href="."                  title="EXPath Packaging Home">Packaging</item>
-      <item name="implems" href="implems.html"       title="EXPath Packaging Implems">Implementations</item>
-      <item name="spec"    href="../pkg.html"        title="EXPath Packaging Spec">Specification</item>
+      <item name="parent"  href="../../modules"        title="Modules">[ ../Modules ]</item>
+      <item name="index"   href="."                    title="EXPath Packaging Home">Packaging</item>
+      <item name="implems" href="implems"              title="EXPath Packaging Implems">Implementations</item>
+      <item name="spec"    href="../../spec/pkg"       title="EXPath Packaging Spec">Specification</item>
+      <item name="wiki"    href="../../wiki/Packaging" title="EXPath Packaging Wiki">Wiki</item>
+   </menu>
+
+   <menu name="webapp">
+      <item name="parent"  href="../../modules"     title="Modules">[ ../Modules ]</item>
+      <item name="index"   href="."                 title="EXPath Webapp Home">Webapp</item>
+      <item name="implems" href="implems"           title="EXPath Webapp Implems">Implementations</item>
+      <item name="samples" href="samples"           title="EXPath Webapp Samples">Samples</item>
+      <item name="spec"    href="../../spec/webapp" title="EXPath Webapp Spec">Specification</item>
+      <item name="wiki"    href="../../wiki/Webapp" title="EXPath Webapp Wiki">Wiki</item>
    </menu>
 
    <menu name="zip">
-      <item name="parent"  href="../../modules.html" title="Modules">[ ../Modules ]</item>
-      <item name="index"   href="."                  title="EXPath ZIP Home">ZIP</item>
-      <!--item name="implems" href="implems.html"       title="EXPath ZIP Implems">Implementations</item-->
-      <item name="spec"    href="../zip.html"        title="EXPath ZIP Spec">Specification</item>
+      <item name="parent"  href="../../modules"  title="Modules">[ ../Modules ]</item>
+      <item name="index"   href="."              title="EXPath ZIP Home">ZIP</item>
+      <item name="implems" href="implems"        title="EXPath ZIP Implems">Implementations</item>
+      <item name="samples" href="samples"        title="EXPath ZIP Samples">Samples</item>
+      <item name="spec"    href="../../spec/zip" title="EXPath ZIP Spec">Specification</item>
+      <item name="wiki"    href="../../wiki/Zip" title="EXPath ZIP Wiki">Wiki</item>
    </menu>
 
 </sitemap>

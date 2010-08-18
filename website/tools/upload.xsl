@@ -11,7 +11,7 @@
    <xsl:import href="webpage.xsl"/>
 
    <xsl:param name="rel-base"  select="'../../releases/'"/>
-   <xsl:param name="href-base" select="'../build/'"/>
+   <xsl:param name="href-base" select="'../build.OLD/'"/>
    <!--xsl:param name="href-base" select="'http://localhost:8181/exist/rest/db/xxx/'"/>
    <xsl:param name="username"  select="'admin'"/>
    <xsl:param name="password"  select="'adminadmin'"/-->
