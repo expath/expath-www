@@ -2,10 +2,13 @@
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:pkg="http://expath.org/ns/pkg"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://www.w3.org/1999/xhtml"
                 exclude-result-prefixes="xs"
                 version="2.0">
+
+   <pkg:import-uri>http://expath.org/ns/website/webpage.xsl</pkg:import-uri>
 
    <xsl:output
        method="html"
@@ -13,7 +16,7 @@
        doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
 
    <xsl:param name="analytics-id" as="xs:string?" select="'UA-5463082-2'"/>
-   <xsl:param name="menus"        as="element(menu)*"/>
+   <xsl:param name="menus"        as="element(menu)+"/>
 
    <!-- URIs used in the document, relative to the root of the website -->
    <xsl:variable name="style-default" select="'style/default.css'"/>
@@ -93,7 +96,7 @@
                      <xsl:text> - Design by: </xsl:text>
                      <a href="http://www.nodethirtythree.com/">NodeThirtyThree Design</a>
                      <xsl:text> - </xsl:text>
-                     <a href="{ $root }credits.html">Credits</a>
+                     <a href="{ $root }credits">Credits</a>
                   </div>
                </div>
             </div>
