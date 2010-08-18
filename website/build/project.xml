@@ -1,0 +1,6 @@
+<package xmlns="http://expath.org/ns/packager"
+         name="http://expath.org/website">
+   <module name="expath-website" version="0.1">
+      <title>EXPath website</title>
+   </module>
+</package>
