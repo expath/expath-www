@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--?xml-stylesheet type="text/xsl" href="webpage.xsl"?-->
 
-<webpage menu="samples" root="../..">
+<webpage menu="hc" root="../..">
    <title>EXPath - HTTP Client Samples</title>
    <section>
       <title>HTTP Client Samples</title>
