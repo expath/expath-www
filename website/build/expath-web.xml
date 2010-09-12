@@ -10,9 +10,8 @@
        Matches '/wiki/*', to failover in case Apache is not configured.
    -->
    <servlet name="wiki">
-      <xslt function="app:wiki-servlet">
-         <import-uri>http://expath.org/ns/website/servlets.xsl</import-uri>
-      </xslt>
+      <xslt uri="http://expath.org/ns/website/servlets.xsl"
+            function="app:wiki-servlet"/>
       <url pattern="/wiki/.*"/>
    </servlet>
 
@@ -20,10 +19,9 @@
        ...
    -->
    <servlet name="spec">
-      <xslt function="app:spec-servlet">
-         <import-uri>http://expath.org/ns/website/servlets.xsl</import-uri>
-      </xslt>
-      <url pattern="/spec/(http-client|pkg|webapp|zip)(-20[0-9]{6})?(-diff)?(.xml)?">
+      <xslt uri="http://expath.org/ns/website/servlets.xsl"
+            function="app:spec-servlet"/>
+      <url pattern="/spec/(file|http-client|pkg|webapp|zip)(/20[0-9]{6})?(/diff)?(.xml)?">
          <match group="1" name="spec"/>
          <match group="2" name="date"/>
          <match group="3" name="diff"/>
@@ -35,9 +33,8 @@
        ...
    -->
    <servlet name="page">
-      <xslt function="app:page-servlet">
-         <import-uri>http://expath.org/ns/website/servlets.xsl</import-uri>
-      </xslt>
+      <xslt uri="http://expath.org/ns/website/servlets.xsl"
+            function="app:page-servlet"/>
       <url pattern="/([-a-z0-9/]+)?">
          <match group="1" name="page"/>
       </url>
@@ -49,14 +46,14 @@
        TODO: Should be different for specs and pages.
    -->
    <servlet name="old-page">
-      <xslt function="app:old-page-servlet">
-         <import-uri>http://expath.org/ns/website/servlets.xsl</import-uri>
-      </xslt>
+      <xslt uri="http://expath.org/ns/website/servlets.xsl"
+            function="app:old-page-servlet"/>
       <url pattern="/([-a-z0-9/]+).html">
          <match group="1" name="page"/>
       </url>
    </servlet>
 
+   <resource pattern="/atom.xml"      media-type="application/xml"/>
    <resource pattern="/style/.+.css"  media-type="text/css"/>
    <resource pattern="/images/.+.png" media-type="image/png"/>
    <resource pattern="/images/.+.jpg" media-type="image/jpeg"/>
