@@ -9,7 +9,7 @@
    <primary>
       <title>HTTP Client update</title>
       <details>January 9, 2010</details>
-      <para>An update of the <link href="modules/http-client.html">HTTP Client specification</link>
+      <para>An update of the <link href="spec/http-client">HTTP Client specification</link>
          has been published. The namespaces have been adapted to the standard, some errors have been
          added, the serialization mechanism is based on the XSLT and XQuery serialization spec now,
          and a "revision markup" version, highlighting differences, has been created.</para>
@@ -17,7 +17,7 @@
    <primary>
       <title>Packaging update</title>
       <details>January 7, 2010</details>
-      <para>An update of the <link href="modules/pkg.html">packaging specification</link> has been
+      <para>An update of the <link href="spec/pkg">packaging specification</link> has been
          published. The section "Concepts" has been rewritten, making clear distinction between
          concepts and the package descriptor format. A complete example has been added too. And a
          "revision markup" version, highlighting differences, has been created.</para>
@@ -33,7 +33,7 @@
    <primary>
       <title>Packaging update</title>
       <details>November 18, 2009</details>
-      <para>An update of the <link href="modules/pkg.html">packaging specification</link> has been
+      <para>An update of the <link href="spec/pkg">packaging specification</link> has been
          published, as well as a new implementation for Calabash and an updated implementation for
          Saxon.</para>
    </primary>
@@ -47,7 +47,7 @@
       <title>Hey!</title>
       <details>April 15, 2009</details>
       <para>The website has just been announced on various mailing lists. I hope people will
-         subscribe to the <link href="lists.html">mailing list</link> and will provide valuable
+         subscribe to the <link href="lists">mailing list</link> and will provide valuable
          input and feedback.</para>
    </primary>
    <primary>

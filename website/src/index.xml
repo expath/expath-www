@@ -39,7 +39,7 @@
             href="http://en.wikipedia.org/wiki/OpenDocument">OpenDocument</link> files,) parsing and
          serializing XML and HTML documents, executing XSLT transforms and XQuery queries,
          etcetera.</para>
-      <para>Have a look at the <link href="modules.html">Modules</link> section for available and
+      <para>Have a look at the <link href="modules">Modules</link> section for available and
          work-in-progress function libraries.</para>
    </primary>
    <primary>
@@ -84,9 +84,11 @@
    </primary>
    <secondary box="true">
       <title>Let me in!</title>
-      <para>This is simple. Read through this website, and <link href="lists.html">join the
+      <para>This is simple. Read through this website, and <link href="lists">join the
             list</link>. You can help by providing use cases, writing specifications, implement
          them, or simply by using existing extensions.</para>
+      <para>The first thing you want to do is probably to have a look at the list of
+         <link href="modules">available modules</link>.</para>
    </secondary>
    <secondary>
       <title>The process</title>
@@ -103,7 +105,7 @@
          cases, send prototype implementations, write a draft for a specification, report
          bugs...</para>
       <para>The central point of the process is to communicate through the mailing list. So <link
-            href="lists.html">join the list</link>, follow the discussions and see how you could
+            href="lists">join the list</link>, follow the discussions and see how you could
          help.</para>
    </secondary>
 </webpage>

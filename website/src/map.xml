@@ -9,36 +9,72 @@
          <title>EXPath</title>
          <list>
             <item><link href=".">Home</link></item>
-            <item><link href="news.html">News</link></item>
-            <item><link href="faq.html">FAQ</link></item>
-            <item><link href="lists.html">Mailing lists</link></item>
-            <item><link href="modules.html">Modules</link></item>
-            <item><link href="resources.html">Resources</link></item>
-            <item><link href="map.html">Site map</link></item>
-         </list>
-      </primary>
-      <primary>
-         <title>HTTP Client</title>
-         <list>
-            <item><link href="modules/http-client/">HTTP client home</link></item>
-            <item><link href="modules/http-client/implems.html">Implementations</link></item>
-            <item><link href="modules/http-client/samples.html">Samples</link></item>
-            <item><link href="modules/http-client.html">Specification</link></item>
+            <item><link href="news">News</link></item>
+            <item><link href="faq">FAQ</link></item>
+            <item><link href="lists">Mailing lists</link></item>
+            <item><link href="modules">Modules</link></item>
+            <item><link href="specs">Specifications</link></item>
+            <item><link href="resources">Resources</link></item>
+            <item><link href="map">Site map</link></item>
+            <item><link href="wiki/">Wiki</link></item>
          </list>
       </primary>
       <primary>
          <title>Packaging System</title>
          <list>
             <item><link href="modules/pkg/">Packaging system home</link></item>
-            <item><link href="modules/pkg/implems.html">Implementations</link></item>
-            <item><link href="modules/pkg.html">Specification</link></item>
+            <item><link href="modules/pkg/implems">Implementations</link></item>
+            <item><link href="spec/pkg">Specification</link></item>
+            <item><link href="wiki/Packaging">Wiki page</link></item>
+         </list>
+      </primary>
+      <primary>
+         <title>Webapp Container</title>
+         <list>
+            <item><link href="modules/webapp/">Webapp container home</link></item>
+            <item><link href="modules/webapp/implems">Implementations</link></item>
+            <item><link href="modules/webapp/samples">Samples</link></item>
+            <item><link href="spec/webapp">Specification</link></item>
+            <item><link href="wiki/Webapp">Wiki page</link></item>
+         </list>
+      </primary>
+      <primary>
+         <title>HTTP Client</title>
+         <list>
+            <item><link href="modules/http-client/">HTTP client home</link></item>
+            <item><link href="modules/http-client/implems">Implementations</link></item>
+            <item><link href="modules/http-client/samples">Samples</link></item>
+            <item><link href="spec/http-client">Specification</link></item>
+            <item><link href="wiki/HttpClient">Wiki page</link></item>
+         </list>
+      </primary>
+      <primary>
+         <title>File Handling</title>
+         <list>
+            <item><link href="modules/file/">File handling home</link></item>
+            <item><link href="modules/file/implems">Implementations</link></item>
+            <item><link href="modules/file/samples">Samples</link></item>
+            <item><link href="spec/file">Specification</link></item>
+            <item><link href="wiki/File">Wiki page</link></item>
          </list>
       </primary>
       <primary>
          <title>ZIP Facility</title>
          <list>
             <item><link href="modules/zip/">ZIP facility home</link></item>
-            <item><link href="modules/zip.html">Specification</link></item>
+            <item><link href="modules/zip/implems">Implementations</link></item>
+            <item><link href="modules/zip/samples">Samples</link></item>
+            <item><link href="spec/zip">Specification</link></item>
+            <item><link href="wiki/Zip">Wiki page</link></item>
+         </list>
+      </primary>
+      <primary>
+         <title>&lt;footer&gt;</title>
+         <list>
+            <item><link href="about">About</link></item>
+            <item><link href="atom.xml">Atom feed</link></item>
+            <item><link href="contact">Contact</link></item>
+            <item><link href="credits">Credits</link></item>
          </list>
       </primary>
    </section>

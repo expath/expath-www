@@ -25,7 +25,7 @@
          </item>
       </list>
       <para/>
-      <para>The <link href="resources.html">resources</link> page contains also useful links and
+      <para>The <link href="resources">resources</link> page contains also useful links and
          documentation, as well as the <link href="wiki/">EXPath wiki</link>.</para>
    </section>
    <divider/>
@@ -84,7 +84,7 @@
       <para>You do!</para>
       <para>EXPath is a collaborative, community-driven project. If you need a module which does not
          exist in EXPath, but you think would be worth having as an EXPath module, you can propose
-         it on the <link href="lists.html">mailing list</link>.</para>
+         it on the <link href="lists">mailing list</link>.</para>
       <para>But do not expect to find someone telling you that this is the best idea he never heard,
          and who is ready to invest all his spare time in defining and implementing what you want.
          The best option is to first discuss it on the list, to be sure no one else is working on a

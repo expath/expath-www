@@ -17,6 +17,13 @@
          the <link href="modules/pkg/">packaging page</link>.</para>
    </primary>
    <primary>
+      <title>Webapp Container</title>
+      <details>Writing web applications in X*, from cover to cover</details>
+      <para>A standard web application container and framework, for several core XML technologies,
+         like XSLT, XQuery and XProc.  See the <link href="modules/webapp/">webapps
+         page</link>.</para>
+   </primary>
+   <primary>
       <title>HTTP Client</title>
       <details>Sending HTTP requests, and receiving the responses</details>
       <para>This module defines a set of functions to send HTTP requests and handle responses. This
@@ -24,6 +31,14 @@
          protocol, while integrating smoothly within the <link
             href="http://www.w3.org/TR/xpath-datamodel/">XPath Data Model</link>. See the <link
             href="modules/http-client/">module page</link> for details.</para>
+   </primary>
+   <primary>
+      <title>File Handling</title>
+      <details>Files and directories details and modifications</details>
+      <para>This module defines a set of functions to read the file system informations, and to
+         modify it.  In other words, it allows you to read files, list directories, create them,
+         and get several informations about files.  See the <link href="modules/file/">module
+         page</link> for details.</para>
    </primary>
    <primary>
       <title>ZIP Facility</title>
