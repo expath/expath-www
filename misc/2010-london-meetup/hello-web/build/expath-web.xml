@@ -10,9 +10,8 @@
        Main page, with the form.
    -->
    <servlet name="main">
-      <xslt function="app:main">
-         <import-uri>http://example.org/ns/hello-web/servlets.xsl</import-uri>
-      </xslt>
+      <xslt uri="http://example.org/ns/hello-web/servlets.xsl"
+            function="app:main"/>
       <url pattern="/"/>
    </servlet>
 
@@ -20,9 +19,8 @@
        The target of the form, with the greetings.
    -->
    <servlet name="greets">
-      <xslt function="app:greets">
-         <import-uri>http://example.org/ns/hello-web/servlets.xsl</import-uri>
-      </xslt>
+      <xslt uri="http://example.org/ns/hello-web/servlets.xsl"
+            function="app:greets"/>
       <url pattern="/greetings"/>
    </servlet>
 
