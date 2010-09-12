@@ -44,7 +44,7 @@ div.exampleHeader { font-weight: bold;
          </a><a href="http://www.fgeorges.org/xslt/exslt2/http-client-20090112.html">http://www.fgeorges.org/xslt/exslt2/http-client-20090112.html</a>
       </dd><dt>Latest version:</dt><dd>
          <a href="http://www.fgeorges.org/xslt/exslt2/http-client.html">http://www.fgeorges.org/xslt/exslt2/http-client.html</a>
-      </dd><dt>Editor:</dt><dd>Florent Georges &lt;<a xmlns:fg="http://www.fgeorges.org/xmlspec" href="http://www.fgeorges.org/">http://www.fgeorges.org/</a>&gt;</dd></dl><p class="copyright"></p></div><hr><div>
+      </dd><dt>Editor:</dt><dd>Florent Georges &lt;<a href="http://www.fgeorges.org/">http://www.fgeorges.org/</a>&gt;</dd></dl><p class="copyright"></p></div><hr><div>
 <h2><a name="abstract" id="abstract">Abstract</a></h2><p>
 <a name="abstract" id="abstract">            This proposal provides an HTTP client interface for XSLT
             2.0.  It defines one extension function to perform HTTP
@@ -81,10 +81,10 @@ div.exampleHeader { font-weight: bold;
 <a name="d2e75" id="d2e75">            This module defines an XPath extension function that sends an
             HTTP request and return the corresponding response.  It supports
             HTTP multi-part messages.  Here is the signature of this function:
-            </a></p><div class="exampleInner"><pre><code xmlns:fg="http://www.fgeorges.org/xmlspec" class="function"><a name="d2e75" id="d2e75">http:send-request</a></code><a name="d2e75" id="d2e75">($uri as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">xs:string?</code>,
-                  $content as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">item()?</code>,
-                  $request as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">element(http:request)?</code>,
-                  $serial as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">item()?</code>) as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">item()+</code></a></pre></div>
+            </a></p><div class="exampleInner"><pre><code class="function"><a name="d2e75" id="d2e75">http:send-request</a></code><a name="d2e75" id="d2e75">($uri as <code class="type">xs:string?</code>,
+                  $content as <code class="type">item()?</code>,
+                  $request as <code class="type">element(http:request)?</code>,
+                  $serial as <code class="type">item()?</code>) as <code class="type">item()+</code></a></pre></div>
 <a name="d2e75" id="d2e75">         </a><ul><li><p>
 <a name="d2e75" id="d2e75">                  <code>$uri</code> is the HTTP or HTTPS URI to send the request to.  It is an
                   xs:anyURI, but is declared as a string to be able to pass literal

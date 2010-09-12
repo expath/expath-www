@@ -2,7 +2,7 @@
 
 <?oxygen RNGSchema="http://www.w3.org/XML/1998/06/schema/xmlspec.rng" type="xml"?>
 
-<spec role="editors-copy" xmlns:fg="http://www.fgeorges.org/xmlspec">
+<spec role="editors-copy" xmlns:spec="http://expath.org/ns/xmlspec">
    <header>
       <title>HTTP Client Module</title>
       <subtitle>EXPath Candidate Module 13 April 2009</subtitle>
@@ -82,10 +82,10 @@
             HTTP request and return the corresponding response.  It supports
             HTTP multi-part messages.  Here is the signature of this function:
             <eg>
-<fg:function>http:send-request</fg:function>($uri as <fg:type>xs:string?</fg:type>,
-                  $request as <fg:type>element(http:request)?</fg:type>,
-                  $content as <fg:type>item()?</fg:type>,
-                  $serial as <fg:type>item()?</fg:type>) as <fg:type>item()+</fg:type></eg>
+<spec:function>http:send-request</spec:function>($uri as <spec:type>xs:string?</spec:type>,
+                  $request as <spec:type>element(http:request)?</spec:type>,
+                  $content as <spec:type>item()?</spec:type>,
+                  $serial as <spec:type>item()?</spec:type>) as <spec:type>item()+</spec:type></eg>
          </p>
          <ulist>
             <item>
@@ -130,12 +130,12 @@
             are convenient shortcuts (corresponding to the full version in which
             corresponding params have been set to the empty sequence.)  They are:
             <eg>
-<fg:function>http:send-request</fg:function>($request as <fg:type>element(http:request)</fg:type>) as <fg:type>item()+</fg:type>
-<fg:function>http:send-request</fg:function>($uri as <fg:type>xs:string?</fg:type>,
-                  $request as <fg:type>element(http:request)?</fg:type>) as <fg:type>item()+</fg:type>
-<fg:function>http:send-request</fg:function>($uri as <fg:type>xs:string?</fg:type>,
-                  $request as <fg:type>element(http:request)?</fg:type>,
-                  $content as <fg:type>item()?</fg:type>) as <fg:type>item()+</fg:type></eg>
+<spec:function>http:send-request</spec:function>($request as <spec:type>element(http:request)</spec:type>) as <spec:type>item()+</spec:type>
+<spec:function>http:send-request</spec:function>($uri as <spec:type>xs:string?</spec:type>,
+                  $request as <spec:type>element(http:request)?</spec:type>) as <spec:type>item()+</spec:type>
+<spec:function>http:send-request</spec:function>($uri as <spec:type>xs:string?</spec:type>,
+                  $request as <spec:type>element(http:request)?</spec:type>,
+                  $content as <spec:type>item()?</spec:type>) as <spec:type>item()+</spec:type></eg>
          </p>
       </div1>
       <div1>

@@ -7,8 +7,8 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://www.w3.org/1999/xhtml"
-                xmlns:ex="http://expath.org/ns/xmlspec"
-                exclude-result-prefixes="ex h"
+                xmlns:spec="http://expath.org/ns/xmlspec"
+                exclude-result-prefixes="#all"
                 version="2.0">
 
    <!--
@@ -77,13 +77,13 @@
       <br/>
    </xsl:template>
 
-   <xsl:template match="ex:function">
+   <xsl:template match="spec:function">
       <code class="function">
          <xsl:apply-templates/>
       </code>
    </xsl:template>
 
-   <xsl:template match="ex:type">
+   <xsl:template match="spec:type">
       <code class="type">
          <xsl:apply-templates/>
       </code>

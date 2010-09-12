@@ -2,7 +2,7 @@
 
 <?oxygen RNGSchema="http://www.w3.org/XML/1998/06/schema/xmlspec.rng" type="xml"?>
 
-<spec role="editors-copy" xmlns:fg="http://www.fgeorges.org/xmlspec">
+<spec role="editors-copy" xmlns:spec="http://expath.org/ns/xmlspec">
    <header>
       <title>ZIP Module</title>
       <w3c-designation>w3c-designation</w3c-designation>
@@ -107,10 +107,10 @@ dir/
          <head>TODO: Old text...</head>
          <p>...:</p>
          <eg>
-<fg:function>http:send-request</fg:function>($request as <fg:type>element(http:request)?</fg:type>,
-                  $href as <fg:type>xs:string?</fg:type>,
-                  $content as <fg:type>item()?</fg:type>,
-                  $serial as <fg:type>item()?</fg:type>) as <fg:type>item()+</fg:type></eg>
+<spec:function>http:send-request</spec:function>($request as <spec:type>element(http:request)?</spec:type>,
+                  $href as <spec:type>xs:string?</spec:type>,
+                  $content as <spec:type>item()?</spec:type>,
+                  $serial as <spec:type>item()?</spec:type>) as <spec:type>item()+</spec:type></eg>
          <ulist>
             <item>
                <p>

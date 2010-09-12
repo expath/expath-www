@@ -81,10 +81,10 @@ div.exampleHeader { font-weight: bold;
             HTTP request and return the corresponding response.  It supports
             HTTP multi-part messages.  Here is the signature of this function:
             <div class="exampleInner"><pre>
-<code xmlns:fg="http://www.fgeorges.org/xmlspec" class="function">http:send-request</code>($uri as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">xs:string?</code>,
-                  $request as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">element(http:request)?</code>,
-                  $content as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">item()?</code>,
-                  $serial as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">item()?</code>) as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">item()+</code></pre></div>
+<code class="function">http:send-request</code>($uri as <code class="type">xs:string?</code>,
+                  $request as <code class="type">element(http:request)?</code>,
+                  $content as <code class="type">item()?</code>,
+                  $serial as <code class="type">item()?</code>) as <code class="type">item()+</code></pre></div>
          </p><ul><li><p>
                   <code>$uri</code> is the HTTP or HTTPS URI to send the request to.  It is an
                   xs:anyURI, but is declared as a string to be able to pass literal
@@ -114,12 +114,12 @@ div.exampleHeader { font-weight: bold;
             are convenient shortcuts (corresponding to the full version in which
             corresponding params have been set to the empty sequence.)  They are:
             <div class="exampleInner"><pre>
-<code xmlns:fg="http://www.fgeorges.org/xmlspec" class="function">http:send-request</code>($request as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">element(http:request)</code>) as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">item()+</code>
-<code xmlns:fg="http://www.fgeorges.org/xmlspec" class="function">http:send-request</code>($uri as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">xs:string?</code>,
-                  $request as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">element(http:request)?</code>) as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">item()+</code>
-<code xmlns:fg="http://www.fgeorges.org/xmlspec" class="function">http:send-request</code>($uri as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">xs:string?</code>,
-                  $request as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">element(http:request)?</code>,
-                  $content as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">item()?</code>) as <code xmlns:fg="http://www.fgeorges.org/xmlspec" class="type">item()+</code></pre></div>
+<code class="function">http:send-request</code>($request as <code class="type">element(http:request)</code>) as <code class="type">item()+</code>
+<code class="function">http:send-request</code>($uri as <code class="type">xs:string?</code>,
+                  $request as <code class="type">element(http:request)?</code>) as <code class="type">item()+</code>
+<code class="function">http:send-request</code>($uri as <code class="type">xs:string?</code>,
+                  $request as <code class="type">element(http:request)?</code>,
+                  $content as <code class="type">item()?</code>) as <code class="type">item()+</code></pre></div>
          </p></div><div class="div1">
 <h2><a name="d2e174" id="d2e174"/>3 Sending a request</h2><p>
             The functions defined in this module make one able to send a request to an

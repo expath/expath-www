@@ -2,7 +2,7 @@
 
 <?oxygen RNGSchema="http://www.w3.org/XML/1998/06/schema/xmlspec.rng" type="xml"?>
 
-<spec role="editors-copy" xmlns:fg="http://www.fgeorges.org/xmlspec">
+<spec role="editors-copy">
    <header>
       <title>Packaging System</title>
       <w3c-designation>w3c-designation</w3c-designation>
