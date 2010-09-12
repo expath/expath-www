@@ -29,11 +29,26 @@
              else
                $param"/>
       </xsl:variable>
-      <web:response status="200" message="Ok">
-         <web:body content-type="text/html" method="xhtml"/>
-      </web:response>
-      <xsl:variable name="doc" as="element(webpage)" select="doc(concat($page, '.xml'))/*"/>
-      <xsl:apply-templates select="$doc"/>
+      <xsl:variable name="file" select="concat($page, '.xml')"/>
+      <xsl:choose>
+         <xsl:when test="doc-available($file)">
+            <web:response status="200" message="Ok">
+               <web:body content-type="text/html" method="xhtml"/>
+            </web:response>
+            <xsl:variable name="doc" as="element(webpage)" select="doc($file)/*"/>
+            <xsl:apply-templates select="$doc">
+               <xsl:with-param name="page-name" select="tokenize($page, '/')[last()]"/>
+            </xsl:apply-templates>
+         </xsl:when>
+         <xsl:otherwise>
+            <web:response status="404" message="Not found">
+               <web:body content-type="text/plain" method="text">
+                  <xsl:text>Resource not found: </xsl:text>
+                  <xsl:value-of select="$page"/>
+               </web:body>
+            </web:response>
+         </xsl:otherwise>
+      </xsl:choose>
    </xsl:function>
 
    <!--
@@ -64,13 +79,18 @@
 
    <!--
        ...
+       
+       TODO: Try to see if the address does resolve to a spec, and if
+       not try to suggest a correct one (e.g. the latest one for the
+       spec, because we allow only addresses starting with a valid
+       spec name...)
    -->
    <xsl:function name="app:spec-servlet">
       <xsl:param name="request" as="element(web:request)"/>
       <xsl:param name="bodies"  as="item()*"/>
       <xsl:variable name="spec" select="$request/web:path/web:match[@name eq 'spec']"/>
-      <xsl:variable name="date" select="$request/web:path/web:match[@name eq 'date']"/>
-      <xsl:variable name="diff" select="$request/web:path/web:match[@name eq 'diff']"/>
+      <xsl:variable name="date" select="translate($request/web:path/web:match[@name eq 'date'], '/', '-')"/>
+      <xsl:variable name="diff" select="$request/web:path/web:match[@name eq 'diff']/'-diff'"/>
       <xsl:variable name="xml"  select="$request/web:path/web:match[@name eq 'xml']"/>
       <xsl:variable name="file" select="concat('spec/', $spec, $date, $diff, ($xml, '.html')[1])"/>
       <web:response status="200" message="Ok">
@@ -89,7 +109,7 @@
       <xsl:param name="request" as="element(web:request)"/>
       <xsl:param name="bodies"  as="item()*"/>
       <xsl:variable name="page" select="$request/web:path/web:match[@name eq 'page']"/>
-      <web:response status="404" message="Ok">
+      <web:response status="404" message="Not found">
          <web:body content-type="text/html" method="xhtml"/>
       </web:response>
       <html>
