@@ -51,9 +51,18 @@
                content="EXPath - Collaboratively Defining Open Standards for Portable XPath Extensions" />
             <meta name="keywords"
                content="EXPath XPath XQuery XSLT functions standards open collaborative portable extensions XML development" />
+            <!-- setup SyntaxHighlighter -->
+            <script type="text/javascript" src="{ $root }js/shCore.js"/>
+            <script type="text/javascript" src="{ $root }js/shBrushXml.js"/>
+            <script type="text/javascript" src="{ $root }js/shBrushXQuery.js"/>
+            <link rel="stylesheet" type="text/css" href="{ $root }style/shCore.css"/>
+            <link rel="stylesheet" type="text/css" href="{ $root }style/shThemeDefault.css"/>
+            <!--link rel="stylesheet" type="text/css" href="{ $root }style/shThemeEmacs.css"/-->
+            <!-- the website layout -->
             <link rel="stylesheet" type="text/css"  href="{ $root }{ $style-default }"/>
-            <link rel="stylesheet" type="text/css"  href="{ $root }{ $style-serial }"/>
+            <!-- shortcut icon -->
             <link rel="shortcut icon" type="image/png" href="{ $root }{ $img-logo }"/>
+            <!-- the atom feed -->
             <link href="atom.xml" type="application/atom+xml" rel="alternate" title="EXPath Atom feed"/>
          </head>
          <body>
@@ -102,6 +111,9 @@
                   </div>
                </div>
             </div>
+            <script type="text/javascript">
+               SyntaxHighlighter.all()
+            </script>
             <xsl:if test="exists($analytics-id)">
                <script type="text/javascript">
                   var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
@@ -360,7 +372,15 @@
    </xsl:template>
 
    <xsl:template match="sample">
-      <xsl:copy-of select="document(@href)"/>
+      <pre>
+         <xsl:if test="exists(@kind)">
+            <xsl:attribute name="class" select="concat('brush: ', @kind)"/>
+         </xsl:if>
+         <!-- resolve relative to the page URI -->
+         <xsl:variable name="uri" select="resolve-uri(@href, base-uri(.))"/>
+         <!-- include the target as text -->
+         <xsl:copy-of select="unparsed-text($uri)"/>
+      </pre>
    </xsl:template>
 
 </xsl:stylesheet>
