@@ -24,7 +24,7 @@
          file, get the JAR file within it, and set your Saxon processor up (especially the
          classpath). Here is an complete example (provided you correctly installed the package in
          your repository, you can just save it in a file and execute it with <code>saxon
-            -xsl:zip-list.xsl -file=.../some/file.zip</code>):</para>
+            -xsl:zip-list.xsl -it=main file=.../some/file.zip</code>):</para>
       <para>
          <sample href="index-1.xsl.sample" kind="xslt"/>
       </para>
