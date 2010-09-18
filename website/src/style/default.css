@@ -2,12 +2,15 @@ pre {
     font-size: 90%;
     overflow: auto;
     width: 90%;
-    height: 100%;
     color: #000000;
     background-color: #eeeeee;
     margin-left: 5%;
     margin-right: 5%;
     margin-bottom: 5pt;
+}
+
+.syntaxhighlighter {
+    overflow: auto;
 }
 
 code {
@@ -57,7 +60,7 @@ fieldset
 a
 {
 color: #B96D00;
-text-decoration: underline;
+text-decoration: none;
 }
 
 a:hover
