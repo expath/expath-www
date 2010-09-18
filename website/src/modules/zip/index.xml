@@ -26,7 +26,7 @@
          your repository, you can just save it in a file and execute it with <code>saxon
             -xsl:zip-list.xsl -file=.../some/file.zip</code>):</para>
       <para>
-         <sample href="index-sample-1.html"/>
+         <sample href="index-1.xsl.sample" kind="xslt"/>
       </para>
    </section>
    <!--secondary box="true">
