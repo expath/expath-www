@@ -62,7 +62,7 @@
       <para>and eventually put it in eXist as the document <code>/db/tmp/out.xml</code>. The
          complete stylesheet is:</para>
       <para>
-         <sample href="samples-1.xsl.sample" kind="xml"/>
+         <sample href="samples-1.xsl.sample" kind="xslt"/>
       </para>
       <para>The main result of the stylesheet is a side effect (the output document has been
          uploaded to eXist) but technically the result of the stylesheet itself (its main result
@@ -74,7 +74,7 @@
       <para>The equivalent XQuery module is as follows (this is just a simple translation of the
          above stylesheet into XQuery):</para>
       <para>
-         <sample href="samples-10.xq.sample"/>
+         <sample href="samples-10.xq.sample" kind="xquery"/>
       </para>
    </section>
    <section id="contacts">
@@ -102,7 +102,7 @@
       <para>Finally, this is the whole stylesheet. Run it by applying it to any XML document or with
          the initial template <code>main</code>, and setting both parameters account and pwd.</para>
       <para>
-         <sample href="samples-7.xsl.sample" kind="xml"/>
+         <sample href="samples-7.xsl.sample" kind="xslt"/>
       </para>
    </section>
    <section id="soap">
@@ -110,7 +110,7 @@
       <para>Here is a complete stylesheet showing a sample of use of this extension that call a Web
          service by sending it a SOAP message:</para>
       <para>
-         <sample href="samples-8.xsl.sample" kind="xml"/>
+         <sample href="samples-8.xsl.sample" kind="xslt"/>
       </para>
       <para>When you run the above stylesheet, you should get the following result:</para>
       <para>

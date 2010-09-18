@@ -35,7 +35,7 @@
             <code>Content-Type</code> returned by the server. Here is a simple example of call in
          XQuery, which sends a text content by POST:</para>
       <para>
-         <sample href="index-1.xq.sample"/>
+         <sample href="index-1.xq.sample" kind="xquery"/>
       </para>
       <para>The response element can look like the following:</para>
       <para>
