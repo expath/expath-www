@@ -220,11 +220,11 @@
          implementation can also define its own elements (in its own namespace). For instance, the
          package for the Java implementation for Saxon of the EXPath HTTP Client contains the
          following:</para>
-      <programlisting>&lt;java xmlns="http://expath.org/ns/pkg/saxon">
+      <programlisting>&lt;saxon xmlns="http://expath.org/ns/pkg/saxon">
    &lt;jar>saxon/jar/expath-http-client-saxon.jar&lt;/jar>
    &lt;function>org.expath.httpclient.saxon.SendRequestFunction&lt;/function>
    ...
-   &lt;saxon></programlisting>
+&lt;saxon></programlisting>
       <para>The Packaging System specification defines the format of the packages. That is required
          to ensure compatibility accross different implementations. So while everything else is
          implementation-defined, an implementation will typically use the following components:</para>
