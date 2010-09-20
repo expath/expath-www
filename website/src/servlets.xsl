@@ -3,12 +3,14 @@
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:pkg="http://expath.org/ns/pkg"
                 xmlns:web="http://expath.org/ns/webapp"
+                xmlns:file="http://expath.org/ns/file"
                 xmlns:app="http://expath.org/ns/website"
                 xmlns:html="http://www.w3.org/1999/xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 exclude-result-prefixes="#all"
                 version="2.0">
 
+   <xsl:import href="http://expath.org/ns/file.xsl"/>
    <xsl:import href="http://expath.org/ns/website/webpage.xsl"/>
 
    <pkg:import-uri>http://expath.org/ns/website/servlets.xsl</pkg:import-uri>
@@ -58,7 +60,7 @@
       <xsl:param name="request" as="element(web:request)"/>
       <xsl:param name="bodies"  as="item()*"/>
       <xsl:variable name="page" select="$request/web:path/web:match[@name eq 'page']"/>
-      <web:response status="404" message="Ok">
+      <web:response status="404" message="Not found">
          <web:body content-type="text/html" method="xhtml"/>
       </web:response>
       <html>
@@ -88,14 +90,82 @@
    <xsl:function name="app:spec-servlet">
       <xsl:param name="request" as="element(web:request)"/>
       <xsl:param name="bodies"  as="item()*"/>
-      <xsl:variable name="spec" select="$request/web:path/web:match[@name eq 'spec']"/>
-      <xsl:variable name="date" select="translate($request/web:path/web:match[@name eq 'date'], '/', '-')"/>
-      <xsl:variable name="diff" select="$request/web:path/web:match[@name eq 'diff']/'-diff'"/>
-      <xsl:variable name="xml"  select="$request/web:path/web:match[@name eq 'xml']"/>
-      <xsl:variable name="file" select="concat('spec/', $spec, $date, $diff, ($xml, '.html')[1])"/>
-      <web:response status="200" message="Ok">
-         <web:body content-type="text/html" src="{ resolve-uri($file) }"/>
-      </web:response>
+      <xsl:variable name="spec"   select="$request/web:path/web:match[@name eq 'spec']"/>
+      <xsl:variable name="editor" select="$request/web:path/web:match[@name eq 'editor']"/>
+      <xsl:variable name="date"   select="$request/web:path/web:match[@name eq 'date']/substring(., 2)"/>
+      <xsl:variable name="diff"   select="$request/web:path/web:match[@name eq 'diff']"/>
+      <xsl:variable name="xml"    select="$request/web:path/web:match[@name eq 'xml']"/>
+      <xsl:variable name="resolved" as="xs:anyURI?" select="
+          app:resolve-spec($spec, $spec, exists($editor), $date, exists($diff), exists($xml))"/>
+      <xsl:choose>
+         <xsl:when test="exists($resolved)">
+            <web:response status="200" message="Ok">
+               <web:body content-type="text/html" src="{ $resolved }"/>
+            </web:response>
+         </xsl:when>
+         <xsl:otherwise>
+            <web:response status="404" message="Not found">
+               <web:body content-type="text/plain" method="text">
+                  <xsl:text>Specification not found: </xsl:text>
+                  <xsl:value-of select="string-join($request/web:path/*[position() gt 1], '')"/>
+               </web:body>
+            </web:response>
+         </xsl:otherwise>
+      </xsl:choose>
+   </xsl:function>
+
+   <xsl:function name="app:resolve-spec" as="xs:anyURI?">
+      <xsl:param name="module" as="xs:string"/>
+      <xsl:param name="spec"   as="xs:string"/>
+      <xsl:param name="editor" as="xs:boolean"/>
+      <xsl:param name="date"   as="xs:string?"/>
+      <xsl:param name="diff"   as="xs:boolean"/>
+      <xsl:param name="xml"    as="xs:boolean"/>
+      <xsl:choose>
+         <xsl:when test="$editor">
+            <xsl:sequence select="
+                resolve-uri(
+                  concat(
+                    'spec/',
+                    $module, '/',
+                    $spec,
+                    '-diff'[$diff],
+                    ('.xml'[$xml], '.html')[1]))"/>
+         </xsl:when>
+         <xsl:when test="exists($date)">
+            <xsl:sequence select="
+                resolve-uri(
+                  concat(
+                    'spec/',
+                    $module, '/',
+                    $spec, '-',
+                    $date,
+                    '-diff'[$diff],
+                    ('.xml'[$xml], '.html')[1]))"/>
+         </xsl:when>
+         <xsl:otherwise>
+            <xsl:variable name="latest" select="app:latest-spec($module, $spec)"/>
+            <xsl:if test="exists($latest)">
+               <xsl:sequence select="
+                   app:resolve-spec($module, $spec, $editor, $latest, $diff, $xml)"/>
+            </xsl:if>
+         </xsl:otherwise>
+      </xsl:choose>
+   </xsl:function>
+
+   <xsl:function name="app:latest-spec" as="xs:string?">
+      <xsl:param name="module" as="xs:string"/>
+      <xsl:param name="spec"   as="xs:string"/>
+      <xsl:variable name="mod-uri" select="resolve-uri(concat('spec/', $module))"/>
+      <xsl:variable name="file-re" select="concat('^', $spec, '-([0-9]{8}).html$')"/>
+      <xsl:variable name="files" as="xs:string*" select="
+          file:old-list($mod-uri)/file:file/xs:string(@name)[matches(., $file-re)]"/>
+      <xsl:variable name="dates" as="xs:string*">
+         <xsl:perform-sort select="for $f in $files return replace($f, $file-re, '$1')">
+            <xsl:sort select="."/>
+         </xsl:perform-sort>
+      </xsl:variable>
+      <xsl:sequence select="$dates[last()]"/>
    </xsl:function>
 
    <!--

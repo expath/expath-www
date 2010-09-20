@@ -21,11 +21,13 @@
    <servlet name="spec">
       <xslt uri="http://expath.org/ns/website/servlets.xsl"
             function="app:spec-servlet"/>
-      <url pattern="/spec/(file|http-client|pkg|webapp|zip)(/20[0-9]{6})?(/diff)?(.xml)?">
+      <!-- TODO: Actually, '/editor' is mutually exclusive with a date. -->
+      <url pattern="/spec/(file|http-client|pkg|webapp|zip)(/editor)?(/20[0-9]{6})?(/diff)?(.xml)?">
          <match group="1" name="spec"/>
-         <match group="2" name="date"/>
-         <match group="3" name="diff"/>
-         <match group="4" name="xml"/>
+         <match group="2" name="editor"/>
+         <match group="3" name="date"/>
+         <match group="4" name="diff"/>
+         <match group="5" name="xml"/>
       </url>
    </servlet>
 
