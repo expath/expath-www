@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="http://expath.org/ns/xmlspec/xmlspec.rnc" type="compact"?>
+<spec role="editors-copy" xmlns:ex="http://expath.org/ns/xmlspec">
+   <header>
+      <title>Geo Module</title>
+      <subtitle>A geospatial API</subtitle>
+      <w3c-designation>w3c-designation</w3c-designation>
+      <w3c-doctype>EXPath Candidate</w3c-doctype>
+      <pubdate>
+         <day>28</day>
+         <month>September</month>
+         <year>2010</year>
+      </pubdate>
+      <publoc>
+         <loc href="http://expath.org/spec/geo/20100928"/>
+      </publoc>
+      <altlocs>
+         <loc href="http://expath.org/spec/geo/20100928.xml">XML</loc>
+         <loc href="http://expath.org/spec/geo/20100928/diff">Revision markup</loc>
+      </altlocs>
+      <latestloc>
+         <loc href="http://expath.org/spec/geo"/>
+      </latestloc>
+      <!--prevlocs>
+         <loc href="http://expath.org/spec/geo/yyyymmdd"/>
+      </prevlocs-->
+      <authlist>
+         <author>
+            <name>Peter Rushforth</name>
+            <affiliation>http://geofunctions.org</affiliation>
+         </author>
+      </authlist>
+      <copyright>
+         <p/>
+      </copyright>
+      <abstract>
+         <p>This proposal provides a geospatial API function interface for XPath 2.0. It defines
+            commonly used and implemented function signatures from the Open Geospatial Consortium
+            Simple Features Common Access API version 1.2, and has been designed to be compatible
+            with XQuery 1.0 and XSLT 2.0, as well as any other XPath 2.0 usage.</p>
+      </abstract>
+      <status>
+         <p>Must be ignored, but is required by the schema...</p>
+      </status>
+      <langusage>
+         <language>langusage</language>
+      </langusage>
+      <revisiondesc>
+         <p>revisiondesc</p>
+      </revisiondesc>
+   </header>
+   <body>
+      <div1>
+         <head>Introduction</head>
+         <p>The EXPath Geo module defines functions that may be applied to well-formed valid
+            geometries conforming to the Open Geospatial Consortium (OGC) Simple Feature (SF) data
+            model. Typically, such features will be encoded as Geography Markup Language geometries.
+            Other encodings, for example KML, may also be supported by an implementation. </p>
+         <p>Consult the OGC SF specification for a complete description of the data model and
+            API. (<loc href="http://www.opengeospatial.org/standards/sfa">OGC 06-103r3</loc>)</p>
+         <div2>
+            <head>Namespace conventions</head>
+            <p>The module defined by this document defines functions in the namespace
+                  <code>http://expath.org/ns/geo</code>. In this document, the <code>geo</code>
+               prefix, when used, is bound to this namespace URI.</p>
+            <p>Error codes are defined in the namespace <code>http://expath.org/ns/error</code>. In
+               this document, the <code>err</code> prefix, when used, is bound to this namespace
+               URI.</p>
+         </div2>
+         <div2>
+            <head>Error management</head>
+            <p>Error conditions are identified by a code (a <code>QName</code>). When such an error
+               condition is reached during the execution of a function, a dynamic error is thrown,
+               with the corresponding error code (as if the standard XPath function
+                  <code>error</code> had been called).</p>
+         </div2>
+      </div1>
+      <div1>
+         <head>Description</head>
+         <p>This EXPath Geo module specification describes a set of functions which are a
+            transcription of functions of the same name from the <loc
+               href="http://www.opengeospatial.org/standards/sfa">Open Geospatial Consoritium (OGC)
+               Simple Feature (SF) access specification, version 1.2.</loc>. As such, the function
+            and parameter names use the dash-separated convention. This differs from the
+            capitalization conventions of the SF functions in other specs, such as <loc
+               href="http://www.opengeospatial.org/standards/sfs">Simple Features for SQL</loc>.</p>
+         <p>OGC SF is a widely and deeply adopted standard which specifies an object data model for
+            spatial (geometry) types. It is abstract in the sense that it does not prescribe a
+            mapping of that model to a specific technology platform or language. At the same time,
+            it does leverage concrete data types (such as double). Other related specifications
+            describe the mapping of the OGC SF to specific technologies, such as SQL databases, COM
+            or CORBA object environments.</p>
+         <p>The Open Geospatial Consortium was an early adopter of XML technology. With the notable
+            exception of operations, OGC Geography Markup Language (GML) provides, among other
+            things, a mapping of the Simple Features data model to XML Schema-based XML technology.
+            While GML provides a sophisticated data modelling environment for development of
+            application schemas for creation, validation and transmission of geographic information
+            in XML, there is an obvious requirement to enable standards-based processing of
+            XML-encoded geographic information. While XSLT, and more recently XQuery, combine superb
+            abilities to access data via XPath, and process any aspect of data encoded in XML, they
+            have heretofore not been typically used to process geographic data by the majority of
+            geomatics programmers. This is largely due to a lack of common support for the OGC SF
+            API in the XSLT and XQuery environments. The EXPath geo module aims to provide an
+            independent specification against which XPath 2.0-based languages such as XSLT and
+            XQuery may implement the OGC SF specification. The manner in which the API is
+            implemented is out of scope to the module: the functions might be implemented as XSLT or
+            XQuery functions, or as extension functions ‘built in’ to the language processor for
+            reasons of efficiency. It is hoped that by providing a specification for function syntax
+            and return types, use of the EXPath Geo module will be implementation-independent and
+            thus portable and interoperable.</p>
+         <p>The data model envisioned by EXPath Geo module is abstract in the sense that it may be
+            possible for module implementers to support more than one encoding on input. Output data
+            types are specified in GML and XML Schema, where appropriate. All that is necessary is
+            that the input geometry be transformable to the model specified by OGC SF and supported
+            by the EXPath implementation. For example, since the KML geometry model is an
+            implementation of some aspects of OGC SF, it could be supported by an EXPath Geo
+            implementation.</p>
+         <p>As an example, consider an XSLT stylesheet which is designed to selectively transform
+            Placemarks from a KML document within a given bounding box, into a CSV file:</p>
+         <eg>&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:gml="http://www.opengis.net/gml"
+                xmlns:kml="http://www.opengis.net/kml/2.2"
+                xmlns:geo="http://expath.org/ns/geo"
+                xmlns:road="http://example.gov/roadworks"
+                version="2.0">
+
+   &lt;xsl:output method="text"/>
+
+   &lt;xsl:variable name="bbox">
+      &lt;gml:Envelope>
+         &lt;gml:lowerCorner>&lt;gml:pos>-63.1335096 46.231024&lt;/gml:pos>&lt;/gml:lowerCorner>
+         &lt;gml:upperCorner>&lt;gml:pos>-63.1175626 46.232928&lt;/gml:pos>&lt;/gml:upperCorner>
+      &lt;/gml:Envelope>
+   &lt;/xsl:variable>
+
+   &lt;xsl:template match="kml:Placemark[geo:intersects(kml:LineString,$bbox)]">
+      &lt;!-- convert Placemarks to a CSV record -->
+      &lt;xsl:value-of select="concat(kml:name, ',', kml:ExtendedData/road:PavementType, ',', geo:length(kml:LineString))"/>
+   &lt;/xsl:template>
+
+&lt;/xsl:stylesheet></eg>
+         <p>Implementations are not limited to GML, KML, nor even XML, on input. It is possible that
+            geometries encoded as “Well Known Text”, GeoJSON, or even “Well Known Binary”, among
+            other possibilities, could be supported by an implementation.</p>
+      </div1>
+      <div1>
+         <head>General functions</head>
+         <eg><ex:function>dimension</ex:function>($geometry as <ex:type>node()</ex:type>) as <ex:type>xs:integer?</ex:type></eg>
+         <p>Returns the number of dimensions of the geometry ie. -1 (null) 0 (point),1 (line),2
+            (area). Always less than or equal to the dimension of the coordinate space.</p>
+         <eg><ex:function>coordinate-dimension</ex:function>($geometry as <ex:type>node()</ex:type>) as <ex:type>xs:integer</ex:type></eg>
+         <p>Returns the number of dimensions of the coordinate reference system of the geometry. ie.
+            2,3,4 dimensional coordinate space; always greater than or equal to the value returned
+            by <code>dimension($geometry)</code>.</p>
+         <!--         <eg>
+            <ex:function>spatial-dimension</ex:function>($geometry as <ex:type>node()</ex:type>) as <ex:type>xs:integer</ex:type>
+         </eg>
+         <p>Seeking clarification on this function.</p>
+-->
+<!-- these types correspond to those non-abstract types found in GML SF 1.0 LEVEL 2 SCHEMA -->
+         <eg><ex:function>geometry-type</ex:function>($geometry as <ex:type>node()</ex:type>) as <ex:type>xs:QName?</ex:type></eg>
+         <p>Returns the name of the geometry type in the GML namespace, or the empty sequence. Must
+            be one of <code>gml:Point</code>, <code>gml:Curve</code>, <code>gml:LineString</code>,
+               <code>gml:Surface</code>, <code>gml:Polygon</code>, <code>gml:MultiPoint</code>,
+               <code>gml:MultiCurve</code>, <code>gml:MultiLineString</code>,
+               <code>gml:MultiSurface</code>, or <code>gml:MultiPolygon</code>.</p>
+         <eg><ex:function>srid</ex:function>($geometry as <ex:type>node()</ex:type>) as <ex:type>xs:anyURI?</ex:type></eg>
+         <p>Returns the URI of the CRS of the geometry, or the empty sequence if unknown.</p>
+         <eg><ex:function>envelope</ex:function>($geometry as <ex:type>node()</ex:type>) as <ex:type>element(gml:Envelope)?</ex:type></eg>
+         <p>Returns the gml:Envelope of the specified geometry.</p>
+         <eg><ex:function>as-text</ex:function>($geometry as <ex:type>node()</ex:type>) as <ex:type>xs:string?</ex:type></eg>
+         <p>Returns the WKT representation of the geometry.</p>
+         <eg><ex:function>as-binary</ex:function>($geometry as <ex:type>node()</ex:type>) as <ex:type>xs:base64Binary?</ex:type></eg>
+         <p>Returns the base64-encoded Well Known Binary (WKB) representation of the geometry.</p>
+         <eg><ex:function>is-empty</ex:function>($geometry as <ex:type>node()</ex:type>) as <ex:type>xs:boolean</ex:type></eg>
+         <p>Returns whether the geometry is empty.</p>
+         <eg><ex:function>is-simple</ex:function>($geometry as <ex:type>node()</ex:type>) as <ex:type>xs:boolean</ex:type></eg>
+         <p>Returns whether the geometry is simple (ie. does not self-intersect and does not pass
+            through the same point more than once (may be a ring)).</p>
+         <eg><ex:function>is-3d</ex:function>($geometry as <ex:type>node()</ex:type>) as <ex:type>xs:boolean</ex:type></eg>
+         <p>Returns whether the geometry has z values.</p>
+         <eg><ex:function>is-measured</ex:function>($geometry as <ex:type>node()</ex:type>) as <ex:type>xs:boolean</ex:type></eg>
+         <p>Returns whether the geometry has m values.</p>
+         <eg><ex:function>boundary</ex:function>($geometry as <ex:type>node()</ex:type>) as <ex:type>element()*</ex:type></eg>
+         <p>Returns the boundary of the geometry, in GML. The return value is a sequence of either
+               <code>gml:Point</code> or <code>gml:LinearRing</code> elements.</p>
+      </div1>
+      <div1>
+         <head>Spatial predicate functions</head>
+         <eg><ex:function>equals</ex:function>($geometry as <ex:type>node()</ex:type>,
+       $another-geometry as <ex:type>node()</ex:type>) as <ex:type>xs:boolean</ex:type></eg>
+         <p>Returns whether <code>$geometry</code> is spatially equal to <code>$another-geometry</code>.</p>
+         <eg><ex:function>disjoint</ex:function>($geometry as <ex:type>node()</ex:type>,
+         $another-geometry as <ex:type>node()</ex:type>) as <ex:type>xs:boolean</ex:type></eg>
+         <p>Returns whether <code>$geometry</code> is spatially disjoint from <code>$another-geometry</code>.</p>
+         <eg><ex:function>intersects</ex:function>($geometry as <ex:type>node()</ex:type>,
+           $another-geometry as <ex:type>node()</ex:type>) as <ex:type>xs:boolean</ex:type></eg>
+         <p>Returns whether <code>$geometry</code> spatially intersects <code>$another-geometry</code>.</p>
+         <eg><ex:function>touches</ex:function>($geometry as <ex:type>node()</ex:type>,
+        $another-geometry as <ex:type>node()</ex:type>) as <ex:type>xs:boolean</ex:type></eg>
+         <p>Returns whether <code>$geometry</code> spatially touches <code>$another-geometry</code>.</p>
+         <eg><ex:function>crosses</ex:function>($geometry as <ex:type>node()</ex:type>,
+        $another-geometry as <ex:type>node()</ex:type>) as <ex:type>xs:boolean</ex:type></eg>
+         <p>Returns whether <code>$geometry</code> spatially crosses <code>$another-geometry</code>.</p>
+         <eg><ex:function>within</ex:function>($geometry as <ex:type>node()</ex:type>,
+       $another-geometry as <ex:type>node()</ex:type>) as <ex:type>xs:boolean</ex:type></eg>
+         <p>Returns whether <code>$geometry</code> is spatially within <code>$another-geometry</code>.</p>
+         <eg><ex:function>contains</ex:function>($geometry as <ex:type>node()</ex:type>,
+         $another-geometry as <ex:type>node()</ex:type>) as <ex:type>xs:boolean</ex:type></eg>
+         <p>Returns whether <code>$geometry</code> spatially contains <code>$another-geometry</code>.</p>
+         <eg><ex:function>overlaps</ex:function>($geometry as <ex:type>node()</ex:type>,
+         $another-geometry as <ex:type>node()</ex:type>) as <ex:type>xs:boolean</ex:type></eg>
+         <p>Returns whether <code>$geometry</code> spatially overlaps <code>$another-geometry</code>.</p>
+         <eg><ex:function>relate</ex:function>($geometry as <ex:type>node()</ex:type>,
+       $another-geometry as <ex:type>node()</ex:type>, 
+       $intersection-matrix-pattern as <ex:type>xs:string</ex:type>) as <ex:type>xs:boolean</ex:type></eg>
+         <p>Returns whether relationships between the boundaries, interiors and exteriors of
+               <code>$geometry</code> and <code>$another-geometry</code> match the pattern specified
+            in <code>$intersection-matrix-pattern</code>.</p>
+      </div1>
+      <div1>
+         <head>Analysis functions</head>
+         <eg><ex:function>distance</ex:function>($geometry as <ex:type>node()</ex:type>,
+         $another-geometry as <ex:type>node()</ex:type>) as <ex:type>xs:double</ex:type></eg>
+         <p>Returns the shortest distance, in the units of the spatial reference system of
+               <code>$geometry</code>, between the geometries, where that distance is the distance
+            between a point on each of the geometries.</p>
+         <eg><ex:function>buffer</ex:function>($geometry as <ex:type>node()</ex:type>, 
+       $distance as <ex:type>xs:double</ex:type>) as <ex:type>element()*</ex:type></eg>
+         <p>Returns a sequence of zero or more polygonal geometries representing the buffer by
+               <code>$distance</code> of <code>$geometry</code>, in the spatial reference system of
+               <code>$geometry</code>. The returned elements must be either <code>gml:Polygon</code>
+            or <code>gml:MultiPolygon</code>.</p>
+         <eg><ex:function>convex-hull</ex:function>($geometry as <ex:type>node()</ex:type>) as <ex:type>element()?</ex:type></eg>
+         <p>Returns the convex hull geometry of <code>$geometry</code> in GML, or the empty
+            sequence. The returned element must be either <code>gml:Polygon</code>,
+               <code>gml:LineString</code> or <code>gml:Point</code>.</p>
+         <eg><ex:function>intersection</ex:function>($geometry as <ex:type>node()</ex:type>,
+             $another-geometry as <ex:type>node()</ex:type>) as <ex:type>element()?</ex:type></eg>
+         <p>Returns the intersection geometry of <code>$geometry</code> with
+               <code>$another-geometry</code>, in GML. The returned element must be either
+               <code>gml:Point</code>, <code>gml:LineString</code>, <code>gml:Polygon</code>,
+               <code>gml:MultiPoint</code>, <code>gml:MultiLineString</code> or
+               <code>gml:MultiPolygon</code>.</p>
+         <eg><ex:function>union</ex:function>($geometry as <ex:type>node()</ex:type>,
+      $another-geometry as <ex:type>node()</ex:type>) as <ex:type>element()?</ex:type></eg>
+         <p>Returns the union geometry of <code>$geometry</code> with
+            <code>$another-geometry</code>, in GML. The returned element must be either
+               <code>gml:Point</code>, <code>gml:Curve</code>, <code>gml:LineString</code>,
+               <code>gml:Surface</code>, <code>gml:Polygon</code>, <code>gml:MultiPoint</code>,
+               <code>gml:MultiCurve</code>, <code>gml:MultiLineString</code> or <code>gml:
+               MultiPolygon</code>.</p>
+         <eg><ex:function>difference</ex:function>($geometry as <ex:type>node()</ex:type>,
+           $another-geometry as <ex:type>node()</ex:type>) as <ex:type>element()?</ex:type></eg>
+         <p>Returns the difference geometry of <code>$geometry</code> with
+               <code>$another-geometry</code>, in GML. The returned element must be either
+               <code>gml:Point</code>, <code>gml:Curve</code>, <code>gml:LineString</code>,
+               <code>gml:Surface</code>, <code>gml:Polygon</code>, <code>gml:MultiPoint</code>,
+               <code>gml:MultiCurve</code>, <code>gml:MultiLineString</code> or
+               <code>gml:MultiPolygon</code>.</p>
+         <eg><ex:function>sym-difference</ex:function>($geometry as <ex:type>node()</ex:type>,
+               $another-geometry as <ex:type>node()</ex:type>) as <ex:type>element()?</ex:type></eg>
+         <p>Returns the symmetric difference geometry of <code>$geometry</code> with
+               <code>$another-geometry</code>, in GML. The returned element must be either
+               <code>gml:Point</code>, <code>gml:Curve</code>, <code>gml:LineString</code>,
+               <code>gml:Surface</code>, <code>gml:Polygon</code>, <code>gml:MultiPoint</code>,
+               <code>gml:MultiCurve</code>, <code>gml:MultiLineString</code> or
+               <code>gml:MultiPolygon</code>.</p>
+      </div1>
+      <div1>
+         <head>Functions specific to geometry type</head>
+         <div2>
+            <head>GeometryCollection</head>
+            <eg><ex:function>num-geometries</ex:function>($geometry-collection as <ex:type>node()</ex:type>) as <ex:type>xs:integer</ex:type></eg>
+            <p>Returns the number of geometries in <code>$geometry-collection</code>.</p>
+            <eg><ex:function>geometry-n</ex:function>($geometry-collection as <ex:type>node()</ex:type>) as <ex:type>node()</ex:type></eg>
+            <p>Returns the Nth geometry in <code>$geometry-collection</code>, in GML.</p>
+         </div2>
+         <div2>
+            <head>Point</head>
+            <eg><ex:function>x</ex:function>($point as <ex:type>node()</ex:type>) as <ex:type>xs:double</ex:type></eg>
+            <p>Returns the x-coordinate value for <code>$point</code>.</p>
+            <eg><ex:function>y</ex:function>($point as <ex:type>node()</ex:type>) as <ex:type>xs:double</ex:type></eg>
+            <p>Returns the y-coordinate value for <code>$point</code>.</p>
+            <eg><ex:function>z</ex:function>($point as <ex:type>node()</ex:type>) as <ex:type>xs:double?</ex:type></eg>
+            <p>Returns the z-coordinate value for <code>$point</code>, or the empty sequence.</p>
+            <eg><ex:function>m</ex:function>($point as <ex:type>node()</ex:type>) as <ex:type>xs:double?</ex:type></eg>
+            <p>Returns the m-coordinate value for <code>$point</code>, or the empty sequence.</p>
+         </div2>
+         <div2>
+            <head>Curve</head>
+            <eg><ex:function>length</ex:function>($curve as <ex:type>node()</ex:type>) as <ex:type>xs:double</ex:type></eg>
+            <p>Returns the length of <code>$curve</code>.</p>
+            <eg><ex:function>start-point</ex:function>($curve as <ex:type>node()</ex:type>) as <ex:type>element(gml:Point)</ex:type></eg>
+            <p>Returns the starting point of <code>$curve</code>.</p>
+            <eg><ex:function>end-point</ex:function>($curve as <ex:type>node()</ex:type>) as <ex:type>element(gml:Point)</ex:type></eg>
+            <p>Returns the end point point of <code>$curve</code>.</p>
+            <eg><ex:function>is-closed</ex:function>($curve as <ex:type>node()</ex:type>) as <ex:type>xs:boolean</ex:type></eg>
+            <p>Returns true if the curve is closed (start point equals end point).</p>
+            <eg><ex:function>is-ring</ex:function>($curve as <ex:type>node()</ex:type>) as <ex:type>xs:boolean</ex:type></eg>
+            <p>Returns true if the curve is closed and simple (start point equals end point and does
+               not pass through the same point more than once.</p>
+            <div3>
+               <head>LineString, Line, LinearRing</head>
+               <p>In addition to those functions applicable to all Curves, LineString also defines
+                  the following functions (Line and LinearRing being specializations of
+                  LineString):</p>
+               <eg><ex:function>num-points</ex:function>($line-string as <ex:type>node()</ex:type>) as <ex:type>xs:integer</ex:type></eg>
+               <p>Returns the number of points in the <code>$line-string</code>. A Line is a
+                  LineString with exactly two points. See above for definition of LinearRing.</p>
+               <eg><ex:function>point-n</ex:function>($line-string as <ex:type>node()</ex:type>, 
+        $n as <ex:type>xs:integer</ex:type>) as <ex:type>node()</ex:type></eg>
+               <p>Returns the Nth point in <code>$line-string</code>, as a gml:Point.</p>
+            </div3>
+         </div2>
+         <div2>
+            <head>MultiLineString</head>
+            <p>MultiLineString is a subclass of GeometryCollection and so implements functions
+               applicable to that type. In addition, the following functions may be applied to
+               MultiLineString elements:</p>
+            <eg><ex:function>is-closed</ex:function>($multi-line-string as <ex:type>node()</ex:type>) as <ex:type>xs:boolean</ex:type></eg>
+            <p>Returns true if the start point = end point for each <code>gml:LineString</code> in
+                  <code>$line-string</code>.</p>
+            <eg><ex:function>length</ex:function>($multi-line-string as <ex:type>node()</ex:type>) as <ex:type>xs:double</ex:type></eg>
+            <p>Returns the length of <code>$multi-line-string</code> which is equal to the sum of
+               the lengths of the component <code>gml:LineStrings</code>.</p>
+         </div2>
+         <div2>
+            <head>Surface</head>
+            <eg><ex:function>area</ex:function>($surface as <ex:type>node()</ex:type>) as <ex:type>xs:double</ex:type></eg>
+            <p>Returns the area of <code>$surface</code> in units of its spatial reference system.</p>
+            <eg><ex:function>centroid</ex:function>($surface as <ex:type>node()</ex:type>) as <ex:type>node()</ex:type></eg>
+            <p>Returns the mathematical centroid of <code>$surface</code> as a
+                  <code>gml:Point</code>. The point is not guaranteed to be on the
+                  <code>$surface</code>.</p>
+            <eg><ex:function>point-on-surface</ex:function>($surface as <ex:type>node()</ex:type>) as <ex:type>node()</ex:type></eg>
+            <p>Returns a <code>gml:Point</code> guaranteed to be on <code>$surface</code>.</p>
+            <eg><ex:function>num-patches</ex:function>($polyhedral-surface as <ex:type>node()</ex:type>) as <ex:type>xs:integer</ex:type></eg>
+            <p>Returns the number of component polygons in <code>$polyhedral-surface</code>.</p>
+            <eg><ex:function>patch-n</ex:function>($polyhedral-surface as <ex:type>node()</ex:type>, 
+        $n as <ex:type>xs:integer</ex:type>) as <ex:type>node()</ex:type></eg>
+            <p>Returns the <code>$n</code>-th <code>gml:Polygon</code> in the
+                  <code>$polyhedral-surface</code>.</p>
+            <eg><ex:function>bounding-polygons</ex:function>($polyhedral-surface as <ex:type>node()</ex:type>, 
+                  $polygon as <ex:type>node()</ex:type>) as <ex:type>gml:Polygon*</ex:type></eg>
+            <p>Returns a sequence of polygons in <code>$polyhedral-surface</code> that bound the
+               given <code>$polygon</code>, where <code>$polygon</code> is any polygon in the
+               surface.</p>
+            <eg><ex:function>is-closed</ex:function>($polyhedral-surface as <ex:type>node()</ex:type>) as <ex:type>xs:boolean</ex:type></eg>
+            <p>Returns true if the <code>$polyhedral-surface</code> closes on itself, and thus has
+               no boundary and encloses a solid.</p>
+         </div2>
+         <div2>
+            <head>Polygon</head>
+            <eg><ex:function>exterior-ring</ex:function>($polygon as <ex:type>node()</ex:type>) as <ex:type>gml:LineString</ex:type></eg>
+            <p>Returns the outer ring of <code>$polygon</code>, in GML.</p>
+            <eg><ex:function>num-interior-ring</ex:function>($polygon as <ex:type>node()</ex:type>) as <ex:type>xs:integer</ex:type></eg>
+            <p>Returns the number of interior rings in <code>$polygon</code>.</p>
+            <eg><ex:function>interior-ring-n</ex:function>($polygon as <ex:type>node()</ex:type>,
+                $n as <ex:type>xs:integer</ex:type>) as <ex:type>gml:LineString</ex:type></eg>
+            <p>Returns the <code>$n</code>-th interior ring of <code>$polygon</code>, in GML.</p>
+         </div2>
+         <div2>
+            <head>MultiSurface, MultiPolygon</head>
+            <p>MultiSurface and MultiPolygon are GeometryCollections, and so implement functions
+               applicable to that type. They also support the following functions:</p>
+            <eg><ex:function>area</ex:function>($multi-surface as <ex:type>node()</ex:type>) as <ex:type>xs:double</ex:type></eg>
+            <p>Returns the area of <code>$multi-surface</code> in units of its spatial reference system.</p>
+            <eg><ex:function>centroid</ex:function>($multi-surface as <ex:type>node()</ex:type>) as <ex:type>gml:Point</ex:type></eg>
+            <p>Returns the mathematical centroid of <code>$multi-surface</code> as a
+                  <code>gml:Point</code>. The point is not guaranteed to be on the
+                  <code>$multi-surface</code>.</p>
+            <eg><ex:function>point-on-surface</ex:function>($multi-surface as <ex:type>node()</ex:type>) as <ex:type>gml:Point</ex:type></eg>
+            <p>Returns a point guaranteed to be on <code>$multi-surface</code>, in GML.</p>
+         </div2>
+      </div1>
+   </body>
+   <back>
+      <div1>
+         <head>References</head>
+         <blist>
+            <bibl id="OGC-SF" key="OGC Simple Feature Access">
+               <loc href="http://www.opengeospatial.org/standards/sfa">Open Geospatial
+                  Consortium, Simple Feature access, Part 1 Common Architecture</loc>. John R.
+               Herring, Editor </bibl>
+            <bibl id="OGC-GML" key="OGC Geography Markup Language">
+               <loc href="http://www.opengeospatial.org/standards/gml">OpenGIS Geography Markup
+                  Language (GML) Encoding Standard</loc>. Clemens Portele, Editor</bibl>
+            <bibl id="OGC-SFS" key="OGC Simple Feature SQL Option">
+               <loc href="http://www.opengeospatial.org/standards/sfa">OpenGIS Implementation
+                  Specification for Geographic information - Simple feature access - Part 2:
+                  SQL option </loc>. John R. Herring, Editor </bibl>
+            <bibl id="OGC-KML" key="OGC KML">
+               <loc href="http://www.opengeospatial.org/standards/gml">OGC KML</loc>. Tim
+               Wilson, Editor</bibl>
+         </blist>
+      </div1>
+      <!--div1>
+         <head>Summary of Error Conditions</head>
+         <blist>
+            <bibl id="errGEO001" key="err:GEO001"/>
+         </blist>
+      </div1-->
+   </back>
+</spec>
