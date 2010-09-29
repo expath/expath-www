@@ -135,7 +135,8 @@
 
    &lt;xsl:template match="kml:Placemark[geo:intersects(kml:LineString,$bbox)]">
       &lt;!-- convert Placemarks to a CSV record -->
-      &lt;xsl:value-of select="concat(kml:name, ',', kml:ExtendedData/road:PavementType, ',', geo:length(kml:LineString))"/>
+      &lt;xsl:value-of separator=", " select="
+          kml:name, kml:ExtendedData/road:PavementType, geo:length(kml:LineString)"/>
    &lt;/xsl:template>
 
 &lt;/xsl:stylesheet></eg>
