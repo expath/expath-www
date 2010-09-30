@@ -46,45 +46,45 @@ div.exampleHeader { font-weight: bold;
          <a href="http://expath.org/spec/geo/20100930">http://expath.org/spec/geo/20100930</a>
       </dd><dt>Latest version:</dt><dd>
          <a href="http://expath.org/spec/geo">http://expath.org/spec/geo</a>
-      </dd><dt>Editor:</dt><dd>Peter Rushforth, http://geofunctions.org</dd></dl><p>This document is also available in these non-normative formats: <a href="http://expath.org/spec/geo/20100930.xml">XML</a> and <a href="http://expath.org/spec/geo/20100930/diff">Revision markup</a>.</p><p class="copyright"></p></div><hr /><div>
+      </dd><dt>Editor:</dt><dd>Peter Rushforth, http://geofunctions.org</dd></dl><p>This document is also available in these non-normative formats: <a href="http://expath.org/spec/geo/20100930.xml">XML</a>.</p><p class="copyright"></p></div><hr /><div>
 <h2><a name="abstract" id="abstract"></a>Abstract</h2><p>This proposal provides a geospatial API function interface for XPath 2.0. It defines
             commonly used and implemented function signatures from the Open Geospatial Consortium
             Simple Features Common Access API version 1.2, and has been designed to be compatible
             with XQuery 1.0 and XSLT 2.0, as well as any other XPath 2.0 usage.</p></div><div class="toc">
-<h2><a name="contents" id="contents"></a>Table of Contents</h2><p class="toc">1 <a href="#d2e58">Introduction</a><br />
-    1.1 <a href="#d2e68">Namespace conventions</a><br />
-    1.2 <a href="#d2e87">Error management</a><br />
-2 <a href="#d2e98">Description</a><br />
-3 <a href="#d2e121">General functions</a><br />
-4 <a href="#d2e300">Spatial predicate functions</a><br />
-5 <a href="#d2e490">Analysis functions</a><br />
-6 <a href="#d2e746">Functions specific to geometry type</a><br />
-    6.1 <a href="#d2e749">GeometryCollection</a><br />
-    6.2 <a href="#d2e780">Point</a><br />
-    6.3 <a href="#d2e839">Curve</a><br />
-        6.3.1 <a href="#d2e907">LineString, Line, LinearRing</a><br />
-    6.4 <a href="#d2e943">MultiLineString</a><br />
-    6.5 <a href="#d2e982">Surface</a><br />
-    6.6 <a href="#d2e1111">Polygon</a><br />
-    6.7 <a href="#d2e1162">MultiSurface, MultiPolygon</a><br />
+<h2><a name="contents" id="contents"></a>Table of Contents</h2><p class="toc">1 <a href="#d2e57">Introduction</a><br />
+    1.1 <a href="#d2e67">Namespace conventions</a><br />
+    1.2 <a href="#d2e86">Error management</a><br />
+2 <a href="#d2e97">Description</a><br />
+3 <a href="#d2e120">General functions</a><br />
+4 <a href="#d2e299">Spatial predicate functions</a><br />
+5 <a href="#d2e489">Analysis functions</a><br />
+6 <a href="#d2e745">Functions specific to geometry type</a><br />
+    6.1 <a href="#d2e748">GeometryCollection</a><br />
+    6.2 <a href="#d2e779">Point</a><br />
+    6.3 <a href="#d2e838">Curve</a><br />
+        6.3.1 <a href="#d2e906">LineString, Line, LinearRing</a><br />
+    6.4 <a href="#d2e942">MultiLineString</a><br />
+    6.5 <a href="#d2e981">Surface</a><br />
+    6.6 <a href="#d2e1110">Polygon</a><br />
+    6.7 <a href="#d2e1161">MultiSurface, MultiPolygon</a><br />
 </p>
-<h3><a name="appendices" id="appendices"></a>Appendix</h3><p class="toc">A <a href="#d2e1216">References</a><br />
+<h3><a name="appendices" id="appendices"></a>Appendix</h3><p class="toc">A <a href="#d2e1215">References</a><br />
 </p></div><hr /><div class="body"><div class="div1">
-<h2><a name="d2e58" id="d2e58"></a>1 Introduction</h2><p>The EXPath Geo module defines functions that may be applied to well-formed valid
+<h2><a name="d2e57" id="d2e57"></a>1 Introduction</h2><p>The EXPath Geo module defines functions that may be applied to well-formed valid
             geometries conforming to the Open Geospatial Consortium (OGC) Simple Feature (SF) data
             model. Typically, such features will be encoded as Geography Markup Language geometries.
             Other encodings, for example KML, may also be supported by an implementation. </p><p>Consult the OGC SF specification for a complete description of the data model and
             API. (<a href="http://www.opengeospatial.org/standards/sfa">OGC 06-103r3</a>)</p><div class="div2">
-<h3><a name="d2e68" id="d2e68"></a>1.1 Namespace conventions</h3><p>The module defined by this document defines functions in the namespace
+<h3><a name="d2e67" id="d2e67"></a>1.1 Namespace conventions</h3><p>The module defined by this document defines functions in the namespace
                   <code>http://expath.org/ns/geo</code>. In this document, the <code>geo</code>
                prefix, when used, is bound to this namespace URI.</p><p>Error codes are defined in the namespace <code>http://expath.org/ns/error</code>. In
                this document, the <code>err</code> prefix, when used, is bound to this namespace
                URI.</p></div><div class="div2">
-<h3><a name="d2e87" id="d2e87"></a>1.2 Error management</h3><p>Error conditions are identified by a code (a <code>QName</code>). When such an error
+<h3><a name="d2e86" id="d2e86"></a>1.2 Error management</h3><p>Error conditions are identified by a code (a <code>QName</code>). When such an error
                condition is reached during the execution of a function, a dynamic error is thrown,
                with the corresponding error code (as if the standard XPath function
                   <code>error</code> had been called).</p></div></div><div class="div1">
-<h2><a name="d2e98" id="d2e98"></a>2 Description</h2><p>This EXPath Geo module specification describes a set of functions which are a
+<h2><a name="d2e97" id="d2e97"></a>2 Description</h2><p>This EXPath Geo module specification describes a set of functions which are a
             transcription of functions of the same name from the <a href="http://www.opengeospatial.org/standards/sfa">Open Geospatial Consoritium (OGC)
                Simple Feature (SF) access specification, version 1.2.</a>. As such, the function
             and parameter names use the dash-separated convention. This differs from the
@@ -142,7 +142,7 @@ div.exampleHeader { font-weight: bold;
 &lt;/xsl:stylesheet&gt;</pre></div><p>Implementations are not limited to GML, KML, nor even XML, on input. It is possible that
             geometries encoded as “Well Known Text”, GeoJSON, or even “Well Known Binary”, among
             other possibilities, could be supported by an implementation.</p></div><div class="div1">
-<h2><a name="d2e121" id="d2e121"></a>3 General functions</h2><div class="exampleInner"><pre><code class="function">dimension</code>($geometry as <code class="type">node()</code>) as <code class="type">xs:integer?</code></pre></div><p>Returns the number of dimensions of the geometry ie. -1 (null) 0 (point),1 (line),2
+<h2><a name="d2e120" id="d2e120"></a>3 General functions</h2><div class="exampleInner"><pre><code class="function">dimension</code>($geometry as <code class="type">node()</code>) as <code class="type">xs:integer?</code></pre></div><p>Returns the number of dimensions of the geometry ie. -1 (null) 0 (point),1 (line),2
             (area). Always less than or equal to the dimension of the coordinate space.</p><div class="exampleInner"><pre><code class="function">coordinate-dimension</code>($geometry as <code class="type">node()</code>) as <code class="type">xs:integer</code></pre></div><p>Returns the number of dimensions of the coordinate reference system of the geometry. ie.
             2,3,4 dimensional coordinate space; always greater than or equal to the value returned
             by <code>dimension($geometry)</code>.</p><div class="exampleInner"><pre><code class="function">geometry-type</code>($geometry as <code class="type">node()</code>) as <code class="type">xs:QName?</code></pre></div><p>Returns the name of the geometry type in the GML namespace, or the empty sequence. Must
@@ -152,7 +152,7 @@ div.exampleHeader { font-weight: bold;
                <code>gml:MultiSurface</code>, or <code>gml:MultiPolygon</code>.</p><div class="exampleInner"><pre><code class="function">srid</code>($geometry as <code class="type">node()</code>) as <code class="type">xs:anyURI?</code></pre></div><p>Returns the URI of the CRS of the geometry, or the empty sequence if unknown.</p><div class="exampleInner"><pre><code class="function">envelope</code>($geometry as <code class="type">node()</code>) as <code class="type">element(gml:Envelope)?</code></pre></div><p>Returns the gml:Envelope of the specified geometry.</p><div class="exampleInner"><pre><code class="function">as-text</code>($geometry as <code class="type">node()</code>) as <code class="type">xs:string?</code></pre></div><p>Returns the WKT representation of the geometry.</p><div class="exampleInner"><pre><code class="function">as-binary</code>($geometry as <code class="type">node()</code>) as <code class="type">xs:base64Binary?</code></pre></div><p>Returns the base64-encoded Well Known Binary (WKB) representation of the geometry.</p><div class="exampleInner"><pre><code class="function">is-empty</code>($geometry as <code class="type">node()</code>) as <code class="type">xs:boolean</code></pre></div><p>Returns whether the geometry is empty.</p><div class="exampleInner"><pre><code class="function">is-simple</code>($geometry as <code class="type">node()</code>) as <code class="type">xs:boolean</code></pre></div><p>Returns whether the geometry is simple (ie. does not self-intersect and does not pass
             through the same point more than once (may be a ring)).</p><div class="exampleInner"><pre><code class="function">is-3d</code>($geometry as <code class="type">node()</code>) as <code class="type">xs:boolean</code></pre></div><p>Returns whether the geometry has z values.</p><div class="exampleInner"><pre><code class="function">is-measured</code>($geometry as <code class="type">node()</code>) as <code class="type">xs:boolean</code></pre></div><p>Returns whether the geometry has m values.</p><div class="exampleInner"><pre><code class="function">boundary</code>($geometry as <code class="type">node()</code>) as <code class="type">element()*</code></pre></div><p>Returns the boundary of the geometry, in GML. The return value is a sequence of either
                <code>gml:Point</code> or <code>gml:LinearRing</code> elements.</p></div><div class="div1">
-<h2><a name="d2e300" id="d2e300"></a>4 Spatial predicate functions</h2><div class="exampleInner"><pre><code class="function">equals</code>($geometry as <code class="type">node()</code>,
+<h2><a name="d2e299" id="d2e299"></a>4 Spatial predicate functions</h2><div class="exampleInner"><pre><code class="function">equals</code>($geometry as <code class="type">node()</code>,
        $another-geometry as <code class="type">node()</code>) as <code class="type">xs:boolean</code></pre></div><p>Returns whether <code>$geometry</code> is spatially equal to <code>$another-geometry</code>.</p><div class="exampleInner"><pre><code class="function">disjoint</code>($geometry as <code class="type">node()</code>,
          $another-geometry as <code class="type">node()</code>) as <code class="type">xs:boolean</code></pre></div><p>Returns whether <code>$geometry</code> is spatially disjoint from <code>$another-geometry</code>.</p><div class="exampleInner"><pre><code class="function">intersects</code>($geometry as <code class="type">node()</code>,
            $another-geometry as <code class="type">node()</code>) as <code class="type">xs:boolean</code></pre></div><p>Returns whether <code>$geometry</code> spatially intersects <code>$another-geometry</code>.</p><div class="exampleInner"><pre><code class="function">touches</code>($geometry as <code class="type">node()</code>,
@@ -165,7 +165,7 @@ div.exampleHeader { font-weight: bold;
        $intersection-matrix-pattern as <code class="type">xs:string</code>) as <code class="type">xs:boolean</code></pre></div><p>Returns whether relationships between the boundaries, interiors and exteriors of
                <code>$geometry</code> and <code>$another-geometry</code> match the pattern specified
             in <code>$intersection-matrix-pattern</code>.</p></div><div class="div1">
-<h2><a name="d2e490" id="d2e490"></a>5 Analysis functions</h2><div class="exampleInner"><pre><code class="function">distance</code>($geometry as <code class="type">node()</code>,
+<h2><a name="d2e489" id="d2e489"></a>5 Analysis functions</h2><div class="exampleInner"><pre><code class="function">distance</code>($geometry as <code class="type">node()</code>,
          $another-geometry as <code class="type">node()</code>) as <code class="type">xs:double</code></pre></div><p>Returns the shortest distance, in the units of the spatial reference system of
                <code>$geometry</code>, between the geometries, where that distance is the distance
             between a point on each of the geometries.</p><div class="exampleInner"><pre><code class="function">buffer</code>($geometry as <code class="type">node()</code>, 
@@ -198,22 +198,22 @@ div.exampleHeader { font-weight: bold;
                <code>gml:Surface</code>, <code>gml:Polygon</code>, <code>gml:MultiPoint</code>,
                <code>gml:MultiCurve</code>, <code>gml:MultiLineString</code> or
                <code>gml:MultiPolygon</code>.</p></div><div class="div1">
-<h2><a name="d2e746" id="d2e746"></a>6 Functions specific to geometry type</h2><div class="div2">
-<h3><a name="d2e749" id="d2e749"></a>6.1 GeometryCollection</h3><div class="exampleInner"><pre><code class="function">num-geometries</code>($geometry-collection as <code class="type">node()</code>) as <code class="type">xs:integer</code></pre></div><p>Returns the number of geometries in <code>$geometry-collection</code>.</p><div class="exampleInner"><pre><code class="function">geometry-n</code>($geometry-collection as <code class="type">node()</code>) as <code class="type">node()</code></pre></div><p>Returns the Nth geometry in <code>$geometry-collection</code>, in GML.</p></div><div class="div2">
-<h3><a name="d2e780" id="d2e780"></a>6.2 Point</h3><div class="exampleInner"><pre><code class="function">x</code>($point as <code class="type">node()</code>) as <code class="type">xs:double</code></pre></div><p>Returns the x-coordinate value for <code>$point</code>.</p><div class="exampleInner"><pre><code class="function">y</code>($point as <code class="type">node()</code>) as <code class="type">xs:double</code></pre></div><p>Returns the y-coordinate value for <code>$point</code>.</p><div class="exampleInner"><pre><code class="function">z</code>($point as <code class="type">node()</code>) as <code class="type">xs:double?</code></pre></div><p>Returns the z-coordinate value for <code>$point</code>, or the empty sequence.</p><div class="exampleInner"><pre><code class="function">m</code>($point as <code class="type">node()</code>) as <code class="type">xs:double?</code></pre></div><p>Returns the m-coordinate value for <code>$point</code>, or the empty sequence.</p></div><div class="div2">
-<h3><a name="d2e839" id="d2e839"></a>6.3 Curve</h3><div class="exampleInner"><pre><code class="function">length</code>($curve as <code class="type">node()</code>) as <code class="type">xs:double</code></pre></div><p>Returns the length of <code>$curve</code>.</p><div class="exampleInner"><pre><code class="function">start-point</code>($curve as <code class="type">node()</code>) as <code class="type">element(gml:Point)</code></pre></div><p>Returns the starting point of <code>$curve</code>.</p><div class="exampleInner"><pre><code class="function">end-point</code>($curve as <code class="type">node()</code>) as <code class="type">element(gml:Point)</code></pre></div><p>Returns the end point point of <code>$curve</code>.</p><div class="exampleInner"><pre><code class="function">is-closed</code>($curve as <code class="type">node()</code>) as <code class="type">xs:boolean</code></pre></div><p>Returns true if the curve is closed (start point equals end point).</p><div class="exampleInner"><pre><code class="function">is-ring</code>($curve as <code class="type">node()</code>) as <code class="type">xs:boolean</code></pre></div><p>Returns true if the curve is closed and simple (start point equals end point and does
+<h2><a name="d2e745" id="d2e745"></a>6 Functions specific to geometry type</h2><div class="div2">
+<h3><a name="d2e748" id="d2e748"></a>6.1 GeometryCollection</h3><div class="exampleInner"><pre><code class="function">num-geometries</code>($geometry-collection as <code class="type">node()</code>) as <code class="type">xs:integer</code></pre></div><p>Returns the number of geometries in <code>$geometry-collection</code>.</p><div class="exampleInner"><pre><code class="function">geometry-n</code>($geometry-collection as <code class="type">node()</code>) as <code class="type">node()</code></pre></div><p>Returns the Nth geometry in <code>$geometry-collection</code>, in GML.</p></div><div class="div2">
+<h3><a name="d2e779" id="d2e779"></a>6.2 Point</h3><div class="exampleInner"><pre><code class="function">x</code>($point as <code class="type">node()</code>) as <code class="type">xs:double</code></pre></div><p>Returns the x-coordinate value for <code>$point</code>.</p><div class="exampleInner"><pre><code class="function">y</code>($point as <code class="type">node()</code>) as <code class="type">xs:double</code></pre></div><p>Returns the y-coordinate value for <code>$point</code>.</p><div class="exampleInner"><pre><code class="function">z</code>($point as <code class="type">node()</code>) as <code class="type">xs:double?</code></pre></div><p>Returns the z-coordinate value for <code>$point</code>, or the empty sequence.</p><div class="exampleInner"><pre><code class="function">m</code>($point as <code class="type">node()</code>) as <code class="type">xs:double?</code></pre></div><p>Returns the m-coordinate value for <code>$point</code>, or the empty sequence.</p></div><div class="div2">
+<h3><a name="d2e838" id="d2e838"></a>6.3 Curve</h3><div class="exampleInner"><pre><code class="function">length</code>($curve as <code class="type">node()</code>) as <code class="type">xs:double</code></pre></div><p>Returns the length of <code>$curve</code>.</p><div class="exampleInner"><pre><code class="function">start-point</code>($curve as <code class="type">node()</code>) as <code class="type">element(gml:Point)</code></pre></div><p>Returns the starting point of <code>$curve</code>.</p><div class="exampleInner"><pre><code class="function">end-point</code>($curve as <code class="type">node()</code>) as <code class="type">element(gml:Point)</code></pre></div><p>Returns the end point point of <code>$curve</code>.</p><div class="exampleInner"><pre><code class="function">is-closed</code>($curve as <code class="type">node()</code>) as <code class="type">xs:boolean</code></pre></div><p>Returns true if the curve is closed (start point equals end point).</p><div class="exampleInner"><pre><code class="function">is-ring</code>($curve as <code class="type">node()</code>) as <code class="type">xs:boolean</code></pre></div><p>Returns true if the curve is closed and simple (start point equals end point and does
                not pass through the same point more than once.</p><div class="div3">
-<h4><a name="d2e907" id="d2e907"></a>6.3.1 LineString, Line, LinearRing</h4><p>In addition to those functions applicable to all Curves, LineString also defines
+<h4><a name="d2e906" id="d2e906"></a>6.3.1 LineString, Line, LinearRing</h4><p>In addition to those functions applicable to all Curves, LineString also defines
                   the following functions (Line and LinearRing being specializations of
                   LineString):</p><div class="exampleInner"><pre><code class="function">num-points</code>($line-string as <code class="type">node()</code>) as <code class="type">xs:integer</code></pre></div><p>Returns the number of points in the <code>$line-string</code>. A Line is a
                   LineString with exactly two points. See above for definition of LinearRing.</p><div class="exampleInner"><pre><code class="function">point-n</code>($line-string as <code class="type">node()</code>, 
         $n as <code class="type">xs:integer</code>) as <code class="type">node()</code></pre></div><p>Returns the Nth point in <code>$line-string</code>, as a gml:Point.</p></div></div><div class="div2">
-<h3><a name="d2e943" id="d2e943"></a>6.4 MultiLineString</h3><p>MultiLineString is a subclass of GeometryCollection and so implements functions
+<h3><a name="d2e942" id="d2e942"></a>6.4 MultiLineString</h3><p>MultiLineString is a subclass of GeometryCollection and so implements functions
                applicable to that type. In addition, the following functions may be applied to
                MultiLineString elements:</p><div class="exampleInner"><pre><code class="function">is-closed</code>($multi-line-string as <code class="type">node()</code>) as <code class="type">xs:boolean</code></pre></div><p>Returns true if the start point = end point for each <code>gml:LineString</code> in
                   <code>$line-string</code>.</p><div class="exampleInner"><pre><code class="function">length</code>($multi-line-string as <code class="type">node()</code>) as <code class="type">xs:double</code></pre></div><p>Returns the length of <code>$multi-line-string</code> which is equal to the sum of
                the lengths of the component <code>gml:LineStrings</code>.</p></div><div class="div2">
-<h3><a name="d2e982" id="d2e982"></a>6.5 Surface</h3><div class="exampleInner"><pre><code class="function">area</code>($surface as <code class="type">node()</code>) as <code class="type">xs:double</code></pre></div><p>Returns the area of <code>$surface</code> in units of its spatial reference system.</p><div class="exampleInner"><pre><code class="function">centroid</code>($surface as <code class="type">node()</code>) as <code class="type">node()</code></pre></div><p>Returns the mathematical centroid of <code>$surface</code> as a
+<h3><a name="d2e981" id="d2e981"></a>6.5 Surface</h3><div class="exampleInner"><pre><code class="function">area</code>($surface as <code class="type">node()</code>) as <code class="type">xs:double</code></pre></div><p>Returns the area of <code>$surface</code> in units of its spatial reference system.</p><div class="exampleInner"><pre><code class="function">centroid</code>($surface as <code class="type">node()</code>) as <code class="type">node()</code></pre></div><p>Returns the mathematical centroid of <code>$surface</code> as a
                   <code>gml:Point</code>. The point is not guaranteed to be on the
                   <code>$surface</code>.</p><div class="exampleInner"><pre><code class="function">point-on-surface</code>($surface as <code class="type">node()</code>) as <code class="type">node()</code></pre></div><p>Returns a <code>gml:Point</code> guaranteed to be on <code>$surface</code>.</p><div class="exampleInner"><pre><code class="function">num-patches</code>($polyhedral-surface as <code class="type">node()</code>) as <code class="type">xs:integer</code></pre></div><p>Returns the number of component polygons in <code>$polyhedral-surface</code>.</p><div class="exampleInner"><pre><code class="function">patch-n</code>($polyhedral-surface as <code class="type">node()</code>, 
         $n as <code class="type">xs:integer</code>) as <code class="type">node()</code></pre></div><p>Returns the <code>$n</code>-th <code>gml:Polygon</code> in the
@@ -222,13 +222,13 @@ div.exampleHeader { font-weight: bold;
                given <code>$polygon</code>, where <code>$polygon</code> is any polygon in the
                surface.</p><div class="exampleInner"><pre><code class="function">is-closed</code>($polyhedral-surface as <code class="type">node()</code>) as <code class="type">xs:boolean</code></pre></div><p>Returns true if the <code>$polyhedral-surface</code> closes on itself, and thus has
                no boundary and encloses a solid.</p></div><div class="div2">
-<h3><a name="d2e1111" id="d2e1111"></a>6.6 Polygon</h3><div class="exampleInner"><pre><code class="function">exterior-ring</code>($polygon as <code class="type">node()</code>) as <code class="type">gml:LineString</code></pre></div><p>Returns the outer ring of <code>$polygon</code>, in GML.</p><div class="exampleInner"><pre><code class="function">num-interior-ring</code>($polygon as <code class="type">node()</code>) as <code class="type">xs:integer</code></pre></div><p>Returns the number of interior rings in <code>$polygon</code>.</p><div class="exampleInner"><pre><code class="function">interior-ring-n</code>($polygon as <code class="type">node()</code>,
+<h3><a name="d2e1110" id="d2e1110"></a>6.6 Polygon</h3><div class="exampleInner"><pre><code class="function">exterior-ring</code>($polygon as <code class="type">node()</code>) as <code class="type">gml:LineString</code></pre></div><p>Returns the outer ring of <code>$polygon</code>, in GML.</p><div class="exampleInner"><pre><code class="function">num-interior-ring</code>($polygon as <code class="type">node()</code>) as <code class="type">xs:integer</code></pre></div><p>Returns the number of interior rings in <code>$polygon</code>.</p><div class="exampleInner"><pre><code class="function">interior-ring-n</code>($polygon as <code class="type">node()</code>,
                 $n as <code class="type">xs:integer</code>) as <code class="type">gml:LineString</code></pre></div><p>Returns the <code>$n</code>-th interior ring of <code>$polygon</code>, in GML.</p></div><div class="div2">
-<h3><a name="d2e1162" id="d2e1162"></a>6.7 MultiSurface, MultiPolygon</h3><p>MultiSurface and MultiPolygon are GeometryCollections, and so implement functions
+<h3><a name="d2e1161" id="d2e1161"></a>6.7 MultiSurface, MultiPolygon</h3><p>MultiSurface and MultiPolygon are GeometryCollections, and so implement functions
                applicable to that type. They also support the following functions:</p><div class="exampleInner"><pre><code class="function">area</code>($multi-surface as <code class="type">node()</code>) as <code class="type">xs:double</code></pre></div><p>Returns the area of <code>$multi-surface</code> in units of its spatial reference system.</p><div class="exampleInner"><pre><code class="function">centroid</code>($multi-surface as <code class="type">node()</code>) as <code class="type">gml:Point</code></pre></div><p>Returns the mathematical centroid of <code>$multi-surface</code> as a
                   <code>gml:Point</code>. The point is not guaranteed to be on the
                   <code>$multi-surface</code>.</p><div class="exampleInner"><pre><code class="function">point-on-surface</code>($multi-surface as <code class="type">node()</code>) as <code class="type">gml:Point</code></pre></div><p>Returns a point guaranteed to be on <code>$multi-surface</code>, in GML.</p></div></div></div><div class="back"><div class="div1">
-<h2><a name="d2e1216" id="d2e1216"></a>A References</h2><dl><dt class="label"><a name="OGC-SF" id="OGC-SF"></a>OGC Simple Feature Access</dt><dd>
+<h2><a name="d2e1215" id="d2e1215"></a>A References</h2><dl><dt class="label"><a name="OGC-SF" id="OGC-SF"></a>OGC Simple Feature Access</dt><dd>
                <a href="http://www.opengeospatial.org/standards/sfa">Open Geospatial
                   Consortium, Simple Feature access, Part 1 Common Architecture</a>. John R.
                Herring, Editor </dd><dt class="label"><a name="OGC-GML" id="OGC-GML"></a>OGC Geography Markup Language</dt><dd>
