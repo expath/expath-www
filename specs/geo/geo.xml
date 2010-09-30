@@ -7,16 +7,16 @@
       <w3c-designation>w3c-designation</w3c-designation>
       <w3c-doctype>EXPath Candidate</w3c-doctype>
       <pubdate>
-         <day>28</day>
+         <day>30</day>
          <month>September</month>
          <year>2010</year>
       </pubdate>
       <publoc>
-         <loc href="http://expath.org/spec/geo/20100928"/>
+         <loc href="http://expath.org/spec/geo/20100930"/>
       </publoc>
       <altlocs>
-         <loc href="http://expath.org/spec/geo/20100928.xml">XML</loc>
-         <loc href="http://expath.org/spec/geo/20100928/diff">Revision markup</loc>
+         <loc href="http://expath.org/spec/geo/20100930.xml">XML</loc>
+         <loc href="http://expath.org/spec/geo/20100930/diff">Revision markup</loc>
       </altlocs>
       <latestloc>
          <loc href="http://expath.org/spec/geo"/>
