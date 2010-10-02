@@ -1,7 +1,7 @@
 <webapp xmlns="http://expath.org/ns/webapp/descriptor"
         xmlns:app="http://expath.org/ns/website"
         name="http://expath.org/website"
-        abbrev="expath-website"
+        abbrev="expath"
         version="0.1">
 
    <title>EXPath website</title>
@@ -16,13 +16,31 @@
    </servlet>
 
    <!--
-       ...
+       The search tool.
+   -->
+   <servlet name="search">
+      <xslt uri="http://expath.org/ns/website/servlets.xsl"
+            function="app:search-servlet"/>
+      <url pattern="/search"/>
+   </servlet>
+
+   <!--
+       The page listing all the specs.
+   -->
+   <servlet name="specs-page">
+      <xslt uri="http://expath.org/ns/website/servlets.xsl"
+            function="app:specs-page-servlet"/>
+      <url pattern="/specs"/>
+   </servlet>
+
+   <!--
+       Serve a specification.
    -->
    <servlet name="spec">
       <xslt uri="http://expath.org/ns/website/servlets.xsl"
             function="app:spec-servlet"/>
       <!-- TODO: Actually, '/editor' is mutually exclusive with a date. -->
-      <url pattern="/spec/(file|http-client|pkg|webapp|zip)(/editor)?(/20[0-9]{6})?(/diff)?(.xml)?">
+      <url pattern="/spec/(file|geo|http-client|pkg|webapp|zip)(/editor)?(/20[0-9]{6})?(/diff)?(.xml)?">
          <match group="1" name="spec"/>
          <match group="2" name="editor"/>
          <match group="3" name="date"/>
@@ -32,7 +50,7 @@
    </servlet>
 
    <!--
-       ...
+       A simple, plain page.
    -->
    <servlet name="page">
       <xslt uri="http://expath.org/ns/website/servlets.xsl"
