@@ -31,7 +31,7 @@
              else
                $param"/>
       </xsl:variable>
-      <xsl:variable name="file" select="concat($page, '.xml')"/>
+      <xsl:variable name="file" select="concat('pages/', $page, '.xml')"/>
       <xsl:choose>
          <xsl:when test="doc-available($file)">
             <web:response status="200" message="Ok">
