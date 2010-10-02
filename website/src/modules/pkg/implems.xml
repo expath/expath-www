@@ -16,7 +16,7 @@
          method to deploy packages, based on JAR files.) Keep in mind that this module, and its
          implementations, can evolve (and will do) in the near future, depending on the feedback got
          from the community.</para>
-      <para>The current packaging <link href="../pkg.html">specification</link> defines a
+      <para>The current packaging <link href="../../spec/pkg">specification</link> defines a
             <bold>standard repository</bold> layout. Currently, this layout is supported by
          implementations for both Saxon and Calabash. The repository manager is thus common. It is a
          command line program that allows one to initialize a new repository, install packages,

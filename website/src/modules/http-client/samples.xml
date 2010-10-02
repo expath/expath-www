@@ -11,7 +11,7 @@
             href="http://www.marklogic.com/">MarkLogic Server</link> and <link
             href="http://www.saxonica.com/">Saxon</link> 9. XSLT samples have been written for and
          tested with <link href="http://www.saxonica.com/">Saxon</link> 9. Details on how to use the
-         extension with either product can be found on the <link href="implems.html">implementations
+         extension with either product can be found on the <link href="implems">implementations
             page</link> (especially details on namespace URIs and how to import and/or install
          modules may vary.)</para>
       <para>You can also have a look at <link

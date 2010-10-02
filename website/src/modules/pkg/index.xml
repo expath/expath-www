@@ -30,7 +30,7 @@
          of course, but we plan also to help writers of major XSLT and XQuery libraries to package
          their work, for instance the stylesheets for DocBook, XSLStyle, FunctX for both XSLT and
          XQuery, the stylesheets for DITA, the FXSL library, etc.)</para>
-      <para>See the <link href="implems.html">implementations page</link> for further
+      <para>See the <link href="implems">implementations page</link> for further
          details.</para>
    </primary>
    <secondary box="true">
