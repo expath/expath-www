@@ -5,61 +5,23 @@
    <section>
       <title>Package Managers</title>
       <image src="../../images/packaging.jpg" alt="Taps and pipes"/>
-      <para>The Packaging System specification is still under development, but three implementations
-         have been released yet, supporting the current state of the working draft. Those
-         implementations are for the <link href="http://www.exist-db.org/">eXist</link> database,
-         for the <link href="http://www.saxonica.com/">Saxon</link> XSLT and XQuery processor and
-         for the <link href="http://xmlcalabash.com/">Calabash</link> XProc processor. Those
-         implementations are just prototypes that add packaging support to those processors, as
-         external libraries. In addition, there is a standalone application to manage a repository
-         on the disk (Saxon and Calabash use the same repository layout, while eXist uses its own
-         method to deploy packages, based on JAR files.) Keep in mind that this module, and its
-         implementations, can evolve (and will do) in the near future, depending on the feedback got
-         from the community.</para>
-      <para>The current packaging <link href="../../spec/pkg">specification</link> defines a
-            <bold>standard repository</bold> layout. Currently, this layout is supported by
-         implementations for both Saxon and Calabash. The repository manager is thus common. It is a
-         command line program that allows one to initialize a new repository, install packages,
-         delete packages, list the installed packages, etc. Download the JAR file <link
-            href="expath-pkg-repo-0.1.jar">expath-pkg-repo-0.1.jar</link>, and use the command
-            <code>java -jar expath-pkg-repo-0.1.jar</code>. For more information, see this <link
-            href="http://fgeorges.blogspot.com/2009/11/expath-packaging-system-on-disk.html">blog
-            post</link>. In addition to this repository manager, you need a runtime support for your
-         processor (for now, Saxon and Calabash support the standard repository layout, eXist has
-         its own way of deploying packages.)</para>
-      <para>The runtime support for <bold>Saxon</bold> is included in the JAR file <link
-            href="expath-pkg-saxon-0.2.jar">expath-pkg-saxon-0.2.jar</link>. In addition, the
-         classpath must contain the JAR file for the repository management (see above.) If you use
-         Saxon from Java, you can use the class <code>org.expath.pkg.saxon.java.ConfigHelper</code>.
-         If you use Saxon from the command line, you have to use
-            <code>org.expath.pkg.saxon.java.EXPathTransform</code> as the main class for XSLT 2.0,
-         or <code>org.expath.pkg.saxon.java.EXPathQuery</code> for XQuery, instead of the Saxon's
-         main classes (resp. <code>net.sf.saxon.Transform</code> and
-         <code>net.sf.saxon.Query</code>.) You can use the following shell script to help you
-         setting up the classpath with the extensions installed in the repository and written in
-         Java: <link href="expath-pkg-saxon-0.2.sh">expath-pkg-saxon-0.2.sh</link>. See this <link
-            href="http://fgeorges.blogspot.com/2009/10/expath-packaging-system-prototype.html">blog
-            post</link> and this <link
-            href="http://fgeorges.blogspot.com/2009/11/expath-packaging-system-on-disk.html">blog
-            post</link> for more information (the first one is older and about Saxon in porticular,
-         the second one is up-to-date and more specifically about the shell script.)</para>
-      <para>For Calabash you can use the same instructions as for Saxon above, by adding in addition
-         the following JAR file to your classpath: <link href="expath-pkg-calabash-0.1.jar"
-            >expath-pkg-calabash-0.1.jar</link>, by using <code>org.expath.pkg.calabash.Main</code>
-         and the following shell script: <link href="expath-pkg-calabash-0.1.sh"
-            >expath-pkg-calabash-0.1.sh</link>. See this <link
-            href="http://fgeorges.blogspot.com/2009/11/expath-packaging-system-on-disk.html">blog
-            post</link> and this <link
-            href="http://fgeorges.blogspot.com/2009/11/expath-packaging-system-prototype.html">blog
-            post</link> for more information.</para>
-      <para>The package manager for <bold>eXist</bold> is provided as a single <link
-            href="expath-pkg-exist-0.1.jar">JAR file</link>. Just download it and launch it the
-         usual way (depending on your platform, that could be by double-clicking on it, or by
-         executing the command <code>java -jar expath-pkg-exist-0.1.jar</code>.) For now, it
-         requires a windowing system, but a text oriented interface will be provided later, to
-         enable its usage on graphical-less environments, like servers. You can find a step-by-step
-         presentation of this package manager in the following <link
-            href="http://fgeorges.blogspot.com/2009/09/expath-packaging-system-prototype.html">blog
-            post</link>.</para>
+      <para>So far, three processors implement the current state of the packaging proposal.  The
+         <link href="http://www.exist-db.org/">eXist</link> database, the
+         <link href="http://www.saxonica.com/">Saxon</link> XSLT and XQuery processor and the
+         <link href="http://xmlcalabash.com/">Calabash</link> XProc processor.  The support in
+         eXist is official (part of the current eXist trunk, which should be released as eXist 1.6
+         in the last quarter of 2010).  The support in Saxon and Calabash as been implemented as a
+         third-party project; see the <link href="http://code.google.com/p/expath-pkg/">project
+         home</link> for all details and downloads.</para>
+      <para>All those three implementations rely on the same underlying repository structure, and
+         actually all use the same repository manager written in Java as part of the above mentioned
+         <link href="http://code.google.com/p/expath-pkg/">expath-pkg project</link>.  They also all
+         support packaging extension functions written in Java (for Saxon and eXist, but Calabash
+         can configure its underlying Saxon processor as well).</para>
+      <para>The <link href="http://code.google.com/p/expath-pkg/">expath-pkg project</link> also
+         provides a repository manager, called <code>xrepo</code>, to help managing packages in
+         a repository (installing, removing, listing, etc.)  The same implementations are also used
+         in <link href="http://code.google.com/p/servlex/">Servlex</link>, the framework used to
+         run the EXPath website, based exclusively on XML technologies.</para>
    </section>
 </webpage>
