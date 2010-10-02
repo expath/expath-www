@@ -95,19 +95,19 @@
                <div id="footer">
                   <div class="left">
                      <a href="http://validator.w3.org/check?uri=referer">
-                        <img src="{ $root }images/valid-xhtml11.gif" alt="Valid XHTML 1.1" height="31" width="88" style="border: 0;" />
+                        <img src="{ $root }images/valid-xhtml11.gif" alt="Valid XHTML 1.1" style="border: 0;" />
                      </a>
                      <a href="http://jigsaw.w3.org/css-validator/check/referer">
                         <img src="{ $root }images/valid-css.gif" alt="Valid CSS!" style="border: 0;" />
                      </a>
                   </div>
                   <div class="right">
-                     <xsl:text>Hosted by: </xsl:text>
-                     <a href="http://h2oconsulting.be/">H2O Consulting</a>
-                     <xsl:text> - Design by: </xsl:text>
-                     <a href="http://www.nodethirtythree.com/">NodeThirtyThree Design</a>
-                     <xsl:text> - </xsl:text>
                      <a href="{ $root }credits">Credits</a>
+                     <xsl:text> - </xsl:text>
+                     <xsl:text>Hosted by </xsl:text>
+                     <a href="http://h2oconsulting.be/">H2O Consulting</a>
+                     <xsl:text> - Powered by </xsl:text>
+                     <a href="http://code.google.com/p/servlex/">Servlex</a>
                   </div>
                </div>
             </div>
