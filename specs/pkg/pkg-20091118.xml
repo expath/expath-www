@@ -13,16 +13,16 @@
          <year>2009</year>
       </pubdate>
       <publoc>
-         <loc href="http://www.expath.org/modules/pkg-20091118.html"/>
+         <loc href="http://expath.org/spec/pkg/20091118"/>
       </publoc>
       <altlocs>
-         <loc href="http://www.expath.org/modules/pkg-20091118.xml">XML</loc>
+         <loc href="http://expath.org/spec/pkg/20091118.xml">XML</loc>
       </altlocs>
       <latestloc>
-         <loc href="http://www.expath.org/modules/pkg.html"/>
+         <loc href="http://expath.org/spec/pkg"/>
       </latestloc>
       <prevlocs>
-         <loc href="http://www.expath.org/modules/pkg-20090901.html"/>
+         <loc href="http://expath.org/spec/pkg/20090901"/>
       </prevlocs>
       <authlist>
          <author>

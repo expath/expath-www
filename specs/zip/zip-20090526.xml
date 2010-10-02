@@ -13,17 +13,17 @@
          <year>2009</year>
       </pubdate>
       <publoc>
-         <loc href="http://www.expath.org/modules/zip-20090526.html"/>
+         <loc href="http://expath.org/spec/zip/20090526"/>
       </publoc>
       <altlocs>
-         <loc href="http://www.expath.org/modules/zip-20090526.xml">XML</loc>
+         <loc href="http://expath.org/spec/zip/20090526.xml">XML</loc>
       </altlocs>
       <latestloc>
-         <loc href="http://www.expath.org/modules/zip.html"/>
+         <loc href="http://expath.org/spec/zip"/>
       </latestloc>
       <!--prevlocs>
-         <loc href="http://www.expath.org/modules/zip-2009mmdd.html"/>
-         <loc href="http://www.expath.org/modules/zip-2009mmdd.html"/>
+         <loc href="http://expath.org/spec/zip/2009mmdd"/>
+         <loc href="http://expath.org/spec/zip/2009mmdd"/>
          ...
       </prevlocs-->
       <authlist>

@@ -14,19 +14,19 @@
          <year>2010</year>
       </pubdate>
       <publoc>
-         <loc href="http://www.expath.org/modules/http-client-20100109.html" diff="chg"/>
+         <loc href="http://expath.org/spec/http-client/20100109" diff="chg"/>
       </publoc>
       <altlocs>
-         <loc href="http://www.expath.org/modules/http-client-20100109.xml">XML</loc>
-         <loc href="http://www.expath.org/modules/http-client-20100109-diff.html">Revision markup</loc>
+         <loc href="http://expath.org/spec/http-client/20100109.xml">XML</loc>
+         <loc href="http://expath.org/spec/http-client/20100109/diff">Revision markup</loc>
       </altlocs>
       <latestloc>
-         <loc href="http://www.expath.org/modules/http-client.html"/>
+         <loc href="http://expath.org/spec/http-client"/>
       </latestloc>
       <prevlocs>
-         <loc href="http://www.expath.org/modules/http-client-20090413.html" diff="add"/>
-         <loc href="http://www.expath.org/modules/http-client-20090302.html"/>
-         <loc href="http://www.expath.org/modules/http-client-20090112.html"/>
+         <loc href="http://expath.org/spec/http-client/20090413" diff="add"/>
+         <loc href="http://expath.org/spec/http-client/20090302"/>
+         <loc href="http://expath.org/spec/http-client/20090112"/>
       </prevlocs>
       <authlist>
          <author>
