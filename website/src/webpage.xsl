@@ -74,10 +74,10 @@
                      <h2>(: <i>Collaboratively Defining Open Standards for Portable XPath Extensions</i> :)</h2>
                   </div>
                </div>
-               <form method="get" action="search.xql">
+               <form method="get" action="search">
                   <div id="search">
-                     <input type="text" class="text" maxlength="64" name="keywords" value="" />
-                     <input type="submit" class="submit" value="Search" />
+                     <input type="text" class="text" maxlength="64" name="keywords" value=""/>
+                     <input type="submit" class="submit" value="Search"/>
                   </div>
                </form>
                <div id="headerpic"/>
