@@ -79,6 +79,85 @@
       </html>
    </xsl:function>
 
+   <xsl:function name="app:search-servlet">
+      <xsl:param name="request" as="element(web:request)"/>
+      <xsl:param name="bodies"  as="item()*"/>
+      <xsl:variable name="page" as="element(webpage)">
+         <webpage menu="main" xmlns="">
+            <title>EXPath - Search</title>
+            <section>
+               <title>Search</title>
+               <image src="images/machine.jpg" alt="Machine"/>
+               <para>The search is not available yet...</para>
+            </section>
+         </webpage>
+      </xsl:variable>
+      <web:response status="200" message="Ok">
+         <web:body content-type="text/html" method="xhtml"/>
+      </web:response>
+      <xsl:apply-templates select="$page">
+         <xsl:with-param name="page-name" select="'[null]'"/>
+      </xsl:apply-templates>
+   </xsl:function>
+
+   <!--
+       List all the specs.
+       
+       TODO: Add the latest version (the "current version").  As well
+       as the "editor" revision if any.  And use user-friendly names.
+       And add different formats (html, xml, diff, etc.)  And sort the
+       files...
+   -->
+   <xsl:function name="app:specs-page-servlet">
+      <xsl:param name="request" as="element(web:request)"/>
+      <xsl:param name="bodies"  as="item()*"/>
+      <xsl:variable name="spec-dir" select="resolve-uri('spec/')"/>
+      <xsl:variable name="specs" as="element(file:dir)+" select="
+          file:old-list($spec-dir)/file:dir"/>
+      <xsl:variable name="page" as="element(webpage)">
+         <webpage menu="main" xmlns="">
+            <title>EXPath - Specifications</title>
+            <section>
+               <title>Specifications</title>
+               <!--image src="images/machine.jpg" alt="Machine"/>
+               <para>Page under construction...</para-->
+               <divider/>
+               <xsl:for-each select="$specs">
+                  <xsl:variable name="spec-name" select="@name"/>
+                  <primary>
+                     <title>
+                        <xsl:value-of select="$spec-name"/>
+                     </title>
+                     <list>
+                        <item>
+                           <xsl:text>Latest: </xsl:text>
+                           <link href="spec/{ $spec-name }">
+                              <xsl:value-of select="$spec-name"/>
+                           </link>
+                        </item>
+                        <xsl:variable name="file-re" select="concat('^', $spec-name, '-[0-9]{8}.xml$')"/>
+                        <xsl:for-each select="file:file[matches(@name, $file-re)]">
+                           <item>
+                              <xsl:variable name="start" select="string-length($spec-name) + 2"/>
+                              <link href="spec/{ $spec-name }/{ substring(@name, $start, 8) }">
+                                 <xsl:value-of select="substring(@name, 1, $start + 7)"/>
+                              </link>
+                           </item>
+                        </xsl:for-each>
+                     </list>
+                  </primary>
+               </xsl:for-each>
+            </section>
+         </webpage>
+      </xsl:variable>
+      <web:response status="200" message="Ok">
+         <web:body content-type="text/html" method="xhtml"/>
+      </web:response>
+      <xsl:apply-templates select="$page">
+         <xsl:with-param name="page-name" select="'specs'"/>
+      </xsl:apply-templates>
+   </xsl:function>
+
    <!--
        ...
        
