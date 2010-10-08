@@ -6,34 +6,21 @@
    <section>
       <title>HTTP Client Implementations</title>
       <image src="../../images/web2.jpg" alt="Spider web"/>
-      <para>For now, there are three implementations: for <link href="http://www.saxonica.com/"
-            >Saxon</link> (XSLT 2.0 and XQuery,) for <link href="http://www.exist-db.org/"
-            >eXist</link>, and for <link href="http://www.marklogic.com/">MarkLogic Server</link>.
-         The later two are partial implementations though, as they rely on the similar,
-         product-dependent extension of these products, which do not permit to provide the whole
-         functionality. Anyone is welcome to contribute of course, see the <link
-            href="../../lists">mailing list</link>. I plan to provide a better support on these
-         platform later.</para>
-      <para>For Saxon, you have the XAR package: <link href="expath-http-client-saxon-0.4.xar"
-            >expath-http-client-saxon-0.4.xar</link>. This package follows the EXPath <link
-            href="../pkg/">Packaging System</link> format and can be installed with the package
-         manager. See the packaging system implementations page for more information.</para>
-      <para>For eXist, you can download the following X* archive: <link
-            href="expath-http-client-exist-0.1.xar">expath-http-client-exist-0.1.xar</link>. This is
-         a package for the EXPath <link href="../pkg/">Packaging System</link>. You can use the
-         package manager for eXist, or just open it as a ZIP file and use the
-            <code>http-client.xq</code> file it contains. Since the version 1.4 (and the last 1.3.*
-         dev versions) it is included in the standard distribution, so you don't even have to
-         install it!</para>
-      <para>For MarkLogic Server, you can download the following tarball: <link
-            href="expath-http-client-marklogic-0.1.tar.gz"
-            >expath-http-client-marklogic-0.1.tar.gz</link> or the equivalent ZIP file: <link
-            href="expath-http-client-marklogic-0.1.zip">expath-http-client-marklogic-0.1.zip</link>.
-         See instructions within there about how to install the library module on your MarkLogic
-         instance, and how to import it in your query.</para>
-      <para>Request for help: this is the very first module for EXPath. If you have any thought,
-         idea, comment or advice on how modules should be delivered, installed, deployed, used,
-         packaged..., please comment on the <link href="../../lists">mailing
-         list</link>.</para>
+      <para>For now, there are four implementations: for <link href="http://www.saxonica.com/"
+            >Saxon</link> (XSLT 2.0 and XQuery,) for <link href="http://www.zorba-xquery.com/"
+            >Zorba</link>, for <link href="http://www.exist-db.org/">eXist</link>, and for <link
+            href="http://www.marklogic.com/">MarkLogic Server</link>. The later two are partial
+         implementations though, as they rely on the similar, product-dependent extension of these
+         products, which do not permit to provide the whole functionality. Anyone is welcome to
+         contribute of course, see the <link href="../../lists">mailing list</link>. Some work are
+         undergoing to provide better support of the EXPath HTTP Client on those processors.</para>
+      <para>The implementation for Zorba is a built-in implementation. All other implementations are
+         hosted in the <link href="http://code.google.com/p/expath-http-client/"
+            >expath-http-client</link> project. The implementation for Saxon has been released as an
+         XAR package. The implementation for eXist is part of the official eXist release (you can
+         use it out of the box). The implementation for MarkLogic has not been released yet, as it
+         is only partial, but you can find it in the <link
+            href="http://code.google.com/p/expath-http-client/source/browse/trunk/marklogic/http-client.xq"
+            >subversion repository</link>.</para>
    </section>
 </webpage>
