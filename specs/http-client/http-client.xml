@@ -239,7 +239,9 @@
                or in a response:</p>
             <eg>
 &lt;http:header name = string
-             value = string/></eg>
+             value = string>
+   <emph>empty</emph>
+&lt;/http:header></eg>
             <p>The <code>http:body</code> element represents the body of either an HTTP request or
                of an HTTP response (in multipart requests and responses, it represents the body of a
                single one part):</p>
