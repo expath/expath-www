@@ -2,31 +2,30 @@
 
 <?oxygen RNGSchema="http://www.w3.org/XML/1998/06/schema/xmlspec.rng" type="xml"?>
 
-<spec role="editors-copy" xmlns:spec="http://expath.org/ns/xmlspec">
+<spec role="editors-copy" xmlns:ex="http://expath.org/ns/xmlspec">
    <header>
       <title>ZIP Module</title>
       <w3c-designation>w3c-designation</w3c-designation>
       <w3c-doctype>EXPath Candidate Module</w3c-doctype>
       <pubdate>
-         <day>26</day>
-         <month>May</month>
-         <year>2009</year>
+         <day>xx</day>
+         <month>October</month>
+         <year>2010</year>
       </pubdate>
       <publoc>
-         <loc href="http://expath.org/spec/zip/20090526"/>
+         <loc href="http://expath.org/spec/zip/201010xx"/>
       </publoc>
       <altlocs>
-         <loc href="http://expath.org/spec/zip/20090526.xml">XML</loc>
+         <loc href="http://expath.org/spec/zip/201010xx.xml">XML</loc>
       </altlocs>
       <latestloc>
          <loc href="http://expath.org/spec/zip"/>
       </latestloc>
-      <!--prevlocs>
-         <loc href="http://expath.org/spec/zip/2009mmdd"/>
-         <loc href="http://expath.org/spec/zip/2009mmdd"/>
-         ...
-      </prevlocs-->
       <authlist>
+         <author>
+            <name>Phil Fearon</name>
+            <affiliation>Qutoric Limited</affiliation>
+         </author>        
          <author>
             <name>Florent Georges</name>
             <affiliation>H2O Consulting</affiliation>
@@ -49,7 +48,9 @@
          <language>langusage</language>
       </langusage>
       <revisiondesc>
-         <p>revisiondesc</p>
+         <p>This revision is a first draft, it adds proposed function signatures and element
+            descriptors to the 20090526 outline of the spec. The reference to the MarkLogic Zip
+            Module has also been removed.</p>
       </revisiondesc>
    </header>
    <body>
@@ -62,7 +63,7 @@
                ref="odf"/>.</p>
          <div2>
             <head>Namespace conventions</head>
-            <p>The module defined by this document does define one function in the namespace
+            <p>The module defined by this document defines functions and elements in the namespace
                   <code>http://expath.org/ns/zip</code>. In this document, the <code>zip</code>
                prefix, when used, is bound to this namespace URI.</p>
          </div2>
@@ -95,32 +96,192 @@ dir/
          </div2>
       </div1>
       <div1>
-         <head>Bla bla...</head>
-         <p>...</p>
+         <head>Functions: ZIP File Extraction</head>
+         <note>
+            <p>TODO: It has been suggested on the EXPath mailing list that these functions
+               (excluding binary-entry) take an additional $encoding argument</p></note>
+         <div2>
+            <head><code>zip:binary-entry</code></head>
+            <eg><ex:function>zip:binary-entry</ex:function>($href as <ex:type>xs:anyURI</ex:type>,
+                 $entry as <ex:type>xs:string</ex:type>) as <ex:type>xs:base64Binary</ex:type></eg>
+            <p>Extracts the binary stream from the file positioned at <code>entry</code> within Zip
+               file located at <code>href</code> and returns it as Base64.</p>
+         </div2>
+         <div2>
+            <head><code>zip:html-entry</code></head>        
+            <eg><ex:function>zip:html-entry</ex:function>($href as <ex:type>xs:anyURI</ex:type>,
+               $entry as <ex:type>xs:string</ex:type>) as <ex:type>document-node()</ex:type></eg>
+            <p>Extracts the html file positioned at <code>entry</code> within Zip file located at
+                  <code>href</code>, tidies it to well-formed XML and returns an XML document
+               node.</p>
+         </div2><div2>
+            <head><code>zip:text-entry</code></head>        
+            <eg><ex:function>zip:text-entry</ex:function>($href as <ex:type>xs:anyURI</ex:type>,
+               $entry as <ex:type>xs:string</ex:type>) as <ex:type>xs:string</ex:type></eg>
+            <p>Extracts, as text, the contents of the text file positioned at <code>entry</code>
+               within Zip file located at <code>href</code>.</p>
+         </div2><div2>
+            <head><code>zip:xml-entry</code></head>        
+            <eg><ex:function>zip:xml-entry</ex:function>($href as <ex:type>xs:anyURI</ex:type>,
+              $entry as <ex:type>xs:string</ex:type>) as <ex:type>document-node()</ex:type></eg>
+            <p>Extracts the content from the XML file positioned at <code>entry</code> within Zip
+               file located at <code>href</code> and returns an XML document node.</p>
+         </div2>         
       </div1>
       <div1>
-         <head>TODO: ...</head>
-         <p>Take a look at <bibref ref="ml-zip"/> (not sure to keep that ref
-            in later versions, though.)</p>
-      </div1>
-      <div1>
-         <head>TODO: Old text...</head>
-         <p>...:</p>
-         <eg>
-<spec:function>http:send-request</spec:function>($request as <spec:type>element(http:request)?</spec:type>,
-                  $href as <spec:type>xs:string?</spec:type>,
-                  $content as <spec:type>item()?</spec:type>,
-                  $serial as <spec:type>item()?</spec:type>) as <spec:type>item()+</spec:type></eg>
-         <ulist>
-            <item>
-               <p>
-                  <code>$...</code> is ...</p>
-            </item>
-            <item>
-               <p>
-                  <code>$...</code> is ...</p>
-            </item>
-         </ulist>
+         <head>Functions: ZIP File Handling</head>
+         <p>Functions for getting informaton about ZIP file structure, and also for the creation or
+            modification of ZIP files.</p>     
+         <div2>
+            <head><code>zip:entries</code></head>        
+            <eg><ex:function>zip:entries</ex:function>($href as <ex:type>xs:anyURI</ex:type>) as <ex:type>element(zip:file)</ex:type></eg>
+            <p>Returns a <code>zip:file</code> element that describes the hierarchical structure of
+               the ZIP file located at <code>href</code> in terms of directories and ZIP entries.
+               This is ZIP file metadata only, content must not be returned.</p>
+         </div2>
+         <div2>
+            <head>Elements returned by the <code>zip:entries</code> function</head>
+            <p>The <code>zip:file</code> element describes the ZIP file directory and entry
+               structure using a tree of <code>directory</code> and <code>entry</code> elements with
+               a hierarchy that matches that of the ZIP file it corresponds to.</p>
+            <eg>
+&lt;zip:file href = uri>
+   zip:dir*
+   zip:entry*
+&lt;/zip:file></eg>
+            <ulist>
+               <item>
+                  <p><code>href</code> is the URI of the ZIP file that the element describes.</p>
+               </item>
+            </ulist>
+            <p>The <code>zip:dir</code> element represents a named directory within the ZIP file,
+               its position within the element tree corresponds directly with the location of the
+               directory within the hierarchy of the ZIP file</p>
+            <eg>
+&lt;zip:dir name = string>
+   zip:dir*
+   zip:entry*
+&lt;/zip:dir></eg>
+            <ulist>
+               <item>
+                  <p><code>name</code> is the name of the directory within the ZIP file</p>
+               </item>
+            </ulist>
+            <p>The <code>zip:entry</code> element represents a named file within the referenced ZIP
+               file, the position of this element within the element tree corresponds to the
+               location of the entry within the directory hierarchy of the ZIP file.</p>
+            <eg>
+&lt;zip:entry name = string
+           compressed? = "yes" | "no">
+   <emph>empty</emph>
+&lt;zip:entry></eg>
+            <ulist>
+               <item>
+                  <p><code>name</code> is the name of the entry within the ZIP file</p>
+               </item>
+               <item>
+                  <p><code>compressed</code> is used to indicate if the entry is compressed within
+                     the ZIP file (certain entries, for example jpeg files are not normally
+                     compressed). A missing attribute indicates that the entry is compressed.</p>
+               </item>
+            </ulist>
+         </div2>
+         <div2>
+            <head><code>zip:file</code></head>        
+            <eg><ex:function>zip:file</ex:function>($zip as <ex:type>element(zip:file)</ex:type>) as <ex:type>empty-sequence()</ex:type></eg>
+            <p>Creates a new ZIP file with the characteristics described by the <code>$zip</code>
+               element passed as the argument.</p>           
+         </div2>
+         <div2>
+            <head><code>zip:update-entries</code></head>        
+            <eg><ex:function>zip:update-entries</ex:function>($zip as <ex:type>element(zip:file)</ex:type>,
+                   $output as <ex:type>xs:anyURI</ex:type>) as <ex:type>empty-sequence()</ex:type></eg>
+            <p>Modifies a copy of an existing ZIP file with the characteristics described by the
+               element in the <code>$zip</code> element. The <code>$output</code> argument is the
+               URI where the modified ZIP file is copied to.</p>           
+         </div2>
+         <div2>
+            <head>Elements used by the <code>zip:file</code> and <code>zip:update-entries</code> functions</head>
+            <note>Because these elements describe the entry content of a ZIP file, as well as the
+               directory and entry hierarchy, they have additional properties to those of the
+                  <code>zip:file</code> elements returned by <code>zip:entries</code>.</note>
+            <p>The <code>zip:file</code> element describes the entry contents, directory structure
+               and URI of either a new ZIP file to create, or an existing ZIP file to modify.</p>
+            <eg>
+&lt;zip:file href = uri>
+   zip:dir*
+   zip:entry*
+&lt;/zip:file></eg>
+            <ulist>
+               <item>
+                  <p><code>href</code> is the URI of the ZIP file to be created or updated. The
+                     baseURI of this is also used to resolve any relative URIs provided as
+                        <code>src</code> attributes in child elements</p>
+               </item>
+            </ulist>
+            <p>The <code>zip:dir</code> element represents a directory to be created/modified within
+               the ZIP file, its position within the element tree corresponds directly with the
+               location of the directory within the hierarchy of the ZIP file</p>
+            <eg>
+&lt;zip:dir name? = string
+         src? = uri>
+   zip:dir*
+   zip:entry*
+&lt;/zip:dir></eg>
+            <ulist>
+               <item>
+                  <p><code>name</code> is the name of the directory within the ZIP file. If
+                        <code>name</code> is omitted then the directory is named from the basename
+                     given in the <code>src</code> attribute</p>
+               </item>
+               <item>
+                  <p>The <code>src</code> attribute gives the URI of the directory from which all
+                     contents will be copied into the ZIP file directory. If no <code>name</code>
+                     attribute is included then the basename of the URI in <code>src</code> is used
+                     to name the ZIP directory.</p>
+               </item>
+            </ulist>
+            <p>The <code>zip:entry</code> element represents a named file within the referenced ZIP
+               file, the position of this element within the element tree corresponds to the
+               location of the entry within the directory hierarchy of the ZIP file.</p>
+            <eg>
+&lt;zip:entry name? = string
+           src? = uri
+           compressed? = "yes" | "no"
+           output = "base64" | "hex" | "html" | "text" | "xml">
+   <emph>any</emph>*
+&lt;zip:entry></eg>
+            <ulist>
+               <item>
+                  <p><code>name</code> is the name of the entry within the ZIP file</p>
+               </item>
+               <item>
+                  <p>The <code>src</code> attribute gives the URI of the file which is copied into
+                     the ZIP file directory. If no <code>name</code> attribute is included then the
+                     basename of the URI in <code>src</code> is used to name the ZIP directory.</p>
+                  <p>If no <code>src</code> parameter is provided, the children of the
+                        <code>zip:entry</code> element are serialized and inserted into the ZIP
+                     file.</p>
+               </item>
+               <item>
+                  <p><code>compressed</code> is used to indicate if the entry is compressed within
+                     the ZIP file (certain entries, for example jpeg files are not normally
+                     compressed). A missing attribute indicates that the entry is compressed.</p>
+               </item>
+               <item>
+                  <p><code>output</code> determines how the entry is serialised. For values
+                        <code>"base64"</code> or <code>"hex"</code>, the output is serialized as
+                     binary after conversion from the binary encoding type specified.</p>
+                  <p>TODO: The current documentation for the ZIP Module does not provide for
+                     additional control of serialisation. It is likely, however, that the
+                     specification will align with other EXPath Modules (such as HTTP Client) where
+                     an additional set of attributes is used to set the corresponding serialization
+                     parameter defined in <bibref ref="xserial"/>, as defined for the XPath 2.1
+                     function <code>fn:serialize()</code>
+                     <bibref ref="fo11"/>.</p>
+               </item>
+            </ulist>            
+         </div2>
       </div1>
    </body>
    <back>
@@ -136,10 +297,15 @@ dir/
                <loc href="http://en.wikipedia.org/wiki/OpenDocument">OpenDocument format</loc>
                (ODF). The Organization for the Advancement of Structured Information Standards
                (OASIS).</bibl>
-            <bibl id="ml-zip" key="MarkLogic ZIP module">
-               <loc href="http://xqzone.marklogic.com/pubs/4.0/apidocs/package.html">Module:
-               ZIP Package</loc>.  In MarkLogic Server 4.0 documentation.  MarkLogic
-               Corporation.</bibl>
+            <bibl id="xserial" key="Serialization">
+               <loc href="http://www.w3.org/TR/xslt-xquery-serialization/">XSLT 2.0 and XQuery 1.0
+                  Serialization</loc>.  Scott Boag, Michael Kay, Joanne Tong, Norman Walsh, and Henry
+               Zongaro, editors. W3C Recommendation. 23 January 2007.
+            </bibl>
+            <bibl id="fo11" key="F&amp;O 1.1">
+               <loc href="http://www.w3.org/TR/xpath-functions-11/">XPath and XQuery Functions and
+                  Operators 1.1</loc>. Michael Kay, editor. W3C Working Draft. 15 January 2009.
+            </bibl>
          </blist>
       </div1>
    </back>
