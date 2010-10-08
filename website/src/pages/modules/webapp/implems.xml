@@ -6,5 +6,8 @@
       <title>Webapp Implementations</title>
       <!--image src="../../images/packaging.jpg" alt="Taps and pipes"/-->
       <para>Page under construction...</para>
+      <para>See the <link href="http://code.google.com/p/servlex/">Servlex</link> project,
+         an open-source implementation using Saxon and Calabash for its XSLT, XQuery and XProc
+         processors.  This is the framework used to run the EXPath website, among others.</para>
    </section>
 </webpage>
