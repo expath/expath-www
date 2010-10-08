@@ -4,7 +4,8 @@
    <title>EXPath - ZIP Facility Implementations</title>
    <section>
       <title>ZIP Facility Implementations</title>
-      <!--image src="../../images/packaging.jpg" alt="Taps and pipes"/-->
-      <para>Page under construction...</para>
+      <image src="../../images/packaging.jpg" alt="Taps and pipes"/>
+      <para>See the implementation for Saxon: the
+         <link href="http://code.google.com/p/expath-zip/">expath-zip</link> project.</para>
    </section>
 </webpage>
