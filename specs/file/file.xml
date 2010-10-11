@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<spec role="editors-copy" xmlns:ex="http://expath.org/ns/xmlspec"
-  xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<spec role="editors-copy" xmlns:ex="http://expath.org/ns/xmlspec">
   <header>
     <title>File Module</title>
-    <subtitle>EXPath Candidate Module</subtitle>
     <w3c-designation>w3c-designation</w3c-designation>
-    <w3c-doctype>Candidate</w3c-doctype>
+    <w3c-doctype>EXPath Candidate Module</w3c-doctype>
     <pubdate>
       <day>17</day>
       <month>May</month>
       <year>2010</year>
     </pubdate>
     <publoc>
-      <loc href="http://expath.org/spec/file/20100517"/>
+      <loc href="http://expath.org/spec/file/editor"/>
     </publoc>
     <altlocs>
-      <loc href="http://expath.org/spec/file/20100517.xml">XML</loc>
+      <loc href="http://expath.org/spec/file/editor.xml">XML</loc>
     </altlocs>
     <latestloc>
       <loc href="http://expath.org/spec/file"/>
     </latestloc>
+    <prevlocs>
+      <loc href="http://expath.org/spec/file/20100517"/>
+    </prevlocs>
     <authlist>
       <author>
         <name>Matthias Brantner</name>
@@ -84,7 +86,7 @@
             </ulist>
           </p></item>
         </ulist>
-        In the following, only "paths" is used if referring to a file or directory.
+        <p>In the following, only "paths" is used if referring to a file or directory.</p>
       </div2>
       
       <div2>
@@ -272,7 +274,7 @@ sequential <ex:function>file:write</ex:function>($file as <ex:type>xs:string</ex
     <div1>
       <head>References</head>
       <blist>
-        <bibl xlink:actuate="onRequest" xlink:show="replace" id="xserial" key="Serialization">
+        <bibl id="xserial" key="Serialization">
           <loc href="http://www.w3.org/TR/xslt-xquery-serialization/"> XSLT 2.0 and XQuery 1.0
             Serialization </loc>. Scott Boag, Michael Kay, Joanne Tong, Norman Walsh, and Henry
           Zongaro, editors. W3C Recommendation. 23 January 2007. </bibl>

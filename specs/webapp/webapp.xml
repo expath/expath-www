@@ -8,19 +8,19 @@
       <w3c-designation>w3c-designation</w3c-designation>
       <w3c-doctype>EXPath Candidate Module</w3c-doctype>
       <pubdate>
-         <day>17</day>
-         <month>December</month>
-         <year>2009</year>
+         <day>xx</day>
+         <month>Xxx</month>
+         <year>2010</year>
       </pubdate>
       <publoc>
-         <loc href="http://expath.org/spec/webapp/20091217"/>
+         <loc href="http://expath.org/spec/webapp/editor"/>
       </publoc>
       <altlocs>
-         <loc href="http://expath.org/spec/webapp/20091217.xml">XML</loc>
+         <loc href="http://expath.org/spec/webapp/editor.xml">XML</loc>
       </altlocs>
-      <latestloc>
+      <!--latestloc>
          <loc href="http://expath.org/spec/webapp"/>
-      </latestloc>
+      </latestloc-->
       <!--prevlocs>
          <loc href="http://expath.org/spec/webapp/2009mmdd"/>
          <loc href="http://expath.org/spec/webapp/2009mmdd"/>

@@ -8,16 +8,16 @@
       <w3c-designation>w3c-designation</w3c-designation>
       <w3c-doctype>EXPath Candidate Module</w3c-doctype>
       <pubdate>
-         <day>31</day>
-         <month>August</month>
+         <day>xx</day>
+         <month>Xxx</month>
          <year>2010</year>
       </pubdate>
       <publoc>
-         <loc href="http://expath.org/spec/pkg/20100831"/>
+         <loc href="http://expath.org/spec/pkg/editor"/>
       </publoc>
       <altlocs>
-         <loc href="http://expath.org/spec/pkg/20100831.xml">XML</loc>
-         <loc href="http://expath.org/spec/pkg/20100831/diff">Revision markup</loc>
+         <loc href="http://expath.org/spec/pkg/editor.xml">XML</loc>
+         <!--loc href="http://expath.org/spec/pkg/20100831/diff">Revision markup</loc-->
       </altlocs>
       <latestloc>
          <loc href="http://expath.org/spec/pkg"/>
@@ -459,7 +459,7 @@ some-lib-0.1 http://example.com/some-library 0.1
          <eg>
 [repository-dir]/
    .expath-pkg/
-      packages
+      packages.txt
       packages.xml
    some-package-2.3/
       query.xq
