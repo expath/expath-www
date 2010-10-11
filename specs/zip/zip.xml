@@ -66,11 +66,14 @@
             <p>The module defined by this document defines functions and elements in the namespace
                   <code>http://expath.org/ns/zip</code>. In this document, the <code>zip</code>
                prefix, when used, is bound to this namespace URI.</p>
+            <p>Error codes are defined in the namespace <code>http://expath.org/ns/error</code>. In
+               this document, the <code>err</code> prefix, when used, is bound to this namespace
+               URI.</p>
          </div2>
          <div2>
             <head>Error management</head>
             <p>Error conditions are identified by a code (a <code>QName</code>.) When such an error
-               condition is reached in the evaluation of an expression, an dynamic error is thrown,
+               condition is reached in the evaluation of an expression, a dynamic error is thrown,
                with the corresponding error code (as if the standard XPath function
                   <code>error</code> had been called.) TODO: Codes have not been defined yet.</p>
          </div2>
@@ -83,7 +86,8 @@
                nodes, and directories contains other entries. This hierarchy is the
                   <emph>structure</emph> of the ZIP file. All entries have a unique name among its
                siblings, and a particular entry can be identified using a path starting at the ZIP
-               file level, down to this entry, passing by each directory in between.</p>
+               file level, down to this entry, passing by each directory in between, separating each
+               name by a slash character '/'.</p>
             <p>For instance, the following shows the structure of a ZIP file containing one file
                entry with the name <code>README</code> and one directory with the name
                   <code>dir</code>. This directory contains two files, named
@@ -96,7 +100,11 @@ dir/
          </div2>
       </div1>
       <div1 id="spec-file-extraction-sect">
-         <head>Functions: ZIP File Extraction</head>
+         <head>Entry extraction</head>
+         <p>Those functions extract a specific entry out of a ZIP file. Because ZIP files do not
+            carry the type of the entries, and because we do not want to get all entries as a plain
+            binary item, there are several functions, one for each type among binary, HTML, text and
+            XML.</p>
          <note>
             <p>TODO: It has been suggested on the EXPath mailing list that these functions
                (excluding binary-entry) take an additional $encoding argument</p></note>
@@ -104,43 +112,46 @@ dir/
             <head><code>zip:binary-entry</code></head>
             <eg><ex:function>zip:binary-entry</ex:function>($href as <ex:type>xs:anyURI</ex:type>,
                  $entry as <ex:type>xs:string</ex:type>) as <ex:type>xs:base64Binary</ex:type></eg>
-            <p>Extracts the binary stream from the file positioned at <code>entry</code> within Zip
-               file located at <code>href</code> and returns it as Base64.</p>
+            <p>Extracts the binary stream from the file positioned at <code>entry</code> within the
+               ZIP file identified by <code>$href</code> and returns it as a Base64 item.</p>
          </div2>
          <div2>
-            <head><code>zip:html-entry</code></head>        
+            <head><code>zip:html-entry</code></head>
             <eg><ex:function>zip:html-entry</ex:function>($href as <ex:type>xs:anyURI</ex:type>,
                $entry as <ex:type>xs:string</ex:type>) as <ex:type>document-node()</ex:type></eg>
-            <p>Extracts the html file positioned at <code>entry</code> within Zip file located at
-                  <code>href</code>, tidies it to well-formed XML and returns an XML document
-               node.</p>
+            <p>Extracts the html file positioned at <code>entry</code> within the ZIP file
+               identified by <code>$href</code>, and returns a document node. Because an HTML
+               document is not necessarily a well-formed XML document, an implementation may use a
+               specific parser in order to produce an XDM document node, like <bibref ref="tagsoup"
+               /> or <bibref ref="tidy"/>; the details of this process are
+               implementation-defined.</p>
          </div2>
          <div2>
-            <head><code>zip:text-entry</code></head>        
+            <head><code>zip:text-entry</code></head>
             <eg><ex:function>zip:text-entry</ex:function>($href as <ex:type>xs:anyURI</ex:type>,
                $entry as <ex:type>xs:string</ex:type>) as <ex:type>xs:string</ex:type></eg>
-            <p>Extracts, as text, the contents of the text file positioned at <code>entry</code>
-               within Zip file located at <code>href</code>.</p>
+            <p>Extracts the contents of the text file positioned at <code>entry</code> within the
+               ZIP file identified by <code>$href</code> and returns it as a string.</p>
          </div2>
          <div2>
-            <head><code>zip:xml-entry</code></head>        
+            <head><code>zip:xml-entry</code></head>
             <eg><ex:function>zip:xml-entry</ex:function>($href as <ex:type>xs:anyURI</ex:type>,
               $entry as <ex:type>xs:string</ex:type>) as <ex:type>document-node()</ex:type></eg>
-            <p>Extracts the content from the XML file positioned at <code>entry</code> within Zip
-               file located at <code>href</code> and returns an XML document node.</p>
+            <p>Extracts the content from the XML file positioned at <code>entry</code> within the
+               ZIP file identified by <code>$href</code> and returns it as a document node.</p>
          </div2>         
       </div1>
       <div1 id="spec-file-handling-functions-sect">
-         <head>Functions: ZIP File Handling</head>
+         <head>ZIP File Handling</head>
          <p>Functions for getting informaton about ZIP file structure, and also for the creation or
             modification of ZIP files. These functions use a set of XML elements to define ZIP file
-            structure and content (see <specref ref="spec-file-handling-elements-sect"/>)</p>     
+            structure and content (see <specref ref="spec-file-handling-elements-sect"/>).</p>     
          <div2>
             <head><code>zip:entries</code></head>
             <eg><ex:function>zip:entries</ex:function>($href as <ex:type>xs:anyURI</ex:type>) as <ex:type>element(zip:file)</ex:type></eg>
             <p>Returns a <code>zip:file</code> element that describes the hierarchical structure of
-               the ZIP file located at <code>href</code> in terms of directories and ZIP entries.
-               This is ZIP file metadata only, content must not be returned.</p>
+               the ZIP file identified by <code>$href</code> in terms of directories and ZIP
+               entries. This is ZIP file metadata only, content must not be returned.</p>
          </div2>
          <div2>
             <head><code>zip:zip-file</code></head>        
@@ -158,7 +169,7 @@ dir/
          </div2>
       </div1>
       <div1 id="spec-file-handling-elements-sect">
-         <head>Elements for ZIP File Handling Functions</head>
+         <head>XML respresentation of ZIP files</head>
          <p>The functions used for ZIP file handling (see <specref
                ref="spec-file-handling-functions-sect"/>) all use a top-level XML element, named
                <code>zip:file</code>. This element, along with two further descendant elements,
@@ -224,24 +235,24 @@ dir/
                directory hierarchy of the ZIP file.</p>
             <eg>
 &lt;zip:entry name? = string
-            src? = uri
-            compressed? = "yes" | "no"
-            method? = "xml" | "html" | "xhtml" | "text" | "base64" | "hex"
-               | qname-but-not-ncname
-            byte-order-mark? = "yes" | "no"
-            cdata-section-elements? = qnames
-            doctype-public? = string
-            doctype-system? = string
-            encoding? = string
-            escape-uri-attributes? = "yes" | "no"
-            indent? = "yes" | "no"
-            normalization-form? = "NFC" | "NFD" | "NFKC" | "NFKD"
-               | "fully-normalized" | "none" | nmtoken
-            omit-xml-declaration? = "yes" | "no"
-            standalone? = "yes" | "no" | "omit"
-            suppress-indentation? = qnames
-            undeclare-prefixes? = "yes" | "no"
-            output-version? = nmtoken>
+           src? = uri
+           compressed? = "yes" | "no"
+           method? = "xml" | "html" | "xhtml" | "text" | "base64" | "hex"
+              | qname-but-not-ncname
+           byte-order-mark? = "yes" | "no"
+           cdata-section-elements? = qnames
+           doctype-public? = string
+           doctype-system? = string
+           encoding? = string
+           escape-uri-attributes? = "yes" | "no"
+           indent? = "yes" | "no"
+           normalization-form? = "NFC" | "NFD" | "NFKC" | "NFKD"
+              | "fully-normalized" | "none" | nmtoken
+           omit-xml-declaration? = "yes" | "no"
+           standalone? = "yes" | "no" | "omit"
+           suppress-indentation? = qnames
+           undeclare-prefixes? = "yes" | "no"
+           output-version? = nmtoken>
    any*
 &lt;/zip:entry></eg>
             <ulist>
@@ -289,6 +300,13 @@ dir/
       <div1>
          <head>References</head>
          <blist>
+            <bibl id="tagsoup" key="TagSoup">
+               <loc href="http://ccil.org/~cowan/XML/tagsoup/">TagSoup - Just Keep On Truckin'</loc>.
+               John Cowan.
+            </bibl>
+            <bibl id="tidy" key="HTML Tidy">
+               <loc href="http://tidy.sf.net/">HTML Tidy Library Project</loc>. SourceForge project.
+            </bibl>
             <bibl id="epub" key="EPUB"><loc href="http://www.openebook.org/">EPUB set of
                   specifications</loc>. International Digital Publishing Forum.</bibl>
             <bibl id="openxml" key="Open XML">
