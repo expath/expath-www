@@ -3,14 +3,12 @@
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
                 xmlns:pkg="http://expath.org/ns/pkg"
                 xmlns:web="http://expath.org/ns/webapp"
-                xmlns:file="http://expath.org/ns/file"
                 xmlns:app="http://expath.org/ns/website"
                 xmlns:html="http://www.w3.org/1999/xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 exclude-result-prefixes="#all"
                 version="2.0">
 
-   <xsl:import href="http://expath.org/ns/file.xsl"/>
    <xsl:import href="http://expath.org/ns/website/webpage.xsl"/>
 
    <pkg:import-uri>http://expath.org/ns/website/servlets.xsl</pkg:import-uri>
@@ -111,9 +109,8 @@
    <xsl:function name="app:specs-page-servlet">
       <xsl:param name="request" as="element(web:request)"/>
       <xsl:param name="bodies"  as="item()*"/>
-      <xsl:variable name="spec-dir" select="resolve-uri('spec/')"/>
-      <xsl:variable name="specs" as="element(file:dir)+" select="
-          file:old-list($spec-dir)/file:dir"/>
+      <xsl:variable name="specs" as="element(spec)+" select="
+          document('spec/spec-list.xml')/specs/spec"/>
       <xsl:variable name="page" as="element(webpage)">
          <webpage menu="main" xmlns="">
             <title>EXPath - Specifications</title>
@@ -136,7 +133,7 @@
                            </link>
                         </item>
                         <xsl:variable name="file-re" select="concat('^', $spec-name, '-[0-9]{8}.xml$')"/>
-                        <xsl:for-each select="file:file[matches(@name, $file-re)]">
+                        <xsl:for-each select="file[matches(@name, $file-re)]">
                            <item>
                               <xsl:variable name="start" select="string-length($spec-name) + 2"/>
                               <link href="spec/{ $spec-name }/{ substring(@name, $start, 8) }">
@@ -235,12 +232,11 @@
    <xsl:function name="app:latest-spec" as="xs:string?">
       <xsl:param name="module" as="xs:string"/>
       <xsl:param name="spec"   as="xs:string"/>
-      <xsl:variable name="mod-uri" select="resolve-uri(concat('spec/', $module))"/>
       <xsl:variable name="file-re" select="concat('^', $spec, '-([0-9]{8}).html$')"/>
-      <xsl:variable name="files" as="xs:string*" select="
-          file:old-list($mod-uri)/file:file/xs:string(@name)[matches(., $file-re)]"/>
+      <xsl:variable name="files" as="element(file)*" select="
+          document(resolve-uri('spec/spec-list.xml'))/specs/spec[@name eq $spec]/file"/>
       <xsl:variable name="dates" as="xs:string*">
-         <xsl:perform-sort select="for $f in $files return replace($f, $file-re, '$1')">
+         <xsl:perform-sort select="$files/@version[. ne 'editor']">
             <xsl:sort select="."/>
          </xsl:perform-sort>
       </xsl:variable>
