@@ -10,10 +10,9 @@
          <para>The Packaging System presentation given by Florent Georges at Balisage 2010: <link
                href="http://www.balisage.net/Proceedings/vol5/html/Georges01/BalisageVol5-Georges01.html"
                >the proceedings</link>. The conference website also hosts the PDF presentation
-            and the examples, though they have mot been updated yet.  Link to follow soon.  If you
-            cannot wait, you can write to the author or to the EXPath list for a copy, or look
-            directly into the <link href="http://code.google.com/p/expath/source/browse/#svn/trunk/misc/2010-balisage/examples">Subversion
-            repository</link>.</para>
+            and the examples, see the <link
+               href="http://www.balisage.net/Proceedings/vol5/author-pkg/Georges01/BalisageVol5-Georges01.html"
+               >materials</link> page.</para>
          <slideshare doc="fgeorges-expath-101002163358-phpapp02"/>
          <para>The presentation given by Florent Georges at <link href="http://xmlprague.cz/2010/">XML
             Prague 2010</link>, introducing the project as a whole, the Packaging System and the
