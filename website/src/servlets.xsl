@@ -176,6 +176,9 @@
       <xsl:choose>
          <xsl:when test="exists($resolved)">
             <web:response status="200" message="Ok">
+               <!-- TODO: Add a 'Link:' header (RFC 5988) to point to the current
+                    version of the spec, alternate versions, copyright, etc.  Must
+                    be easy using 'spec-list.xml'. -->
                <web:body content-type="text/html" src="{ $resolved }"/>
             </web:response>
          </xsl:when>
