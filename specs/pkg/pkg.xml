@@ -8,7 +8,7 @@
       <w3c-designation>w3c-designation</w3c-designation>
       <w3c-doctype>EXPath Candidate Module</w3c-doctype>
       <pubdate>
-         <day>xx</day>
+         <day>Xx</day>
          <month>Xxx</month>
          <year>2010</year>
       </pubdate>
@@ -116,15 +116,16 @@
             <p>All the elements in the package descriptor are defined in the namespace
                   <code>http://expath.org/ns/pkg</code>. All the elements defined in this
                specification or used in samples and in text are in this namespace, even if no prefix
-               is used. The root element is <code>package</code>, and contains a name, an optional
-               list of dependencies to other packages, and exactly one child element
-                  <code>module</code>:</p>
+               is used. The root element is <code>package</code>, and contains, besides some naming
+               and versionning attributes, a title, an optional home URI, an optional list of
+               dependencies on other packages and on processors, and a list of components:</p>
             <eg>
 &lt;package name = uri
          abbrev = string
          version = string
          spec = string>
    title,
+   home,
    dependency*,
    (xslt
    |xquery
@@ -139,13 +140,15 @@
                package abbrev, and <code>version</code> its version. The package directory must have
                the exact same name as the abbrev. <code>spec</code> is the version of the packaging
                specification the package conforms to. The current specification requires the package
-               to use the spec number <code>1.0-alpha1</code> [[ TODO: Define some rules to handle
-               properly the descriptor with different versions (basic backward and forward
-               compatibility. ]] The package then contains a title, which is a plain string,
-               intended to be a simple description of the package for humans. It then contains the
-               list of its dependencies and the list of its components.</p>
+               to use the spec number <code>1.0</code> (no forward compatibility rules are defined,
+               a processor conforming to this specification has to generate an error if the spec
+               number is different than the string <code>1.0</code>). The package then contains a
+               title, which is a plain string, intended to be a simple description of the package
+               for humans, and a home which is a URI to find more informations about the package. It
+               then contains the list of its dependencies and the list of its components.</p>
             <eg>
-&lt;dependency name = uri
+&lt;dependency package = uri
+            processor = string
             versions = string
             semver = string
             semver-min = string
@@ -153,12 +156,9 @@
    <emph>empty</emph>
 &lt;/dependency></eg>
             <p>Dependencies are set by using the name of other packages this package depends on. The
-               dependency can also define the version of the package it depends on by using one of
-               the few available strategies; see <specref ref="versioning"/> for a complete
-               description of them. [ TODO: Add a way to specify which processor we depend on? See
-               the proposal, or one of its reponse to, it contains something like that... See <loc
-                  href="http://groups.google.com/group/expath/msg/626520eccf36eb51"/>, something
-               like [dependency package="..."/] and [dependency processor=""/]... ]</p>
+               dependency can also define the version of the package or the set of processors it
+               depends on by using one of the few available strategies; see <specref
+                  ref="versioning"/> for a complete description of them.</p>
          </div2>
          <div2>
             <head>Components</head>
@@ -166,7 +166,7 @@
                and how they contribute to the package descriptor document type.</p>
             <div3>
                <head>XSLT</head>
-               <p>An XSLT file is associated a <emph>public import URI</emph>.This is the URI to use
+               <p>An XSLT file is associated a <emph>public import URI</emph>. This is the URI to use
                   in an XSLT import instruction (aka <code>xsl:import</code>) to import the XSLT
                   file provided in the package. This file is configured with the element
                      <code>xslt</code>.</p>
@@ -211,19 +211,19 @@
             </div3>
             <div3>
                <head>XML Schema</head>
-               <p>An XML schema can be imported using its target namespace. Like for XQuery, there
-                  is no way to use any <code>schemaLocation</code> instead. There is neither the
-                  ability to set several files as several sources for the schema. If the schema is
+               <p>An XML schema can be imported using its target namespace. It is not possible
+                  to set several files as several sources for the schema. If the schema is
                   spread over multiple files, there must be one top-level file that includes the
                   other files.</p>
                <eg>
 &lt;xsd>
-   namespace,
+   (namespace
+   |import-uri),
    file
 &lt;/xsd></eg>
-               <p>(TODO: Should we support schemas with empty target namespace? I am not sure this
-                  is a good idea in a packaging system...) (TODO: This does not support
-                     <code>xs:redefine</code>, as it requires a hint, not a target namespace)</p>
+               <p>The <code>import-uri</code> can be used to define a schema location for this
+                  schema component. This can be useful for schema without target namespace, or for
+                  some specific usages, like when using <code>xs:redefine</code>.</p>
             </div3>
             <div3>
                <head>RelaxNG</head>
@@ -321,15 +321,14 @@
       </div1>
       <div1 id="versioning">
          <head>Versioning and dependency management</head>
-         <p>[ TODO: See also the TODO in <specref ref="overall-structure"/> ]</p>
          <p>Every package has a name (a URI) and a version number. It can also have a set of
             dependencies on other packages, identified by their names. Each dependency can also
-            define a specific version (of range of versions) of the package it depends on. In
+            define a specific version (or range of versions) of the package it depends on. In
             addition to depending on other packages, a package can also depend on a specific
-            processor (or a set of specifc processors). This section uses the following example
-            package to illustrate those concepts:</p>
+            processor (or on one among a set of specifc processors). This section uses the following
+            example package to illustrate those concepts:</p>
          <eg>
-&lt;package name="http://example.org/app" version="1.0">
+&lt;package name="http://example.org/app" version="1.0" ...>
 
    &lt;dependency package="http://external.org/library"/>
    &lt;dependency package="http://partner.com/lib-2" semver="2"/>
@@ -340,64 +339,68 @@
 
 &lt;/package></eg>
          <p>At first glance, we can see that this package (which is named
-               <code>http://example.org/app</code> and had the version number <code>1.0</code>),
+               <code>http://example.org/app</code> and has the version number <code>1.0</code>),
             depends on the package <code>http://external.org/library</code> (no specific version),
             on the package <code>http://partner.com/lib-2</code> (version 2, whatever minor revision
             numbers) and on the Saxon processor, Professional Edition. The rest of this section
             explains in details the rules behind those dependencies, how to represent them, and
             their semantics.</p>
+         <p>The remainder of this section will use the term <emph>primary</emph> for the current
+            package, described by this package decriptor, and <emph>secondary</emph> for a package
+            it depends on.</p>
          <div2>
             <head>Package dependency</head>
             <p>A dependency on another package (usually called a <kw>library</kw>), is represented
                by the element <code>dependency</code>, with an attribute <code>package</code> which
                is the name of the library the package depends on. The dependency can be versioned;
                that is, only some versions of the library are acceptable for this package.</p>
-            <p>TODO: ...</p>
+            <p>The versionning attributes are <code>versions</code>, <code>semver</code>,
+                  <code>semver-min</code> and <code>semver-max</code>. They are all mutually
+               exclusive, except <code>semver-min</code> and <code>semver-max</code>. If no
+               versionning attribute is set on the dependency, any version of the secondary package,
+               identified by its name (the URI in the <code>package</code> attribute), is
+               acceptable. If the <code>versions</code> attribute is used, it defines the exact set
+               of acceptable versions for the secondary package, separated by spaces.</p>
+            <p>The other versionning attributes use <bibref ref="semver"/> to define the set of
+               acceptable versions for the secondary package. We use only the syntax of SemVer, and
+               define in addition the format of a SemVer template as being either a SemVer version
+               number or a subpart of it (i.e. only the major version, or the major and the minor
+               versions, or the major, the minor and the patch version). For instance 1.9 is a valid
+               SemVer template (because it does not have any patch number), while 1.9.0 and 1.9.23
+               are actual version numbers compatible with this template.</p>
+            <p>If the <code>semver</code> attribute is used, the secondary package version must be
+               compatible with this template. If <code>semver-min</code> is used, the secondary
+               package version must be either compatible with that SemVer template, or greater than
+               it. If <code>semver-max</code> is used, the secondary package version must be either
+               compatible with that SemVer template, or lower than it. For instance, with
+                  <code>semver-min="2.3"</code> and <code>semver-max="3"</code>, any version of the
+               secondary package which is equal or above 2.3.0 and strictly below 4.0.0 is valid
+               (that is, 2.3.0, 3.0.0, 3.99.87, etc.)</p>
          </div2>
          <div2>
             <head>Processor dependency</head>
-            <p>TODO: ...</p>
+            <p>In addition to depending on other packages, a dependency can tell which processor(s)
+               is (are) needed for this package:</p>
+            <eg>&lt;dependency processor="saxon"/></eg>
+            <p>If there is several such dependencies, the package is supported by a specific
+               processor as soon as one of the proc dependencies does match. The meaning of the
+               versionning attributes on processor dependencies is defined by each processor.</p>
          </div2>
          <div2>
             <head>Dependency enforcement</head>
-            <p>TODO: ...</p>
-         </div2>
-         <div2>
-            <head>TODO: Buffer...</head>
-            <p>Optionally, a dependency can explicitly set the acceptable version or range of versions
-               of the external package. Either by setting the set of exact version numbers, which are
-               interpreted as a plain string, by using dependency/@versions (space-separated list of
-               version numbers). Or by interpreting the version number following the rules in
-               SemVer[2], and using the attributes dependency/@semver, dependency/@semver-min and/or
-               dependency/@semver-max.</p>
-            <p>@semver set a version number which has to be compatible following the rules in SemVer.
-               For instance if semver="1", the dependency can have any version number with the major
-               number 1 (e.g. 1.0.0, 1.9.18, etc.) If semver="2.3", acceptable versions are for
-               instance 2.3.4 and 2.3.99.</p>
-            <p>@semver-min sets the minimal version number acceptable for a dependency, by interpreting
-               the version number following SemVer and using the version order defined in SemVer. If
-               there is semver-min="2", any version of the package we depend on, above 2, is ok (e.g.
-               2.3.4, 4.9.0, etc.) The same way, @semver-max records the maximum version number of the
-               dependency (including all versions compatible with this SemVer max number). E.g. with
-               semver-min="2.3" and semver-max="3", any version equal or above 2.3.0 and below 4.0.0
-               (excluding it) is valid (for instance 2.3.0, 3.0.0, 3.99.87, etc.)</p>
-            <p>It is implementation-defined how those rules are enforced. For instance a command line
+            <p>How those rules are enforced is implementation-defined. For instance a command line
                tool to install a package in a repository can generate an error if the required
-               dependencies are not installed, or just emit a warning, or just install the package
-               hoping the dependencies to be installed later on, and provide an option to select the
-               behaviour to use. Another implementation can enforce the dependencies at compile- or at
-               run-time. An implementation SHOULD provide a way to enforce those rules, but can also
-               provide an option to ignore them.</p>
-            <p>From the above text, a version number is not defined to have any particular semantics,
-               except when used with one of the several SemVer attributes. A user SHOULD use version
-               numbers compatible with SemVer though, unless there a justification not to use it (e.g.
-               to integrate with a company versioning scheme not compatible with SemVer).</p>
-            <p>In addition to versioning itself, a dependency can tell which processor(s) is (are)
-               needed for this package:</p>
-            <eg>&lt;dependency processor="saxon"/></eg>
-            <p>If there is several such dependencies, the package is supported by a specific processor
-               as soon as one of the proc dependencies does match. The meaning of the version-related
-               attributes on processor dependencies is defined by the processor.</p>
+               dependencies are not installed, try to install them automagically from the web, or
+               just emit a warning install the package hoping the dependencies to be installed later
+               on, and provide an option to select the behaviour to use. Another implementation can
+               enforce the dependencies at compile- or at run-time. An implementation SHOULD provide
+               a way to enforce those rules, but can also provide an option to ignore them.</p>
+            <p>From the above text, a version number is not defined to have any particular
+               semantics, except when used with one of the several SemVer attributes. The only
+               constraint is that a version number cannot contain any whitespace character (as
+               defined by the <bibref ref="xml"/> recommendation). A library author SHOULD use
+               version numbers compatible with SemVer though, unless there is a justification not to
+               use it.</p>
          </div2>
       </div1>
       <div1>
@@ -575,34 +578,6 @@ import module namespace fx = "http://www.functx.com";</eg>
             descriptor to achieve its purposes, providing that the new elements it defines are
             neither in the EXPath Packaging namespace nor in the null namespace.</p>
       </div1>
-      <div1>
-         <head>Editorial notes</head>
-         <ulist>
-            <item>
-               <p>Should the package system define a set of XPath functions? Instead of just
-                  defining the package format and letting everything else as implementation-defined,
-                  should it in addition define a module of functions to install, delete, and more
-                  generally manage packages from within a processor?</p>
-               <p>Drawback: potential problems if the processor requires to be stopped?</p>
-               <p>Advantages: enables writing tools on top of the system (one single graphical
-                  package manager for one system, simply using the XPath functions, as well as easy
-                  integration within IDEs; or even other systems could be more easily be built on
-                  top of it, like a packaging system for XRX applications for instance.)</p>
-            </item>
-            <item>
-               <p>Should we add a generic "xml" URI space, for any XML document?</p>
-            </item>
-            <item>
-               <p>Interesting use case with XProc and NVDL: How to configure the XSLT processor in
-                  Calabash with the NVDL URI space for an NVDL implementation for XProc written
-                  using XSLT as a plain library step?</p>
-            </item>
-            <item>
-               <p>Add in the package descriptor an element for a description, or at very least a URL
-                  to the home of the project.</p>
-            </item>
-         </ulist>
-      </div1>
    </body>
    <back>
       <div1 id="expath-pkg.xsd">
@@ -621,6 +596,10 @@ import module namespace fx = "http://www.functx.com";</eg>
                   Catalogs</loc>, OASIS Standard V1.1, 7 October 2005</bibl-->
             <bibl id="functx" key="FunctX"><loc href="http://www.functx.com/">FunctX</loc> library
                of functions for XQuery and XSLT 2.0, Datypic</bibl>
+            <bibl id="semver" key="SemVer"><loc href="http://semver.org/">Semantic Versioning</loc>,
+               Tom Preston-Werner</bibl>
+            <bibl id="xml" key="XML"><loc href="http://www.w3.org/TR/xml/">Extensible Markup
+                  Language (XML) 1.0</loc>, Tim Bray et al.</bibl>
          </blist>
       </div1>
    </back>
