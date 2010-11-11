@@ -17,7 +17,7 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">specs/zip/zip-20101012.xml</String>
+                                    <String xml:space="preserve">specs/pkg/pkg-20101111.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -28,7 +28,7 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">specs/file/file.xml</String>
+                                    <String xml:space="preserve">specs/zip/zip.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -55,13 +55,24 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="name">
+                                    <String xml:space="preserve">EXPath XML Spec Diff HTML</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">specs/pkg/pkg-20101111-diff.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
                                     <String xml:space="preserve">EXPath XML Spec HTML</String>
                                 </field>
                                 <field name="type">
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">specs/zip/zip.xml</String>
+                                    <String xml:space="preserve">specs/file/file.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -88,46 +99,35 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String xml:space="preserve">Self XProc - no input, no output - Qizx credentials</String>
+                                    <String xml:space="preserve">EXPath XML Spec Diff HTML</String>
                                 </field>
                                 <field name="type">
-                                    <String xml:space="preserve">XPROC</String>
+                                    <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../../xlibs/xnippets/todooooo-main.xproc</String>
+                                    <String xml:space="preserve">specs/pkg/pkg-20101112-diff.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String xml:space="preserve">Self XProc - no input, no output - Qizx credentials</String>
+                                    <String xml:space="preserve">EXPath XML Spec HTML</String>
                                 </field>
                                 <field name="type">
-                                    <String xml:space="preserve">XPROC</String>
+                                    <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../../xlibs/xnippets/todooooo.xpl</String>
+                                    <String xml:space="preserve">specs/pkg/pkg-20101112.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String xml:space="preserve">Execute XQuery (Win)</String>
+                                    <String xml:space="preserve">H2O Invoice</String>
                                 </field>
                                 <field name="type">
-                                    <String xml:space="preserve">XQUERY</String>
+                                    <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">misc/2010-balisage/examples/ubl-xqm/ubl-invoice-format.xqm</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">Balisage 2010 - ubl-xqm/ubl-invoice-format</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XML_XQUERY</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">../../../tmp/cvs.new/WWW/XML/Group/EXI/TTF/Benchmarks/data/UBL-1.0/xml/office/UBL-Invoice-1.0-Office-Example.xml</String>
+                                    <String xml:space="preserve">../../../Downloads/my-docs-sword-20091230/fgeorges.org/invoices/chloe-fgeorges.org/mercator-invoice-h2o-2010-09.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -138,139 +138,51 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">misc/2010-balisage/paper/Bal2010geor0901.xml</String>
+                                    <String xml:space="preserve">misc/2010-prague/paper/fgeorges-expath.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String xml:space="preserve">Self XQuery with EXPath Pkg</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XQUERY</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">misc/2010-prague/examples/01-http-client/homepage.xq</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">Execute XQuery (Win)</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XQUERY</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">../../xquery/decode-from-uri.xq</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">XSLT to XQuery</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XML</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">../google-xslt/xsl/gdata-impl.xsl</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">XSLT to XQuery</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XML</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">../google-xslt/xsl/gdata.xsl</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">XSLT to XQuery</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XML</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">../google-xslt/xsl/gdocs.xsl</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">Contacts with EXPath Pkg</String>
+                                    <String xml:space="preserve">EXPath XML Spec HTML</String>
                                 </field>
                                 <field name="type">
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">misc/2009-balisage/examples/zip-pattern/contacts.xml</String>
+                                    <String xml:space="preserve">specs/file/file-20100517.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String xml:space="preserve">Self XSLT with EXPath Pkg -- Google fgeorges</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XML</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">misc/2009-balisage/examples/zip-pattern/contacts.xsl</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">Self XSLT with EXPath Pkg -- Google fgeorges.test</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XML</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">misc/2009-balisage/examples/contacts/google-contacts.xsl</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">Self XSLT with EXPath Pkg -- Google fgeorges.test</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XML</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">misc/2009-balisage/examples/contacts/get-contacts.xsl</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">Execute XQuery (Win)</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XQUERY</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">misc/2009-balisage/examples/simple-http-with-pkg.xq</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">Website page to HTML - src</String>
+                                    <String xml:space="preserve">EXPath Packager</String>
                                 </field>
                                 <field name="type">
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">website/src/credits.xml</String>
+                                    <String xml:space="preserve">../pkg/repo/packager/test/hello-world/build/packager.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String xml:space="preserve">Website page to HTML - src</String>
+                                    <String xml:space="preserve">XSpec - compile to XSLT</String>
                                 </field>
                                 <field name="type">
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">website/src/index.xml</String>
+                                    <String xml:space="preserve">../http-client/test/cases/method.xspec</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">XSpec - compile to XQuery</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../http-client/test/cases/serial.xspec</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -281,7 +193,7 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">website/src/modules/http-client/index.xml</String>
+                                    <String xml:space="preserve">website/src/modules/http-client/implems.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -303,51 +215,106 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">website/src/modules/http-client/implems.xml</String>
+                                    <String xml:space="preserve">website/src/modules/http-client/index.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String xml:space="preserve">XSpec - compile to XQuery</String>
+                                    <String xml:space="preserve">Website page to HTML - src</String>
                                 </field>
                                 <field name="type">
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../http-client/test/cases/serial.xspec</String>
+                                    <String xml:space="preserve">website/src/index.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String xml:space="preserve">XSpec - compile to XSLT</String>
+                                    <String xml:space="preserve">Website page to HTML - src</String>
                                 </field>
                                 <field name="type">
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../http-client/test/cases/method.xspec</String>
+                                    <String xml:space="preserve">website/src/credits.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String xml:space="preserve">EXPath Packager</String>
+                                    <String xml:space="preserve">Execute XQuery (Win)</String>
                                 </field>
                                 <field name="type">
-                                    <String xml:space="preserve">XSL</String>
+                                    <String xml:space="preserve">XQUERY</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">../pkg/repo/packager/test/hello-world/build/packager.xml</String>
+                                    <String xml:space="preserve">misc/2009-balisage/examples/simple-http-with-pkg.xq</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String xml:space="preserve">EXPath XML Spec HTML</String>
+                                    <String xml:space="preserve">Self XSLT with EXPath Pkg -- Google fgeorges</String>
                                 </field>
                                 <field name="type">
-                                    <String xml:space="preserve">XSL</String>
+                                    <String xml:space="preserve">XML</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">specs/file/file-20100517.xml</String>
+                                    <String xml:space="preserve">misc/2009-balisage/examples/zip-pattern/contacts.xsl</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">XSLT to XQuery</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XML</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../google-xslt/xsl/gdocs.xsl</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">XSLT to XQuery</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XML</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../google-xslt/xsl/gdata.xsl</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">XSLT to XQuery</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XML</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../google-xslt/xsl/gdata-impl.xsl</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">Execute XQuery (Win)</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XQUERY</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../../xquery/decode-from-uri.xq</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">Self XQuery with EXPath Pkg</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XQUERY</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">misc/2010-prague/examples/01-http-client/homepage.xq</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -358,18 +325,73 @@
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">misc/2010-prague/paper/fgeorges-expath.xml</String>
+                                    <String xml:space="preserve">misc/2010-balisage/paper/Bal2010geor0901.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String xml:space="preserve">Sitemap - build</String>
+                                    <String xml:space="preserve">Balisage 2010 - ubl-xqm/ubl-invoice-format</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XML_XQUERY</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../../../tmp/cvs.new/WWW/XML/Group/EXI/TTF/Benchmarks/data/UBL-1.0/xml/office/UBL-Invoice-1.0-Office-Example.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">Execute XQuery (Win)</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XQUERY</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">misc/2010-balisage/examples/ubl-xqm/ubl-invoice-format.xqm</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">Self XProc - no input, no output - Qizx credentials</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XPROC</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../../xlibs/xnippets/todooooo.xpl</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">Self XProc - no input, no output - Qizx credentials</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XPROC</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../../xlibs/xnippets/todooooo-main.xproc</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">EXPath XML Spec HTML</String>
                                 </field>
                                 <field name="type">
                                     <String xml:space="preserve">XSL</String>
                                 </field>
                                 <field name="url">
-                                    <String xml:space="preserve">website/src/sitemap.xml</String>
+                                    <String xml:space="preserve">specs/zip/zip-20101012.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">Execute XQuery (Win)</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XQUERY</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">specs/zip/Untitled1.xquery</String>
                                 </field>
                             </scenarioAssociation>
                         </scenarioAssociation-array>
