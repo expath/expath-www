@@ -2,7 +2,7 @@
          name="http://fgeorges.org/tmp/balisage/hello"
          abbrev="balisage-hello"
          version="1.0"
-         spec="1.0-alpha1">
+         spec="1.0">
 
    <title>Sample hello world for Balisage 2010</title>
 
