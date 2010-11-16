@@ -125,7 +125,7 @@
          version = string
          spec = string>
    title,
-   home,
+   home?,
    dependency*,
    (xslt
    |xquery
