@@ -11,6 +11,105 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="name">
+                                    <String xml:space="preserve">H2O Invoice</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../../../Downloads/my-docs-sword-20091230/fgeorges.org/invoices/chloe-fgeorges.org/mercator-invoice-tigone-2010-10.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">EXPath XML Spec HTML</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">specs/webapp/webapp.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">EXPath XML Spec HTML</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">specs/pkg/pkg.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">EXPath XML Spec HTML</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">specs/geo/geo.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">H2O Invoice</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../../../Downloads/my-docs-sword-20091230/fgeorges.org/invoices/chloe-fgeorges.org/mercator-invoice-h2o-2010-09.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">H2O Invoice</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">../../../Downloads/my-docs-sword-20091230/fgeorges.org/invoices/chloe-fgeorges.org/mercator-invoice-tigone-2010-09.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">EXPath XML Spec HTML</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">specs/file/file.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">EXPath XML Spec HTML</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">specs/http-client/http-client.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String xml:space="preserve">EXPath XML Spec Diff HTML</String>
+                                </field>
+                                <field name="type">
+                                    <String xml:space="preserve">XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String xml:space="preserve">specs/pkg/pkg-20101111-diff.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
                                     <String xml:space="preserve">EXPath XML Spec HTML</String>
                                 </field>
                                 <field name="type">
@@ -33,72 +132,6 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String xml:space="preserve">EXPath XML Spec HTML</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">specs/http-client/http-client.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">EXPath XML Spec HTML</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">specs/webapp/webapp.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">EXPath XML Spec Diff HTML</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">specs/pkg/pkg-20101111-diff.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">EXPath XML Spec HTML</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">specs/file/file.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">EXPath XML Spec HTML</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">specs/geo/geo.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">EXPath XML Spec HTML</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">specs/pkg/pkg.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
                                     <String xml:space="preserve">EXPath XML Spec Diff HTML</String>
                                 </field>
                                 <field name="type">
@@ -117,17 +150,6 @@
                                 </field>
                                 <field name="url">
                                     <String xml:space="preserve">specs/pkg/pkg-20101112.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String xml:space="preserve">H2O Invoice</String>
-                                </field>
-                                <field name="type">
-                                    <String xml:space="preserve">XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String xml:space="preserve">../../../Downloads/my-docs-sword-20091230/fgeorges.org/invoices/chloe-fgeorges.org/mercator-invoice-h2o-2010-09.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
