@@ -25,6 +25,7 @@
       </xsl:copy>
    </xsl:template>
 
+   <!-- ..except garbage... -->
    <xsl:template match="zip:dir[@name eq '.~']" mode="add-specs"/>
 
    <!-- ...except the existing (and empty) 'spec' directory. -->
