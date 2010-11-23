@@ -136,16 +136,24 @@
 &lt;/package></eg>
             <p><code>name</code> is the name of the package. A package is named using an absolute
                URI, except any <code>file:</code> scheme URIs (most frequent choices are
-                  <code>http:</code> and <code>urn:</code> scheme URIs). <code>abbrev</code> is the
-               package abbrev, and <code>version</code> its version. The package directory must have
-               the exact same name as the abbrev. <code>spec</code> is the version of the packaging
-               specification the package conforms to. The current specification requires the package
-               to use the spec number <code>1.0</code> (no forward compatibility rules are defined,
-               a processor conforming to this specification has to generate an error if the spec
-               number is different than the string <code>1.0</code>). The package then contains a
-               title, which is a plain string, intended to be a simple description of the package
-               for humans, and a home which is a URI to find more informations about the package. It
-               then contains the list of its dependencies and the list of its components.</p>
+                  <code>http:</code> and <code>urn:</code> scheme URIs) [ TODO: See the note
+               below... ]. <code>abbrev</code> is the package abbrev, and <code>version</code> its
+               version. The package directory must have the exact same name as the abbrev.
+                  <code>spec</code> is the version of the packaging specification the package
+               conforms to. The current specification requires the package to use the spec number
+                  <code>1.0</code> (no forward compatibility rules are defined, a processor
+               conforming to this specification has to generate an error if the spec number is
+               different than the string <code>1.0</code>). The package then contains a title, which
+               is a plain string, intended to be a simple description of the package for humans, and
+               a home which is a URI to find more informations about the package. It then contains
+               the list of its dependencies and the list of its components.</p>
+            <note>
+               <p><emph>TODO:</emph> Atom (RFC 4287) says, about the atom:id element: "<emph>Its
+                     content MUST be an IRI, as defined by [RFC3987]. Note that the definition of
+                     'IRI' excludes relative references. Though the IRI might use a dereferencable
+                     scheme, Atom Processors MUST NOT assume it can be dereferenced.</emph>" We
+                  should probably use the same reference to IRIs.</p>
+            </note>
             <eg>
 &lt;dependency package = uri
             processor = string
@@ -465,10 +473,14 @@ some-lib-0.1 http://example.com/some-library 0.1
       packages.txt
       packages.xml
    some-package-2.3/
-      query.xq
-      style.xsl
+      expath-pkg.xml
+      some-package/
+         query.xq
+         style.xsl
    some-lib-0.1/
-      ...</eg>
+      expath-pkg.xml
+      some-lib/
+         ...</eg>
          <note>
             <p>Because the package descriptor is unzipped in the package directory, as well as the
                rest of the files contained in the package, this is easy to find the mapping between
