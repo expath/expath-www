@@ -547,7 +547,7 @@ functx/
          <eg>
 [repository-dir]/
    .expath-pkg/
-      packages
+      packages.txt
       packages.xml
    functx-1.0/
       expath-pkg.xml
