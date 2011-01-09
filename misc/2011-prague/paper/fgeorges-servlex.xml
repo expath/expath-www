@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="http://www.balisage.net/DocumentModels/balisage-1-1.rng" type="xml"?>
+
+<article xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+   <title>CXAN: a case-study for Servlex, an XML web framework</title>
+   <subtitle></subtitle>
+   <info>
+      <confgroup>
+         <conftitle>XML Prague</conftitle>
+         <confdates>26 - 27 March 2011</confdates>
+      </confgroup>
+      <abstract>
+         <para>This article describes the EXPath Webapp Module, as well as one implementation:
+            Servlex. It uses the CXAN website as a case study.</para>
+      </abstract>
+      <author>
+         <personname>
+            <firstname>Florent</firstname>
+            <surname>Georges</surname>
+         </personname>
+         <personblurb>
+            <para>Florent Georges is a freelance IT consultant in Brussels who has been involved in
+               the XML world for 10 years, especially within the XSLT and XQuery communities. His
+               main interests are in the field of XSLT and XQuery extensions and libraries,
+               packaging, unit and functional testing, and portability between several processors.
+               Since the beginning of 2009, he has worked on EXPath, to define "standard" tools and
+               extension function libraries that can be used in XPath (so in XSLT, XQuery and XProc
+               as well).</para>
+         </personblurb>
+         <affiliation>
+            <jobtitle>XML Architect</jobtitle>
+            <orgname>H2O Consulting</orgname>
+         </affiliation>
+         <email>fgeorges@fgeorges.org</email>
+      </author>
+      <legalnotice>
+         <para>Copyright &#xA9; 2011 Florent Georges. Used by permission.</para>
+      </legalnotice>
+      <keywordset role="author">
+         <keyword>EXPath</keyword>
+         <keyword>webapp</keyword>
+         <keyword>XProc</keyword>
+         <keyword>XSLT</keyword>
+         <keyword>XQuery</keyword>
+      </keywordset>
+   </info>
+   <section>
+      <title>Introduction</title>
+      <para>The EXPath project defines standard extensions for various XPath languages and tools.
+         Most of them are extension function libraries, defining sets of extension functions you can
+         call from within an XPath expression (e.g. in XLST, XProc or XQuery), like the File Module,
+         the Geo Module and the HTTP Client (resp. functions to read/write the filesystem, functions
+         for geo-localisation, and a function providing HTTP client features). EXPath also defines
+         two modules of a different nature: the Packaging System and the Webapp Module.</para>
+      <para>The Packaging System is the specification of a package format for XML technologies. It
+         uses the ZIP format to gather in one single file all components and resource needed by a
+         package (that is, a library or an application). The package contains also a package
+         descriptor, which associate a public URI to each public component of the package. This URI
+         can by used by user code to import those components exposed by the package. The Packaging
+         System defines also an on-disk repository structure, so different processors and different
+         implementations can share the same repository of packages. When compiling the user
+         stylesheet / pipeline / query, the processors simply delegate the resolution of imported
+         components to the repository:</para>
+      <para>
+         <mediaobject>
+            <imageobject>
+               <imagedata format="png" fileref="pkg-repo.png" align="center" scale="60"/>
+            </imageobject>
+         </mediaobject>
+      </para>
+      <para>This package format make it possible to distribute XML libraries and application in a
+         standard way. Using a format supported by several processors. All the library author needs
+         to do is to provide such a package, created using standard tools. The user just download
+         the package and gives it to its repository manager, or directly to its processor, in order
+         to install it automaticaly.</para>
+      <section>
+         <title>CXAN</title>
+         <para>The Packaging System makes it possible for a library author to put the package on his
+            website in order for its user to download it and install it automatically. But still, a
+            user has to find the website, find the package, download it, and invoke the repository
+            manager with this package file to install it locally. And if the package depends on
+            another, the user has to find the dependencies, and install them also. Recursively. All
+            that process could be automated.</para>
+         <para>CXAN tries to solve that problem by providing 2 complementary components. The first
+            component is the website. The CXAN website is aimed at gathering all known XML packages,
+            at organizing them in a stable distribution, and at maintaining that distribution over
+            the time. Every package in CXAN is given a unique ID, a abbreviation string. The second
+            component is the CXAN client. The client is a program invoked from the command-line to
+            manage parts of this stable distribution in a local repository. The client can install
+            packages on the local machine by downloading them directly from the CXAN website, and
+            resolving automatically the dependencies.</para>
+         <para>The website is organized as a large catalog of XML libraries and applications, that
+            you can navigate through tags, authros and categories, or that you can search using some
+            keywords or among the descriptions. It is located at <link xlink:href="http://cxan.org/"
+               xrefstyle="dummy"/>. The following screenshot shows the details of the package
+               <code>google-apis</code>, an XSLT and XQuery library to access Google APIs over
+            HTTP:</para>
+         <para>
+            <mediaobject>
+               <imageobject>
+                  <imagedata format="png" fileref="website.png" align="center" scale="40"/>
+               </imageobject>
+            </mediaobject>
+         </para>
+         <para>The client is invoked from the command-line (although a graphical or web front-end
+            could be written). It understand a few commands in order to find a package, install it
+            (as well as its dependencies), or remove it from the local repository. The following
+            screenshot shows how to look for packages with the tag <code>google</code>. There is
+            one, the package with the ID <code>google-apis</code>. We then display the details for
+            that package. We also search for an HTTP Client implementation, then install it before
+            installing the Google APIs. All informations and packages are retrieved directly from
+            the CXAN website:</para>
+         <para>
+            <mediaobject>
+               <imageobject>
+                  <imagedata format="png" fileref="client.png" align="center" scale="50"/>
+               </imageobject>
+            </mediaobject>
+         </para>
+         <para>Besides those two tools, the website and the client, the most valuable part of CXAN
+            is the collection of packages itself. CXAN is not a brand-new idea, and is similar in
+            spirit to systems like Debian's APT system (and its famous <code>apt-get</code>
+            command), CTAN for TeX and LaTeX, or CPAN for Perl (also with a website at <link
+               xlink:href="http://cpan.org/" xrefstyle="dummy"/> and a client to look up and install
+            packages locally).</para>
+      </section>
+      <section>
+         <title>Webapp and Servlex</title>
+         <para>The EXPath Webapp Module defines a web container, using XSLT, XQuery and XProc to
+            implement web applications. It defines how the HTTP requests are dispatched to those
+            compenents based on a mapping between the request URI and the components. It also
+            defines how the container communicate to the components (basically by providing them
+            with an XML representation of the HTTP request, and by receiving in turn an XML
+            representation of the HTTP response to send back to the client).</para>
+         <para>The purpose of this module is to provide the developer with a low-level, yet powerful
+            way to map HTTP requests to XML components, without need for any other technology. It is
+            defined independently on any processor, and can actually be implemented by all kind of
+            processors. Most XML database provide such a feature (usually trying to provide an API
+            at a slitely higher level, sacrificing the power of a full HTTP support). Its place in
+            the XML eco-system is similar to the place of the Servlet technology in the Java
+            eco-system: quite low-level, but providing the ability to build more complex systems on
+            top of it, entirely in XML.</para>
+         <para>Servlex is an open-source implementation of the Webapp Module, based on Saxon and
+            Calabash as its XSLT, XQuery and XProc processors, and on the Java Servlet technology
+            for its networking needs. It can be installed in any servlet container, like Tomcat,
+            Glassfish, or Jetty. It is available on Google Code at <link xrefstyle="dummy"
+               xlink:href="http://code.google.com/p/servlex/"/>.</para>
+      </section>
+   </section>
+   <section>
+      <title>The Webapp Module</title>
+      <para>The overall treatment of an in-bound HTTP request is as follows in the Webapp
+         Module:</para>
+      <para>
+         <mediaobject>
+            <imageobject>
+               <imagedata format="png" fileref="servlex-archi.png" align="center" scale="50"/>
+            </imageobject>
+         </mediaobject>
+      </para>
+      <para>That is, the client sends a request. It is received by the webapp container. It is
+         translated to an XML representation by the HTTP Bridge. This XML representation is a simple
+         XML vocabulary giving information about the HTTP verb, the request URI, the URI parameters,
+         the HTTP headers, and the entity content (e.g. in case of a PUT or a POST). Based on the
+         request URI and on a set of maps, the Dispatcher finds the component to call in order to
+         handle the request.</para>
+      <para>Once the correct component is found, it is called with the request as parameter. For
+         instance, if the component is an XQuery function, the request is passed as a function
+         parameter; if the component is an XSLT stylesheet, the request is passed as a stylesheet
+         parameter. The result of the evaluation of the component must be the XML representation of
+         the HTTP response to send back to the client. The HTTP request looks like the
+         following:</para>
+      <programlisting>&lt;web:request servlet="package" path="/pkg/google-apis" method="get">
+   &lt;web:uri>http://cxan.org/pkg/google-apis?extra=param&lt;/web:uri>
+   &lt;web:authority>http://cxan.org&lt;/web:authority>
+   &lt;web:context-root>&lt;/web:context-root>
+   &lt;web:path>
+      &lt;web:part>/pkg/&lt;/web:part>
+      &lt;web:match name="id">google-apis&lt;/web:part>
+   &lt;/web:path>
+   &lt;web:param name="extra" value="param"/>
+   &lt;web:header name="host" value="cxan.org"/>
+   &lt;web:header name="user-agent" value="Opera/9.80 ..."/>
+   ...
+&lt;/web:request></programlisting>
+      <para>As you can see, this XML document contains all information about the HTTP request. The
+         HTTP method of course (GET, POST, etc.) and everything related to the request URI: the full
+         URI but also its authority part, the port number, the context root and the path within the
+         web application. The webapp map can identify some parts in the URI using a regex and give
+         them a name, so they can be easily retrieved from within the component. In the above
+         example, the map says that everything matching the wildcard in <code>/pkg/*</code> must be
+         given the name <code>id</code>, so it can be accessed in the request by the XPath
+            <code>/web:request/web:path/web:match[@name eq 'id']</code>. The URI query parameter and
+         the HTTP request headers are also easily accessible by name.</para>
+      <para>The entity content (aka the request body), if any, is also passed to the component. The
+         bodies though are passed a bit differently. Instead of being part of the request document,
+         the bodies are passed in a separate sequence (I say bodies, because in case of a multi-part
+         request we can have several of them). They are parsed depending on their content type, so a
+         textual body is passed as a string item, an XML content is parsed as a document node, an
+         HTML content is tidied up and parsed in a document node, and everything else is passed as a
+         base 64 binary item. A <emphasis>description</emphasis> of each body is inserted in the
+            <code>web:request</code> though, describing its content type and a few other
+         infos.</para>
+      <para>The component is called with the request document, and must provide as result a response
+         document. The same way the request document represents the HTTP request the client sent,
+         the response document represents the HTTP response to send back to the client. It looks
+         like:</para>
+      <programlisting>&lt;web:response status="200" message="Ok">
+   &lt;web:header name="Extra-Header" value="..."/>
+   &lt;web:body content-type="text/html">
+      &lt;html>
+         &lt;head>
+            &lt;title>Hello&lt;/title>
+         &lt;/head>
+         &lt;body>
+            &lt;p>Hello, world!&lt;/p>
+         &lt;/body>
+      &lt;/html>
+   &lt;/web:body>
+&lt;/web:response></programlisting>
+      <para>The response includes a status code and the status message of the HTTP response. It can
+         also (and usually do) contain an entity content, the body of the response. In this case
+         this is an HTML page, with the content type <code>text/html</code>. Optionally, the
+         response document can set some headers on the HTTP response.</para>
+      <para>Besides components in XSLT, XQuery and XProc, a webapp can contain resources. They are
+         also identified using a regex, but then the path is resolved in the webapp's directory and
+         the webapp container returns them as is from the filesystem. The map can set their MIME
+         content type, and can also use a regex rewrite pattern to rewrite a resource URI path to a
+         path in the filesystem. This is useful to have the webapp container serving directly paths
+         like <code>/style/*.css</code> and <code>/images/*.png</code>, without actually calling any
+         component and without having to generate the request document.</para>
+      <para>A web application is thus a set of components, along with a map (mapping request URIs to
+         components). It is packaged using the Packaging System format, with the following
+         structure:</para>
+      <programlisting>expath-pkg.xml
+expath-web.xml
+the-webapp/
+   component-one.xsl
+   two.xproc
+   tres.xqm
+   any-dir/
+      more-components.xproc
+   images/
+      logo.png
+   style/
+      layout.css</programlisting>
+      <para>Because this is a standard package (with the addition of the webapp descriptor, aka the
+         webapp map, <code>expath-web.xml</code>), all public components are associated an import
+         URI. The webapp map can then use those absolute URIs to reference components, making it
+         independent on the physical strcuture of the project. The webapp descriptor looks like the
+         following:</para>
+      <programlisting>&lt;webapp xmlns="http://expath.org/ns/webapp/descriptor"
+        xmlns:app="http://example.org/ns/my-website"
+        name="http://example.org/my-website"
+        abbrev="myweb"
+        version="1.3.0">
+
+   &lt;title>My example website&lt;/title>
+
+   &lt;resource pattern="/style/.+\.css"  media-type="text/css"/>
+   &lt;resource pattern="/images/.+\.png" media-type="image/png"/>
+
+   &lt;servlet>
+      &lt;xproc uri="http://example.org/ns/my-home.xproc"/>
+      &lt;url pattern="/"/>
+   &lt;/servlet>
+
+   &lt;servlet>
+      &lt;xquery function="app:other-page"/>
+      &lt;url pattern="/other"/>
+   &lt;/servlet>
+
+   &lt;servlet>
+      &lt;xslt uri="http://example.org/ns/servlets.xsl" function="app:yet-page"/>
+      &lt;url pattern="/yet/(.+)">
+         &lt;match group="1" name="id"/>
+      &lt;url>
+   &lt;/servlet>
+
+   &lt;servlet>
+      &lt;xslt uri="http://example.org/ns/catch-all.xsl"/>
+      &lt;url pattern="/.+"/>
+   &lt;/servlet>
+
+&lt;/webapp></programlisting>
+      <para>Besides some metadata like the webapp name and its title, the webapp descriptor is
+         basically a sequence of components, each associated with a URL pattern. A URL is a regex.
+         When a request is received by the webapp container, the webapp is identified by the context
+         root (that is, the first level of the URI). Then all the pattern in the corresponding
+         webapp descriptor are tried to be matched against the request path, in order. The request
+         os dispatched to the first one that matches (either a resource or a component). The
+         components can be anything among the following types:</para>
+      <!--variablelist>
+         <varlistentry>
+            <term>XProc</term>
+            <listitem>
+               <para>Step, pipeline</para>
+            </listitem>
+         </varlistentry>
+         <varlistentry>
+            <term>XQuery</term>
+            <listitem>
+               <para>Function, main module</para>
+            </listitem>
+         </varlistentry>
+         <varlistentry>
+            <term>XSLT</term>
+            <listitem>
+               <para>Function, named template, stylesheet</para>
+            </listitem>
+         </varlistentry>
+      </variablelist-->
+      <table>
+         <thead>
+            <tr>
+               <th>Language</th>
+               <th>Kind of component</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>XProc</td>
+               <td>Step</td>
+            </tr>
+            <tr>
+               <td/>
+               <td>Pipeline</td>
+            </tr>
+            <tr>
+               <td>XQuery</td>
+               <td>Function</td>
+            </tr>
+            <tr>
+               <td/>
+               <td>Main module</td>
+            </tr>
+            <tr>
+               <td>XSLT</td>
+               <td>Function</td>
+            </tr>
+            <tr>
+               <td/>
+               <td>Named template</td>
+            </tr>
+            <tr>
+               <td/>
+               <td>Stylesheet</td>
+            </tr>
+         </tbody>
+      </table>
+      <para>Each kind of component defines the exact way it is evaluated, how the request is passed
+         to the component, and how the component gives back the response. For instance, an XQuery or
+         an XSLT function must have exactly 2 parameters: the first one is the
+            <code>web:request</code> element, and the second one is the sequence (possible empty) of
+         the entity content, aka the request bodies, the result of calling such a function must in
+         turn give an element <code>web:response</code>, and possible several subsequent items
+         representing the response body. An XProc pipeline is evaluated the same way, but the
+         specification defines instead specific port names for the request and the response.</para>
+   </section>
+   <section>
+      <title>Servlex</title>
+      <para>Servlex is an implementation of the Webapp Module. It is open-source and available on
+         Google Code at <link xlink:href="http://code.google.com/p/servlex/" xrefstyle="dummy"/>.
+         Under the hood, it is written in Java, it uses the Java Servlet technology for the link to
+         HTTP, and it uses Saxon and Calabash as its XSLT, XQuery and XProc processors.</para>
+      <para>To install Servlex, you first need to get a Servlet container. The easiest is to install
+         a container like Tomcat or Jetty. Then follow the instruction to deploy the Servlex WAR
+         file in the container: go to your container admin console, select the WAR file on the disk
+         and press the deploy button. As simple as that. The only option to configure is the
+         location of the webapp repository. For instance in Tomcat, you can add the following line
+         in <code>conf/catalina.properties</code>:
+            <code>org.expath.servlex.repo.dir=/usr/share/servlex/repo</code>. This must be a
+         standard EXPath package repository.</para>
+      <para>At startup, Servlex looks into that repository. Every package with a web descriptor, aka
+         the file <code>expath-web.xml</code>, is considered a webapp. The descriptor is read, and
+         the Servlex application list is initialized. Each webapp has an abbreviation used to plug
+         it in the container URI space. For instance, let us assume Servlex has been deployed on a
+         local Tomcat instance at <link xlink:href="http://localhost:8080/servlex/"
+            xrefstyle="dummy"/>. When Servlex receives a request at <link xrefstyle="dummy"
+            xlink:href="http://localhost:8080/servlex/myapp/some/thing"/>, it uses
+            <code>myapp</code> as an ID of the application. Once it knows the application, it can
+         retrieve its map. It then uses the path, here <code>/some/thing</code>, to find a component
+         in the map, by trying to match the path against components URL regex.</para>
+      <para>An interesting particularity of Servlex is its ability to have a read-only repository
+         that does not use the filesystem. Thanks to the open-source implementation in Java of the
+         Packaging System and its repository layout, Servlex can look instead in the classpath.
+         Instead of using a directory on the filesystem, it uses a package name. For instance, let
+         us say we have a JAR file with a package <code>org.example.repo</code>, and within its
+         package, sub-packages and resources follow the same structure as an on-disk repository, but
+         instead in the classpath. We can then use this package to configure the repository of
+         Servlex, instead of using a directory on the disk. This is particularly interesting to
+         deploy Servlex in disk-less environments like Google Appengine and Amazon Cloud EC2. Of
+         course, a repository in the classpath is read-only, so you cannot install and remove
+         webapps on the move, this is fixed at Servlex deployement.</para>
+      <para>Now that we have a Servlex instance up and running, let us have a look at a real sample
+         of webapp. Servlex distribution comes with a simple example, called hello-world. The source
+         and the compiled package are both included in the distribution. All you need to do in order
+         to install the sample webapp is to go the Servlex Manager at <link xrefstyle="dummy"
+            xlink:href="http://localhost:8080/servlex/manager"/>, select the file
+            <code>hello-world-0.4.0.xaw</code> from the distribution (this is the webapp package),
+         and press the deploy button. The package is read by Servlex, and added to the on-disk
+         repository, so it will be available even after you restart Tomcat. The manager lists the
+         installed applications, and allows you to remove them or to install new ones:</para>
+      <para>
+         <mediaobject>
+            <imageobject>
+               <imagedata format="png" fileref="manager.png" align="center" scale="50"/>
+            </imageobject>
+         </mediaobject>
+      </para>
+      <para>After you installed the webapp, you can directly access it at the address <link
+            xlink:href="http://localhost:8080/servlex/hello-world/" xrefstyle="dummy"/>. This is a
+         very simple application. The home page contains 4 forms. The first form asks for our name,
+         then sends it to a page implemented in XSLT. The second form sends it to a page implemented
+         in XQuery, and the third one in XProc. The last form sends you to an online tool that dump
+         the XML request document (representing the HTTP request in XML), located at <link
+            xrefstyle="dummy" xlink:href="http://h2oconsulting.be/tools/dump"/>. If you fill in the
+         first form with "James Clark" and press the button, you see a simple page with the text
+         "Hello, James Clark! (in XSLT)":</para>
+      <para>
+         <mediaobject>
+            <imageobject>
+               <imagedata format="png" fileref="hello-home.png" align="center" scale="50"/>
+            </imageobject>
+         </mediaobject>
+      </para>
+      <para>When you press the button "XSLT", the HTML form sends a simple HTTP GET request to the
+         URI <link xlink:href="http://localhost:8080/servlex/hello-world/xslt?who=James+Clark"
+            xrefstyle="dummy"/>. When Servlex receives this request, it first extracts the context
+         root to determine which application is responsible for handling this request. The string
+            <code>hello-world</code> helps it identifying the application, and finding its webapp
+         descriptor. In this descriptor, it looks for a component matching the path
+            <code>/xslt</code>. It finds the following match:</para>
+      <programlisting>&lt;servlet>
+   &lt;xslt uri="http://expath.org/ns/samples/servlex/hello.xsl"
+         function="app:hello-xslt"/>
+   &lt;url pattern="/xslt"/>
+&lt;/servlet></programlisting>
+      <para>This component represents a function <code>app:hello-xslt</code>, which is defined in the
+         stylesheet with the public URI <code>http://expath.org/ns/samples/servlex/hello.xsl</code>.
+         Servlex constructs then the following request document:</para>
+      <programlisting>&lt;web:request servlet="xslt" path="/xslt" method="get">
+   &lt;web:uri>http://localhost:8080/servlex/hello-world/xslt?who=James+Clark&lt;/web:uri>
+   &lt;web:authority>http://localhost:8080&lt;/web:authority>
+   &lt;web:context-root>/servlex/hello-world&lt;/web:context-root>
+   &lt;web:path>
+      &lt;web:part>/xslt&lt;/web:part>
+   &lt;/web:path>
+   &lt;web:param name="who" value="James Clark"/>
+   &lt;web:header name="host" value="localhost"/>
+   &lt;web:header name="user-agent" value="Opera/9.80 ..."/>
+   ...
+&lt;/web:request></programlisting>
+      <para>Servlex then calls the component with this request document. In this case, this is the
+         XSLT function <code>app:hello-xslt</code>. An XSLT function used as a servlet must accept
+         two parameters: the first one is the element <code>web:request</code>, the second one is
+         the sequence of bodies (here empty as this is a GET request). In this example, this
+         function simply has to get the query parameter value from <code>$request/web:param[@name eq
+            'who']/@value</code>, and format a simple HTTP response document and a simple HTML page
+         to return to the client. The function looks like the following:</para>
+      <programlisting>&lt;xsl:function name="app:hello-xslt">
+   &lt;xsl:param name="request" as="element(web:request)"/>
+   &lt;xsl:param name="bodies"  as="item()*"/>
+   &lt;xsl:variable name="who" select="$request/web:param[@name eq 'who']/@value"/>
+   &lt;xsl:variable name="greetings" select="concat('Hello, ', $who, '!')"/>
+   &lt;web:response status="200" message="Ok">
+      &lt;web:body content-type="application/xml" method="xhtml"/>
+   &lt;/web:response>
+   &lt;html>
+      &lt;head>
+         &lt;title>
+            &lt;xsl:value-of select="$greetings"/>
+         &lt;/title>
+      &lt;/head>
+      &lt;body>
+         &lt;p>
+            &lt;xsl:value-of select="$greetings"/>
+            &lt;xsl:text> (in XSLT)&lt;/xsl:text>
+         &lt;/p>
+      &lt;/body>
+   &lt;/html>
+&lt;/xsl:function></programlisting>
+      <para>The sequence returned by the function (here an element <code>web:response</code> and a
+         HTML element) is used by Servlex to send a response back to the client, with the code 200
+         Ok, the content type application/xml and the HTML page as payload. The application source
+         code is structured as follows, but this is up to the developer:</para>
+      <programlisting>hello-world/
+   src/
+      hello.xproc
+      hello.xql
+      hello.xsl
+      index.html
+   xproject/
+      expath-web.xml
+      project.xml</programlisting>
+   </section>
+   <section>
+      <title>The CXAN website</title>
+      <para>Now that we have met the basics of the framework, let us have a look at a real-world
+         example: the CXAN website. The purpose of this website, has stated in the introduction, is
+         double: first to be an online catalog of packages, to be browsed by human, with a graphical
+         environment, and secondly to be a central server for CXAN clients to commnicate to, through
+         HTTP and XML, in order to maintain a local install of CXAN packages, by allowing searching
+         and installing packages.</para>
+      <para>Both aspects are actually very similar. The website has to respond to HTTP requests sent
+         to structured URIs. In both cases, the responses carry the same semantics. The difference
+         is that in one case, the format of the information is a HTML page aimed at human beings,
+         and in the other case, the format is an XML message aimed at a computer program. This
+         section will first focus on the HTML part of the website, then will show how both parts are
+         actually implemented in common.</para>
+      <para>So the main business of the website is to maintain a set of packages. </para>
+      <para>Bla bla [...]</para>
+      <para>TODO: After the basics, let's see a real website, its architecture, the way it is
+         organized, etc. Introduce transformer, filters, error handlers, etc.</para>
+      <para>TODO: Introduce its structure as a project, the source code, etc., and the way it is
+         packaged, using the EXPath Project tools.</para>
+      <para>
+         <mediaobject>
+            <imageobject>
+               <imagedata format="png" fileref="cxan-archi.png" align="center" scale="50"/>
+            </imageobject>
+         </mediaobject>
+      </para>
+      <para>Bla bla [...]</para>
+      <para>
+         <mediaobject>
+            <imageobject>
+               <imagedata format="png" fileref="pkg-algo.png" align="center" scale="60"/>
+            </imageobject>
+         </mediaobject>
+      </para>
+      <para>Bla bla [...]</para>
+      <para>TODO: Show how the XML part (for the client) is implemented by the same components than
+         the HTML part (and see the only few differences to handle that). As promised at the
+         beginning of this section.</para>
+   </section>
+   <section>
+      <title>Section</title>
+      <para>Bla bla [...]</para>
+      <para>TODO: [for the presentation, not the paper] Finish with a live demo: ask someone his
+         techno of choice (XProc, XQuery, XSLT), his name to name the components (like
+         http://john.doe.name/ns/...), and create first the project structure, then a standard
+         package and the XAR using xproj. Then turn it into a webapp by writing the expath-web.xml.
+         Then deploy it. Etc.</para>
+   </section>
+</article>
