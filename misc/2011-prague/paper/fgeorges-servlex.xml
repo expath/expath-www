@@ -44,6 +44,13 @@
          <keyword>XQuery</keyword>
       </keywordset>
    </info>
+   <note>
+      <para>Note to the reviewers: I wrote this article over last weekend (thanks to the extension
+         of the CFP!) It is not finished, and of course some paragraphs need to be rewritten and my
+         English needs to be reviewed by a native speaker. And indeed, if it is accepted, I will
+         resolve those issues before the deadline. But I think it gives a pretty good idea of the
+         intention yet, and meets the concept of <emphasis>extended abstract</emphasis> :-)</para>
+   </note>
    <section>
       <title>Introduction</title>
       <para>The EXPath project defines standard extensions for various XPath languages and tools.
@@ -508,12 +515,14 @@ the-webapp/
          and in the other case, the format is an XML message aimed at a computer program. This
          section will first focus on the HTML part of the website, then will show how both parts are
          actually implemented in common.</para>
-      <para>So the main business of the website is to maintain a set of packages. </para>
-      <para>Bla bla [...]</para>
-      <para>TODO: After the basics, let's see a real website, its architecture, the way it is
-         organized, etc. Introduce transformer, filters, error handlers, etc.</para>
-      <para>TODO: Introduce its structure as a project, the source code, etc., and the way it is
-         packaged, using the EXPath Project tools.</para>
+      <para>So the main business of the website is to maintain a set of packages and to provide a
+         way to navigate and to search them, as well as to display their details and downloading
+         them. There must also be a way to upload a new package. So the overall architecture is
+         pretty straight-forward: a plain directory on the filesystem to save the package files, an
+         XML database to maintain the metadata about packages (here eXist, but that could be any one
+         usable from XProc, like Qizx, MarkLogic, and many others), a set of XProc pipelines, each
+         one implementing a particular page of the website, and a site-wide transform to apply a
+         consistent layout accross all pages:</para>
       <para>
          <mediaobject>
             <imageobject>
@@ -521,7 +530,13 @@ the-webapp/
             </imageobject>
          </mediaobject>
       </para>
-      <para>Bla bla [...]</para>
+      <para>If we go back the the diagram about the overall Webapp Module architecture, we see it
+         only shows that the Dispatcher picks a component (based on a Map, we guess), forwards it
+         the request, and receives the response from it. The details are ........</para>
+      <para>TODO: After the basics, let's see a real website, its architecture, the way it is
+         organized, etc. Introduce transformer, filters, error handlers, etc.</para>
+      <para>TODO: Introduce its structure as a project, the source code, etc., and the way it is
+         packaged, using the EXPath Project tools.</para>
       <para>
          <mediaobject>
             <imageobject>
@@ -529,12 +544,15 @@ the-webapp/
             </imageobject>
          </mediaobject>
       </para>
-      <para>Bla bla [...]</para>
       <para>TODO: Show how the XML part (for the client) is implemented by the same components than
          the HTML part (and see the only few differences to handle that). As promised at the
          beginning of this section.</para>
    </section>
    <section>
+      <title>Conclusion</title>
+      <para>TODO: ...</para>
+   </section>
+   <!--section>
       <title>Section</title>
       <para>Bla bla [...]</para>
       <para>TODO: [for the presentation, not the paper] Finish with a live demo: ask someone his
@@ -542,5 +560,5 @@ the-webapp/
          http://john.doe.name/ns/...), and create first the project structure, then a standard
          package and the XAR using xproj. Then turn it into a webapp by writing the expath-web.xml.
          Then deploy it. Etc.</para>
-   </section>
+   </section-->
 </article>
