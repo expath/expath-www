@@ -7,5 +7,7 @@
       <image src="../../images/packaging.jpg" alt="Taps and pipes"/>
       <para>See the implementation for Saxon: the
          <link href="http://code.google.com/p/expath-zip/">expath-zip</link> project.</para>
+      <para><link href="http://basex.org/">BaseX</link> supports the ZIP module out of the
+         box.</para>
    </section>
 </webpage>

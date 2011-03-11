@@ -7,6 +7,9 @@
       <divider/>
       <primary>
          <title>EXPath resources</title>
+         <para>An article about <link href="http://ibm.com/developerworks/library/x-expath/">Working
+            with web services using the EXPath HTTP client -- HTTP testing with EXPath</link>, by
+            Jim Fuller on IBM's developerWorks.</para>
          <para>The Packaging System presentation given by Florent Georges at Balisage 2010: <link
                href="http://www.balisage.net/Proceedings/vol5/html/Georges01/BalisageVol5-Georges01.html"
                >the proceedings</link>. The conference website also hosts the PDF presentation
