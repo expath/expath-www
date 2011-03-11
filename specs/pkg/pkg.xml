@@ -134,26 +134,20 @@
    |rng
    |rnc)*
 &lt;/package></eg>
-            <p><code>name</code> is the name of the package. A package is named using an absolute
-               URI, except any <code>file:</code> scheme URIs (most frequent choices are
-                  <code>http:</code> and <code>urn:</code> scheme URIs) [ TODO: See the note
-               below... ]. <code>abbrev</code> is the package abbrev, and <code>version</code> its
-               version. The package directory must have the exact same name as the abbrev.
-                  <code>spec</code> is the version of the packaging specification the package
-               conforms to. The current specification requires the package to use the spec number
-                  <code>1.0</code> (no forward compatibility rules are defined, a processor
-               conforming to this specification has to generate an error if the spec number is
-               different than the string <code>1.0</code>). The package then contains a title, which
-               is a plain string, intended to be a simple description of the package for humans, and
-               a home which is a URI to find more informations about the package. It then contains
-               the list of its dependencies and the list of its components.</p>
-            <note>
-               <p><emph>TODO:</emph> Atom (RFC 4287) says, about the atom:id element: "<emph>Its
-                     content MUST be an IRI, as defined by [RFC3987]. Note that the definition of
-                     'IRI' excludes relative references. Though the IRI might use a dereferencable
-                     scheme, Atom Processors MUST NOT assume it can be dereferenced.</emph>" We
-                  should probably use the same reference to IRIs.</p>
-            </note>
+            <p><code>name</code> is the name of the package. A package is named using an IRI, as
+               defined by <bibref ref="rfc3987"/>, excepted any IRI using the <code>file:</code>
+               scheme (most frequent choices are <code>http:</code> and <code>urn:</code> scheme
+               URIs). Note that the definition of IRI excludes relative references.
+                  <code>abbrev</code> is the package abbrev, and <code>version</code> its version.
+               The package directory must have the exact same name as the abbrev. <code>spec</code>
+               is the version of the packaging specification the package conforms to. The current
+               specification requires the package to use the spec number <code>1.0</code> (no
+               forward compatibility rules are defined, a processor conforming to this specification
+               has to generate an error if the spec number is different than the string
+                  <code>1.0</code>). The package then contains a title, which is a plain string,
+               intended to be a simple description of the package for humans, and a home which is a
+               URI to find more informations about the package. It then contains the list of its
+               dependencies and the list of its components.</p>
             <eg>
 &lt;dependency package = uri
             processor = string
@@ -279,7 +273,12 @@
          </div2>
       </div1>
       <div1>
-         <head>Processor behaviour</head>
+         <head>DEPRECATED: Processor behaviour</head>
+         <note>
+            <p>This section is deprecated, either to remove it completely or to rewrite it (in case
+               some pieces should be kept here). Most of this material should be moved to the new
+               section "URI resolving").</p>
+         </note>
          <p>A <kw>processor</kw> is any program that use packaged components. For instance, an XSLT
             processor uses XSLT stylesheets (as well as XML schemas for an XSLT 2.0 SA processor),
             an XML database can use XQuery modules, XSLT stylesheets or any other kind of component,
@@ -389,7 +388,7 @@
             <head>Processor dependency</head>
             <p>In addition to depending on other packages, a dependency can tell which processor(s)
                is (are) needed for this package:</p>
-            <eg>&lt;dependency processor="saxon"/></eg>
+            <eg>&lt;dependency processor="http://saxon.sf.net/home-edition"/></eg>
             <p>If there is several such dependencies, the package is supported by a specific
                processor as soon as one of the proc dependencies does match. The meaning of the
                versionning attributes on processor dependencies is defined by each processor.</p>
@@ -410,6 +409,71 @@
                version numbers compatible with SemVer though, unless there is a justification not to
                use it.</p>
          </div2>
+      </div1>
+      <div1>
+         <head>URI resolving</head>
+         <p>At the end of the day, having packages installed in a repository is interesting only if
+            one is able to use the installed components. This can be done by invoking directly the
+            component, e.g. an XProc pipeline implementing a command-line application, or most of
+            the time by importing the component from within user's own components. For instance, a
+            user can import the FunctX XSLT implementation in his/her own stylesheet, by refering to
+            it only by its public import URI, provided the FunctX package is available to the
+            processor the user uses to evaluate the overall transform.</p>
+         <p>In order to promote interoperability, this specification defines a standard URI
+            resolving mechanism, and how to import installed components from within user's own
+            components. In order to stay generic enough though, the initial list of available
+            package at runtime, as well as the way to set the initial options of this algorithm, are
+            implementation-defined. Indeed, the way to set the available package list will be
+            different on an application server and on an IDE, or on a standalone processor and on an
+            XML database. The same way, although the algorithm defines a set of options to control
+            its behaviour, the way to set those is out of the scope of this specification; a .Net
+            API, an IDE and a webapp container, to mention only them, have very different mechanism
+            to let the user or developer set options.</p>
+         <p>A <kw>public component</kw> is a component which is part of a package, and is associated
+            a public import URI within the package descriptor. A public component as a associated
+            URI space, as explained earlier. A <kw>universe</kw> is a set of packages available to
+            some processor at some time in some context. As described later, a universe can be e.g.
+            the latest version of every packages installed in a specific repository; another example
+            is the set of a web application provided as a package, and of all its explicit
+            dependencies.</p>
+         <p>The way to define a universe is implementation-defined, but implementations SHOULD allow
+            a user to create a universe from either: a repository or a set of repositories (actually
+            choosing the latest version for each package in the repository), or from an explicit set
+            of packages, given their names (actually choosing the latest version for each package in
+            the list), or from an expicit set of packages, given their names and their version
+            numbers (or if no explicit version number is available, choose the latest version for
+            the given package). In the two later cases, an implementation SHOULD provide the user
+            with the ability of including explicit package dependencies as well, either recursively
+            or direct dependencies only. A universe SHOULD NOT contain several packages with the
+            same name but different versions. A universe can not contain several packages with the
+            same name and the same version number, because in that case their are considered the
+            same package regardless they actually are duplicated in the repository (this is the
+            responsability of the user to prevent inconsistencies in that case).</p>
+         <p>When a processor, whilst compiling a component, encounters an import statement, it
+            SHOULD perform the following steps:</p>
+         <ulist>
+            <item>
+               <p>if the URI of the imported module is relative or uses the file URI scheme, then
+                  the usual resolving mechanism of the processor is used (if the import statement
+                  appears within a component from a package, it must resolve relatively to that
+                  component, according to the original package structure),</p>
+            </item>
+            <item>
+               <p>depending on the context of the import statement, the processor determines the URI
+                  space to look into,</p>
+            </item>
+            <item>
+               <p>if there is a public component in the correct URI space in the initial universe,
+                  the processor uses it,</p>
+            </item>
+            <item>
+               <p>if there is nothing corresponding in the universe, the usual resolving mechanism
+                  of the processor is used (for instance trying to resolve the URI as a URL or
+                  generating an error).</p>
+            </item>
+         </ulist>
+         <p>The rule to define the proper URI space to look into in order to resolve the URI of an
+            import statement</p>
       </div1>
       <div1>
          <head>On-disk repository layout</head>
@@ -603,13 +667,13 @@ import module namespace fx = "http://www.functx.com";</eg>
       <div1>
          <head>References</head>
          <blist>
-            <!--bibl id="catalogs" key="Catalogs"><loc
-                  href="http://www.oasis-open.org/committees/documents.php?wg_abbrev=entity">XML
-                  Catalogs</loc>, OASIS Standard V1.1, 7 October 2005</bibl-->
             <bibl id="functx" key="FunctX"><loc href="http://www.functx.com/">FunctX</loc> library
-               of functions for XQuery and XSLT 2.0, Datypic</bibl>
+               of functions for XQuery and XSLT 2.0, Datypic.</bibl>
+            <bibl id="rfc3987" key="RFC 3987"><loc href="http://www.ietf.org/rfc/rfc3987.txt">RFC
+                  3987: Internationalized Resource Identifiers (IRIs)</loc>. M. Duerst and M.
+               Suignard, editors. Internet Engineering Task Force. January, 2005.</bibl>
             <bibl id="semver" key="SemVer"><loc href="http://semver.org/">Semantic Versioning</loc>,
-               Tom Preston-Werner</bibl>
+               Tom Preston-Werner.</bibl>
             <bibl id="xml" key="XML"><loc href="http://www.w3.org/TR/xml/">Extensible Markup
                   Language (XML) 1.0</loc>, Tim Bray et al.</bibl>
          </blist>
