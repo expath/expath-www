@@ -17,12 +17,13 @@
       </publoc>
       <altlocs>
          <loc href="http://expath.org/spec/pkg/editor.xml">XML</loc>
-         <!--loc href="http://expath.org/spec/pkg/20100831/diff">Revision markup</loc-->
+         <loc href="http://expath.org/spec/pkg/editor/diff">Revision markup</loc>
       </altlocs>
       <latestloc>
          <loc href="http://expath.org/spec/pkg"/>
       </latestloc>
       <prevlocs>
+         <loc href="http://expath.org/spec/pkg/20101111"/>
          <loc href="http://expath.org/spec/pkg/20100107"/>
          <loc href="http://expath.org/spec/pkg/20091118"/>
          <loc href="http://expath.org/spec/pkg/20090901"/>
@@ -432,10 +433,10 @@
          <p>A <kw>public component</kw> is a component which is part of a package, and is associated
             a public import URI within the package descriptor. A public component as a associated
             URI space, as explained earlier. A <kw>universe</kw> is a set of packages available to
-            some processor at some time in some context. As described later, a universe can be e.g.
-            the latest version of every packages installed in a specific repository; another example
-            is the set of a web application provided as a package, and of all its explicit
-            dependencies.</p>
+            some processor, at some point in time, in some context. As described later, a universe
+            can be e.g. the latest version of every packages installed in a specific repository;
+            another example is the set that comprises a web application provided as a package, and
+            all its explicit dependencies.</p>
          <p>The way to define a universe is implementation-defined, but implementations SHOULD allow
             a user to create a universe from either: a repository or a set of repositories (actually
             choosing the latest version for each package in the repository), or from an explicit set
@@ -521,11 +522,10 @@
             line termination is preferred: <code>\n\r</code>). Each line represent a package, and is
             a space-separated record. The first field is the package directory (the name if the
             subdirectory within the repository where the package has been unzipped), the second one
-            is the package name (the name URI), and the last one is the version number. The two
-            first fields cannot contain any space character. The version number is the only one that
-            can contain a space character (though this is not recommended). Every field is separated
-            by exactly one space character (the Unicode character with code point #x20). This file
-            then looks like:</p>
+            is the package name (the name URI), and the last one is the version number. No one of
+            those fields can contain any space character. Every field is separated by exactly one
+            space character (the Unicode character with code point #x20). This file then looks
+            like:</p>
          <eg>
 some-package-2.3 http://example.org/some/package 2.3
 some-lib-0.1 http://example.com/some-library 0.1
@@ -650,9 +650,11 @@ import module namespace fx = "http://www.functx.com";</eg>
          <p>Another extensibility point is the definition of additional component types. The
             component types defined here are the standard types, but an implementation may support
             additional implementation-defined types.</p>
-         <p>More generally, an implementation may define any extension element in the package
-            descriptor to achieve its purposes, providing that the new elements it defines are
-            neither in the EXPath Packaging namespace nor in the null namespace.</p>
+         <p>More generally, an implementation may define any extension element or attribute in the
+            package descriptor to achieve its purposes, providing that the elements and attributes
+            it defines are neither in the EXPath Packaging namespace nor in the null namespace (an
+            attribute on an extension element can be in no namespace, but an attribute on a standard
+            element must be in a specific namespace).</p>
       </div1>
    </body>
    <back>
