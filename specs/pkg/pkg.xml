@@ -56,7 +56,7 @@
       </revisiondesc>
    </header>
    <body>
-      <div1>
+      <div1 id="intro">
          <head>Introduction</head>
          <p>XSLT, XQuery and XProc are amazing programming languages. But they lack a large choice
             of libraries, and when such libraries do exist, this is a challenge to install. There is
@@ -68,7 +68,7 @@
             such a system is the packaging format: a description of the information to be provided
             by the library authors and how to provide and structure them.</p>
       </div1>
-      <div1>
+      <div1 id="concepts">
          <head>Concepts</head>
          <p>A <kw>package</kw> is a set of files fulfilling a common purpose. A package could for
             instance provide XML schemas for a particular document type, alongside a set of XSLT
@@ -98,7 +98,7 @@
             file, and containing information about the package (like its name and its version
             number) and about the components it provides and how to reference them.</p>
       </div1>
-      <div1>
+      <div1 id="descriptor">
          <head>Package descriptor</head>
          <p>The package descriptor is an XML file, named <code>expath-pkg.xml</code> and located at
             the root of the ZIP file. It describe the whole package, and all of its components.
@@ -112,7 +112,7 @@
                are just ignored when the package is deployed as a simple package following this
                specification.</p>
          </note>
-         <div2 id="overall-structure">
+         <div2 id="structure">
             <head>Overall structure</head>
             <p>All the elements in the package descriptor are defined in the namespace
                   <code>http://expath.org/ns/pkg</code>. All the elements defined in this
@@ -162,11 +162,11 @@
                depends on by using one of the few available strategies; see <specref
                   ref="versioning"/> for a complete description of them.</p>
          </div2>
-         <div2>
+         <div2 id="components">
             <head>Components</head>
             <p>This section describes the standard component kinds supported by this specification,
                and how they contribute to the package descriptor document type.</p>
-            <div3>
+            <div3 id="xslt">
                <head>XSLT</head>
                <p>An XSLT file is associated a <emph>public import URI</emph>. This is the URI to use
                   in an XSLT import instruction (aka <code>xsl:import</code>) to import the XSLT
@@ -182,7 +182,7 @@
                      <code>import-uri</code> and <code>file</code> are of type
                   <code>anyURI</code>.</p>
             </div3>
-            <div3>
+            <div3 id="xquery">
                <head>XQuery</head>
                <p>An XQuery library module is referenced by its namespace URI. Thus the
                      <code>xquery</code> element associates a namespace URI to an XQuery file. An
@@ -201,7 +201,7 @@
                   in the import statement.) To use this packaging system, an XQuery library module
                   must be referenced by its target namespace.</p>
             </div3>
-            <div3>
+            <div3 id="xproc">
                <head>XProc</head>
                <p>An XProc pipeline, like an XSLT stylesheet, is associated a <emph>public import
                      URI</emph>, aimed to be used in an XProc <code>p:import</code> statement.</p>
@@ -211,7 +211,7 @@
    file
 &lt;/xproc></eg>
             </div3>
-            <div3>
+            <div3 id="xsd">
                <head>XML Schema</head>
                <p>An XML schema can be imported using its target namespace. It is not possible
                   to set several files as several sources for the schema. If the schema is
@@ -227,7 +227,7 @@
                   schema component. This can be useful for schema without target namespace, or for
                   some specific usages, like when using <code>xs:redefine</code>.</p>
             </div3>
-            <div3>
+            <div3 id="relaxing">
                <head>RelaxNG</head>
                <p>A RelaxNG schema, like an XSLT stylesheet, is associated a public import URI,
                   aimed to be used in an <emph>import</emph> statement (either the
@@ -244,7 +244,7 @@
    file
 &lt;/rnc></eg>
             </div3>
-            <div3>
+            <div3 id="schematron">
                <head>Schematron</head>
                <p>A Schematron schema is associated a public URI.</p>
                <eg>
@@ -253,7 +253,7 @@
    file
 &lt;/schematron></eg>
             </div3>
-            <div3>
+            <div3 id="nvdl">
                <head>NVDL</head>
                <p>An NVDL script is associated a public URI.</p>
                <eg>
@@ -263,7 +263,7 @@
 &lt;/nvdl></eg>
             </div3>
          </div2>
-         <div2>
+         <div2 id="notsupported">
             <head>Not supported file kinds</head>
             <p>Documentation (like result of XSLStyle or xqDoc) is not taken into account in the
                packaging format, though that could be used by IDEs for instance to provide
@@ -272,7 +272,7 @@
                descriptor.</p>
          </div2>
       </div1>
-      <div1>
+      <div1 id="behaviour">
          <head>DEPRECATED: Processor behaviour</head>
          <note>
             <p>This section is deprecated, either to remove it completely or to rewrite it (in case
@@ -302,7 +302,7 @@
                <code>href</code> attribute on <code>xsl:import</code> will use the <code>xslt</code>
             URI space, while it will use the <code>xsd</code> space for
                <code>xsl:import-schema</code>.</p>
-         <div2>
+         <div2 id="pipelines">
             <head>XProc pipelines</head>
             <p>An XProc processor in particular has to pay great attention to the space it uses
                regarding the step that is being evaluated. Any <code>xsl:import</code> instruction
@@ -355,7 +355,7 @@
          <p>The remainder of this section will use the term <emph>primary</emph> for the current
             package, described by this package decriptor, and <emph>secondary</emph> for a package
             it depends on.</p>
-         <div2>
+         <div2 id="pkgdep">
             <head>Package dependency</head>
             <p>A dependency on another package (usually called a <kw>library</kw>), is represented
                by the element <code>dependency</code>, with an attribute <code>package</code> which
@@ -384,7 +384,7 @@
                secondary package which is equal or above 2.3.0 and strictly below 4.0.0 is valid
                (that is, 2.3.0, 3.0.0, 3.99.87, etc.)</p>
          </div2>
-         <div2>
+         <div2 id="procdep">
             <head>Processor dependency</head>
             <p>In addition to depending on other packages, a dependency can tell which processor(s)
                is (are) needed for this package:</p>
@@ -393,7 +393,7 @@
                processor as soon as one of the proc dependencies does match. The meaning of the
                versionning attributes on processor dependencies is defined by each processor.</p>
          </div2>
-         <div2>
+         <div2 id="enforcement">
             <head>Dependency enforcement</head>
             <p>How those rules are enforced is implementation-defined. For instance a command line
                tool to install a package in a repository can generate an error if the required
@@ -410,7 +410,7 @@
                use it.</p>
          </div2>
       </div1>
-      <div1>
+      <div1 id="resolving">
          <head>URI resolving</head>
          <p>At the end of the day, having packages installed in a repository is interesting only if
             one is able to use the installed components. This can be done by invoking directly the
@@ -475,7 +475,7 @@
          <p>The rule to define the proper URI space to look into in order to resolve the URI of an
             import statement</p>
       </div1>
-      <div1>
+      <div1 id="ondisk">
          <head>On-disk repository layout</head>
          <p>This section defines a standard structure for on-disk repositories. An implementation
             can choose not to support this kind of repository and to define its own one (or even to
@@ -563,7 +563,7 @@ some-lib-0.1 http://example.com/some-library 0.1
             config for Saxon, or <code>[repository]/[some-pkg]/.exist/</code> for config for eXist
             for a specific package.</p>
       </div1>
-      <div1>
+      <div1 id="example">
          <head>Example</head>
          <p>This section provides a non-normative example to illustrate the concepts defined here.
             Instead of using a <emph>hello world</emph> example, it describes the packaging of the
@@ -638,7 +638,7 @@ import module namespace fx = "http://www.functx.com";</eg>
          <eg>
 &lt;xsl:import href="http://www.functx.com/functx.xsl"/></eg>
       </div1>
-      <div1>
+      <div1 id="extensibility">
          <head>Extensibility</head>
          <p>The package format defined in this specification is a complete system to package
             libraries, for the right definition of a library. But a specfic kind of
@@ -666,7 +666,7 @@ import module namespace fx = "http://www.functx.com";</eg>
          <head>Package list schema</head>
          <eg><xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="../../../pkg/xsd/packages.xsd" parse="text"/></eg>
       </div1>
-      <div1>
+      <div1 id="references">
          <head>References</head>
          <blist>
             <bibl id="functx" key="FunctX"><loc href="http://www.functx.com/">FunctX</loc> library
