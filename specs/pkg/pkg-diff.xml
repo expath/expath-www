@@ -102,10 +102,13 @@
          <head>Package descriptor</head>
          <p>The package descriptor is an XML file, named <code>expath-pkg.xml</code> and located at
             the root of the ZIP file. It describe the whole package, and all of its components.
-            Alongside this descriptor, the root of the ZIP file contains a directory named after the
-            module abbrev, which contains the components and any other file the package
-            needs. All the relative URIs used to identify components are relative to the package
-            directory.  See <specref ref="expath-pkg.xsd"/> for a normative schema.</p>
+            Alongside this descriptor, the root of the ZIP file contains a directory named <phrase
+               diff="del">after the module abbrev, which contains</phrase>
+            <phrase diff="add"><code>content</code>, containing</phrase> the components and any
+            other file the package needs. All the relative URIs used to identify components are
+            relative to the <phrase diff="del">package</phrase>
+            <phrase diff="add">content</phrase> directory. See <specref ref="expath-pkg.xsd"/> for a
+            normative schema.</p>
          <note>
             <p>Because this package format is designed to be extensible and used as a building block
                by other specifications, the ZIP file can contain another entries at top-level. They
@@ -141,16 +144,17 @@
                   the <code>file:</code> scheme</phrase> (most frequent choices are
                   <code>http:</code> and <code>urn:</code> scheme URIs). <phrase diff="add">Note
                   that the definition of IRI excludes relative references.</phrase>
-               <code>abbrev</code> is the package abbrev, and <code>version</code> its version. The
-               package directory must have the exact same name as the abbrev. <code>spec</code> is
-               the version of the packaging specification the package conforms to. The current
-               specification requires the package to use the spec number <code>1.0</code> (no
-               forward compatibility rules are defined, a processor conforming to this specification
-               has to generate an error if the spec number is different than the string
-                  <code>1.0</code>). The package then contains a title, which is a plain string,
-               intended to be a simple description of the package for humans, and a home which is a
-               URI to find more informations about the package. It then contains the list of its
-               dependencies and the list of its components.</p>
+               <code>abbrev</code> is the package abbrev, and <code>version</code> its version.
+                  <phrase diff="del">The package directory must have the exact same name as the
+                  abbrev.</phrase>
+               <code>spec</code> is the version of the packaging specification the package conforms
+               to. The current specification requires the package to use the spec number
+                  <code>1.0</code> (no forward compatibility rules are defined, a processor
+               conforming to this specification has to generate an error if the spec number is
+               different than the string <code>1.0</code>). The package then contains a title, which
+               is a plain string, intended to be a simple description of the package for humans, and
+               a home which is a URI to find more informations about the package. It then contains
+               the list of its dependencies and the list of its components.</p>
             <eg>
 &lt;dependency package = uri
             processor = string
@@ -181,7 +185,8 @@
    file
 &lt;/xslt></eg>
                <p>The element <code>file</code> contains the path to the file within the package
-                  structure, relative to the package directory. Both elements
+                  structure, relative to the <phrase diff="del">package</phrase>
+                  <phrase diff="add">content</phrase> directory. Both elements
                      <code>import-uri</code> and <code>file</code> are of type
                   <code>anyURI</code>.</p>
             </div3>
@@ -491,11 +496,15 @@
             installed. Each package results in a subdirectory in the repository, where the content
             of the XAR file is unzipped. Next to those package directories, there is also a
             subdirectory named <code>.expath-pkg/</code>, which contains administrative information
-            about the packages installed in this repository. The package directories should be named
-            after the package abbreviation (the <code>abbrev</code> attribute in the package
-            descriptor) and the version number, separated by a dash. A package directory name must
-            not contain the space character.</p>
+            about the packages installed in this repository. <phrase diff="del">The package
+               directories should be named after the package abbreviation (the <code>abbrev</code>
+               attribute in the package descriptor) and the version number, separated by a dash. A
+               package directory name must not contain the space character.</phrase></p>
          <note>
+            <p diff="add">The package directories SHOULD be named after the package abbreviation
+               (the <code>abbrev</code> attribute in the package descriptor) and the version number,
+               separated by a dash. A package directory name must not contain the space
+               character.</p>
             <p>Because these directory names cannot be ensured to be unique among every packages
                installed in the repository, and because the processors will in some case have to
                translate some characters (depending on the rules of the filesystem they put the
@@ -546,13 +555,13 @@ some-lib-0.1 http://example.com/some-library 0.1
 <phrase diff="del">      query.xq
       style.xsl</phrase>
 <phrase diff="add">      expath-pkg.xml
-      some-package/
+      content/
          query.xq
          style.xsl</phrase>
    some-lib-0.1/
 <phrase diff="del">      ...</phrase>
 <phrase diff="add">      expath-pkg.xml
-      some-lib/
+      content/
          ...</phrase></eg>
          <note>
             <p>Because the package descriptor is unzipped in the package directory, as well as the
@@ -567,9 +576,11 @@ some-lib-0.1 http://example.com/some-library 0.1
          </note>
          <p>In addition to this structure, a specific processor can store information in
             subdirectories (both in the repository level or within each package directories),
-            provided those directories start with a dot, and are named unambiguously with the name of
-            the processor. For instance <code>[repository]/.saxon/</code>, or
-               <code>[repository]/[some-pkg]/.exist/</code>.</p>
+            provided those directories start with a dot, and are named unambiguously with the name
+            of the processor. For instance <code>[repository]/.saxon/</code>
+            <phrase diff="add">for repository-wide config for Saxon</phrase>, or
+               <code>[repository]/[some-pkg]/.exist/</code>
+            <phrase diff="add">for config for eXist for a specific package</phrase>.</p>
       </div1>
       <div1>
          <head>Example</head>
@@ -580,15 +591,22 @@ some-lib-0.1 http://example.com/some-library 0.1
             of functions to either XQuery or XSLT, but this is not relevant to packaging.)</p>
          <p>The first thing to do is to create a ZIP file with both of those components, alongside a
                <emph>package descriptor</emph>. The constraints are: 1) the package descriptor is
-            named <code>expath-pkg.xml</code> at the root of the package, 2) the library content is
-            in a directory at the root of the package (aka the <emph>package directory</emph>), and
-            3) the name of this directory must be the value of the <code>abbrev</code> attribute,
-            and must be a valid NCName. The structure (the content) of the package directory is
-            completely free. In our case, let's just put both component files directly in the
-            package directory, and define the module name as <code>functx</code>:</p>
+            named <code>expath-pkg.xml</code> at the root of the package, <phrase diff="add"
+               >and</phrase> 2) the library content is in a directory <phrase diff="add">named
+                  <code>content</code></phrase> at the root of the package (aka the <emph><phrase
+                  diff="del">package</phrase>
+               <phrase diff="add">content</phrase> directory</emph>)<phrase diff="del">, and 3) the
+               name of this directory must be the value of the <code>abbrev</code> attribute, and
+               must be a valid NCName</phrase>. The structure <phrase diff="del">(the
+               content)</phrase> of the <phrase diff="del">package</phrase>
+            <phrase diff="add">content</phrase> directory is completely free. In our case, let's
+            just put both component files directly in the <phrase diff="del">package</phrase>
+            <phrase diff="add">content</phrase> directory, and define the module name as
+               <code>functx</code>:</p>
          <eg>
 expath-pkg.xml
-functx/
+<phrase diff="del">functx/</phrase>
+<phrase diff="add">content/</phrase>
    functx.xql
    functx.xsl</eg>
          <p>The XQuery library module's target namespace is defined by the module itself. For the
@@ -620,12 +638,12 @@ functx/
          <eg>
 [repository-dir]/
    .expath-pkg/
-<phrase diff="del">      packages</phrase>
-<phrase diff="add">      packages.txt</phrase>
+      packages<phrase diff="add">.txt</phrase>
       packages.xml
    functx-1.0/
       expath-pkg.xml
-      functx/
+<phrase diff="del">      functx/</phrase>
+<phrase diff="add">      content/</phrase>
          functx.xql
          functx.xsl</eg>
          <p>The content of <code>.expath-pkg/packages.xml</code> is:</p>
