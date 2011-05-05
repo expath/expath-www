@@ -7,4 +7,7 @@
     <system systemId="http://expath.org/ns/xmlspec/xmlspec.xsl" uri="xmlspec.xsl"/>
     <uri name="http://expath.org/ns/xmlspec/xmlspec.xsl" uri="xmlspec.xsl"/>
 
+    <system systemId="http://expath.org/ns/xmlspec/diffspec.xsl" uri="diffspec.xsl"/>
+    <uri name="http://expath.org/ns/xmlspec/diffspec.xsl" uri="diffspec.xsl"/>
+
 </catalog>
