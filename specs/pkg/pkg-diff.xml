@@ -84,13 +84,18 @@
          <p>A package provides all those infos as well as its components as a single file. This is
             then very convenient to organize packages, publish them, give them to a processor to
             install them, etc.</p>
-         <p>A <kw>component</kw> can be of one out of several types: an XSLT stylesheet, an XML
-            schema, a RELAX NG schema, an XProc pipeline, but also any other type a particular
-            implementation chose to support. It is identified by a <kw>public URI</kw>. This public
-            URI is used to access the component from the outside of the package. Each component type
-            has its own <kw>URI space</kw>, within which a component's URI has to be unique (so two
-            different components can have the same public URI if they are of different types, but
-            this is not recommended).</p>
+         <p>A <kw>component</kw> can be of one out of several types: an XSLT stylesheet, <phrase
+               diff="del">an XML schema, a RELAX NG schema, an XProc pipeline, but also any other
+               type a particular implementation chose to support. It is identified by a <kw>public
+                  URI</kw>.</phrase>
+            <phrase diff="add">an XQuery main or library module, an XProc pipeline, an XML schema, a
+               RELAX NG schema (XML or compact syntax), a Schematron schema, an NVDL schema, or a
+               plain resource file. An implementation can add support for additional types. A
+               component is identified by a <kw>public URI</kw>.</phrase> This public URI is used to
+            access the component from the outside of the package. Each component type has its own
+               <kw>URI space</kw>, within which a component's URI has to be unique (so two different
+            components can have the same public URI if they are of different types, but this is not
+            recommended).</p>
          <p>All the components composing the package, alongside an additional <kw>package
                descriptor</kw>, are used to create a ZIP file. This file <emph>is</emph> the
             physical package, and can be used to distribute the package to the users. The package
@@ -172,7 +177,11 @@
          <div2 id="components">
             <head>Components</head>
             <p>This section describes the standard component kinds supported by this specification,
-               and how they contribute to the package descriptor document type.</p>
+               and how they contribute to the package descriptor document type. <phrase diff="add"
+                  >Every component has the same basic information: it associates a public URI to a
+                  specific file within the content directory. The <code>file</code> element contains
+                  a path, relative to the package content directory. Both elements in a component
+                  are of type <code>anyURI</code>.</phrase></p>
             <div3 id="xslt">
                <head>XSLT</head>
                <p>An XSLT file is associated a <emph>public import URI</emph>. This is the URI to use
@@ -184,9 +193,8 @@
    import-uri,
    file
 &lt;/xslt></eg>
-               <p>The element <code>file</code> contains the path to the file within the package
-                  structure, relative to the <phrase diff="del">package</phrase>
-                  <phrase diff="add">content</phrase> directory. Both elements
+               <p diff="del">The element <code>file</code> contains the path to the file within the
+                  package structure, relative to the package directory. Both elements
                      <code>import-uri</code> and <code>file</code> are of type
                   <code>anyURI</code>.</p>
             </div3>
@@ -269,6 +277,19 @@
    import-uri,
    file
 &lt;/nvdl></eg>
+            </div3>
+            <div3 id="resource" diff="add">
+               <head>Resource</head>
+               <p>A resource file is associated a public URI. This can be any kind of file. It has
+                  to be used in accordance to its content. For instance accessing a text file
+                  through <code>fn:unparsed-text()</code> is correct, while using
+                     <code>fn:doc()</code> is not (it will raise an error because it parses the
+                  content as XML).</p>
+               <eg>
+&lt;resource>
+   public-uri,
+   file
+&lt;/resource></eg>
             </div3>
          </div2>
          <div2 id="notsupported">
@@ -419,15 +440,16 @@
                use it.</p>
          </div2>
       </div1>
-      <div1 diff="add" id="resolving">
-         <head>URI resolving</head>
+      <div1 diff="add" id="resolution">
+         <head>URI resolution</head>
          <p>At the end of the day, having packages installed in a repository is interesting only if
             one is able to use the installed components. This can be done by invoking directly the
-            component, e.g. an XProc pipeline implementing a command-line application, or most of
-            the time by importing the component from within user's own components. For instance, a
-            user can import the FunctX XSLT implementation in his/her own stylesheet, by refering to
-            it only by its public import URI, provided the FunctX package is available to the
-            processor the user uses to evaluate the overall transform.</p>
+            component, e.g. an XProc pipeline directly from the command-line or an XSLT stylesheet
+            from an IDE, or most of the time by importing the component from within user's own
+            components. For instance, a user can import the FunctX XSLT implementation in his/her
+            own stylesheet, by refering to it only by its public import URI, provided the FunctX
+            package is available to the processor the user uses to evaluate the overall
+            transform.</p>
          <p>In order to promote interoperability, this specification defines a standard URI
             resolving mechanism, and how to import installed components from within user's own
             components. In order to stay generic enough though, the initial list of available
@@ -443,8 +465,8 @@
             URI space, as explained earlier. A <kw>universe</kw> is a set of packages available to
             some processor, at some point in time, in some context. As described later, a universe
             can be e.g. the latest version of every packages installed in a specific repository;
-            another example is the set that comprises a web application provided as a package, and
-            all its explicit dependencies.</p>
+            another example is a single package (e.g. used as a web application) and all its
+            explicit dependencies, recursively.</p>
          <p>The way to define a universe is implementation-defined, but implementations SHOULD allow
             a user to create a universe from either: a repository or a set of repositories (actually
             choosing the latest version for each package in the repository), or from an explicit set
@@ -458,6 +480,8 @@
             same name and the same version number, because in that case their are considered the
             same package regardless they actually are duplicated in the repository (this is the
             responsability of the user to prevent inconsistencies in that case).</p>
+         <p>TODO: Define what's a processor, what's compilation, and the case or 'resource'... (that
+            is, the context of a resolution)</p>
          <p>When a processor, whilst compiling a component, encounters an import statement, it
             SHOULD perform the following steps:</p>
          <ulist>
