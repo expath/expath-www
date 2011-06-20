@@ -20,9 +20,9 @@
    <divider/>
    <section>
       <title>Introduction</title>
-      <para>Besides the <link href="../http-client">specification</link>, here is an informal
-         introduction to this module. See also the <link href="samples">samples page</link> for
-         more elaborate samples. This module defines a single function,
+      <para>Besides the <link href="../../spec/http-client">specification</link>, here is an
+         informal introduction to this module. See also the <link href="samples">samples page</link>
+         for more elaborate samples. This module defines a single function,
             <code>http:send-request()</code> (with several arities for the sake of ease of use.) The
          function takes a description of the request in parameter, and returns a representation of
          the response.</para>
