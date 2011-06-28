@@ -5,19 +5,18 @@
    <section>
       <title>Package Managers</title>
       <image src="../../images/packaging.jpg" alt="Taps and pipes"/>
-      <para>So far, three processors implement the current state of the packaging proposal.  The
-         <link href="http://www.exist-db.org/">eXist</link> database, the
-         <link href="http://www.saxonica.com/">Saxon</link> XSLT and XQuery processor and the
-         <link href="http://xmlcalabash.com/">Calabash</link> XProc processor.  The support in
-         eXist is official (part of the current eXist trunk, which should be released as eXist 1.6
-         in the last quarter of 2010).  The support in Saxon and Calabash as been implemented as a
-         third-party project; see the <link href="http://code.google.com/p/expath-pkg/">project
-         home</link> for all details and downloads.</para>
-      <para>All those three implementations rely on the same underlying repository structure, and
+      <para>The <link href="http://exist-db.org/">eXist</link>, <link
+            href="http://www.xmlmind.com/qizx/">Qizx</link> and <link
+            href="http://basex.org/">BaseX</link> XML databases all implements built-in the
+         Packaging System.  There are external implementations for the <link
+            href="http://www.saxonica.com/">Saxon</link> XSLT and XQuery processor and the
+         <link href="http://xmlcalabash.com/">Calabash</link> XProc processor (see the <link
+            href="http://code.google.com/p/expath-pkg/">project home</link> for details and
+         downloads for those external implementations).</para>
+      <para>All those implementations rely on the same underlying repository structure, and
          actually all use the same repository manager written in Java as part of the above mentioned
          <link href="http://code.google.com/p/expath-pkg/">expath-pkg project</link>.  They also all
-         support packaging extension functions written in Java (for Saxon and eXist, but Calabash
-         can configure its underlying Saxon processor as well).</para>
+         support packaging extension functions written in Java.</para>
       <para>The <link href="http://code.google.com/p/expath-pkg/">expath-pkg project</link> also
          provides a repository manager, called <code>xrepo</code>, to help managing packages in
          a repository (installing, removing, listing, etc.)  The same implementations are also used
