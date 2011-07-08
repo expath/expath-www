@@ -2,7 +2,7 @@
         xmlns:app="http://expath.org/ns/website"
         name="http://expath.org/website"
         abbrev="expath"
-        version="0.1">
+        version="0.2.0">
 
    <title>EXPath website</title>
 
