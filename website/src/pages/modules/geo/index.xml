@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<webpage menu="geo" root="../..">
+   <title>EXPath - Geo</title>
+   <section>
+      <title>Geo</title>
+      <image src="../../images/geo.jpg" alt="Earth"/>
+      <para>Page under construction...</para>
+   </section>
+</webpage>

@@ -124,11 +124,20 @@
 
    <menu name="file">
       <item name="parent"  href="../../modules"   title="Modules">[ ../Modules ]</item>
-      <item name="index"   href="."               title="EXPath File Home">Webapp</item>
+      <item name="index"   href="."               title="EXPath File Home">File</item>
       <item name="implems" href="implems"         title="EXPath File Implems">Implementations</item>
       <item name="samples" href="samples"         title="EXPath File Samples">Samples</item>
       <item name="spec"    href="../../spec/file" title="EXPath File Spec">Specification</item>
       <item name="wiki"    href="../../wiki/File" title="EXPath File Wiki">Wiki</item>
+   </menu>
+
+   <menu name="geo">
+      <item name="parent"  href="../../modules"  title="Modules">[ ../Modules ]</item>
+      <item name="index"   href="."              title="EXPath Geo Home">Geo</item>
+      <item name="implems" href="implems"        title="EXPath Geo Implems">Implementations</item>
+      <!--item name="samples" href="samples"        title="EXPath Geo Samples">Samples</item-->
+      <item name="spec"    href="../../spec/geo" title="EXPath Geo Spec">Specification</item>
+      <item name="wiki"    href="../../wiki/geo" title="EXPath Geo Wiki">Wiki</item>
    </menu>
 
    <menu name="hc">

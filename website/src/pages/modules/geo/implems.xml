@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<webpage menu="geo" root="../..">
+   <title>EXPath - Geo Implementations</title>
+   <section>
+      <title>Geo Implementations</title>
+      <image src="../../images/geo.jpg" alt="Earth"/>
+      <para><link href="http://zorba-xquery.com/">Zorba</link> implements the module
+         out-of-the-box.</para>
+   </section>
+</webpage>

@@ -23,6 +23,24 @@
          like XSLT, XQuery and XProc.  See the <link href="modules/webapp/">webapps
          page</link>.</para>
    </primary>
+   <divider/>
+   <primary>
+      <title>File Handling</title>
+      <details>Files and directories details and modifications</details>
+      <para>This module defines a set of functions to read the file system informations, and to
+         modify it.  In other words, it allows you to read files, list directories, create them,
+         and get several informations about files.  See the <link href="modules/file/">module
+         page</link> for details.</para>
+   </primary>
+   <primary>
+      <title>Geospatial API</title>
+      <details>The Open Geospatial Consortium Simple Features Common Access API for XPath</details>
+      <para>The EXPath Geo module defines functions that may be applied to well-formed valid
+         geometries conforming to the Open Geospatial Consortium (OGC) Simple Feature (SF) data
+         model.  Typically, such features will be encoded as Geography Markup Language
+         geometries.  Other encodings, for example KML, may also be supported by an
+         implementation.  See the <link href="modules/geo/">module page</link> for details.</para>
+   </primary>
    <primary>
       <title>HTTP Client</title>
       <details>Sending HTTP requests, and receiving the responses</details>
@@ -31,14 +49,6 @@
          protocol, while integrating smoothly within the <link
             href="http://www.w3.org/TR/xpath-datamodel/">XPath Data Model</link>. See the <link
             href="modules/http-client/">module page</link> for details.</para>
-   </primary>
-   <primary>
-      <title>File Handling</title>
-      <details>Files and directories details and modifications</details>
-      <para>This module defines a set of functions to read the file system informations, and to
-         modify it.  In other words, it allows you to read files, list directories, create them,
-         and get several informations about files.  See the <link href="modules/file/">module
-         page</link> for details.</para>
    </primary>
    <primary>
       <title>ZIP Facility</title>
