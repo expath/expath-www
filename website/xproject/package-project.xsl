@@ -1,12 +1,11 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:pp="http://expath.org/ns/packager"
-                xmlns:files="http://expath.org/ns/files"
+                xmlns:pp="http://expath.org/ns/project"
                 xmlns:zip="http://expath.org/ns/zip"
                 exclude-result-prefixes="#all"
                 version="2.0">
 
-   <xsl:import href="http://expath.org/ns/packager/package-project.xsl"/>
+   <xsl:import href="http://expath.org/ns/project/package.xsl"/>
 
    <!--
        Add the specs from ../../specs/ to ../src/spec/.
