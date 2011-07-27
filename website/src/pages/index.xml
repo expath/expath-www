@@ -5,58 +5,57 @@
    <section>
       <title>EXPath</title>
       <image src="images/machine.jpg" alt="Machine"/>
-      <para>XPath is great. Languages based on XPath, such as XQuery, XSLT and XProc, are great. The
-         XPath recommendation provides a frame within which you can write expressions that will
-         evaluate the same way in a lot of processors, written using plenty of different languages,
-         in a lot of different environments, in an XML database, an in-memory processor, on a server
-         or a client.</para>
-      <para>This support for as many processor kinds as possible is great. But this is has been also
-         a constraint to decide which feature could be included in the recommendation and which
-         couldn't. In addition, experience harvested for several years of using XPath 2.0 pointed
-         out missing features. This project is aimed to provide specifications for such missing
-         features in a collaborative and implementation independent way, as well as delivering
-         implementations of those extensions for as most processors as possible, using the
-         mechanisms for extensibility provided by the XPath 2.0 recommendation itself.</para>
-      <para>Other projects exist to define extensions for languages tightly bound to XPath, as the
-         famous <link href="http://www.exslt.org/">EXSLT</link>, and the more recent <link
-            href="http://www.exquery.org/">EXQuery</link> and <link href="http://www.exproc.org/"
-            >EXProc</link> projects. We think that those projects are really useful and fill a gap
-         in the XML core technologies landscape. But we think also they should not reinvent their
-         own wheels, when working at the XPath level (when that makes sense) would permit to share
-         common work. This is just following the brilliant idea of XSLT and XQuery working groups at
-         the W3C which joined their efforts in defining together XPath 2.0: far from competing with
-         those projects, the idea is to promote collaboration between them.</para>
+      <para>XPath is great. XPath-based languages like XQuery, XSLT, and XProc, are great. The XPath
+         recommendation provides a foundation for writing expressions that evaluate the same way in
+         a lot of processors, written in different languages, running in different environments, in
+         XML databases, in in-memory processors, in servers or in clients.</para>
+      <para>Supporting so many different kinds of processor is wonderful thing. But this also
+         contrains which features are feasible at the XPath level and which are not. In the years
+         since the release of XPath 2.0, experience has gradually revealed some missing features.</para>
+      <para>EXPath exists to provide specifications for such missing features in a collaborative-
+         and implementation-independent way. EXPath also provides facilities to help and deliver
+         implementations to as many processors as possible, via extensibility mechanisms from the
+         XPath 2.0 Recommendation itself.</para>
+      <para>Other projects exist to define extensions for XPath-based languages or languages using
+         XPath, as the famous <link href="http://www.exslt.org/">EXSLT</link>, and the more recent
+            <link href="http://www.exquery.org/">EXQuery</link> and <link
+            href="http://www.exproc.org/">EXProc</link> projects. We think that those projects are
+         really useful and fill a gap in the XML core technologies landscape. Nevertheless, working
+         at the XPath level allows common solutions when there is no sense in reinventing the wheel
+         over and over again. This is just following the brilliant idea of the W3C's XSLT and XQuery
+         working groups, which joined forces to define XPath 2.0 together. EXPath purpose is not to
+         compete with other projects, but collaborate with them.</para>
    </section>
    <divider/>
    <primary>
       <title>Standard function libraries</title>
-      <para>The easiest way to provide new features to XPath is to define extension functions. We
-         plan to provide several function libraries that each addresses a specific area. For
-         instance performing HTTP requests, using <link href="http://en.wikipedia.org/wiki/WebDAV"
+      <para>The easiest way to improve XPath is by defining extension functions. We plan to provide
+         several function libraries. Each library focuses on a specific area. For instance
+         performing HTTP requests, using <link href="http://en.wikipedia.org/wiki/WebDAV"
             >WebDAV</link>, reading and writing ZIP files (like <link
-            href="http://www.openebook.org/">EPUB</link> eBook, <link
+            href="http://www.openebook.org/">EPUB</link> eBooks, <link
             href="http://en.wikipedia.org/wiki/Office_Open_XML">Open XML</link> and <link
             href="http://en.wikipedia.org/wiki/OpenDocument">OpenDocument</link> files,) parsing and
          serializing XML and HTML documents, executing XSLT transforms and XQuery queries,
          etcetera.</para>
-      <para>Have a look at the <link href="modules">Modules</link> section for available and
-         work-in-progress function libraries.</para>
+      <para>Check the <link href="modules">Modules</link> section for function libraries (some are
+         available and some are still work-in-progress).</para>
    </primary>
    <primary>
       <title>Packaging System</title>
-      <para>An important contribution to the X* community is the packaging system of EXPath. The
-         goal is to be able to package any set of X* files into a single ZIP file, with enough
-         information to be installed within a processor. You can for instance use it to deliver an
-         XSLT library of stylesheets that transforms DocBook into HTML, or XQuery files providing
+      <para>An important contribution to the XML community is the EXPath Packaging System. The goal
+         is to be able to package any set of XML Core Technology files in a single archive, with
+         enough information to be installed by a processor. You can for instance use it to deliver
+         an XSLT library of stylesheets for transforming DocBook to HTML, or XQuery files providing
          support for Google REST Web services. Of course, packaging extension functions (written in
          a processor-dependent language) is also supported.</para>
-      <para>This is a work-in-progress for now, but an implementation prototype exists yet for Saxon
-         and eXist. For both those processors, it supports XSLT and XQuery, either standard files or
-         Java extensions. The goal is to support XSLT, XQuery, XProc, XML Schema and various DSDL
-         technologies. See the <link href="modules/pkg/">Packaging System</link> homepage for
-         further details and for implementations.</para>
+      <para>Several processors implements the Packaging System, either natively or through
+         third-party, open source implementations (for now: BaseX, Calabash, eXist, Qizx and Saxon).
+         The packaging format supports XSLT, XQuery, XProc, XML Schema and various DSDL
+         technologies, and is extensible (e.g. to support native language extensions). See the <link
+            href="modules/pkg/">Packaging System</link> homepage for further details.</para>
    </primary>
-   <primary>
+   <!--primary>
       <title>Extensions to the language</title>
       <para>Besides function libraries, we want to address more fundamental XPath issues as well,
          right at the language level. One obvious example is nested sequences. XPath 2.0 does not
@@ -68,44 +67,43 @@
          be used.</para>
       <para>Those extensions are a good place to experiment with new ideas to improve the current
          version of XPath.</para>
-   </primary>
+   </primary-->
    <primary>
       <title>XPath usage contexts</title>
-      <para>XPath is a language used embedded in many other languages, as XSLT, XQuery, Java, C#,
-         Perl, Python... But it is also used in different contexts: in a standalone XSLT transform,
-         as part of an XQuery on an XML Database, in a server environment, in a system performing
-         XML streaming or an in-memory-tree-based system.</para>
-      <para>All those different environments have their own particularities. It would be interesting
-         for instance to define how one can access the HTTP request context info on a web server
-         (getting header values, setting response Content-Type, etc.)</para>
-      <para>Like the Java Servlet specification does not only define a set of classes and methods,
-         we should here define how the container must behave, what information it must provide and
-         how it must react to some XPath expression evaluation.</para>
+      <para>XPath is embedded in many other languages: XSLT, XQuery, Java, C#, Perl, and Python, to
+         name a few. But it is also used in different contexts: standalone XSLT transforms, as part
+         of an XQuery on an XML Database, in server environments, in XML streaming systems as well
+         as in in-memory-tree-based systems.</para>
+      <para>All of these different contexts have their own peculiarities. It would be interesting
+         for instance to define how one can access the HTTP request context info on a web server (to
+         get header values, set the Content-Type for the response, and so on).</para>
+      <para>Just as the Java Servlet specification does not only offer a bunch of classes and
+         methods, we should here define how the container must behave, what information it must
+         provide and how it must react to XPath expression. The <link href="modules/webapp/">Webapp
+            Module</link> defines such a web container.</para>
    </primary>
    <secondary box="true">
       <title>Let me in!</title>
-      <para>This is simple. Read through this website, and <link href="lists">join the
-            list</link>. You can help by providing use cases, writing specifications, implement
-         them, or simply by using existing extensions.</para>
+      <para>Helping is simple! Read through this website, and <link href="lists">join the
+            list</link>. Providing use cases, writing and improving specifications, implementing
+         them, or simply using existing extensions are all great ways to help.</para>
       <para>The first thing you want to do is probably to have a look at the list of
          <link href="modules">available modules</link>.</para>
    </secondary>
    <secondary>
       <title>The process</title>
-      <para>From experience with other similar projects, defining extensions is a domain where
+      <para>From experience on other similar projects, defining extensions is a domain where
          people have a lot of very useful, interesting ideas. But having fun ideas, or even a
          coarse-grained idea of what the function prototypes and the specification should look like
          is just the top of the iceberg. The real work starts here...</para>
-      <para>We maintain a list of raw ideas, and we are highly interested in getting your own ideas,
-         use case, and how extensions, existing or not, can be used to help you solving your
-         problems.</para>
-      <para>But the whole point of this project is to be pragmatic and to provide concrete
-         extensions, ready to be used and well-defined. Sounds rational, isn't it? And the best way
-         to help us to help you is to take part in the process. Communicate, send your own use
-         cases, send prototype implementations, write a draft for a specification, report
-         bugs...</para>
-      <para>The central point of the process is to communicate through the mailing list. So <link
-            href="lists">join the list</link>, follow the discussions and see how you could
-         help.</para>
+      <para>We maintain a list of raw ideas. We would love to get your own ideas, use cases, and
+         feedback about existing extensions. How an extension helped or failed to help are both
+         valuable kinds if feedback.</para>
+      <para>But this project is all about providing pragmatic, concrete extensions: well-defined,
+         and ready to be used. Sounds rational, doesn't it? And the best way to help us to help you is
+         to take part in the process. Communicate, send your own use cases, send prototype
+         implementations, write a draft for a specification, report bugs...</para>
+      <para>The project centers around discussions on the mailing list. <link href="lists">Join the
+            list</link> and tell us what you think and how you would like to help!</para>
    </secondary>
 </webpage>
