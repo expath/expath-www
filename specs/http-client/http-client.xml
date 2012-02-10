@@ -154,6 +154,7 @@
             <eg>
 &lt;http:request method = ncname
               href? = uri
+              http-version? = string
               status-only? = boolean
               username? = string
               password? = string
@@ -178,6 +179,15 @@
                      <code>href</code> is the URI the request has to be sent to.  It can be overridden
                      by the parameter <code>$href</code>
                   </p>
+               </item>
+               <item>
+                  <p>
+                     <code>http-version</code> is the version of HTTP to use. It must be either the
+                     string <code>1.0</code> or <code>1.1</code>. Default is implementation-defined.
+                     An implementation SHOULD support both and the default SHOULD be
+                        <code>1.1</code>. If the value specified is not supported by a specific
+                     implementation, it should throw an appropriate error message <bibref
+                        ref="errHC007"/>.</p>
                </item>
                <item>
                   <p>
@@ -535,6 +545,8 @@
                exclusive with all other attribute (except the media-type).</bibl>
             <bibl id="errHC005" key="err:HC005">The request element is not valid.</bibl>
             <bibl id="errHC006" key="err:HC006">A timeout occurred waiting for the response.</bibl>
+            <bibl id="errHC007" key="err:HC007">The specified HTTP version is not supported by this
+               implementation.</bibl>
          </blist>
       </div1>
    </back>
