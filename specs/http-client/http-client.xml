@@ -288,14 +288,11 @@
             <p>All the attributes, except <code>src</code>, are used to set the corresponding
                serialization parameter defined in <bibref ref="xserial"/>, as defined for the XPath
                2.1 function <code>fn:serialize()</code>
-               <bibref ref="fo11"/>. A difference here is that the serialization parameter
-                  <code>include-content-type</code> does not make sense, so it is not available on
-               the <code>http:body</code> element (its value is always "yes"). Those attributes can
-               be given by the user on a request to control the way a part body is serialized. In
-               the response, the implementation can, but is not required, to provide some of them if
-               it has the corresponding information (some of them do not make any sense in a
-               response, therefore they will never be on a response element, for instance
-                  <code>version</code>).</p>
+               <bibref ref="fo11"/>. Those attributes can be given by the user on a request to
+               control the way a part body is serialized. In the response, the implementation can,
+               but is not required, to provide some of them if it has the corresponding information
+               (some of them do not make any sense in a response, therefore they will never be on a
+               response element, for instance <code>version</code>).</p>
             <p>The <code>http:multipart</code> element represents an HTTP multi-part request or
                response:</p>
             <eg>
