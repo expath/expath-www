@@ -263,6 +263,16 @@
    file
 &lt;/nvdl></eg>
             </div3>
+            <div3 id="dtd">
+               <head>DTD</head>
+               <p>A DTD file is associated a public URI.</p>
+               <eg>
+&lt;dtd>
+   public-id?,
+   system-id,
+   file
+&lt;/dtd></eg>
+            </div3>
             <div3 id="resource">
                <head>Resource</head>
                <p>A resource file is associated a public URI. This can be any kind of file. It has
