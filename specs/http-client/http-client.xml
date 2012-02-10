@@ -273,7 +273,7 @@
            standalone? = "yes" | "no" | "omit"
            suppress-indentation? = qnames
            undeclare-prefixes? = "yes" | "no"
-           output-version? = nmtoken>
+           version? = nmtoken>
    any*
 &lt;/http:body></eg>
             <p>The <code>media-type</code> is the MIME media type of the body part. It is mandatory.
@@ -295,7 +295,7 @@
                the response, the implementation can, but is not required, to provide some of them if
                it has the corresponding information (some of them do not make any sense in a
                response, therefore they will never be on a response element, for instance
-                  <code>output-version</code>).</p>
+                  <code>version</code>).</p>
             <p>The <code>http:multipart</code> element represents an HTTP multi-part request or
                response:</p>
             <eg>
