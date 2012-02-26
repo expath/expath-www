@@ -10,24 +10,13 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String>WSDL Compiler</String>
+                                    <String>Self XSLT EE</String>
                                 </field>
                                 <field name="type">
-                                    <String>XSL</String>
+                                    <String>XML</String>
                                 </field>
                                 <field name="url">
-                                    <String>../http-client/samples/wsdl-compiler/weather/weather.wsdl</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String>WSDL Compiler</String>
-                                </field>
-                                <field name="type">
-                                    <String>XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String>../http-client/samples/wsdl-compiler/stockquote/stockquote.wsdl</String>
+                                    <String>../pkg/project/test/hello-world/xproject/Untitled2.xsl</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -39,17 +28,6 @@
                                 </field>
                                 <field name="url">
                                     <String>../../../Downloads/test%20(3).xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String>eProseed - green file</String>
-                                </field>
-                                <field name="type">
-                                    <String>XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String>../../../Downloads/test%20(3)-out.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -142,6 +120,138 @@
                             </scenarioAssociation>
                             <scenarioAssociation>
                                 <field name="name">
+                                    <String>H2O Invoice</String>
+                                </field>
+                                <field name="type">
+                                    <String>XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String>../../h2o/paperwork/2012/eproseed-invoice-h2o-2012-01.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String>Execute XQuery (Win)</String>
+                                </field>
+                                <field name="type">
+                                    <String>XQUERY</String>
+                                </field>
+                                <field name="url">
+                                    <String>../../../Downloads/XQueryV30-parse-test.xq</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String>EXPath XML Spec HTML</String>
+                                </field>
+                                <field name="type">
+                                    <String>XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String>specs/http-client/http-client.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String>EXPath XML Spec HTML</String>
+                                </field>
+                                <field name="type">
+                                    <String>XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String>specs/pkg/pkg.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String>eProseed - green file</String>
+                                </field>
+                                <field name="type">
+                                    <String>XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String>../../../Downloads/test-pcm-out.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String>eProseed - green file from ws</String>
+                                </field>
+                                <field name="type">
+                                    <String>XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String>../../../Downloads/test-pcm.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String>eProseed - green file</String>
+                                </field>
+                                <field name="type">
+                                    <String>XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String>../../../Downloads/test-clearing-out.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String>eProseed - green file from ws</String>
+                                </field>
+                                <field name="type">
+                                    <String>XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String>../../../Downloads/test-clearing.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String>H2O Invoice</String>
+                                </field>
+                                <field name="type">
+                                    <String>XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String>../../h2o/paperwork/2012/eproseed-invoice-h2o-2012-02.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String>WSDL Compiler</String>
+                                </field>
+                                <field name="type">
+                                    <String>XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String>../http-client/samples/wsdl-compiler/weather/weather.wsdl</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String>WSDL Compiler</String>
+                                </field>
+                                <field name="type">
+                                    <String>XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String>../http-client/samples/wsdl-compiler/stockquote/stockquote.wsdl</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String>eProseed - green file</String>
+                                </field>
+                                <field name="type">
+                                    <String>XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String>../../../Downloads/test%20(3)-out.xml</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
                                     <String>eProseed - rich text sanitize</String>
                                 </field>
                                 <field name="type">
@@ -182,17 +292,6 @@
                                 </field>
                                 <field name="url">
                                     <String>../../../Documents/xslt/test/analyze-string-groups.xsl</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String>H2O Invoice</String>
-                                </field>
-                                <field name="type">
-                                    <String>XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String>../../h2o/paperwork/2012/eproseed-invoice-h2o-2012-01.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -325,17 +424,6 @@
                                 </field>
                                 <field name="url">
                                     <String>../../h2o/paperwork/2011/eproseed-invoice-h2o-2011-09.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String>EXPath XML Spec HTML</String>
-                                </field>
-                                <field name="type">
-                                    <String>XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String>specs/http-client/http-client.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
@@ -1018,94 +1106,6 @@
                                 </field>
                                 <field name="url">
                                     <String>../../h2o/paperwork/2010/mercator-invoice-h2o-2010-06.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String>H2O Invoice</String>
-                                </field>
-                                <field name="type">
-                                    <String>XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String>../../h2o/paperwork/2010/mercator-invoice-h2o-2010-07.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String>H2O Invoice</String>
-                                </field>
-                                <field name="type">
-                                    <String>XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String>../../h2o/paperwork/2010/mercator-invoice-h2o-2010-09.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String>Self XProc - no input, no output</String>
-                                </field>
-                                <field name="type">
-                                    <String>XPROC</String>
-                                </field>
-                                <field name="url">
-                                    <String>../../../Documents/emc/Untitled1.xpl</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String>Self XProc - no input, no output</String>
-                                </field>
-                                <field name="type">
-                                    <String>XPROC</String>
-                                </field>
-                                <field name="url">
-                                    <String>../../../Documents/xproc/test/doc-template.xproc</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String>Self XProc - no input, no output</String>
-                                </field>
-                                <field name="type">
-                                    <String>XPROC</String>
-                                </field>
-                                <field name="url">
-                                    <String>../../../Documents/xml/Untitled6.xpl</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String>Self XProc - no input, no output</String>
-                                </field>
-                                <field name="type">
-                                    <String>XPROC</String>
-                                </field>
-                                <field name="url">
-                                    <String>../../../Documents/xproc/test/unzip.xproc</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String>fo/fo.framework/FO/FO PDF</String>
-                                </field>
-                                <field name="type">
-                                    <String>XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String>../../../Downloads/my-docs-sword-20091230/fgeorges.org/invoices/chloe-fgeorges.org/sample-ubl.fo</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
-                                    <String>EXPath XML Spec HTML</String>
-                                </field>
-                                <field name="type">
-                                    <String>XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String>specs/zip/zip.xml</String>
                                 </field>
                             </scenarioAssociation>
                         </scenarioAssociation-array>
@@ -8923,7 +8923,8 @@
             <file name="specs/zip/zip.xml"/>
         </folder>
         <folder name="tmp">
-            <file name="../../h2o/paperwork/2011/eproseed-invoice-h2o-2011-12.xml"/>
+            <folder path="../pkg/project/test/hello-world/"/>
+            <file name="../../h2o/paperwork/2012/eproseed-invoice-h2o-2012-01.xml"/>
             <file name="../../eproseed/coreflow/trunk/COREFlowSOAApp/COREFlowDocumentGenerator/src/eu/rtd/coreflow/soa/docgenerator/xsl/green-file-from-ws.xsl"/>
             <file name="../../eproseed/coreflow/trunk/COREFlowSOAApp/COREFlowDocumentGenerator/src/eu/rtd/coreflow/soa/docgenerator/xsl/payment-event.xsl"/>
             <file name="../../../Downloads/ProjectFinancialService-getProjectCostAnalysis-Response.xml"/>
@@ -8949,6 +8950,10 @@
                         <file name="website/src/pages/modules/webapp/implems.xml"/>
                         <file name="website/src/pages/modules/webapp/index.xml"/>
                         <file name="website/src/pages/modules/webapp/samples.xml"/>
+                    </folder>
+                    <folder name="xproject">
+                        <file name="website/src/pages/modules/xproject/index.xml"/>
+                        <file name="website/src/pages/modules/xproject/oxygen.xml"/>
                     </folder>
                     <folder name="zip">
                         <file name="website/src/pages/modules/zip/implems.xml"/>
