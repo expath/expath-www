@@ -16,11 +16,10 @@
    <xsl:param name="menus" as="element(menu)+" select="doc('sitemap.xml')/sitemap/menu"/>
 
    <!--
-       ...
+       Displays a page from src/pages/, which must be a 'webpage' XML document.
    -->
    <xsl:function name="app:page-servlet">
       <xsl:param name="request" as="element(web:request)"/>
-      <xsl:param name="bodies"  as="item()*"/>
       <xsl:variable name="page" as="xs:string">
          <xsl:variable name="param" select="$request/web:path/web:match[@name eq 'page']"/>
          <xsl:sequence select="
@@ -56,7 +55,6 @@
    -->
    <xsl:function name="app:old-page-servlet">
       <xsl:param name="request" as="element(web:request)"/>
-      <xsl:param name="bodies"  as="item()*"/>
       <xsl:variable name="page" select="$request/web:path/web:match[@name eq 'page']"/>
       <web:response status="404" message="Not found">
          <web:body content-type="text/html" method="xhtml"/>
@@ -79,7 +77,6 @@
 
    <xsl:function name="app:search-servlet">
       <xsl:param name="request" as="element(web:request)"/>
-      <xsl:param name="bodies"  as="item()*"/>
       <xsl:variable name="page" as="element(webpage)">
          <webpage menu="main" xmlns="">
             <title>EXPath - Search</title>
@@ -108,7 +105,6 @@
    -->
    <xsl:function name="app:specs-page-servlet">
       <xsl:param name="request" as="element(web:request)"/>
-      <xsl:param name="bodies"  as="item()*"/>
       <xsl:variable name="specs" as="element(spec)+" select="
           document('spec/spec-list.xml')/specs/spec"/>
       <xsl:variable name="page" as="element(webpage)">
@@ -165,7 +161,6 @@
    -->
    <xsl:function name="app:spec-servlet">
       <xsl:param name="request" as="element(web:request)"/>
-      <xsl:param name="bodies"  as="item()*"/>
       <xsl:variable name="spec"   select="$request/web:path/web:match[@name eq 'spec']"/>
       <xsl:variable name="editor" select="$request/web:path/web:match[@name eq 'editor']"/>
       <xsl:variable name="date"   select="$request/web:path/web:match[@name eq 'date']/substring(., 2)"/>
@@ -255,7 +250,6 @@
    -->
    <xsl:function name="app:wiki-servlet">
       <xsl:param name="request" as="element(web:request)"/>
-      <xsl:param name="bodies"  as="item()*"/>
       <xsl:variable name="page" select="$request/web:path/web:match[@name eq 'page']"/>
       <web:response status="404" message="Not found">
          <web:body content-type="text/html" method="xhtml"/>
