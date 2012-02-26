@@ -29,6 +29,14 @@
          </list>
       </primary>
       <primary>
+         <title>XProject, the XML Project Manager</title>
+         <list>
+            <item><link href="modules/xproject/">Xproject home</link></item>
+            <item><link href="modules/xproject/oxygen">The plugin for oXygen</link></item>
+            <item><link href="wiki/XProject">Wiki page</link></item>
+         </list>
+      </primary>
+      <primary>
          <title>Webapp Container</title>
          <list>
             <item><link href="modules/webapp/">Webapp container home</link></item>

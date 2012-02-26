@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<webpage menu="xproj" root="../..">
+   <title>EXPath - XProject plugin for oXygen</title>
+   <section>
+      <title>XProject</title>
+      <image src="../../images/packaging.jpg" alt="Taps and pipes"/>
+      <para>The XProject plugin for oXygen can be found <link
+            href="http://code.google.com/p/expath-pkg/downloads/list">here</link> (downoad the
+         latest file named <code>xproject-oxygen-plugin-*.zip</code>). Unzip the archive in your
+         oXygen install directory, in its subdir <code>plugins</code>. This must result in a subdir
+            <code>[oxygen]/plugins/xproject/</code>. For instance on Mac OS X, this will typically
+         result in creating the new directory
+            <code>/Applications/oxygen-13.2/plugins/xproject/</code>.</para>
+      <para>The next time you start oXygen, you will have 4 more buttons in the toolbar, named
+            <emph>Build</emph>, <emph>Test</emph>, <emph>Doc</emph> and <emph>Release</emph>. While
+         editing any file within your project directory, you can click one of those buttons to
+         execute the corresponding XProject target.</para>
+      <para><emph>Build</emph> creates a new package in <code>dist/</code> based on
+            <code>src/</code>. <emph>Test</emph> run the XSpec tests in test/ and place the reports
+         in the same dir (see the sample project in the ZIP to see how to configure your processors
+         and XML databases to run the tests), <emph>Doc</emph> places the XQuery documentation in
+            <code>dist/xqdoc/</code>, and <emph>Release</emph> creates a new delivery file in
+            <code>dist/</code>.</para>
+      <para>The packages created by <emph>Build</emph> can be installed automatically in any EXPath
+         <link href="../pkg/">Packaging System</link>-compliant system.</para>
+      <para>Any feedback, help, request for improvement is welcome! Please use the EXPath <link
+            href="../../lists">mailing list</link>. The sources can be found on <link
+            href="https://github.com/fgeorges/xproject-oxygen">GitHub</link>.</para>
+   </section>
+</webpage>

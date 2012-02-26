@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<webpage menu="xproj" root="../..">
+   <title>EXPath - XProject</title>
+   <section>
+      <title>XProject</title>
+      <image src="../../images/packaging.jpg" alt="Taps and pipes"/>
+      <para>XProject, the XML Project Manager, is a tool helping developers to create and manage XML
+         projects. The idea, based on similar tools for other languages, is to use simple
+         conventions and some meta-information on the project in order to automate various common
+         tasks. Those tasks are for e.g. building a package (based on the <link href="../pkg/"
+            >Packaging System</link>) out of the sources, unit-testing the project (using <link
+            href="http://code.google.com/p/xspec/">XSpec</link> test suites), or generating source
+         documentation (based on <link href="http://xqdoc.org/">xqdoc</link> and <link
+            href="https://github.com/xquery/xquerydoc">xquerydoc</link>).</para>
+   </section>
+   <divider/>
+   <primary>
+      <title>Download</title>
+      <para>You can download XProject from <link
+            href="http://code.google.com/p/expath-pkg/downloads/">this page</link>. TODO: Add some
+         install info (for now, using the <link href="oxygen">oXygen plugin</link> is the
+         easiest).</para>
+   </primary>
+   <primary>
+      <title>The project structure</title>
+      <para>TODO: Describe the structure of a project, and the content of the directory
+            <code>xproject/</code> (in particular describe the format of <code>project.xml</code>
+         with an excerpt).</para>
+      <!--para>
+         <sample href="index-1.xml.sample" kind="xml"/>
+      </para-->
+   </primary>
+   <secondary box="true">
+      <para>There is now a plugin availble for oXygen!  See the <link href="oxygen">plugin
+         page</link>.</para>
+   </secondary>
+</webpage>

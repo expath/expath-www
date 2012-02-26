@@ -17,13 +17,22 @@
          the <link href="modules/pkg/">packaging page</link>.</para>
    </primary>
    <primary>
+      <title>XProject</title>
+      <details>A tool to automate usual tasks on an XML project</details>
+      <para>While working on an XML project, one has typically to repeat the same tasks over and
+         over again. Like building a package with the current state of the sources, generating
+         documentation or unit-testing the several components. XProject automates all those (boring)
+         tasks and let you focus directly on your code, instead of having to set up your environment
+         or writing the same scripts over and over again. See the <link href="modules/xproject/"
+            >XProject page</link>.</para>
+   </primary>
+   <primary>
       <title>Webapp Container</title>
       <details>Writing web applications in X*, from cover to cover</details>
       <para>A standard web application container and framework, for several core XML technologies,
          like XSLT, XQuery and XProc.  See the <link href="modules/webapp/">webapps
          page</link>.</para>
    </primary>
-   <divider/>
    <primary>
       <title>File Handling</title>
       <details>Files and directories details and modifications</details>

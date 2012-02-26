@@ -94,6 +94,11 @@
          <page src="implems.xml"  href="implems.html" menu="webapp"/>
          <page src="samples.xml"  href="samples.html" menu="webapp"/>
       </dir>
+      <dir base="xproject/" href="xproject/" release="xproject/">
+         <!-- pages -->
+         <page src="index.xml"  href="index.html"  menu="xproj"/>
+         <page src="oxygen.xml" href="oxygen.html" menu="xproj"/>
+      </dir>
       <dir base="zip/" href="zip/" release="zip/">
          <!-- pages -->
          <page src="index.xml"    href="index.html"   menu="zip"/>
@@ -164,6 +169,13 @@
       <item name="samples" href="samples"           title="EXPath Webapp Samples">Samples</item>
       <item name="spec"    href="../../spec/webapp" title="EXPath Webapp Spec">Specification</item>
       <item name="wiki"    href="../../wiki/Webapp" title="EXPath Webapp Wiki">Wiki</item>
+   </menu>
+
+   <menu name="xproj">
+      <item name="parent" href="../../modules"       title="Modules">[ ../Modules ]</item>
+      <item name="index"  href="."                   title="XProject Home">XProject</item>
+      <item name="oxygen" href="oxygen"              title="XProject plugin for oXygen">oXygen Plugin</item>
+      <item name="wiki"   href="../../wiki/XProject" title="XProject Wiki">Wiki</item>
    </menu>
 
    <menu name="zip">
