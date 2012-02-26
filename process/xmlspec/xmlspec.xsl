@@ -32,6 +32,18 @@
       <xsl:param name="analytics-id" as="xs:string?" select="'UA-5463082-2'"/>
    -->
 
+   <!--
+       TODO: Add support for syntax highlighting when specs contain code snippets...
+       
+       <script type="text/javascript" src="/scripts/XRegExp.js"/>
+       <script type="text/javascript" src="/scripts/shCore.js"/>
+       <script type="text/javascript" src="/scripts/shBrushXml.js"/>
+       <script type="text/javascript" src="/scripts/shBrushXQuery.js"/>
+       <link rel="stylesheet" type="text/css" href="/style/shCore.css"/>
+       <link rel="stylesheet" type="text/css" href="/style/shThemeDefault.css"/>
+       <script type="text/javascript">SyntaxHighlighter.all();</script>
+   -->
+
    <xsl:import href="xmlspec-orig.xsl"/>
 
    <xsl:output method="xhtml"/>
