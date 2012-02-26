@@ -58,6 +58,138 @@
          </div2>
       </div1>
       <div1>
+         <head>Examples (notes)</head>
+         <eg>
+&lt;webapp xmlns="http://expath.org/ns/webapp/descriptor"
+        xmlns:app="http://expath.org/ns/samples/servlex/hello"
+        name="http://expath.org/samples/servlex/hello"
+        abbrev="hello-world"
+        version="0.1">
+
+   &lt;title>Servlex hello-world application&lt;/title>
+
+   &lt;resource pattern="/" rewrite="index.html" media-type="application/xhtml+xml"/>
+
+   &lt;servlet name="xslt">
+      &lt;xslt uri="http://expath.org/ns/samples/servlex/hello.xsl"
+            function="app:hello-xslt"/>
+      &lt;url pattern="/xslt"/>
+   &lt;/servlet>
+
+   &lt;servlet name="xquery">
+      &lt;xquery function="app:hello-xquery"/>
+      &lt;url pattern="/xquery"/>
+   &lt;/servlet>
+
+   &lt;servlet name="xproc">
+      &lt;xproc uri="http://expath.org/ns/samples/servlex/hello.xproc"/>
+      &lt;url pattern="/xproc"/>
+   &lt;/servlet>
+
+&lt;/webapp></eg>
+         <p>...</p>
+         <eg>
+&lt;webapp name = uri
+        abbrev = NCName
+        version = string>
+   title,
+   resource*,
+   *** <emph>TODO: Add filters, groups, etc.</emph> ***
+   servlet+
+&lt;/webapp></eg>
+         <p>...</p>
+         <eg>
+&lt;servlet name? = NCName>
+   <emph>component</emph>,
+   url
+&lt;/servlet>
+
+&lt;xproc uri = uri
+       step? = QName/>
+
+&lt;xquery uri? = uri
+        function? = QName/>
+
+&lt;xslt uri = uri
+      function? = QName
+      template? = QName/>
+
+&lt;url pattern? = URLPattern/></eg>
+         <p>...</p>
+         <eg>
+&lt;request servlet="tools" path="/tools/dump" method="get" xmlns:web="http://expath.org/ns/webapp">
+   &lt;uri>http://h2oconsulting.be/servlex/h2o-website/tools/dump&lt;/uri>
+   &lt;authority>http://h2oconsulting.be&lt;/authority>
+   &lt;context-root>/servlex/h2o-website&lt;/context-root>
+   &lt;path>
+      &lt;part>/tools/&lt;/part>
+      &lt;match name="path">dump&lt;/match>
+   &lt;/path>
+   &lt;header name="host" value="h2oconsulting.be"/>
+   &lt;header name="user-agent" value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:7.0.1) Gecko/20100101 Firefox/7.0.1"/>
+   &lt;header name="accept" value="text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"/>
+   &lt;header name="accept-language" value="en-us,en;q=0.5"/>
+   &lt;header name="accept-encoding" value="gzip, deflate"/>
+   &lt;header name="accept-charset" value="ISO-8859-1,utf-8;q=0.7,*;q=0.7"/>
+   &lt;header name="via" value="1.1 www.h2oconsulting.be"/>
+   &lt;header name="x-forwarded-for" value="91.87.141.209"/>
+   &lt;header name="x-forwarded-host" value="h2oconsulting.be"/>
+   &lt;header name="x-forwarded-server" value="www.h2oconsulting.be"/>
+   &lt;header name="connection" value="Keep-Alive"/>
+&lt;/request>
+</eg>
+         <p>...</p>
+         <eg>
+&lt;request servlet? = NCName
+         path = string
+         method = NCName>
+   uri,
+   authority,
+   context-root,
+   path,
+   header*,
+   (body|
+    multipart)?
+&lt;/request></eg>
+         <p>...</p>
+         <eg>
+&lt;path>
+   (part|
+    match)+
+&lt;/path>
+
+&lt;part>
+   <emph>string</emph>
+&lt;/part>
+
+&lt;match name = NCName>
+   <emph>string</emph>
+&lt;/part></eg>
+         <p>...</p>
+         <eg>
+&lt;response status="200" message="Ok">
+   &lt;header name="Content-Disposition" value="filename=the-file.txt"/>
+   &lt;body content-type="application/zip" src="/some/path/to/the/file.txt"/>
+&lt;/response></eg>
+         <p>...</p>
+         <eg>
+&lt;response status = integer
+          message = string>
+   header*,
+   (body|
+    multipart)?
+&lt;/response></eg>
+         <p>...</p>
+         <eg>
+&lt;multipart ...>
+   body+
+&lt;/multipart>
+
+&lt;body ...>
+   ...
+&lt;/body></eg>
+      </div1>
+      <div1>
          <head>Bla bla bla</head>
          <p>...</p>
       </div1>
@@ -66,10 +198,9 @@
       <div1>
          <head>References</head>
          <blist>
-            <bibl id="odf" key="OpenDocument">
-               <loc href="http://en.wikipedia.org/wiki/OpenDocument">OpenDocument format</loc>
-               (ODF). The Organization for the Advancement of Structured Information Standards
-               (OASIS).</bibl>
+            <bibl id="key" key="DisplayedKey">
+               <loc href="http://example.org/key">The document</loc>. The author. The company. The
+               publication infos.</bibl>
          </blist>
       </div1>
    </back>

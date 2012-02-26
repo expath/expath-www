@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Web Application</title><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><style type="text/css">
+<html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Web Application</title>
+<link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" />
+<style type="text/css">
 code           { font-family: monospace; }
 
 div.constraint,
@@ -47,14 +47,128 @@ div.exampleHeader { font-weight: bold;
 <h2><a name="abstract" id="abstract"></a>Abstract</h2><p>Bla bla bla</p></div><div class="toc">
 <h2><a name="contents" id="contents"></a>Table of Contents</h2><p class="toc">1 <a href="#d2e50">Introduction</a><br />
     1.1 <a href="#d2e55">Namespace conventions</a><br />
-2 <a href="#d2e60">Bla bla bla</a><br />
+2 <a href="#d2e60">Examples (notes)</a><br />
+3 <a href="#d2e110">Bla bla bla</a><br />
 </p>
-<h3><a name="appendices" id="appendices"></a>Appendix</h3><p class="toc">A <a href="#d2e66">References</a><br />
+<h3><a name="appendices" id="appendices"></a>Appendix</h3><p class="toc">A <a href="#d2e116">References</a><br />
 </p></div><hr /><div class="body"><div class="div1">
 <h2><a name="d2e50" id="d2e50"></a>1 Introduction</h2><p>Bla bla bla</p><div class="div2">
 <h3><a name="d2e55" id="d2e55"></a>1.1 Namespace conventions</h3><p>Bla bla bla</p></div></div><div class="div1">
-<h2><a name="d2e60" id="d2e60"></a>2 Bla bla bla</h2><p>...</p></div></div><div class="back"><div class="div1">
-<h2><a name="d2e66" id="d2e66"></a>A References</h2><dl><dt class="label"><a name="odf" id="odf"></a>OpenDocument</dt><dd>
-               <a href="http://en.wikipedia.org/wiki/OpenDocument">OpenDocument format</a>
-               (ODF). The Organization for the Advancement of Structured Information Standards
-               (OASIS).</dd></dl></div></div></body></html>
+<h2><a name="d2e60" id="d2e60"></a>2 Examples (notes)</h2><div class="exampleInner"><pre class="brush: xml">
+&lt;webapp xmlns="http://expath.org/ns/webapp/descriptor"
+        xmlns:app="http://expath.org/ns/samples/servlex/hello"
+        name="http://expath.org/samples/servlex/hello"
+        abbrev="hello-world"
+        version="0.1"&gt;
+
+   &lt;title&gt;Servlex hello-world application&lt;/title&gt;
+
+   &lt;resource pattern="/" rewrite="index.html" media-type="application/xhtml+xml"/&gt;
+
+   &lt;servlet name="xslt"&gt;
+      &lt;xslt uri="http://expath.org/ns/samples/servlex/hello.xsl"
+            function="app:hello-xslt"/&gt;
+      &lt;url pattern="/xslt"/&gt;
+   &lt;/servlet&gt;
+
+   &lt;servlet name="xquery"&gt;
+      &lt;xquery function="app:hello-xquery"/&gt;
+      &lt;url pattern="/xquery"/&gt;
+   &lt;/servlet&gt;
+
+   &lt;servlet name="xproc"&gt;
+      &lt;xproc uri="http://expath.org/ns/samples/servlex/hello.xproc"/&gt;
+      &lt;url pattern="/xproc"/&gt;
+   &lt;/servlet&gt;
+
+&lt;/webapp&gt;</pre></div><p>...</p><div class="exampleInner"><pre class="brush: xml">
+&lt;webapp name = uri
+        abbrev = NCName
+        version = string&gt;
+   title,
+   resource*,
+   *** <em>TODO: Add filters, groups, etc. ***</em> ***
+   servlet+
+&lt;/webapp&gt;</pre></div><p>...</p><div class="exampleInner"><pre class="brush: xml">
+&lt;servlet name? = NCName&gt;
+   <em>component</em>,
+   url
+&lt;/servlet&gt;
+
+&lt;xproc uri = uri
+       step? = QName/&gt;
+
+&lt;xquery uri? = uri
+        function? = QName/&gt;
+
+&lt;xslt uri = uri
+      function? = QName
+      template? = QName/&gt;
+
+&lt;url pattern? = URLPattern/&gt;</pre></div><p>...</p><div class="exampleInner"><pre>
+&lt;request servlet="tools" path="/tools/dump" method="get" xmlns:web="http://expath.org/ns/webapp"&gt;
+   &lt;uri&gt;http://h2oconsulting.be/servlex/h2o-website/tools/dump&lt;/uri&gt;
+   &lt;authority&gt;http://h2oconsulting.be&lt;/authority&gt;
+   &lt;context-root&gt;/servlex/h2o-website&lt;/context-root&gt;
+   &lt;path&gt;
+      &lt;part&gt;/tools/&lt;/part&gt;
+      &lt;match name="path"&gt;dump&lt;/match&gt;
+   &lt;/path&gt;
+   &lt;header name="host" value="h2oconsulting.be"/&gt;
+   &lt;header name="user-agent" value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:7.0.1) Gecko/20100101 Firefox/7.0.1"/&gt;
+   &lt;header name="accept" value="text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"/&gt;
+   &lt;header name="accept-language" value="en-us,en;q=0.5"/&gt;
+   &lt;header name="accept-encoding" value="gzip, deflate"/&gt;
+   &lt;header name="accept-charset" value="ISO-8859-1,utf-8;q=0.7,*;q=0.7"/&gt;
+   &lt;header name="via" value="1.1 www.h2oconsulting.be"/&gt;
+   &lt;header name="x-forwarded-for" value="91.87.141.209"/&gt;
+   &lt;header name="x-forwarded-host" value="h2oconsulting.be"/&gt;
+   &lt;header name="x-forwarded-server" value="www.h2oconsulting.be"/&gt;
+   &lt;header name="connection" value="Keep-Alive"/&gt;
+&lt;/request&gt;
+</pre></div><p>...</p><div class="exampleInner"><pre>
+&lt;request servlet? = NCName
+         path = string
+         method = NCName&gt;
+   uri,
+   authority,
+   context-root,
+   path,
+   header*,
+   (body|
+    multipart)?
+&lt;/request&gt;</pre></div><p>...</p><div class="exampleInner"><pre>
+&lt;path&gt;
+   (part|
+    match)+
+&lt;/path&gt;
+
+&lt;part&gt;
+   <em>string</em>
+&lt;/part&gt;
+
+&lt;match name = NCName&gt;
+   <em>string</em>
+&lt;/part&gt;</pre></div><p>...</p><div class="exampleInner"><pre>
+&lt;response status="200" message="Ok"&gt;
+   &lt;header name="Content-Disposition" value="filename=the-file.txt"/&gt;
+   &lt;body content-type="application/zip" src="/some/path/to/the/file.txt"/&gt;
+&lt;/response&gt;</pre></div><p>...</p><div class="exampleInner"><pre>
+&lt;response status = integer
+          message = string&gt;
+   header*,
+   (body|
+    multipart)?
+&lt;/response&gt;</pre></div><p>...</p><div class="exampleInner"><pre>
+&lt;multipart ...&gt;
+   body+
+&lt;/multipart&gt;
+
+&lt;body ...&gt;
+   ...
+&lt;/body&gt;</pre></div></div><div class="div1">
+<h2><a name="d2e110" id="d2e110"></a>3 Bla bla bla</h2><p>...</p></div></div><div class="back"><div class="div1">
+<h2><a name="d2e116" id="d2e116"></a>A References</h2><dl><dt class="label"><a name="key" id="key"></a>DisplayedKey</dt><dd>
+               <a href="http://example.org/key">The document</a>. The author. The company. The
+               publication infos.</dd></dl></div></div>
+</body></html>
