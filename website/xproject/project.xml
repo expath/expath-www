@@ -1,7 +1,7 @@
 <project xmlns="http://expath.org/ns/project"
          name="http://expath.org/website"
          abbrev="expath-website"
-         version="0.2.0">
+         version="0.3.0dev">
 
    <title>EXPath website</title>
 
