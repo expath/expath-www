@@ -18,6 +18,9 @@
    <xsl:param name="analytics-id" as="xs:string?" select="'UA-5463082-2'"/>
    <xsl:param name="menus"        as="element(menu)+"/>
 
+   <xsl:variable name="version"  select="'@@VERSION@@'"/>
+   <xsl:variable name="revision" select="'@@REVISION@@'"/>
+
    <!-- URIs used in the document, relative to the root of the website -->
    <xsl:variable name="style-default" select="'style/default.css'"/>
    <xsl:variable name="style-serial"  select="'style/serial-oxygen.css'"/>
@@ -102,11 +105,15 @@
                      </a>
                   </div>
                   <div class="right">
-                     <a href="{ $root }credits">Credits</a>
-                     <xsl:text> - </xsl:text>
-                     <xsl:text>Hosted by </xsl:text>
+                     <xsl:text>EXPath website version </xsl:text>
+                     <xsl:value-of select="$version"/>
+                     <xsl:text> (revision #</xsl:text>
+                     <xsl:value-of select="$revision"/>
+                     <xsl:text>) - Hosted by </xsl:text>
                      <a href="http://h2oconsulting.be/">H2O Consulting</a>
                      <xsl:text> - Powered by </xsl:text>
+                     <a href="http://expath.org/">EXPath</a>
+                     <xsl:text> and </xsl:text>
                      <a href="http://code.google.com/p/servlex/">Servlex</a>
                   </div>
                </div>
