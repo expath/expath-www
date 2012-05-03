@@ -3,7 +3,7 @@
 <webpage menu="xproj" root="../..">
    <title>EXPath - XProject plugin for oXygen</title>
    <section>
-      <title>XProject</title>
+      <title>XProject for oXygen</title>
       <image src="../../images/packaging.jpg" alt="Taps and pipes"/>
       <para>The XProject plugin for oXygen can be found <link
             href="http://code.google.com/p/expath-pkg/downloads/list">here</link> (downoad the
@@ -28,4 +28,63 @@
             href="../../lists">mailing list</link>. The sources can be found on <link
             href="https://github.com/fgeorges/xproject-oxygen">GitHub</link>.</para>
    </section>
+   <primary>
+      <title>Install guide</title>
+      <para>TODO: Document the install...  Basically, download the ZIP, unzip it, and put the dir in
+         your oXygen's plugins/ subdir.</para>
+   </primary>
+   <primary>
+      <title>User guide</title>
+      <para>The plugin provides two main entry points: a new toolbar dedicated to XProject, and a
+         set of templates to create new components (using the usual "<emph>New File</emph>" feature
+         of oXygen).  The toolbar contains 5 grey buttons:</para>
+      <image src="../../images/xproject-toolbar.png" alt="Toolbar in oXygen of the XProject plugin"/>
+      <para>The first button creates a new project and the 4 following buttons act on an existing
+         project.  In order to identify an existing project, those buttons look at the file open in
+         the current editor window, and select the project it is part of (that is, its ancestor
+         directory containing a project descriptor <code>xproject/project.xml</code>).</para>
+      <image src="../../images/xproject-create.png" alt="XProject button in oXygen for creating new project"/>
+      <para><bold>Create new project</bold></para>
+      <para>Display a file selection dialog box.  The user has to type the name of a new directory.
+         The plugin will create this new directory, as well as two sub-directories (resp.
+            <code>src/</code> and <code>xproject/</code>) and the project descriptor.  If
+         everything goes well, it opens the new project descriptor in the editor.  The user can
+         then edit it as any other XML file, in order to give the project a name, a version number,
+         etcetera.</para>
+      <image src="../../images/xproject-build.png" alt="XProject button in oXygen for building project"/>
+      <para><bold>Build project</bold></para>
+      <para>Create the package for the current project (the package is a XAR file, or a XAW file if
+         the current project is a webapp project).  The archive is created in the sub-directory
+            <code>dist/</code>.</para>
+      <image src="../../images/xproject-test.png" alt="XProject button in oXygen for testing project"/>
+      <para><bold>Test project</bold></para>
+      <para>Test the current project.  That is, execute the XSpec test suites located in the
+         sub-directory <code>test/</code>, and generate HTML reports for them.  See the main
+         XProject documentation to learn how to configure test suites to be run by different and/or
+         several processors and databases.</para>
+      <image src="../../images/xproject-doc.png" alt="XProject button in oXygen for generating documentation for project"/>
+      <para><bold>Generate project doc</bold></para>
+      <para>Generate the documentation for the project, based on xqDoc, xquerydoc, XSLStyle and/or
+         oXygen's XSLT documentation vocabulary (only XQuery documentation is support right
+         now).</para>
+      <image src="../../images/xproject-release.png" alt="XProject button in oXygen for building release file for project"/>
+      <para><bold>Build release file for project</bold></para>
+      <para>Build a ZIP file suitable for delivering the project to end users.  The ZIP file
+         contains the package itself (the XAR or XAW file), the project sources, the
+         documentation, a VERSION file, etcetera.</para>
+      <para>The plugin also adds some templates to the usual "<emph>New File</emph>" dialog box of
+         oXygen:</para>
+      <image src="../../images/xproject-new-file.png" alt="New file dialog of oXygen with XProject templates"/>
+      <para>You can locate the new templates in the (long) list either by opening the "<emph>Global
+            templates</emph>" section or by typing down "<emph>packaging</emph>" in the filter field
+         at the top of the window.  Because this is oXygen, you can also install the templates using
+         any other possible way oXygen is providing to configure templates.  For what is worth
+         noting, personally I (Florent Georges) select them once then select them in the
+         "<emph>Recently used</emph>" section at xthe top of the window....</para>
+      <para>The new created file contains the declaration for the XProject namespace when applicable,
+         and clearly identified places to adapt to your own code (e.g. the public import URI you want
+         to affect to the new component).  Just replace what is specific to your new file and you are
+         ready to develop your component.  It will be automatically added to the package the next
+         time you build the project, with the correct import URI!</para>
+   </primary>
 </webpage>
