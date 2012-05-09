@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?oxygen RNGSchema="http://www.w3.org/XML/1998/06/schema/xmlspec.rng" type="xml"?>
+<?oxygen RNGSchema="http://expath.org/ns/xmlspec/xmlspec.rnc"?>
 
-<spec role="editors-copy" xmlns:spec="http://expath.org/ns/xmlspec">
+<spec role="editors-copy" xmlns:spec="http://expath.org/ns/xmlspec" spec:w3c="true">
    <header>
       <title>Packaging System</title>
       <w3c-designation>w3c-designation</w3c-designation>
@@ -10,14 +10,14 @@
       <pubdate diff="chg">
          <day>Xx</day>
          <month>Xxx</month>
-         <year>2010</year>
+         <year>2012</year>
       </pubdate>
       <publoc>
          <loc href="http://expath.org/spec/pkg/editor" diff="chg"/>
       </publoc>
       <altlocs>
-         <loc href="http://expath.org/spec/pkg/editor.xml">XML</loc>
-         <loc href="http://expath.org/spec/pkg/editor/diff">Revision markup</loc>
+         <loc href="http://expath.org/spec/pkg/editor.xml" diff="chg">XML</loc>
+         <loc href="http://expath.org/spec/pkg/editor/diff" diff="chg">Revision markup</loc>
       </altlocs>
       <latestloc>
          <loc href="http://expath.org/spec/pkg"/>
@@ -31,11 +31,23 @@
       <authlist>
          <author>
             <name>Florent Georges</name>
-            <affiliation>H2O Consulting</affiliation>
+            <affiliation><loc href="http://h2oconsulting.be/">H2O Consulting</loc></affiliation>
          </author>
       </authlist>
       <copyright>
-         <p/>
+         <p diff="add">Copyright © 2009-2012 Florent Georges, published by the <loc
+               href="http://w3.org/community/expath/">EXPath Community Group</loc> under the <loc
+               href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor
+               License Agreement (CLA)</loc>. A human-readable <loc
+               href="http://www.w3.org/community/about/agreements/cla-deed/">summary</loc> is
+            available.</p>
+         <p diff="add">This specification was published by the <loc
+               href="http://www.w3.org/community/expath/">EXPath Community Group</loc>. It is not a
+            W3C Standard nor is it on the W3C Standards Track. Please note that under the <loc
+               href="http://www.w3.org/community/about/agreements/cla/">W3C Community Contributor
+               License Agreement (CLA)</loc> there is a limited opt-out and other conditions apply.
+            Learn more about <loc href="http://www.w3.org/community/">W3C Community and Business
+               Groups</loc>.</p>
       </copyright>
       <abstract>
          <p>This proposal defines a packaging system for various core XML technologies: XSLT,
@@ -278,6 +290,16 @@
    file
 &lt;/nvdl></eg>
             </div3>
+            <div3 id="dtd" diff="add">
+               <head>DTD</head>
+               <p>A DTD file is associated a public URI.</p>
+               <eg>
+&lt;dtd>
+   public-id?,
+   system-id,
+   file
+&lt;/dtd></eg>
+            </div3>
             <div3 id="resource" diff="add">
                <head>Resource</head>
                <p>A resource file is associated a public URI. This can be any kind of file. It has
@@ -417,8 +439,8 @@
             <head>Processor dependency</head>
             <p>In addition to depending on other packages, a dependency can tell which processor(s)
                is (are) needed for this package:</p>
-            <eg diff="del">&lt;dependency processor="saxon"/></eg>
-            <eg diff="add">&lt;dependency processor="http://saxon.sf.net/home-edition"/></eg>
+            <eg><phrase diff="del">&lt;dependency processor="saxon"/></phrase>
+<phrase diff="add">&lt;dependency processor="http://saxon.sf.net/he"/></phrase></eg>
             <p>If there is several such dependencies, the package is supported by a specific
                processor as soon as one of the proc dependencies does match. The meaning of the
                versionning attributes on processor dependencies is defined by each processor.</p>
@@ -621,10 +643,10 @@ some-lib-0.1 http://example.com/some-library 0.1
                   diff="del">package</phrase>
                <phrase diff="add">content</phrase> directory</emph>)<phrase diff="del">, and 3) the
                name of this directory must be the value of the <code>abbrev</code> attribute, and
-               must be a valid NCName</phrase>. The structure <phrase diff="del">(the
-               content)</phrase> of the <phrase diff="del">package</phrase>
-            <phrase diff="add">content</phrase> directory is completely free. In our case, let's
-            just put both component files directly in the <phrase diff="del">package</phrase>
+               must be a valid NCName</phrase>. The structure <phrase diff="del">(the content) of
+               the package directory</phrase>
+            <phrase diff="add">of the content directory</phrase> is completely free. In our case,
+            let's just put both component files directly in the <phrase diff="del">package</phrase>
             <phrase diff="add">content</phrase> directory, and define the module name as
                <code>functx</code>:</p>
          <eg>
@@ -704,10 +726,10 @@ import module namespace fx = "http://www.functx.com";</eg>
             additional implementation-defined types.</p>
          <p>More generally, an implementation may define any extension element <phrase diff="add">or
                attribute</phrase> in the package descriptor to achieve its purposes, providing that
-            the elements <phrase diff="add">and attributes</phrase> it defines are neither in the
-            EXPath Packaging namespace nor in the null namespace <phrase diff="add">(an attribute on
-               an extension element can be in no namespace, but an attribute on a standard element
-               must not be in the EXPath Packaging namespace nor in no namespace)</phrase>.</p>
+            the <phrase diff="del">new</phrase> elements <phrase diff="add">and attributes</phrase>
+            it defines are neither in the EXPath Packaging namespace nor in the null namespace
+               <phrase diff="add">(an attribute on an extension element can be in no namespace, but
+               an attribute on a standard element must be in a specific namespace)</phrase>.</p>
       </div1>
    </body>
    <back>
