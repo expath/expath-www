@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?oxygen RNGSchema="http://www.w3.org/XML/1998/06/schema/xmlspec.rng" type="xml"?>
+<?oxygen RNGSchema="http://expath.org/ns/xmlspec/xmlspec.rnc"?>
 
-<spec role="editors-copy" xmlns:spec="http://expath.org/ns/xmlspec">
+<spec role="editors-copy" xmlns:spec="http://expath.org/ns/xmlspec" spec:w3c="true">
    <header>
       <title>Packaging System</title>
       <w3c-designation>w3c-designation</w3c-designation>
@@ -10,7 +10,7 @@
       <pubdate>
          <day>Xx</day>
          <month>Xxx</month>
-         <year>2010</year>
+         <year>2012</year>
       </pubdate>
       <publoc>
          <loc href="http://expath.org/spec/pkg/editor"/>
@@ -31,11 +31,23 @@
       <authlist>
          <author>
             <name>Florent Georges</name>
-            <affiliation>H2O Consulting</affiliation>
+            <affiliation><loc href="http://h2oconsulting.be/">H2O Consulting</loc></affiliation>
          </author>
       </authlist>
       <copyright>
-         <p/>
+         <p>Copyright © 2009-2012 Florent Georges, published by the <loc
+               href="http://w3.org/community/expath/">EXPath Community Group</loc> under the <loc
+               href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor
+               License Agreement (CLA)</loc>. A human-readable <loc
+               href="http://www.w3.org/community/about/agreements/cla-deed/">summary</loc> is
+            available.</p>
+         <p>This specification was published by the <loc href="http://www.w3.org/community/expath/"
+               >EXPath Community Group</loc>. It is not a W3C Standard nor is it on the W3C
+            Standards Track. Please note that under the <loc
+               href="http://www.w3.org/community/about/agreements/cla/">W3C Community Contributor
+               License Agreement (CLA)</loc> there is a limited opt-out and other conditions apply.
+            Learn more about <loc href="http://www.w3.org/community/">W3C Community and Business
+               Groups</loc>.</p>
       </copyright>
       <abstract>
          <p>This proposal defines a packaging system for various core XML technologies: XSLT,
@@ -412,7 +424,7 @@
             <head>Processor dependency</head>
             <p>In addition to depending on other packages, a dependency can tell which processor(s)
                is (are) needed for this package:</p>
-            <eg>&lt;dependency processor="http://saxon.sf.net/home-edition"/></eg>
+            <eg>&lt;dependency processor="http://saxon.sf.net/he"/></eg>
             <p>If there is several such dependencies, the package is supported by a specific
                processor as soon as one of the proc dependencies does match. The meaning of the
                versionning attributes on processor dependencies is defined by each processor.</p>
