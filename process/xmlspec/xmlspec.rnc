@@ -2,6 +2,9 @@ namespace ex = "http://expath.org/ns/xmlspec"
 
 include "xmlspec-orig.rnc"
 
+local.spec.att |=
+   attribute ex:w3c { xsd:boolean }
+
 eg.pcd.mix |=
    element ex:function { text }
  | element ex:type { text }
