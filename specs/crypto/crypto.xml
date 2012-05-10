@@ -8,8 +8,8 @@
       <w3c-designation>w3c-designation</w3c-designation>
       <w3c-doctype>EXPath Candidate Module</w3c-doctype>
       <pubdate>
-         <day>10</day>
-         <month>August</month>
+         <day>13</day>
+         <month>October</month>
          <year>2011</year>
       </pubdate>
       <publoc>
@@ -278,7 +278,7 @@
 <spec:function>crypto:encrypt</spec:function>($input-string as <spec:type>xs:string</spec:type>,
                $encryption-type as <spec:type>xs:string</spec:type>,
                $secret-key as <spec:type>xs:string</spec:type>,
-               $cryptographic-algorithm as <spec:type>xs:string</spec:type>) as <spec:type>xs:boolean</spec:type></eg>
+               $cryptographic-algorithm as <spec:type>xs:string</spec:type>) as <spec:type>xs:string</spec:type></eg>
             <ulist>
                <item>
                   <p><code>$input-string</code> is the string to be encrypted. When a particular
@@ -312,7 +312,7 @@
 <spec:function>crypto:decrypt</spec:function>($input-string as <spec:type>xs:string</spec:type>,
                $decryption-type as <spec:type>xs:string</spec:type>,
                $secret-key as <spec:type>xs:string</spec:type>,
-               $cryptographic-algorithm as <spec:type>xs:string</spec:type>) as <spec:type>xs:boolean</spec:type></eg>
+               $cryptographic-algorithm as <spec:type>xs:string</spec:type>) as <spec:type>xs:string</spec:type></eg>
             <ulist>
                <item>
                   <p><code>$input-string</code> is the string to be decrypted. When a particular
@@ -321,7 +321,7 @@
                      the data is not padded properly, this is an error <bibref ref="errCX17"/>.</p>
                </item>
                <item>
-                  <p><code>$encryption-type</code> is the type of encryption. Legal values:
+                  <p><code>$decryption-type</code> is the type of encryption. Legal values:
                      "symmetric", and "asymmetric". If the parameter has an illegal value, this is
                      an error <bibref ref="errCX22"/>.</p>
                </item>
