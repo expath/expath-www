@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Web Application</title>
-<link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" />
-<style type="text/css">
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Web Application</title><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><style type="text/css">
 code           { font-family: monospace; }
 
 div.constraint,
@@ -41,25 +41,187 @@ div.exampleHeader { font-weight: bold;
       }
    </style></head><body><p><a href="http://expath.org/"><img src="http://expath.org/images/expath-icon.png" alt="EXPath" height="32" width="32" /></a></p><div class="head">
 <h1><a name="title" id="title"></a>Web Application</h1>
-<h2><a name="w3c-doctype" id="w3c-doctype"></a>EXPath Candidate Module xx Xxx 2010</h2><dl><dt>This version:</dt><dd>
+<h2><a name="w3c-doctype" id="w3c-doctype"></a>EXPath Candidate Module 25 November 2012</h2><dl><dt>This version:</dt><dd>
          <a href="http://expath.org/spec/webapp/editor">http://expath.org/spec/webapp/editor</a>
       </dd><dt>Editor:</dt><dd>Florent Georges, H2O Consulting</dd></dl><p>This document is also available in these non-normative formats: <a href="http://expath.org/spec/webapp/editor.xml">XML</a>.</p><p class="copyright"></p></div><hr /><div>
-<h2><a name="abstract" id="abstract"></a>Abstract</h2><p>Bla bla bla</p></div><div class="toc">
-<h2><a name="contents" id="contents"></a>Table of Contents</h2><p class="toc">1 <a href="#d2e50">Introduction</a><br />
-    1.1 <a href="#d2e55">Namespace conventions</a><br />
-2 <a href="#d2e60">Examples (notes)</a><br />
-3 <a href="#d2e110">Bla bla bla</a><br />
+<h2><a name="abstract" id="abstract"></a>Abstract</h2><p>This specification defines how to write web applications on server-side, using XML
+            technologies like XSLT, XQuery and XProc. It also defines their execution context, as
+            well as some functions they can use. Last but not least it defines how to package such
+            webapps, by using the <a href="#pkg">[EXPath Packaging System]</a>.</p></div><div class="toc">
+<h2><a name="contents" id="contents"></a>Table of Contents</h2><p class="toc">1 <a href="#d3e52">Introduction</a><br />
+    1.1 <a href="#d3e57">Namespace conventions</a><br />
+2 <a href="#d3e76">Containers and webapps</a><br />
+3 <a href="#d3e107">Requests and responses</a><br />
+    3.1 <a href="#d3e125">Requests</a><br />
+    3.2 <a href="#d3e279">Responses</a><br />
+4 <a href="#d3e288">Examples (notes)</a><br />
+5 <a href="#d3e311">Bla bla bla</a><br />
 </p>
-<h3><a name="appendices" id="appendices"></a>Appendix</h3><p class="toc">A <a href="#d2e116">References</a><br />
+<h3><a name="appendices" id="appendices"></a>Appendices</h3><p class="toc">A <a href="#expath-pkg.xsd">Webapp schema</a><br />
+B <a href="#d3e322">References</a><br />
 </p></div><hr /><div class="body"><div class="div1">
-<h2><a name="d2e50" id="d2e50"></a>1 Introduction</h2><p>Bla bla bla</p><div class="div2">
-<h3><a name="d2e55" id="d2e55"></a>1.1 Namespace conventions</h3><p>Bla bla bla</p></div></div><div class="div1">
-<h2><a name="d2e60" id="d2e60"></a>2 Examples (notes)</h2><div class="exampleInner"><pre class="brush: xml">
-&lt;webapp xmlns="http://expath.org/ns/webapp/descriptor"
+<h2><a name="d3e52" id="d3e52"></a>1 Introduction</h2><p>Bla bla bla</p><div class="div2">
+<h3><a name="d3e57" id="d3e57"></a>1.1 Namespace conventions</h3><p>The webapp descriptor uses the namespace <code>http://expath.org/ns/webapp</code>, as
+               the default namespace. This namespace is also used for the XML representation of the
+               HTTP requests and responses, and to define several functions provided by the webapp
+               container. In this document, the <code>web</code> prefix, when used, is bound to this
+               namespace URI.</p><p>Error codes are defined in the namespace <code>http://expath.org/ns/error</code>. In
+               this document, the <code>err</code> prefix, when used, is bound to this namespace
+               URI.</p></div></div><div class="div1">
+<h2><a name="d3e76" id="d3e76"></a>2 Containers and webapps</h2><p>A web application, or webapp, in this specification, is a set of components,
+            implementing an application. The application responds to HTTP requests and runs in a
+            webapp container. The container provides the context of execution for the webapps,
+            provides them with some functions, and is responsible for translating from and to HTTP.
+            When the container receives an HTTP request, it identifies the corresponding component
+            to process it (e.g. based on the request URL), builds an XML representation of the
+            request, and call the component. The component receives the HTTP request as an XML
+            document, and returns an XML description of the HTTP response to send back to the
+            client. The container then translates this XML document and actually send the
+            corresponding HTTP response.</p><p>A component is a piece of XSLT, XQuery or XProc. Each type of component defines how the
+            request is passed to and the response is returned by such a component. But the XML
+            format of the requests and responses is always the same. The existing types of
+            components are:</p><ul><li>an XSLT stylesheet</li><li>an XSLT function</li><li>an XSLT template</li><li>an XQuery query</li><li>an XQuery function</li><li>an XProc pipeline</li><li>an XProc step</li></ul><p>A webapp contains a descriptor, which defines how to dispatch a request to a specific
+            component. The dispatching mechanism is based on the request URL, by associating a URL
+            pattern to a component public URI (a component public URI is defined in the <a href="#pkg">[EXPath Packaging System]</a>, basically it is the component name, as an absolute URI). The association
+            of a URL pattern to a component is called a servlet. Every servlet has a name.</p><p>A webapp is installed at a specific context root. The context root is a path prefix, and
+            all the request received "below" that prefix are served by that webapp. For instance, a
+            webapp installed on example.org at the context root /somewhere will serve all requests
+            with a URL starting with <code>http://example.org/somewhere/</code>. The part after that
+            prefix is the path to the servlet.</p></div><div class="div1">
+<h2><a name="d3e107" id="d3e107"></a>3 Requests and responses</h2><p>The HTTP requests and responses are represented as XML documents. The request is build
+            by the container to represent the actual HTTP request received. The component returns a
+            representation of the response, used by the container to actually respond to the client
+            over HTTP. A sample request:</p><div class="exampleInner"><pre>
+&lt;request servlet="some" path="/some/resource" method="get" xmlns="http://expath.org/ns/webapp"&gt;
+   &lt;url&gt;http://example.org/myapp/some/resource&lt;/url&gt;
+   &lt;authority&gt;http://example.org&lt;/authority&gt;
+   &lt;context-root&gt;/myapp&lt;/context-root&gt;
+   &lt;path&gt;
+      &lt;part&gt;/some/&lt;/part&gt;
+      &lt;match name="rsrc"&gt;resource&lt;/match&gt;
+   &lt;/path&gt;
+   &lt;header name="host" value="example.org"/&gt;
+   &lt;header name="user-agent" value="Firefox/7.0.1"/&gt;
+   &lt;header name="accept" value="text/html,application/xml;q=0.9,*/*;q=0.8"/&gt;
+   &lt;header name="accept-language" value="en-us,en;q=0.5"/&gt;
+&lt;/request&gt;
+</pre></div><p>This request can be build by a container listening at http://example.org/, when received
+            a request to GET the resource at /myapp/some/resource. We can see the path has been
+            pre-analyzed, and the request contains various HTTP information like the method, the
+            request URL (decomposed in different ways), and the headers. The request might also
+            contain an entity content, also known as the body of the request (e.g. in case of a PUT
+            request).</p><p>In response to the above request, the onvoked component could return the following
+            response to the container:</p><div class="exampleInner"><pre>
+&lt;response status="200" message="Ok" xmlns="http://expath.org/ns/webapp"&gt;
+   &lt;header name="X-My-Header" value="Just an example."/&gt;
+   &lt;body content-type="application/xml"&gt;
+      &lt;hello&gt;World!&lt;/hello&gt;
+   &lt;/body&gt;
+&lt;/response&gt;</pre></div><p>This tells the container to return the XML document
+               <code>&lt;hello&gt;World!&lt;/hello&gt;</code> to the client, using the Content-Type
+            "application/xml", with the HTTP status code 200, and an extra header.</p><div class="div2">
+<h3><a name="d3e125" id="d3e125"></a>3.1 Requests</h3><div class="exampleInner"><pre>
+&lt;request servlet = NCName
+         path = string
+         method = NCName&gt;
+   url,
+   authority,
+   context-root,
+   path,
+   param*,
+   header*,
+   (body|
+    multipart)?
+&lt;/request&gt;</pre></div><p>A request contains the name of the matched <code>servlet</code>, the request
+                  <code>path</code>, and its <code>method</code> (also known as the HTTP verb, like
+               GET and POST) in lower case. The text element <code>url</code> contains the original
+               request URL, including its query parameters if any. The URL also appears cut down
+               into several pieces. The element <code>authority</code> is its first part, including
+               the URL scheme and the domain name, <code>context-root</code> is the webapp context
+               root, <code>path</code> is an alternative representation of the requested path (as in
+               the attribute <code>path</code>), where some specific parts have been analyzed, and
+               the elements <code>param</code> represent the query parameters.</p><p>Then come the HTTP <code>header</code> elements, each with a name and a value. Then
+               the content of the HTTP entity (e.g. for a PUT), as an element <code>body</code> or
+                  <code>multipart</code>, depending on the content type of the request.</p><div class="exampleInner"><pre>
+&lt;header name = string
+        value = string/&gt;</pre></div><p><b>URL</b></p><p>The URL appears at several places in the request element, under different shapes. The
+               element <code>url</code> is the original URL as typed by the user. Or at least it is
+               an educated guess of what it could be, as HTTP does not include the original URL in
+               the request (the port number for instance is not in the HTTP request).</p><p>The element <code>authority</code> is the first part of the URL, including the URL
+               scheme and the domain name (up to the slash first, but not including it). The scheme
+               can be either "http:" or "https:". It is then followed by two slashes then the domain
+               name.</p><p>The element <code>context-root</code> is the webapp context root on this server. It
+               is fixed for the webpp, and represents where the webapp has been "installed" on the
+               server (the webapp serves all requests coming to URLs "below" its context root).</p><p>After the element <code>path</code> (see below), the query parameters, if any, are
+               represented each with an element <code>param</code>, with an attribute
+                  <code>name</code> and an attribute <code>value</code>.</p><div class="exampleInner"><pre>
+&lt;param name = string
+       value = string/&gt;</pre></div><p>Note that the XPath expression "<code>fn:concat(authority, context-root,
+               path)</code>" gives the original URL except the query parameters.</p><p><b>Path</b></p><p>The path is the part of the request URL that comes after the context root (excluding
+               the query parameters). This is thus the part that can vary for a given webapp (for a
+               given webapp, deployed on a specific server at a specific context root, everything up
+               to and including the context root will be always the same). Servlets use regexes to
+               match URLs, and they can give a name to some sub parts of the path matched by the
+               regex (see the definition of the webapp descriptor for all details).</p><p>This is represented by having, in the element <code>path</code>, a sequence of
+               elements <code>part</code> and <code>match</code>. The elements <code>part</code> are
+               the non-matched parts of the URL, and the elements <code>match</code> are the matched
+               parts of the URL. They appear in the same order as in the URL.</p><div class="exampleInner"><pre>
+&lt;path&gt;
+   (part|
+    match)+
+&lt;/path&gt;
+
+&lt;part&gt;
+   <em>string</em>
+&lt;/part&gt;
+
+&lt;match name = NCName&gt;
+   <em>string</em>
+&lt;/part&gt;</pre></div><p>As an example, let's say we have the following servlet definition, associating an
+               XSLT stylesheet component to a URL pattern, and naming some specific parts of the
+               URL:</p><div class="exampleInner"><pre>
+&lt;servlet name="user"&gt;
+   &lt;xslt uri="http://example.org/myapp/users.xsl"/&gt;
+   &lt;url pattern="/users/([a-z0-9]+)"&gt;
+      &lt;match group="1" name="id"/&gt;
+   &lt;/url&gt;
+&lt;/servlet&gt;</pre></div><p>A request sent to /users/fgeorges would be served by that servlet. And the last part
+               of the path would be assigned the name "id". The corresponding element <code>path</code>
+               would then be:</p><div class="exampleInner"><pre>
+&lt;path&gt;
+   &lt;part&gt;/users/&lt;/part&gt;
+   &lt;match name="id"&gt;fgeorges&lt;/match&gt;
+&lt;/path&gt;</pre></div><p>The entire path is the string value of the element <code>path</code>. Put another
+               way, concatenating all the <code>part</code> and <code>match</code> elements, in
+               order, gives the value of the path. It is also available as the value of the
+               attribute <code>path</code> on the element <code>request</code>.</p><p><b>Content</b></p><p>TODO: ...</p><div class="exampleInner"><pre>
+&lt;multipart ...&gt;
+   body+
+&lt;/multipart&gt;
+
+&lt;body ...&gt;
+   ...
+&lt;/body&gt;</pre></div></div><div class="div2">
+<h3><a name="d3e279" id="d3e279"></a>3.2 Responses</h3><div class="exampleInner"><pre>
+&lt;response status = integer
+          message = string&gt;
+   header*,
+   (body|
+    multipart)?
+&lt;/response&gt;</pre></div><p>...</p><div class="exampleInner"><pre>
+&lt;multipart ...&gt;
+   body+
+&lt;/multipart&gt;
+
+&lt;body ...&gt;
+   ...
+&lt;/body&gt;</pre></div></div></div><div class="div1">
+<h2><a name="d3e288" id="d3e288"></a>4 Examples (notes)</h2><div class="exampleInner"><pre>
+&lt;webapp xmlns="http://expath.org/ns/webapp"
         xmlns:app="http://expath.org/ns/samples/servlex/hello"
         name="http://expath.org/samples/servlex/hello"
         abbrev="hello-world"
-        version="0.1"&gt;
+        version="0.1.0"&gt;
 
    &lt;title&gt;Servlex hello-world application&lt;/title&gt;
 
@@ -81,15 +243,15 @@ div.exampleHeader { font-weight: bold;
       &lt;url pattern="/xproc"/&gt;
    &lt;/servlet&gt;
 
-&lt;/webapp&gt;</pre></div><p>...</p><div class="exampleInner"><pre class="brush: xml">
+&lt;/webapp&gt;</pre></div><p>...</p><div class="exampleInner"><pre>
 &lt;webapp name = uri
         abbrev = NCName
         version = string&gt;
    title,
    resource*,
-   *** <em>TODO: Add filters, groups, etc. ***</em> ***
+   *** <em>TODO: Add filters, groups, etc.</em> ***
    servlet+
-&lt;/webapp&gt;</pre></div><p>...</p><div class="exampleInner"><pre class="brush: xml">
+&lt;/webapp&gt;</pre></div><p>...</p><div class="exampleInner"><pre>
 &lt;servlet name? = NCName&gt;
    <em>component</em>,
    url
@@ -106,69 +268,53 @@ div.exampleHeader { font-weight: bold;
       template? = QName/&gt;
 
 &lt;url pattern? = URLPattern/&gt;</pre></div><p>...</p><div class="exampleInner"><pre>
-&lt;request servlet="tools" path="/tools/dump" method="get" xmlns:web="http://expath.org/ns/webapp"&gt;
-   &lt;uri&gt;http://h2oconsulting.be/servlex/h2o-website/tools/dump&lt;/uri&gt;
-   &lt;authority&gt;http://h2oconsulting.be&lt;/authority&gt;
-   &lt;context-root&gt;/servlex/h2o-website&lt;/context-root&gt;
-   &lt;path&gt;
-      &lt;part&gt;/tools/&lt;/part&gt;
-      &lt;match name="path"&gt;dump&lt;/match&gt;
-   &lt;/path&gt;
-   &lt;header name="host" value="h2oconsulting.be"/&gt;
-   &lt;header name="user-agent" value="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:7.0.1) Gecko/20100101 Firefox/7.0.1"/&gt;
-   &lt;header name="accept" value="text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"/&gt;
-   &lt;header name="accept-language" value="en-us,en;q=0.5"/&gt;
-   &lt;header name="accept-encoding" value="gzip, deflate"/&gt;
-   &lt;header name="accept-charset" value="ISO-8859-1,utf-8;q=0.7,*;q=0.7"/&gt;
-   &lt;header name="via" value="1.1 www.h2oconsulting.be"/&gt;
-   &lt;header name="x-forwarded-for" value="91.87.141.209"/&gt;
-   &lt;header name="x-forwarded-host" value="h2oconsulting.be"/&gt;
-   &lt;header name="x-forwarded-server" value="www.h2oconsulting.be"/&gt;
-   &lt;header name="connection" value="Keep-Alive"/&gt;
-&lt;/request&gt;
-</pre></div><p>...</p><div class="exampleInner"><pre>
-&lt;request servlet? = NCName
-         path = string
-         method = NCName&gt;
-   uri,
-   authority,
-   context-root,
-   path,
-   header*,
-   (body|
-    multipart)?
-&lt;/request&gt;</pre></div><p>...</p><div class="exampleInner"><pre>
-&lt;path&gt;
-   (part|
-    match)+
-&lt;/path&gt;
-
-&lt;part&gt;
-   <em>string</em>
-&lt;/part&gt;
-
-&lt;match name = NCName&gt;
-   <em>string</em>
-&lt;/part&gt;</pre></div><p>...</p><div class="exampleInner"><pre>
-&lt;response status="200" message="Ok"&gt;
+&lt;response status="200" message="Ok" xmlns="http://expath.org/ns/webapp"&gt;
    &lt;header name="Content-Disposition" value="filename=the-file.txt"/&gt;
    &lt;body content-type="application/zip" src="/some/path/to/the/file.txt"/&gt;
-&lt;/response&gt;</pre></div><p>...</p><div class="exampleInner"><pre>
-&lt;response status = integer
-          message = string&gt;
-   header*,
-   (body|
-    multipart)?
-&lt;/response&gt;</pre></div><p>...</p><div class="exampleInner"><pre>
-&lt;multipart ...&gt;
-   body+
-&lt;/multipart&gt;
+&lt;/response&gt;</pre></div></div><div class="div1">
+<h2><a name="d3e311" id="d3e311"></a>5 Bla bla bla</h2><p>...</p></div></div><div class="back"><div class="div1">
+<h2><a name="expath-pkg.xsd" id="expath-pkg.xsd"></a>A Webapp schema</h2><div class="exampleInner"><pre>&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:web="http://expath.org/ns/webapp"
+           targetNamespace="http://expath.org/ns/webapp"
+           elementFormDefault="qualified"&gt;
 
-&lt;body ...&gt;
-   ...
-&lt;/body&gt;</pre></div></div><div class="div1">
-<h2><a name="d2e110" id="d2e110"></a>3 Bla bla bla</h2><p>...</p></div></div><div class="back"><div class="div1">
-<h2><a name="d2e116" id="d2e116"></a>A References</h2><dl><dt class="label"><a name="key" id="key"></a>DisplayedKey</dt><dd>
-               <a href="http://example.org/key">The document</a>. The author. The company. The
-               publication infos.</dd></dl></div></div>
-</body></html>
+   &lt;xs:element name="request"&gt;
+      &lt;xs:annotation&gt;
+         &lt;xs:documentation&gt;
+            &lt;p&gt;The HTTP request element.&lt;/p&gt;
+         &lt;/xs:documentation&gt;
+      &lt;/xs:annotation&gt;
+      ...
+   &lt;/xs:element&gt;
+
+   &lt;xs:element name="response"&gt;
+      &lt;xs:annotation&gt;
+         &lt;xs:documentation&gt;
+            &lt;p&gt;The HTTP response element.&lt;/p&gt;
+         &lt;/xs:documentation&gt;
+      &lt;/xs:annotation&gt;
+      ...
+   &lt;/xs:element&gt;
+
+   &lt;xs:element name="webapp"&gt;
+      &lt;xs:annotation&gt;
+         &lt;xs:documentation&gt;
+            &lt;p&gt;The webapp descriptor.&lt;/p&gt;
+         &lt;/xs:documentation&gt;
+      &lt;/xs:annotation&gt;
+      ...
+   &lt;/xs:element&gt;
+
+&lt;/xs:schema&gt;
+</pre></div></div><div class="div1">
+<h2><a name="d3e322" id="d3e322"></a>B References</h2><dl><dt class="label"><a name="pkg" id="pkg"></a>EXPath Packaging System</dt><dd>
+               <a href="http://expath.org/spec/pkg">Packaging System</a>. Florent Georges,
+               editor. EXPath. 9 May 2012.</dd></dl></div></div><script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+         </script><script type="text/javascript">
+            try {
+               var pageTracker = _gat._getTracker("UA-5463082-2");
+               pageTracker._trackPageview();
+            } catch(err) {}
+         </script></body></html>
