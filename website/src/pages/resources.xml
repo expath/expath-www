@@ -7,6 +7,10 @@
       <divider/>
       <primary>
          <title>EXPath resources</title>
+         <para>The presentation about EXPath Webapp and Servlex, given by Florent Georges at <link
+            href="http://xmlprague.cz/2011/">XML Prague 2011</link>. CXAN was taken as a
+            case-study.</para>
+         <slideshare doc="fgeorges-servlex-130107035847-phpapp02"/>
          <para>An article about <link href="http://ibm.com/developerworks/library/x-expath/">Working
             with web services using the EXPath HTTP client -- HTTP testing with EXPath</link>, by
             Jim Fuller on IBM's developerWorks.</para>
