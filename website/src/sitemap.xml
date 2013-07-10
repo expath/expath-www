@@ -29,6 +29,7 @@
 
    <dir base="../images/" href="images/" copy="true">
       <exclude name=".svn"/>
+      <exclude name=".git"/>
    </dir>
 
    <!--
