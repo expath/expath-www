@@ -31,7 +31,7 @@
    <primary>
       <title>Install guide</title>
       <para>TODO: Document the install...  Basically, download the ZIP, unzip it, and put the dir in
-         your oXygen's plugins/ subdir.</para>
+         your oXygen’s plugins/ subdir.</para>
    </primary>
    <primary>
       <title>User guide</title>
@@ -65,7 +65,7 @@
       <image src="../../images/xproject-doc.png" alt="XProject button in oXygen for generating documentation for project"/>
       <para><bold>Generate project doc</bold></para>
       <para>Generate the documentation for the project, based on xqDoc, xquerydoc, XSLStyle and/or
-         oXygen's XSLT documentation vocabulary (only XQuery documentation is support right
+         oXygen’s XSLT documentation vocabulary (only XQuery documentation is support right
          now).</para>
       <image src="../../images/xproject-release.png" alt="XProject button in oXygen for building release file for project"/>
       <para><bold>Build release file for project</bold></para>

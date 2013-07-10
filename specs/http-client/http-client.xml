@@ -101,7 +101,7 @@
             <item>
                <p><code>$request</code> contains the various parameters of the request, for instance
                   the HTTP method to use or the HTTP headers. Among other things, it can also
-                  contain the other param's values: the URI and the bodies. If they are not set as
+                  contain the other param’s values: the URI and the bodies. If they are not set as
                   parameter to the function, their value in $request, if any, is used instead. See
                   the following section for the detailed definition of the http:request element. If
                   the parameter does not follow the grammar defined in this spec, this is an error
@@ -517,7 +517,7 @@
                   Operators 1.1</loc>. Michael Kay, editor. W3C Working Draft. 15 January 2009.
             </bibl>
             <bibl id="tagsoup" key="TagSoup">
-               <loc href="http://ccil.org/~cowan/XML/tagsoup/">TagSoup - Just Keep On Truckin'</loc>.
+               <loc href="http://ccil.org/~cowan/XML/tagsoup/">TagSoup - Just Keep On Truckin’</loc>.
                John Cowan.
             </bibl>
             <bibl id="xproc" key="XProc">

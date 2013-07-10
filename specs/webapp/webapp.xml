@@ -246,7 +246,7 @@
                <item><p>an xs:base64Binary in case of any other media type</p></item>
             </ulist>
             <p>Selecting the media part is done based on the Content-Type header. In case of a
-               multipart type, each part is represented by its own item. Each part's pseudo header
+               multipart type, each part is represented by its own item. Each part’s pseudo header
                Content-Type is used the same way that the header Content-Type is used for the entire
                content in case of a single part. The content type is used as follows:</p>
             <ulist>
@@ -719,7 +719,7 @@ declare function app:echo($input as item()+) as element()+
                error list, the format of which is defined by the production rule
                <code>CatchErrorList</code> in <bibref ref="xquery30"/>. The catch error list is a
                '|'-separated list of QName wildcards, that is where you can substitute either the
-               prefix, the local name or the whole name by a '*' (meaning "any value here"). In
+               prefix, the local name or the whole name by a '*' (meaning “any value here”). In
                addition it allows using EQNames for explicitly setting the namespace URI in the
                expression, without having to bind it to a prefix. Such a list therefore identifies a
                set of matching QNames. When an error is thrown by a component and go up the stack
@@ -900,7 +900,7 @@ declare function app:echo($input as item()+) as element()+
             (no forward compatibility rules are defined, a processor conforming to this
             specification has to generate an error if the spec number is different than the string
             <code>1.0</code>). The title is a plain string, and the home is a URL pointing to the
-            webapp's or project's homepage or website. The rest of the webapp element is composed of
+            webapp’s or project’s homepage or website. The rest of the webapp element is composed of
             any combination of the elements <code>application</code>, <code>error</code>,
             <code>filter</code>, <code>group</code> and <code>servlet</code>.</p>
          <p>The following is an example of a descriptor, for a simple webapp with 2 components: an

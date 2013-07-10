@@ -12,13 +12,13 @@
             <link href="#who">How does decide what to define in EXPath?</link>
          </item>
          <item>
-            <link href="#licence">What's the licencing?</link>
+            <link href="#licence">What’s the licencing?</link>
          </item>
          <item>
             <link href="#version">Versioning policy</link>
          </item>
          <item>
-            <link href="#scope">What's the exact scope of EXPath?</link>
+            <link href="#scope">What’s the exact scope of EXPath?</link>
          </item>
          <item>
             <link href="#xpath21">Is not there a risk to be redundant with XPath 2.1?</link>
@@ -30,7 +30,7 @@
    </section>
    <divider/>
    <primary id="licence">
-      <title>What's the licencing?</title>
+      <title>What’s the licencing?</title>
       <para>The website content is under the <link
             href="http://creativecommons.org/licenses/by/2.5/">Creative Commons 2.5</link>. The
          specifications are under the <link href="http://creativecommons.org/licenses/by-nd/3.0/"
@@ -54,13 +54,13 @@
          functions or elements used as return values or parameters.</para>
    </primary>
    <primary id="scope">
-      <title>What's the exact scope of EXPath?</title>
+      <title>What’s the exact scope of EXPath?</title>
       <para>The goal of this project is to provide the community with organized sets of extensions
          to the XPath 2.0 language. That can be done in plenty of different ways, but here we
          clearly favor defining extension through functions, and forbid grammar-level changes. If
          another library does exist yet that address one problem, we should maybe link to it and not
          try to reinvent the wheel.</para>
-      <para>But I don't want to restrict too much the freedom of the module maintainers nor their
+      <para>But I don’t want to restrict too much the freedom of the module maintainers nor their
          creativity, and I trust the good sense of the community. If people spend time to define and
          implement a module, even if they not respect the above rules, and if there is some interest
          in the community regarding this work, then why not?</para>

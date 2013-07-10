@@ -84,12 +84,12 @@
       <para>The Google APIs provide a simple REST API: you just need to send an HTTP POST request
          with parameters encoded in application/x-www-form-urlencoded (that means the request body
          looks like: param1=value1&amp;param2=value2, with a bit of escaping). You first need to
-         use the Authentication API to get an authentication token, that you'll pass to every call
+         use the Authentication API to get an authentication token, that you’ll pass to every call
          of other APIs. Then you can use the Contact API to get the data of all your contacts, then
          a second call to get the data of all the groups your contacts belong to.</para>
       <para>Before showing the whole stylesheet, here are what the three request should look like
          (more exactly what the elements representing the three HTTP request should look like). Here
-         is the authentication call (indented for readability, but there shouldn't be any carriage
+         is the authentication call (indented for readability, but there shouldn’t be any carriage
          return):</para>
       <para>
          <sample href="samples-5.xml.sample" kind="xml"/>

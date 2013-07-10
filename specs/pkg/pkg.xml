@@ -102,7 +102,7 @@
             implementation can add support for additional types. A component is identified by a
                <kw>public URI</kw>. This public URI is used to access the component from the outside
             of the package. Each component type has its own <kw>URI space</kw>, within which a
-            component's URI has to be unique (so two different components can have the same public
+            component’s URI has to be unique (so two different components can have the same public
             URI if they are of different types, but this is not recommended).</p>
          <p>All the components composing the package, alongside an additional <kw>package
                descriptor</kw>, are used to create a ZIP file. This file <emph>is</emph> the
@@ -451,13 +451,13 @@
          <p>At the end of the day, having packages installed in a repository is interesting only if
             one is able to use the installed components. This can be done by invoking directly the
             component, e.g. an XProc pipeline directly from the command-line or an XSLT stylesheet
-            from an IDE, or most of the time by importing the component from within user's own
+            from an IDE, or most of the time by importing the component from within user’s own
             components. For instance, a user can import the FunctX XSLT implementation in his/her
             own stylesheet, by refering to it only by its public import URI, provided the FunctX
             package is available to the processor the user uses to evaluate the overall
             transform.</p>
          <p>In order to promote interoperability, this specification defines a standard URI
-            resolving mechanism, and how to import installed components from within user's own
+            resolving mechanism, and how to import installed components from within user’s own
             components. In order to stay generic enough though, the initial list of available
             package at runtime, as well as the way to set the initial options of this algorithm, are
             implementation-defined. Indeed, the way to set the available package list will be
@@ -486,7 +486,7 @@
             same name and the same version number, because in that case their are considered the
             same package regardless they actually are duplicated in the repository (this is the
             responsability of the user to prevent inconsistencies in that case).</p>
-         <p>TODO: Define what's a processor, what's compilation, and the case or 'resource'... (that
+         <p>TODO: Define what’s a processor, what’s compilation, and the case or 'resource'... (that
             is, the context of a resolution)</p>
          <p>When a processor, whilst compiling a component, encounters an import statement, it
             SHOULD perform the following steps:</p>
@@ -614,17 +614,17 @@ some-lib-0.1 http://example.com/some-library 0.1
             named <code>expath-pkg.xml</code> at the root of the package, and 2) the library content
             is in a directory named <code>content</code> at the root of the package (aka the
                <emph>content directory</emph>). The structure of the content directory is completely
-            free. In our case, let's just put both component files directly in the content
+            free. In our case, let’s just put both component files directly in the content
             directory, and define the module name as <code>functx</code>:</p>
          <eg>
 expath-pkg.xml
 content/
    functx.xql
    functx.xsl</eg>
-         <p>The XQuery library module's target namespace is defined by the module itself. For the
+         <p>The XQuery library module’s target namespace is defined by the module itself. For the
             XSLT stylesheet, we have to define its <emph>public URI</emph>, used to identify it
             within an <code>xsl:import</code> (or any other means, for instance within XProc or an
-            IDE scenarii system). Let's define it as <code>http://www.functx.com/functx.xsl</code>.
+            IDE scenarii system). Let’s define it as <code>http://www.functx.com/functx.xsl</code>.
             The package descriptor thus looks like the following:</p>
          <eg>
 &lt;package xmlns="http://expath.org/ns/pkg"
@@ -644,7 +644,7 @@ content/
 &lt;/package></eg>
          <p>We just have to create a ZIP file with this structure and content. The convention is to
             call this file <code>functx-1.0.xar</code> (that is,
-               [<emph>abbrev</emph>]-[<emph>version</emph>].xar). That's all for the package itself.
+               [<emph>abbrev</emph>]-[<emph>version</emph>].xar). That’s all for the package itself.
             If the target processor supports the on-disk repository layout, here is what the
             repository could look like after the package has been installed:</p>
          <eg>

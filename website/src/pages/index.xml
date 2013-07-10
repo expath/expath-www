@@ -22,7 +22,7 @@
             href="http://www.exproc.org/">EXProc</link> projects. We think that those projects are
          really useful and fill a gap in the XML core technologies landscape. Nevertheless, working
          at the XPath level allows common solutions when there is no sense in reinventing the wheel
-         over and over again. This is just following the brilliant idea of the W3C's XSLT and XQuery
+         over and over again. This is just following the brilliant idea of the W3C’s XSLT and XQuery
          working groups, which joined forces to define XPath 2.0 together. EXPath purpose is not to
          compete with other projects, but collaborate with them.</para>
    </section>
@@ -100,7 +100,7 @@
          feedback about existing extensions. How an extension helped or failed to help are both
          valuable kinds if feedback.</para>
       <para>But this project is all about providing pragmatic, concrete extensions: well-defined,
-         and ready to be used. Sounds rational, doesn't it? And the best way to help us to help you is
+         and ready to be used. Sounds rational, doesn’t it? And the best way to help us to help you is
          to take part in the process. Communicate, send your own use cases, send prototype
          implementations, write a draft for a specification, report bugs...</para>
       <para>The project centers around discussions on the mailing list. <link href="lists">Join the

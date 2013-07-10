@@ -36,7 +36,7 @@
       </copyright>
       <abstract>
          <p>This proposal defines a set of XPath 2.0 extension functions to handle ZIP files. It
-            defines one function to read ZIP files structure, functions to read actual entry's
+            defines one function to read ZIP files structure, functions to read actual entry’s
             content, as well as functions to create brand-new ZIP files or to create ZIP files based
             on existing template files. It has been designed to be compatible with XQuery 1.0 and
             XSLT 2.0, as well as any other XPath 2.0 usage.</p>
@@ -178,7 +178,7 @@ dir/
          <p>In the case of the <code>zip:zip-file</code> and <code>zip:update-entries</code>
             functions, the elements describe both the ZIP file structure and entry content. The
                <code>zip:entries</code> function, however, only describes the ZIP file structure,
-            not the content; for this reason, certain element attributes for the function aren't
+            not the content; for this reason, certain element attributes for the function aren’t
             permitted, these are highlighted in the description below.</p>
          <div2>
             <head>The <code>zip:file</code> Element</head>        
@@ -301,7 +301,7 @@ dir/
          <head>References</head>
          <blist>
             <bibl id="tagsoup" key="TagSoup">
-               <loc href="http://ccil.org/~cowan/XML/tagsoup/">TagSoup - Just Keep On Truckin'</loc>.
+               <loc href="http://ccil.org/~cowan/XML/tagsoup/">TagSoup - Just Keep On Truckin’</loc>.
                John Cowan.
             </bibl>
             <bibl id="tidy" key="HTML Tidy">
