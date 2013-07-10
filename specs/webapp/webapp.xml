@@ -98,7 +98,7 @@
                ref="pkg"/>, basically it is the component name, as an absolute URI). The association
             of a URL pattern to a component is called a servlet. Every servlet has a name.</p>
          <p>A webapp is installed at a specific context root. The context root is a path prefix, and
-            all the request received "below" that prefix are served by that webapp. For instance, a
+            all the request received “below” that prefix are served by that webapp. For instance, a
             webapp installed on example.org at the context root /somewhere will serve all requests
             with a URL starting with <code>http://example.org/somewhere/</code>. The part after that
             prefix is the path to the servlet.</p>
@@ -188,11 +188,11 @@
                the request (the port number for instance is not in the HTTP request).</p>
             <p>The element <code>authority</code> is the first part of the URL, including the URL
                scheme and the domain name (up to the slash first, but not including it). The scheme
-               can be either "http:" or "https:". It is then followed by two slashes then the domain
+               can be either “http:” or “https:”. It is then followed by two slashes then the domain
                name.</p>
             <p>The element <code>context-root</code> is the webapp context root on this server. It
-               is fixed for the webpp, and represents where the webapp has been "installed" on the
-               server (the webapp serves all requests coming to URLs "below" its context root).</p>
+               is fixed for the webpp, and represents where the webapp has been “installed” on the
+               server (the webapp serves all requests coming to URLs “below” its context root).</p>
             <p>After the element <code>path</code> (see below), the query parameters, if any, are
                represented each with an element <code>param</code>, with an attribute
                   <code>name</code> and an attribute <code>value</code>.</p>
@@ -669,8 +669,8 @@ declare function app:echo($input as item()+) as element()+
          </div2>
          <div2 id="filters">
             <head>Filters</head>
-            <p>A filter has a name and two components, the "<emph>in</emph>" and the
-               "<emph>out</emph>" component. Both components are optional, but at least one is
+            <p>A filter has a name and two components, the “<emph>in</emph>” and the
+               “<emph>out</emph>” component. Both components are optional, but at least one is
                required:</p>
             <eg>
 &lt;filter name = NCName>
@@ -686,11 +686,11 @@ declare function app:echo($input as item()+) as element()+
    <emph>component</emph>
 &lt;/out></eg>
             <p>When a filter is attached to a servlet, the input sequence flowing to the servlet
-               first passes to the filter "<emph>in</emph>" component if any. The input sequence
-               becomes the input sequence of the "<emph>in</emph>" component, and the result of
+               first passes to the filter “<emph>in</emph>” component if any. The input sequence
+               becomes the input sequence of the “<emph>in</emph>” component, and the result of
                evaluating it becomes the input sequence of the servlet component. The result of
-               evaluating the servlet component passes then through the filter "<emph>out</emph>"
-               component, if any. The result of the servlet becomes the "<emph>out</emph>" component
+               evaluating the servlet component passes then through the filter “<emph>out</emph>”
+               component, if any. The result of the servlet becomes the “<emph>out</emph>” component
                input sequence, and the result of evaluating it becomes the result returned to the
                container.</p>
             <p>There are several ways to set a filter around a servlet. Actually, filters can be
@@ -737,7 +737,7 @@ declare function app:echo($input as item()+) as element()+
                </item>
                <item>
                   <p>"<code>app:*</code>": catch all errors in the namespace bound to the prefix
-                     "app"</p>
+                     “app”</p>
                </item>
                <item>
                   <p>"<code>app:ABC067|app:XYZ001</code>": catch both errors, explicitly</p>
@@ -829,9 +829,9 @@ declare function app:echo($input as item()+) as element()+
       &lt;/servlet>
    &lt;/servlet>
 &lt;/group></eg>
-            <p>the servlet "un" is wrapped by the filter chain "first second third fourth" (in that
-               order), "deux" is wrapped by "first second fifth", and "trois" by "first second fifth
-               sixth".</p>
+            <p>the servlet “un” is wrapped by the filter chain “first second third fourth” (in that
+               order), “deux” is wrapped by “first second fifth”, and “trois” by “first second fifth
+               sixth”.</p>
          </div2>
          <div2 id="config">
             <head>Config</head>

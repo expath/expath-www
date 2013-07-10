@@ -87,7 +87,7 @@
             </ulist>
           </p></item>
         </ulist>
-        <p>In the following, only "paths" is used if referring to a file or directory.</p>
+        <p>In the following, only “paths” is used if referring to a file or directory.</p>
       </div2>
       
       <div2>
@@ -137,7 +137,7 @@ nondeterministic <ex:function>file:files</ex:function>($path as <ex:type>xs:stri
                             $recursive as <ex:type>xs:boolean</ex:type>) as <ex:type>xs:string*</ex:type></eg>        
         <p>Lists all files in a given directory.
           The order of the files in the result is not defined. 
-		  The special files "." and ".." are never returned. 
+		  The special files “.” and “..” are never returned. 
           The returned paths are relative to the provided <code>$path</code>. 
           If the optional <code>$pattern</code> parameter is provided, only the file having a name that is matching the given regular expression pattern are
           returned. 
@@ -196,7 +196,7 @@ sequential <ex:function>file:mkdirs</ex:function>($dir as <ex:type>xs:string</ex
         <head><code>file:path-separator</code></head>
         <eg>
 <ex:function>file:path-separator</ex:function>() as <ex:type>xs:string</ex:type></eg>
-        <p>This function returns the file path separator used by the operating system. For example, it returns "/" on Unix-based platforms or "\" on Windows platforms.</p>
+        <p>This function returns the file path separator used by the operating system. For example, it returns “/” on Unix-based platforms or “\” on Windows platforms.</p>
       </div2>
       <div2>
         <head><code>file:path-to-full-path</code></head>

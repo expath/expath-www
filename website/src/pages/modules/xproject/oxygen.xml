@@ -36,7 +36,7 @@
    <primary>
       <title>User guide</title>
       <para>The plugin provides two main entry points: a new toolbar dedicated to XProject, and a
-         set of templates to create new components (using the usual "<emph>New File</emph>" feature
+         set of templates to create new components (using the usual “<emph>New File</emph>” feature
          of oXygen).  The toolbar contains 5 grey buttons:</para>
       <image src="../../images/xproject-toolbar.png" alt="Toolbar in oXygen of the XProject plugin"/>
       <para>The first button creates a new project and the 4 following buttons act on an existing
@@ -72,15 +72,15 @@
       <para>Build a ZIP file suitable for delivering the project to end users.  The ZIP file
          contains the package itself (the XAR or XAW file), the project sources, the
          documentation, a VERSION file, etcetera.</para>
-      <para>The plugin also adds some templates to the usual "<emph>New File</emph>" dialog box of
+      <para>The plugin also adds some templates to the usual “<emph>New File</emph>” dialog box of
          oXygen:</para>
       <image src="../../images/xproject-new-file.png" alt="New file dialog of oXygen with XProject templates"/>
-      <para>You can locate the new templates in the (long) list either by opening the "<emph>Global
-            templates</emph>" section or by typing down "<emph>packaging</emph>" in the filter field
+      <para>You can locate the new templates in the (long) list either by opening the “<emph>Global
+            templates</emph>” section or by typing down “<emph>packaging</emph>” in the filter field
          at the top of the window.  Because this is oXygen, you can also install the templates using
          any other possible way oXygen is providing to configure templates.  For what is worth
          noting, personally I (Florent Georges) select them once then select them in the
-         "<emph>Recently used</emph>" section at xthe top of the window....</para>
+         “<emph>Recently used</emph>” section at xthe top of the window....</para>
       <para>The new created file contains the declaration for the XProject namespace when applicable,
          and clearly identified places to adapt to your own code (e.g. the public import URI you want
          to affect to the new component).  Just replace what is specific to your new file and you are

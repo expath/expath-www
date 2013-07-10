@@ -313,7 +313,7 @@
          <note>
             <p>This section is deprecated, either to remove it completely or to rewrite it (in case
                some pieces should be kept here). Most of this material should be moved to the new
-               section "URI resolving").</p>
+               section “URI resolving”).</p>
          </note>
          <p>A <kw>processor</kw> is any program that use packaged components. For instance, an XSLT
             processor uses XSLT stylesheets (as well as XML schemas for an XSLT 2.0 SA processor),

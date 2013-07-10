@@ -12,15 +12,15 @@
       <para>An update of the <link href="spec/http-client">HTTP Client specification</link>
          has been published. The namespaces have been adapted to the standard, some errors have been
          added, the serialization mechanism is based on the XSLT and XQuery serialization spec now,
-         and a "revision markup" version, highlighting differences, has been created.</para>
+         and a “revision markup” version, highlighting differences, has been created.</para>
    </primary>
    <primary>
       <title>Packaging update</title>
       <details>January 7, 2010</details>
       <para>An update of the <link href="spec/pkg">packaging specification</link> has been
-         published. The section "Concepts" has been rewritten, making clear distinction between
+         published. The section “Concepts” has been rewritten, making clear distinction between
          concepts and the package descriptor format. A complete example has been added too. And a
-         "revision markup" version, highlighting differences, has been created.</para>
+         “revision markup” version, highlighting differences, has been created.</para>
    </primary>
    <primary>
       <title>ZIP Facility</title>

@@ -305,7 +305,7 @@
                response, and has to be a multipart media type (that is, its main type must be
                   <code>multipart</code>). The <code>boundary</code> attribute is the boundary
                marker used to separate the several parts in the message (the value of the attribute
-               is prefixed with "<code>--</code>" to form the actual boundary marker in the request;
+               is prefixed with “<code>--</code>” to form the actual boundary marker in the request;
                on the other way, this prefix is removed from the boundary marker in the response to
                set the value of the attribute).</p>
          </div2>
